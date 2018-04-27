@@ -1,2 +1,2 @@
-# doku
-Public Documentation of Lobaro API's and Hardware
+# Documentation
+See [Wiki](https://github.com/Lobaro/docs/wiki)
