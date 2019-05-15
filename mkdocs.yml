@@ -1,0 +1,5 @@
+site_name: Lobaro Documentation
+
+theme:
+    name: readthedocs
+    highlightjs: true
