@@ -9,7 +9,42 @@ data from environmental sensors like temperature and humidity.
 
 #### LoRaWAN
 
-#### UART
+
+#### Modbus/UART
+There are several values that define the configuration via Modbus. These 
+values depend on the Slave devices that you want to read out. Please refer to your 
+Modbus Devices's manual to find out the correct configuration.
+
+| name | description | values |
+|------|-------------|--------|
+| `ModbusProtocol`   | Which Modbus-Protocol to use | `RTU`. `ASCII` |
+| `ModbusBaud`       | UART Baud rate | `9600`, `19200`, `38400`, ... |
+| `ModbusDataLendth` | UART data length | `7`, `8`, `9` |
+| `ModbusStopBits`   | UART stop bits | `0.5`, `1`, `1.5`, `2` (written exactly like this) |
+| `ModbusParity`     | UART parity | `NONE`, `EVEN`, `ODD` |
+
+#### Operation
+| name | description | example value |
+|------|-------------|----------------|
+| `ModbusCron` | Cron expression defining when to read | `0 0/15 * * * *` for every 15 minutes |
+
+#### Register/Coil definition
+Modbus defines four different object types form which values can be read:
+Coils, Discrete Inputs, Input Registers, and Holding Registers.
+For an introduction please refer to 
+[https://en.wikipedia.org/wiki/Modbus](https://en.wikipedia.org/wiki/Modbus).
+There are four configuration values to define which values should be read by 
+the Modbus Bridge, one for each of the types. 
+
+| name | description | Modbus Function |
+|------|-------------|----------------------| 
+| `Coils` | Coils to read (single bit read-only values) | `0x01` |
+| `DiscreteInputs` | Discrete Inputs to read (single bit read/write values) | `0x02` |
+| `HoldingRegisters` | Holding Registers to read (2 byte read-only values) | `0x03` |
+| `InputRegisters` | Input Register to read (2 byte read/write values) | `0x04` |
+
+Each value can define multiple different registers/coils to be read on one or multiple 
+devices connected via Modbus. The format is identical for all four types.
 
 
 ## Payload formats
