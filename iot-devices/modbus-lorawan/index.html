@@ -70,6 +70,10 @@
         
             <li><a class="toctree-l4" href="#payload-formats">Payload formats</a></li>
         
+            <li><a class="toctree-l4" href="#complex-setups">Complex setups</a></li>
+        
+            <li><a class="toctree-l4" href="#reference-decoder">Reference decoder</a></li>
+        
         </ul>
     
 
@@ -122,6 +126,81 @@ Typical applications include reading out electric and water meters or retrieving
 data from environmental sensors like temperature and humidity.</p>
 <h2 id="configuration">Configuration</h2>
 <h4 id="lorawan">LoRaWAN</h4>
+<p>The connection to the LoRaWAN network is defined by multiple configuration parameters.
+This need to be set according to your LoRaWAN network and the way your device is 
+supposed to be attached to it, or the device will not be able to send any data.</p>
+<p>There are two different methods to attach a device to a LoRaWAN network: 
+Over-the-air-activation (OTAA) and Activation-by-personalisation (ABP). 
+Depending on which method you are using you will have to set different values.</p>
+<p>Several values are a number of bytes, that need to be entered as hexstrings (without 
+<code>0x</code>-prefix). So e.g. the DevEUI is a value of 8 bytes encoded in hex will be 
+16 hexdigits long. A sample value would be <code>0123456789abcdef</code>.</p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>used</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>OTAA</code></td>
+<td>both</td>
+<td>bool</td>
+<td><code>true</code> &equiv; use OTAA, <code>false</code> &equiv; use ABP</td>
+</tr>
+<tr>
+<td><code>DevEUI</code></td>
+<td>OTAA</td>
+<td>hexbyte[8]</td>
+<td>the 8 byte DevEUI identifies the hardware on the join operation. The default value is a world wide unique value predefined in the hardware. Should not be changed unless required by the network provider.</td>
+</tr>
+<tr>
+<td><code>AppEUI</code></td>
+<td>OTAA</td>
+<td>hexbyte[8]</td>
+<td>ID defining the application used in the LoRaWAN network.</td>
+</tr>
+<tr>
+<td><code>AppKey</code></td>
+<td>OTAA</td>
+<td>hexbyte[16]</td>
+<td>Key used to encrypt communication with the LoRaWAN network.</td>
+</tr>
+<tr>
+<td><code>AppSKey</code></td>
+<td>ABP</td>
+<td>hexbyte[16]</td>
+<td>Application Session Key to be synced with the LoRaWAN network.</td>
+</tr>
+<tr>
+<td><code>NetSKey</code></td>
+<td>ABP</td>
+<td>hexbyte[16]</td>
+<td>Network Session Key to be synced with the LoRaWAN network.</td>
+</tr>
+<tr>
+<td><code>DevAdr</code></td>
+<td>ABP</td>
+<td>hexbyte[4]</td>
+<td>Device Address used to identify device in the LoRaWAN network.</td>
+</tr>
+<tr>
+<td><code>SF</code></td>
+<td>both</td>
+<td>int</td>
+<td>Initial LoRa spreading factor used for transmissions. Valid range is 7-12. The actual spreading factor used by change during operation if ADR is used.</td>
+</tr>
+<tr>
+<td><code>ADR</code></td>
+<td>both</td>
+<td>bool</td>
+<td>Should adaptive data rate be used? <code>true</code> &equiv; use ADR, <code>false</code> &equiv; don't</td>
+</tr>
+</tbody>
+</table>
 <h4 id="modbusuart">Modbus/UART</h4>
 <p>There are several values that define the configuration via Modbus. These 
 values depend on the Slave devices that you want to read out. Please refer to your 
@@ -163,6 +242,7 @@ Modbus Devices's manual to find out the correct configuration.</p>
 </tbody>
 </table>
 <h4 id="operation">Operation</h4>
+<p>Configuration values defining the behaviour of the device. </p>
 <table>
 <thead>
 <tr>
@@ -219,15 +299,79 @@ the Modbus Bridge, one for each of the types. </p>
 </table>
 <p>Each value can define multiple different registers/coils to be read on one or multiple 
 devices connected via Modbus. The format is identical for all four types.</p>
+<p>Each single definition consists of three values separated by colons (<code>:</code>). </p>
+<ol>
+<li>The address of the Modbus device that should be read from. Valid device addresses 
+range from  1 to 247; with a single slave device on your bus this is often 1.</li>
+<li>The address of the first register/coil to be read on the device. Register addresses 
+are uint16 values and range from 0 to 65535.</li>
+<li>The number of consecutive registers/coils to be read. This value is limited to 127, 
+because longer answers cannot be encoded. Be aware that for registers a value higher 
+than 22 leads to problems on high spreading factors so that the data will not 
+be transferred completely via LoRaWAN.</li>
+</ol>
+<p>Multiple of these register definitions can be used if they are separated by 
+commas (<code>,</code> no spaces after the comma).</p>
+<p>You can use one or multiple of the register/coil types. If you do not want to use 
+a type e.g. <code>Coils</code>, set that definition to an empty string. The device will parse 
+the four register strings on startup and reports invalid definitions. The device 
+will not work while there are invalid definitions but will reboot repeatedly until 
+you fix the configuration.</p>
+<h6 id="example-register-definition-strings">Example register definition strings</h6>
+<table>
+<thead>
+<tr>
+<th>definition</th>
+<th>explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>1:0:3</code></td>
+<td>Read first three registers of device with address 1.</td>
+</tr>
+<tr>
+<td><code>2:40001:1,2:2000:10</code></td>
+<td>Read registers 40001 and 2000 to 2009 of device 2.</td>
+</tr>
+<tr>
+<td><code>4:0:2,5:0:2,5:20:1</code></td>
+<td>Read registers 0 and 1 of device 4 as well as registers 0, 1, and register 20 of device 5.</td>
+</tr>
+</tbody>
+</table>
 <h2 id="payload-formats">Payload formats</h2>
 <p>The Modbus Bridge sends different kinds of messages over different LoRaWAN ports:</p>
-<ul>
-<li>Port 1: Status messages</li>
-<li>Port 11: Data from reading Coils..</li>
-<li>Port 12: Data from reading Discrete Inputs.</li>
-<li>Port 13: Data from reading Holding Registers.</li>
-<li>Port 14: Data from reading Input Registers.</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th align="right">Port</th>
+<th align="left">Message</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">1</td>
+<td align="left">Status messages.</td>
+</tr>
+<tr>
+<td align="right">11</td>
+<td align="left">Data from reading Coils (function <code>0x01</code>).</td>
+</tr>
+<tr>
+<td align="right">12</td>
+<td align="left">Data from reading Discrete Inputs (function <code>0x02</code>).</td>
+</tr>
+<tr>
+<td align="right">13</td>
+<td align="left">Data from reading Holding Registers (function <code>0x03</code>).</td>
+</tr>
+<tr>
+<td align="right">14</td>
+<td align="left">Data from reading Input Registers (function <code>0x04</code>).</td>
+</tr>
+</tbody>
+</table>
 <h4 id="status-messages">Status messages</h4>
 <p>The Modbus Bridge sends a status messages report on the health of the device itself.
 This messages are sent along when the device is sending data packages with a 
@@ -296,6 +440,172 @@ maximum of one status message per day. </p>
 </tbody>
 </table>
 <h4 id="data-messages">Data messages</h4>
+<p>The principle message format is equal for all four types of registers/coils. 
+The port used defines what kind of register/coil was read 
+(see table "Payload formats" above). The format slightly differs for coils versus 
+registers, since the amount of data per coil (1 bit) is different than the amount 
+per register (16 bits).</p>
+<p>Each data message is starts with a 40 bit timestamp followed by one or more data packs.
+Each pack represents a single read operation caused by a single register definition 
+in your configuration. The pack starts with 4 bytes repeating the information of the 
+register definition extended by a single bit reporting errors on reading
+letting you know what data you are presented with and if it was read successfully). 
+That information is followed by the raw data bytes as they where given by the 
+slave device (as the Bridge cannot know how the data is presented in those bytes). 
+The length of the data is dependent on the register definition and on the type 
+(registers versus coils). The length is not explicitly stated, as it can be 
+determined from the definition. The data bytes are also included when an error 
+has occurred, however in this case the content of those bytes is undefined.</p>
+<h6 id="structure-of-a-data-pack">Structure of a data pack</h6>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th align="right">pos</th>
+<th align="right">len</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>addr</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td><code>uint8</code></td>
+<td>Modbus address of slave device.</td>
+</tr>
+<tr>
+<td>start</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td><code>uint16</code></td>
+<td>Address of first coil/register read.</td>
+</tr>
+<tr>
+<td>cnt+err</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td><code>uint8</code></td>
+<td>Highest bit: error indicator, 7 lower bits: number of consecutive coils/registers read.</td>
+</tr>
+<tr>
+<td>data</td>
+<td align="right">4</td>
+<td align="right">n</td>
+<td><code>uint8[n]</code></td>
+<td>Raw data bytes as sent by the slave device.</td>
+</tr>
+</tbody>
+</table>
+<p>To get <code>cnt</code>, the number of coils/registers read, you need to only read the lower 7 
+bits of the fourth byte (e.g. by using something like <code>data[3] &amp; 0x7f</code>). The highest 
+bit is <code>0</code> on successful reads and <code>1</code> if an error occurred. See our reference 
+decoder if you have trouble reading the format.</p>
+<p>The length of the data <code>n</code> for Coils and Discrete Inputs (Ports 11 and 12) the value 
+of <code>cnt</code> divided by 8 rounded up (that is the minimal number of bytes needed to 
+store <code>cnt</code> bits). For Registers (Ports 13 and 14) the data length is <code>cnt * 2</code>, since 
+registers contain two bytes of data.</p>
+<p>Please refer to the <em>reference decoder</em> usable in TTN at the end of this document.</p>
+<h2 id="complex-setups">Complex setups</h2>
+<p>The Modbus Bridge as described in this manual can be individually configured to read out any
+registers and coils. For some setups, this is not enough. There can be situations in which you want
+to read registers at different intervals, e.g. you might need some values with hourly updates
+and others only every other day. For measuring values with high variance it can be necessary
+to take multiple reads over a period of time and create an average value. Maybe you need
+to read a status register first and depending on its value you want to decide which registers
+to read and transmit the values of. You could also want to write values into registers with
+the Bridge.
+All this scenarios are possible to solve using the Modbus Bridge, but their complexity leave the
+scope of our standard firmware. If you need any special processing for your Modbus setup,
+please contact us with your requirements, and we will make you an offer for an individual
+firmware that processes data the way you need.
+If you find that the data rate LoRaWAN offers is a limitation for your setup, we could also
+provide you with a Modbus solution that uses alternate data transmission technologies, for
+example NarrowBand-IoT.</p>
+<h2 id="reference-decoder">Reference decoder</h2>
+<p>This is a decoder written in JavaScript that can be used to parse the device's 
+LoRaWAN messages. It can be used as is in 
+<a href="https://thethingsnetwork.org">The Things Network</a>.</p>
+<pre><code>function readVersion(bytes) {
+    if (bytes.length&lt;3) {
+        return null;
+    }
+    return &quot;v&quot; + bytes[0] + &quot;.&quot; + bytes[1] + &quot;.&quot; + bytes[2];
+}
+
+function int40_BE(bytes, idx) {
+    bytes = bytes.slice(idx || 0);
+    return bytes[0] &lt;&lt; 32 |
+        bytes[1] &lt;&lt; 24 | bytes[2] &lt;&lt; 16 | bytes[3] &lt;&lt; 8 | bytes[4] &lt;&lt; 0;
+}
+
+function int16_BE(bytes, idx) {
+    bytes = bytes.slice(idx || 0);
+    return bytes[0] &lt;&lt; 8 | bytes[1] &lt;&lt; 0;
+}
+
+function decode_status(bytes) {
+    return {
+        &quot;port&quot;:1,
+        &quot;version&quot;:readVersion(bytes),
+        &quot;flags&quot;:bytes[3],
+        &quot;temp&quot;: int16_BE(bytes, 4) / 10,
+        &quot;vBat&quot;: int16_BE(bytes, 6) / 1000,
+        &quot;timestamp&quot;: int40_BE(bytes, 8),
+        &quot;operationMode&quot;: bytes[13]
+    };
+}
+
+function decode_data(bytes, port) {
+    var fun = port - 10;
+    var regs = [];
+    if (bytes.length &gt; 5) {
+        var b = bytes.slice(5);
+        while (b.length&gt;=4) {
+            var r = {
+                &quot;device&quot;:b[0],
+                &quot;start&quot;:int16_BE(b, 1),
+                &quot;count&quot;:b[3] &amp; 0x7f,
+                &quot;error&quot;:!!(b[3]&gt;&gt;7),
+                &quot;data&quot;:null
+            };
+            var dataLen = 0;
+            if (fun&lt;=2) {
+                // coils, one bit per address
+                dataLen = Math.ceil(r.count/8.0);
+            } else {
+                // registers, 16 bits per address
+                dataLen = r.count*2;
+            }
+            if (b.length &gt;= dataLen+4) {
+                r.data = b.slice(4, 4 + dataLen);
+            }
+            regs.push(r);
+            b = b.slice(4+dataLen);
+        }
+    }
+    return decoded = {
+        &quot;port&quot;: port,
+        &quot;function&quot;: fun,
+        &quot;timestamp&quot;: int40_BE(bytes, 0),
+        &quot;values&quot;: regs
+    };
+}
+
+function Decoder(bytes, port) {
+    switch (port) {
+        case 1:
+            return decode_status(bytes);
+        case 11:
+        case 12:
+        case 13:
+        case 14:
+            return decode_data(bytes, port);
+    }
+    return {&quot;error&quot;:&quot;invalid port&quot;, &quot;port&quot;:port};
+}
+</code></pre>
               
             </div>
           </div>
