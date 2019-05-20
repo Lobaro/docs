@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>USonic LoRaWAN - Lobaro Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "USonic LoRaWAN";
+    var mkdocs_page_input_path = "iot-devices/usonic-lorawan.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Lobaro Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Lobaro Documentation</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Background</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../background/lorawan/">LoRaWAN</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Iot devices</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../modbus-lorawan/">Modbus LoRaWAN Bridge</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">USonic LoRaWAN</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#usonic-lorawan">USonic LoRaWAN</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#reference-decoder">Reference decoder</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Lobaro Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Iot devices &raquo;</li>
+        
+      
+    
+    <li>USonic LoRaWAN</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="usonic-lorawan">USonic LoRaWAN</h1>
+<h2 id="reference-decoder">Reference decoder</h2>
+<p>This is a decoder written in JavaScript that can be used to parse the device's 
+LoRaWAN messages. It can be used as is in 
+<a href="https://thethingsnetwork.org">The Things Network</a>.</p>
+<pre><code>function decodeUInt16(byte1, byte2) {
+    var decoded = byte1 | byte2 &lt;&lt; 8;
+    if ((decoded &amp; 1 &lt;&lt; 15) &gt; 0) {  // value is negative (16bit 2's complement)
+        decoded = ((~decoded) &amp; 0xffff) + 1;  // invert 16bits &amp; add 1 =&gt; now positive value
+        decoded = decoded * -1;
+    }
+    return decoded;
+}
+
+
+function Decoder(bytes, port) {
+    // Decode an uplink message from a buffer
+    // (array) of bytes to an object of fields.
+    var decoded = {};
+
+    if (port === 2) { // Payload
+        decoded.vBat = (bytes[0] | bytes[1] &lt;&lt; 8) / 1000.0;  // byte 6-7 (originally in mV)
+
+        decoded.temp = decodeUInt16(bytes[2], bytes[3]) / 10.0;
+        decoded.numResults = bytes[4];
+        var idx = 5;
+
+        decoded.results = [];
+
+
+        for (var i = 0; i &lt; decoded.numResults; i++) {
+            var result = {};
+
+            result.distance_mm = bytes[idx] | bytes[idx + 1] &lt;&lt; 8 | bytes[idx + 2] &lt;&lt; 16 | bytes[idx + 3] &lt;&lt; 24;
+            result.distance_m = result.distance_mm / 1000;
+            result.tof_us = bytes[idx + 4] | bytes[idx + 5] &lt;&lt; 8;
+            result.width = bytes[idx + 6];
+            result.amplitude = bytes[idx + 7];
+            decoded.results[i] = result;
+            idx += 8;
+        }
+    }
+
+    // example decoder for status packet by lobaro
+    if (port === 1) { // status packet
+        decoded.firmwareVersion = bytes[0] + &quot;.&quot; + bytes[1] + &quot;.&quot; + bytes[2];  // byte 0-3
+        decoded.vBat = (bytes[4] | bytes[5] &lt;&lt; 8) / 1000.0;  // byte 6-7 (originally in mV)
+        decoded.temp = decodeUInt16(bytes[6], bytes[7]) / 10.0;  // byte 8-9 (originally in 10th degree C)
+        decoded.msg = &quot;Firmware Version: v&quot; + decoded.firmwareVersion + &quot; Battery: &quot; + decoded.vBat + &quot;V Temperature: &quot; + decoded.temp + &quot;°C&quot;;
+    }
+
+    return decoded;
+}
+</code></pre>
+
+<h4 id="example-parser-result">Example parser result</h4>
+<pre><code>{
+  &quot;numResults&quot;: 1,
+  &quot;results&quot;: [
+    {
+      &quot;amplitude&quot;: 215,
+      &quot;distance_m&quot;: 0.761,
+      &quot;distance_mm&quot;: 761,
+      &quot;tof_us&quot;: 4539,
+      &quot;width&quot;: 122
+    }
+  ],
+  &quot;temp&quot;: 21.8,
+  &quot;vBat&quot;: 2.779
+}
+</code></pre>
+
+<h4 id="meaning-of-payload-parameters">Meaning of Payload parameters</h4>
+<p>You can think of the usonic signal as a <em>strength of signal</em> or <em>volume</em> over time</p>
+<ul>
+<li><strong>Amplitude</strong> ranges from 0&ndash;255 and has no unit. It is highly influenced by 
+  the internal amplification parameter.
+  An amplitude of 100 or above is interpreted as reflected signal. Values below 100
+  are dismissed as background noise.</li>
+<li><strong>ToF</strong> is the <em>Time of Flight</em> measured in µs. From this and the speed of sound the 
+  distance to a detected object is calculated.</li>
+<li><strong>Width</strong> indicates how "wide" a detected signal is in time. That is the time in µs
+  before the amplitude drops back below the threshold.</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../modbus-lorawan/" class="btn btn-neutral" title="Modbus LoRaWAN Bridge"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../modbus-lorawan/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>
