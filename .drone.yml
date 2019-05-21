@@ -5,7 +5,8 @@ steps:
   - name: build
     image: python:3.6-alpine
     commands:
-      - apt-get install -y git-core
+      - apk update
+      - apk add git
       - pip install --upgrade pip setuptools wheel
       - pip install mkdocs
       - mkdocs gh-deploy
