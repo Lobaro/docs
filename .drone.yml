@@ -1,8 +1,7 @@
 pipeline:
   build:
-    image: python:3.5.1-alpine
+    image: python:3.5.1-slim
     commands:
-      - apt-get update
       - apt-get install -y git-core
       - pip install --upgrade pip setuptools wheel
       - pip install mkdocs
