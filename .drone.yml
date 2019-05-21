@@ -1,6 +1,6 @@
 pipeline:
   build:
-    image: python:3.5.1-slim
+    image: python:3.5.1-alpine
     commands:
       - apt-get update
       - apt-get install -y git-core
