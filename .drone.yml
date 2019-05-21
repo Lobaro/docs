@@ -1,6 +1,9 @@
-pipeline:
-  build:
-    image: python:3.5.1-slim
+kind: pipeline
+name: default
+
+steps:
+  - name: build
+    image: python:3.6-alpine
     commands:
       - apt-get install -y git-core
       - pip install --upgrade pip setuptools wheel
