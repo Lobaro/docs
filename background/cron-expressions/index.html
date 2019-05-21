@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>LoRaWAN - Lobaro Documentation</title>
+  <title>Cron Expressions - Lobaro Documentation</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,8 +17,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "LoRaWAN";
-    var mkdocs_page_input_path = "background/lorawan.md";
+    var mkdocs_page_name = "Cron Expressions";
+    var mkdocs_page_input_path = "background/cron-expressions.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -57,19 +57,19 @@
 		
     <span class="caption-text">Background</span>
     <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../cron-expressions/">Cron Expressions</a>
-                </li>
                 <li class=" current">
                     
-    <a class="current" href="./">LoRaWAN</a>
+    <a class="current" href="./">Cron Expressions</a>
     <ul class="subnav">
             
-    <li class="toctree-l3"><a href="#lorawan">LoRaWAN</a></li>
+    <li class="toctree-l3"><a href="#cron-expressions">Cron Expressions</a></li>
     
 
     </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../lorawan/">LoRaWAN</a>
                 </li>
     </ul>
 	    </li>
@@ -115,7 +115,7 @@
         
       
     
-    <li>LoRaWAN</li>
+    <li>Cron Expressions</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -125,14 +125,36 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="lorawan">LoRaWAN</h1>
-<p>LoRaWAN stands <strong>Lo</strong>ng <strong>Ra</strong>nge <strong>W</strong>ide <strong>A</strong>rea <strong>N</strong>etwork and is a low power 
-wireless network protocol. It uses the wireless transmission technology <em>LoRa</em>, 
-owned by Semtech Corporation. Although LoRa is a proprietary and patented LoRaWAN can 
-is openly specified by the <a href="https://lora-alliance.org/">LoRa Alliance</a> and can 
-be used freely if you have the necessary hardware. It is using publicly available 
-frequencies to transmit its data.</p>
-<p>TODO: basics OTAA, ABP, SF, ADR, ... </p>
+                <h1 id="cron-expressions">Cron Expressions</h1>
+<p>We use CRON expressions configure the timing of our hardware.</p>
+<p>All our CRON expressions are in the same format as the Java Quarz scheduler, 
+without the optional "year" field. 
+A good documentation including examples can be found here: 
+<a href="http://www.quartz-scheduler.org/documentation/quartz-2.3.0/tutorials/crontrigger.html">http://www.quartz-scheduler.org/documentation/quartz-2.3.0/tutorials/crontrigger.html</a></p>
+<p>The CRON expressions consists of 6 fields, separated by space: e.g. "<em> * </em> * <em> </em>"
+Meaning of the fields from left to right:</p>
+<ul>
+<li>Second (0-59) allowed special chars: ", - * /"</li>
+<li>Minute (0-59) allowed special chars: ", - * /"</li>
+<li>Hour (0-23) allowed special chars: ", - * /"</li>
+<li>Day of Month (1-31) allowed special chars: ", - * / ?"</li>
+<li>Month of Year (1-12 or JAN-DEC) allowed special chars: ", - * /"</li>
+<li>Day of Week (1-7 or SUN-SAT) allowed special chars: ", - * /"</li>
+</ul>
+<p><strong>Special Characters:</strong></p>
+<ul>
+<li><strong>*</strong> (star, asterisk) &ndash; used to select all values within a field. For example, "*" in the minute field means "every minute".</li>
+<li><strong>?</strong> (question mark) &ndash; useful when you need to specify something in one of the two fields in which the character is allowed, but not the other. For example, if I want my trigger to fire on a particular day of the month (say, the 10th), but don’t care what day of the week that happens to be, I would put “10” in the day-of-month field, and “?” in the day-of-week field. See the examples below for clarification.</li>
+<li><strong>-</strong> (dash, minus) &ndash; used to specify ranges. For example, “10-12” in the hour field means “the hours 10, 11 and 12”.</li>
+<li><strong>,</strong> (comma) &ndash; used to specify additional values. For example, “MON,WED,FRI” in the day-of-week field means “the days Monday, Wednesday, and Friday”.</li>
+<li><strong>/</strong> (slash) &ndash; used to specify increments. For example, “0/15” in the seconds field means “the seconds 0, 15, 30, and 45”. And “5/15” in the seconds field means “the seconds 5, 20, 35, and 50”. You can also specify ‘/’ after the ‘’ character - in this case ‘’ is equivalent to having ‘0’ before the ‘/’. ‘1/3’ in the day-of-month field means “fire every 3 days starting on the first day of the month”.</li>
+</ul>
+<p>A good website to test our CRON expressions is: <a href="https://www.freeformatter.com/cron-expression-generator-quartz.html">https://www.freeformatter.com/cron-expression-generator-quartz.html</a></p>
+<p><strong>Other Online CRON Generators and Tester:</strong></p>
+<ul>
+<li><a href="https://crontab-generator.org/">https://crontab-generator.org/</a> - "command" need to be set to some random string. The generated CRON has no "seconds".</li>
+<li><a href="https://crontab.guru/">https://crontab.guru/</a> - Also without "seconds" field.</li>
+</ul>
               
             </div>
           </div>
@@ -140,10 +162,10 @@ frequencies to transmit its data.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../../iot-devices/modbus-lorawan/" class="btn btn-neutral float-right" title="Modbus LoRaWAN Bridge">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../lorawan/" class="btn btn-neutral float-right" title="LoRaWAN">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../cron-expressions/" class="btn btn-neutral" title="Cron Expressions"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../.." class="btn btn-neutral" title="Lobaro Documentation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -169,10 +191,10 @@ frequencies to transmit its data.</p>
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../cron-expressions/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../.." style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../../iot-devices/modbus-lorawan/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../lorawan/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
