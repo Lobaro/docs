@@ -18,7 +18,7 @@ steps:
       - ssh-keyscan -H github.com >> ~/.ssh/known_hosts
       # create secret key from drone secret and add it:
       - chmod 600 deploykey
-      - echo $DEPLOY_SECRET_KEY > deploykey
+      - echo "$DEPLOY_SECRET_KEY" > deploykey
       - cat deploykey
       - chmod 400 deploykey
       - eval $(ssh-agent -s)
