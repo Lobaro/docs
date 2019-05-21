@@ -6,10 +6,10 @@ steps:
     image: python:3.6-alpine
     commands:
       - apk update
-      - apk add --no-chache git-fast-import
+      - apk add --no-chache git-fast-import openssh
       # change git config to use ssh auth instead of https on github:
       - git config --global url."git@github.com:".insteadOf "https://github.com/"
-      - git config --global user.email "drone@lobaro.de"
+      #- git config --global user.email "drone@lobaro.de"
       # create ssh dir for keys:
       - mkdir -p ~/.ssh && chmod 700 ~/.ssh
       - ssh-keyscan -H github.com >> ~/.ssh/known_hosts
