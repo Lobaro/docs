@@ -23,6 +23,8 @@ steps:
       - chmod 400 deploykey
       - eval $(ssh-agent -s)
       - ssh-add deploykey
+      # update git repo
+      - git pull
       # install mkdocs module for python:
       - pip install --upgrade pip setuptools wheel
       - pip install mkdocs
