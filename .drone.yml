@@ -1,5 +1,7 @@
-build:
-  image: python:3.6
-  commands:
-    - pip install mkdocs
-    - mkdocs gh-deploy
+buipipeline:
+  build:
+    image: python:3.5.1-alpine
+    commands:
+      - pip install --upgrade pip setuptools wheel
+      - pip install mkdocs
+      - mkdocs gh-deploy
