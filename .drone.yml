@@ -9,6 +9,7 @@ steps:
       - apk add --no-chache git-fast-import
       # change git config to use ssh auth instead of https on github:
       - git config --global url."git@github.com:".insteadOf "https://github.com/"
+      - git config --global user.email "drone@lobaro.de"
       # create ssh dir for keys:
       - mkdir -p ~/.ssh && chmod 700 ~/.ssh
       - ssh-keyscan -H github.com >> ~/.ssh/known_hosts
