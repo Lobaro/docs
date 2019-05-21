@@ -24,7 +24,7 @@ steps:
       - eval $(ssh-agent -s)
       - ssh-add deploykey
       # update git repo
-      - git pull
+      - git fetch origin gh-pages
       # install mkdocs module for python:
       - pip install --upgrade pip setuptools wheel
       - pip install mkdocs
