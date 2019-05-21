@@ -6,7 +6,7 @@ steps:
     image: python:3.6-alpine
     commands:
       - apk update
-      - apk add git
+      - apk add git-fast-import
       - pip install --upgrade pip setuptools wheel
       - pip install mkdocs
       - mkdocs gh-deploy
