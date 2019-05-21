@@ -4,7 +4,9 @@ name: default
 steps:
   - name: build
     image: python:3.6-alpine
-    secrets: [ DEPLOY_SECRET_KEY ]
+    environment:
+      DEPLOY_SECRET_KEY:
+        from_secret: DEPLOY_SECRET_KEY
     commands:
       - apk update
       - apk add --no-chache git-fast-import openssh
