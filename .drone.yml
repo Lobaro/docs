@@ -16,6 +16,7 @@ steps:
       # create secret key from drone secret and add it:
       - chmod 600 deploykey
       - echo "[ deploy-secret-key ]" > deploykey
+      - cat deploykey
       - chmod 400 deploykey
       - eval $(ssh-agent -s)
       - ssh-add deploykey
