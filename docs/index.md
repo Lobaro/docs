@@ -13,18 +13,18 @@ been added, correct.
 
 ### Lobaro IoT Sensoren
 
-| Sensor         | Technology     | 
-| :-------------  |:----------------|
-| [Modbus LoRaWAN Bridge](iot-devices/modbus-lorawan.md)       | LoRaWAN |
-| [Ultraschall LoRaWAN Sensor](iot-devices/usonic-lorawan.md)  | LoRaWAN |
-| [1-Wire LoRaWAN Bridge](iot-devices/1-wire-lorawan.md)       | LoRaWAN |
+| Sensor Name         | RF-Technology     | Target Measurement / Purpose   | 
+| :-------------  |:----------------|:----------------|
+| [Modbus LoRaWAN Bridge](iot-devices/modbus-lorawan.md)       | LoRaWAN | RS485 ModBus readout |
+| [Ultraschall LoRaWAN Sensor](iot-devices/usonic-lorawan.md)  | LoRaWAN | Ultrasonic level detection |
+| [1-Wire LoRaWAN Bridge](iot-devices/1-wire-lorawan.md)       | LoRaWAN | Multi temperature measurements |
 
 ## Tools
 
 ### Configuration / Setup
-| Tool              | Technology      | 
-|:----------------- |:----------------|
-| [Lobaro Maintenance Tool](tools/lobaro-tool.md) | Win, Mac, Linux |
+| Tool Name     | Technology     | Purpose   | 
+| :-------------  |:----------------|:----------------|
+| [Lobaro Maintenance Tool](tools/lobaro-tool.md) | Win, Mac, Linux | Device configuration & diagnostics|
 
 
 [lobaro]: https://lobaro.com
