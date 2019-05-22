@@ -1,6 +1,6 @@
 # EDL21 Electricity meter over LoRaWAN Bridge
 
-![sample image](./img/edl21_small.jpg)
+![Lobaro EDL21 LoRaWAN Bridge](./img/edl21_small.jpg)
 
 ## Quickstart 
 1. Connect to the device with the [Lobaro Tool](https://www.lobaro.com/lobaro-maintenance-tool/) using the [Lobaro Config Adapter](https://www.lobaro-shop.com/product_info.php?info=p7_lobaro-usb-konfigurations-adapter.html) 

@@ -1,5 +1,7 @@
 # Lobaro Maintenance Tool
 
+![Screenshot Lobaro-Tool](./img/Lobaro_Tool_ConfigFeature.png)
+
 Supports the PC based configuration of all Lobaro IoT sensors. It is available as free download for:
 
 * MAC

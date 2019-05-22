@@ -1,6 +1,5 @@
 # Lobaro Documentation
 
-
 This site is the new upcoming central documentation for IoT products 
 of [Lobaro GmbH](https://www.lobaro.de).
 
