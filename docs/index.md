@@ -9,7 +9,7 @@ of [Lobaro GmbH](https://www.lobaro.de).
 
 | Sensor Name         | RF-Technology     | Target Measurement / Purpose   | 
 | :-------------  |:----------------|:----------------|
-| [Modbus LoRaWAN Bridge](iot-devices/modbus-lorawan)       | LoRaWAN | RS485 ModBus readout |
+| [Modbus LoRaWAN Bridge](iot-devices/modbus-lorawan/0.3.0/)       | LoRaWAN | RS485 ModBus readout |
 | [Usonic LoRaWAN Sensor](iot-devices/usonic-lorawan)  | LoRaWAN | Ultrasonic level detection |
 | [1-Wire LoRaWAN Bridge](iot-devices/1-wire-lorawan)       | LoRaWAN | Multiple temperature measurements |
 | [EDL21 Electricity meter over LoRaWAN Bridge](iot-devices/edl21-opto-lorawan) | LoRaWAN | Electricity meter consumption |

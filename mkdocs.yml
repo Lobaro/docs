@@ -10,3 +10,4 @@ markdown_extensions:
     - admonition
 nav:
     - Home: index.md
+    - Contact / Impressum: https://www.lobaro.com/contact/
