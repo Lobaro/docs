@@ -12,7 +12,7 @@ been added, correct.
 ## Lobaro IoT Sensoren
 
 | Sensor          | Technologie     | 
-| :-------------  |:---------------:|
+| :-------------  |:----------------|
 | [Modbus LoRaWAN Bridge](iot-devices/modbus-lorawan.md)       | LoRaWAN |
 | [Ultraschall LoRaWAN Sensor](iot-devices/usonic-lorawan.md)  | LoRaWAN |
 | [1-Wire LoRaWAN Bridge](iot-devices/1-wire-lorawan.md)       | LoRaWAN |
