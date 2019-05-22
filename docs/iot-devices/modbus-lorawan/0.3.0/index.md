@@ -1,3 +1,6 @@
+---
+version: 0.3.0
+---
 # Modbus LoRaWAN Bridge
 The Lobaro Modbus LoRaWAN Bridge is a low power device that can be used to read values
 out of a variety of other devices via Modbus (ASCII/RTU) over a RS-485 interface
@@ -51,6 +54,8 @@ Configuration values defining the behaviour of the device.
 | name | description | example value |
 |------|-------------|----------------|
 | `ModbusCron` | Cron expression defining when to read | `0 0/15 * * * *` for every 15 minutes |
+
+See also our [](background/cron-expressions.md)
 
 ### Register/Coil definition
 Modbus defines four different object types form which values can be read:
@@ -206,12 +211,12 @@ example NarrowBand-IoT.
 | **Environmental Requirements** |  |
 | Operating temperature | -20°C &ndash; 55°C |
 | Max installation height | 2m |
-| **Standards** <br> <img title="CE" alt="CE logo" src="../../img/symbol-ce.svg" height="60"> <img title="weee" title="weee logo" src="../../img/symbol-weee.svg" height="60"> |
+| **Standards** <br> <img title="CE" alt="CE logo" src="/img/symbol-ce.svg" height="60"> <img title="weee" title="weee logo" src="/img/symbol-weee.svg" height="60"> |
 |  |  |
 
 ### CE Declaration of Conformity
 
-[CE Declaration of Conformity](res/modbus-lorawan-ce-conformity.pdf) (pdf)
+[CE Declaration of Conformity](modbus-lorawan-ce-conformity.pdf) (pdf)
 
 ## Reference decoder
 
