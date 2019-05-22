@@ -24,7 +24,7 @@ been added, correct.
 ### Configuration / Setup
 | Tool Name     | Technology     | Purpose   | 
 | :-------------  |:----------------|:----------------|
-| [Lobaro Maintenance Tool](tools/lobaro-tool.md) | Win, Mac, Linux | Device configuration & diagnostics|
+| [Lobaro Maintenance Tool](tools/lobaro-tool.md) | Win, Mac, Linux | Device configuration & diagnostics for all Lobaro devices|
 
 
 [lobaro]: https://lobaro.com
