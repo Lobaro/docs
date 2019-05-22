@@ -6,3 +6,5 @@ theme:
     highlightjs: true
 repo_url: "https://github.com/lobaro/docs"
 site_favicon: favicon.ico
+markdown_extensions:
+    - admonition
