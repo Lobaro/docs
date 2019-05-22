@@ -8,7 +8,7 @@ of [Lobaro GmbH][lobaro].
 The supplied information here might be incomplete but should be, as far as it has 
 been added, correct.
 </div>
-## Sensoren
+## Hardware
 
 ### Lobaro IoT Sensoren
 
