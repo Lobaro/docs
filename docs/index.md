@@ -23,5 +23,9 @@ of [Lobaro GmbH](https://www.lobaro.de).
 | :-------------  |:----------------|:----------------|
 | [Lobaro Maintenance Tool](tools/lobaro-tool.md) | Win, Mac, Linux | Device configuration & diagnostics for all Lobaro devices|
 
+## Background Knowledge
+* [Introduction to CRON expressions](background/cron-expressions) 
+* [Introduction to LoRaWAN](background/lorawan) 
+
 
 [lobaro]: https://lobaro.com
