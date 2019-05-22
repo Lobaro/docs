@@ -1,5 +1,5 @@
 # Lobaro Documentation
-![Screenshot Lobaro-Tool](./img/slogan_links_webHeader_.png)
+![Lobaro-Logo](./img/slogan_links_webHeader_.png)
 
 This site is the new upcoming central documentation for IoT products 
 of [Lobaro GmbH](https://www.lobaro.de).
