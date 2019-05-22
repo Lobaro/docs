@@ -2,12 +2,13 @@
 
 ## Quickstart
 
-1. Insert 2 batteries ('AA' size, 1.5V) / Connect external powersupply
-2. If not connected to anything the red LED will start blinking as long as no data is received, after 1 minute it will sleep for 15 seconds after every 5 retries 
-3. Connect to the device with the [Lobaro Tool](https://www.lobaro.com/lobaro-maintenance-tool/) using the [Lobaro Config Adapter](https://www.lobaro-shop.com/product_info.php?info=p7_lobaro-usb-konfigurations-adapter.html) 
-4. Under Configuration click "Reload Config" and change the fields ReadCron and ObisCode as you need followed by clicking on "Write to Device".
+ 
+1. Connect to the device with the [Lobaro Tool](https://www.lobaro.com/lobaro-maintenance-tool/) using the [Lobaro Config Adapter](https://www.lobaro-shop.com/product_info.php?info=p7_lobaro-usb-konfigurations-adapter.html) 
+2. Under Configuration click "Reload Config" and change the fields ReadCron and ObisCode as you need followed by clicking on "Write to Device".
     ![sample image](./img/edl21_config_tool.jpg)
-5. Register the device in your LoRaWAN network 
+3. Register the device in your LoRaWAN network
+4. Insert 2 batteries ('AA' size, 1.5V) / Connect external powersupply
+5. If not connected to anything the red LED will start blinking as long as no data is received, after 1 minute it will sleep for 15 seconds after every 5 retries
 6. Tighten the screws and install the bridge beside your electric meter
 7. Place the EDL21 on the "Info" interface
 8. As soon as the EDL21 receives data its green LED will light up for 5 seconds, when connected to a LoRa Network its blue LED will light up for 5 seconds
