@@ -17,7 +17,7 @@ been added, correct.
 | :-------------  |:----------------|:----------------|
 | [Modbus LoRaWAN Bridge](iot-devices/modbus-lorawan.md)       | LoRaWAN | RS485 ModBus readout |
 | [Ultraschall LoRaWAN Sensor](iot-devices/usonic-lorawan.md)  | LoRaWAN | Ultrasonic level detection |
-| [1-Wire LoRaWAN Bridge](iot-devices/1-wire-lorawan.md)       | LoRaWAN | Multi temperature measurements |
+| [1-Wire LoRaWAN Bridge](iot-devices/1-wire-lorawan.md)       | LoRaWAN | Multiple temperature measurements |
 
 ## Tools
 
