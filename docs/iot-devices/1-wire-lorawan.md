@@ -19,7 +19,7 @@ Decoded:
 ```
 {
   "temp": 20.4,
-  "vBat": 1.35,
+  "vBat": 3.0,
   "version": "v0.2.0"
 }
 ```
