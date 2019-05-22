@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>1-Wire Bridge - Lobaro Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "1-Wire Bridge";
+    var mkdocs_page_input_path = "iot-devices/1-wire-lorawan.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Lobaro Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Lobaro Documentation</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Background</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../background/cron-expressions/">Cron Expressions</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../background/lorawan/">LoRaWAN</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Iot devices</span>
+    <ul class="subnav">
+                <li class=" current">
+                    
+    <a class="current" href="./">1-Wire Bridge</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#1-wire-bridge">1-Wire Bridge</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#payload">Payload</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../modbus-lorawan/">Modbus LoRaWAN Bridge</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../usonic-lorawan/">USonic LoRaWAN</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Lobaro Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Iot devices &raquo;</li>
+        
+      
+    
+    <li>1-Wire Bridge</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="1-wire-bridge">1-Wire Bridge</h1>
+<p>Supports up to 20 DS18x20 1-Wire Temperature Sensors. The temperature form all sensors in read regualarly and send via LoRaWAN uplink.
+When the payload gets too big for a single LoRaWAN message, it is split into multiple uplinks.</p>
+<h2 id="payload">Payload</h2>
+<p>Example payloads for each port:</p>
+<h3 id="status-message-port-1">Status Message (Port 1)</h3>
+<p>Payload: (No Example yet)</p>
+<p>Decoded:</p>
+<pre><code>{
+  &quot;temp&quot;: 20.4,
+  &quot;vBat&quot;: 1.35,
+  &quot;version&quot;: &quot;v0.2.0&quot;
+}
+</code></pre>
+
+<h3 id="data-message-port-2">Data Message (Port 2)</h3>
+<p>Structure:</p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th align="right">pos</th>
+<th align="right">len</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>success</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td><code>uint8</code></td>
+<td>0 = Read error, 1 = Success</td>
+</tr>
+<tr>
+<td>sensor id</td>
+<td align="right">1</td>
+<td align="right">6</td>
+<td><code>[]byte</code></td>
+<td>6-Byte 1-Wire Sensor Id</td>
+</tr>
+<tr>
+<td>temperature</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td><code>int16 BE</code></td>
+<td>Temperature in 1/10 °C</td>
+</tr>
+<tr>
+<td>...</td>
+<td align="right"></td>
+<td align="right"></td>
+<td></td>
+<td>... sensor id and temperature fields repeat ...</td>
+</tr>
+</tbody>
+</table>
+<p>Example Payload:
+<code>01551e46920d0200da96b446920c0200d7dafc46920d0200d5202e4692050200dc</code></p>
+<p>Decoded:</p>
+<pre><code>{
+  &quot;sensors&quot;: [
+    {
+      &quot;id&quot;: &quot;551e46920d02&quot;,
+      &quot;temp&quot;: 21.8
+    },
+    {
+      &quot;id&quot;: &quot;96b446920c02&quot;,
+      &quot;temp&quot;: 21.5
+    },
+    {
+      &quot;id&quot;: &quot;dafc46920d02&quot;,
+      &quot;temp&quot;: 21.3
+    },
+    {
+      &quot;id&quot;: &quot;202e46920502&quot;,
+      &quot;temp&quot;: 22
+    }
+  ],
+  &quot;success&quot;: true
+}
+</code></pre>
+
+<h3 id="parser-thethingsnetwork-ttn">Parser: TheThingsNetwork (TTN)</h3>
+<pre><code>function readVersion(bytes) {
+    if (bytes.length&lt;3) {
+        return null;
+    }
+    return &quot;v&quot; + bytes[0] + &quot;.&quot; + bytes[1] + &quot;.&quot; + bytes[2];
+}
+function parse_sint16(bytes, idx) {
+    bytes = bytes.slice(idx || 0);
+    var t = bytes[0] &lt;&lt; 8 | bytes[1] &lt;&lt; 0;
+    if( (t &amp; 1&lt;&lt;15) &gt; 0){ // temp is negative (16bit 2's complement)
+        t = ((~t)&amp; 0xffff)+1; // invert 16bits &amp; add 1 =&gt; now positive value
+        t=t*-1;
+    }
+    return t;
+}
+function parse_uint16(bytes, idx) {
+    bytes = bytes.slice(idx || 0);
+    var t = bytes[0] &lt;&lt; 8 | bytes[1] &lt;&lt; 0;
+    return t;
+}
+
+function parse_hex(bytes, idx, end) {
+    var chars = &quot;0123456789abcdef&quot;;
+    bytes = bytes.slice(idx || 0, end || null);
+    var s = &quot;&quot;;
+    for (var i=0; i&lt;bytes.length; i++) {
+        var byte = bytes[i];
+        s += chars.charAt(byte&gt;&gt;4);
+        s += chars.charAt(byte &amp; 0xf);
+    }
+    return s;
+}
+
+function DecoderPort1(bytes) {
+    return {
+        &quot;version&quot;:readVersion(bytes),
+        &quot;temp&quot;: parse_sint16(bytes, 3) / 10,
+        &quot;vBat&quot;: parse_uint16(bytes, 5) / 1000,
+    };
+}
+
+function DecoderPort2(bytes) {
+    // Decode an uplink message from a buffer
+    // (array) of bytes to an object of fields.
+    var sensors = [];
+    var success = false;
+
+    var pos = 0;
+    if ( bytes.length ) {
+        pos+=1;
+        success = bytes[0] !== 0;
+    }
+    var left = bytes.length - pos;
+    while (left&gt;=8) {
+        var sensor = {
+            //'id_': bytes.slice(pos, pos+6),
+            'id': parse_hex(bytes, pos, pos+6),
+            'temp': parse_sint16(bytes, pos+6) / 10.0
+        };
+        sensors.push(sensor);
+        pos += 8;
+        left = bytes.length - pos;
+    }
+    // if (port === 1) decoded.led = bytes[0];
+
+    var decoded = {};
+    decoded['success'] = success;
+    decoded['sensors'] = sensors;
+    return decoded;
+}
+
+
+function Decoder(bytes, port) {
+    switch (port) {
+        case 1:
+            return DecoderPort1(bytes);
+        case 2:
+            return DecoderPort2(bytes);
+    }
+    return {
+        &quot;error&quot;: &quot;Invalid port&quot;,
+        &quot;port&quot;: port
+    };
+}
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../modbus-lorawan/" class="btn btn-neutral float-right" title="Modbus LoRaWAN Bridge">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../../background/lorawan/" class="btn btn-neutral" title="LoRaWAN"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../../background/lorawan/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../modbus-lorawan/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>
