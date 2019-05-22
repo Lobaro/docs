@@ -8,7 +8,7 @@ of [Lobaro GmbH][lobaro].
 The supplied information here might be incomplete but should be, as far as it has 
 been added, correct.
 </div>
-
+## Sensoren
 ### Lobaro IoT Sensoren
 
 | Sensor          | Technologie     | 
@@ -17,7 +17,8 @@ been added, correct.
 | [Ultraschall LoRaWAN Sensor](iot-devices/usonic-lorawan.md)  | LoRaWAN |
 | [1-Wire LoRaWAN Bridge](iot-devices/1-wire-lorawan.md)       | LoRaWAN |
 
-### Tools
+## Tools
+### Lobaro-Tool
 TBD
 
 [lobaro]: https://lobaro.com
