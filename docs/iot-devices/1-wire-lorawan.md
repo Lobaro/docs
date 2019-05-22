@@ -29,7 +29,7 @@ Decoded:
 Structure:
 
 | name        | pos | len | type       | description |
-| ----------- | --: | --: | ---------- | ----------- |
+| ----------- | :-- | :-- | ---------- | ----------- |
 | success     |   0 |   1 | `uint8`    | 0 = Read error, 1 = Success |
 | sensor id   |   1 |   6 | `[]byte`   | 6-Byte 1-Wire Sensor Id |
 | temperature |   3 |   2 | `int16 BE` | Temperature in 1/10 °C |
