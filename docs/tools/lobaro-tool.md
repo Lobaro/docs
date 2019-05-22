@@ -6,12 +6,6 @@ Supports the PC based configuration of all Lobaro IoT sensors. It is available a
 * Linux
 * Windows
 
-## Download & Changelog
-
-[Download Tool](https://files.lobaro.com/index.php/s/jJULuRooWzLnYO9)
-
-Latest stable version is v1.4.x
-
 ## Features
 
 * Change static sensor configuration
@@ -39,6 +33,10 @@ https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vc
 
 ### b) Install lobaro tool
 
+[Tool Download](https://files.lobaro.com/index.php/s/jJULuRooWzLnYO9) for your operating system.
+
+Latest stable version is v1.4.x
+
 #### MacOSX / Linux
 Download the "lobaro-tool" file, e.g. to a directory "lobaro" in your home path. Then set this file to executable:
 ```Bash
@@ -52,5 +50,8 @@ Alternativly download the windows installer and start this.
 
 !!! note
     Windows might show up a security warning and ask you to proceed anyway.
+
+
+
 
 
