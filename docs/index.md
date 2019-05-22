@@ -13,7 +13,7 @@ been added, correct.
 
 ### Lobaro IoT Sensoren
 
-| Sensor          | Technologie     | 
+| Sensor          | Technology     | 
 | :-------------  |:----------------|
 | [Modbus LoRaWAN Bridge](iot-devices/modbus-lorawan.md)       | LoRaWAN |
 | [Ultraschall LoRaWAN Sensor](iot-devices/usonic-lorawan.md)  | LoRaWAN |
@@ -22,6 +22,9 @@ been added, correct.
 ## Tools
 
 ### Lobaro-Tool
-TBD
+| Tool              | Technology      | 
+|:----------------- |:----------------|
+| [Lobaro Maintenance Tool](tools/lobaro-tool.md) | Win, Mac, Linux |
+
 
 [lobaro]: https://lobaro.com
