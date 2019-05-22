@@ -29,7 +29,8 @@ Supports the PC based configuration of all Lobaro IoT sensors. It is available a
 ## Installation
 
 ### a) Install adapter driver
-https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers
+[CP2102 Driver Download](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers) for your operating system.
+
 
 ### b) Install lobaro tool
 
