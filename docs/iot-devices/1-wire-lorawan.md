@@ -3,6 +3,10 @@
 Supports up to 20 DS18x20 1-Wire Temperature Sensors. The temperature form all sensors in read regualarly and send via LoRaWAN uplink.
 When the payload gets too big for a single LoRaWAN message, it is split into multiple uplinks.
 
+## Firmware
+
+[Download Firmware](http://files.lobaro.com/index.php/s/skqQyHTD3QE2fEN)
+
 ## Payload
 
 Example payloads for each port:
