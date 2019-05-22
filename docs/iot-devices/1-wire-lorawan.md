@@ -1,5 +1,7 @@
 # 1-Wire Bridge
 
+Supports up to 20 DS18x20 1-Wire Temperature Sensors. The temperature form all sensors in read regualarly and send via LoRaWAN uplink.
+When the payload gets too big for a single LoRaWAN message, it is split into multiple uplinks.
 
 ## Payload
 
@@ -20,7 +22,16 @@ Decoded:
 
 ### Data Message (Port 2)
 
-Payload:
+Structure:
+
+| name        | pos | len | type       | description |
+| ----------- | --: | --: | ---------- | ----------- |
+| success     |   0 |   1 | `uint8`    | 0 = Read error, 1 = Success |
+| sensor id   |   1 |   6 | `[]byte`   | 6-Byte 1-Wire Sensor Id |
+| temperature |   3 |   2 | `int16 BE` | Temperature in 1/10 °C |
+| ...         |     |     |            | ... sensor id and temperature fields repeat ...  |
+
+Example Payload:
 `01551e46920d0200da96b446920c0200d7dafc46920d0200d5202e4692050200dc`
 
 Decoded:
