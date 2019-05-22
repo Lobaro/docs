@@ -55,7 +55,7 @@ Configuration values defining the behaviour of the device.
 |------|-------------|----------------|
 | `ModbusCron` | Cron expression defining when to read | `0 0/15 * * * *` for every 15 minutes |
 
-See also our [](background/cron-expressions.md)
+See also our [Introduction to Cron expressions](/background/cron-expressions).
 
 ### Register/Coil definition
 Modbus defines four different object types form which values can be read:
