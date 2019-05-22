@@ -5,4 +5,4 @@ theme:
 #    name: readthedocs
     highlightjs: true
 repo_url: "https://github.com/lobaro/docs"
-#site_favicon: img/lobaro_ringe.png
+site_favicon: favicon.ico

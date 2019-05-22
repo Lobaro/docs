@@ -57,7 +57,7 @@ function Decoder(bytes, port) {
 }
 ```
 
-#### Example parser result
+### Example parser result
 ```
 {
   "numResults": 1,
@@ -75,7 +75,7 @@ function Decoder(bytes, port) {
 }
 ```
 
-#### Meaning of Payload parameters
+### Meaning of Payload parameters
 
 You can think of the usonic signal as a *strength of signal* or *volume* over time
 
