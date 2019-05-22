@@ -188,6 +188,9 @@
                 <li class="third-level"><a href="#data-messages">Data messages</a></li>
             <li class="second-level"><a href="#complex-setups">Complex setups</a></li>
                 
+            <li class="second-level"><a href="#technical-characteristics">Technical characteristics</a></li>
+                
+                <li class="third-level"><a href="#ce-declaration-of-conformity">CE Declaration of Conformity</a></li>
             <li class="second-level"><a href="#reference-decoder">Reference decoder</a></li>
                 
     </ul>
@@ -599,6 +602,103 @@ firmware that processes data the way you need.
 If you find that the data rate LoRaWAN offers is a limitation for your setup, we could also
 provide you with a Modbus solution that uses alternate data transmission technologies, for
 example NarrowBand-IoT.</p>
+<h2 id="technical-characteristics">Technical characteristics</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Product</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Type name</td>
+<td>Modbus485-LoRaWAN</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>Modbus over LoRaWAN Bridge</td>
+</tr>
+<tr>
+<td><strong>RF tranceiver</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Type</td>
+<td>Semtech SX1272</td>
+</tr>
+<tr>
+<td>Frequency</td>
+<td>863 MHz to 870 MHz</td>
+</tr>
+<tr>
+<td>Max. TX Power</td>
+<td>max. +14 dBm</td>
+</tr>
+<tr>
+<td>Typical RF Range</td>
+<td>&le;2km</td>
+</tr>
+<tr>
+<td>Ideal RF Range</td>
+<td>&le;10km (free line of sight)</td>
+</tr>
+<tr>
+<td><strong>LoRa communication</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Protocol</td>
+<td>Class A LoRaWAN 1.0.1 EU868</td>
+</tr>
+<tr>
+<td>Activation method</td>
+<td>Over-the-air-activation (OTAA) <br> Activation by personalization (ABP)</td>
+</tr>
+<tr>
+<td>Encryption</td>
+<td>AES128</td>
+</tr>
+<tr>
+<td><strong>Modbus communication</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Bus</td>
+<td>RS-485 twisted pair wires (with optional GND)</td>
+</tr>
+<tr>
+<td>Protocol</td>
+<td>RTU/ASCII</td>
+</tr>
+<tr>
+<td><strong>Environmental Requirements</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Operating temperature</td>
+<td>-20°C &ndash; 55°C</td>
+</tr>
+<tr>
+<td>Max installation height</td>
+<td>2m</td>
+</tr>
+<tr>
+<td><strong>Standards</strong> <br> <img title="CE" alt="CE logo" src="../../img/symbol-ce.svg" height="60"> <img title="weee" title="weee logo" src="../../img/symbol-weee.svg" height="60"></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="ce-declaration-of-conformity">CE Declaration of Conformity</h3>
+<p><a href="../res/modbus-lorawan-ce-conformity.pdf">CE Declaration of Conformity</a> (pdf)</p>
 <h2 id="reference-decoder">Reference decoder</h2>
 <p>This is a decoder written in JavaScript that can be used to parse the device's 
 LoRaWAN messages. It can be used as is in 

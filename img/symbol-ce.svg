@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   viewBox="0 0 200 150"
+   height="150"
+   width="200"
+   xml:space="preserve"
+   id="svg2"
+   version="1.1"><metadata
+     id="metadata8"><rdf:RDF><cc:Work
+         rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
+     id="defs6" /><g
+     transform="matrix(1.3333333,0,0,1.3333333,0,3.75e-6)"
+     id="g10"><g
+       id="g12"><path
+         id="path14"
+         style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         d="M 52.539,93.574 C 42.023,94.586 31.57,91.109 23.75,84.008 15.934,76.906 11.473,66.832 11.465,56.27 11.461,45.707 15.914,35.629 23.727,28.52 31.539,21.41 41.988,17.93 52.508,18.926" /><path
+         id="path16"
+         style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         d="M 116.477,93.535 C 105.91,94.664 95.359,91.254 87.453,84.156 79.543,77.055 75.02,66.934 75.004,56.309 74.988,45.68 79.48,35.547 87.371,28.426 c 7.887,-7.121 18.426,-10.563 28.996,-9.465" /><path
+         id="path18"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         d="M 74.543,61.074 C 71.891,75.055 58.453,84.277 44.453,81.719 30.453,79.16 21.145,65.781 23.609,51.766 26.078,37.746 39.398,28.352 53.43,30.727 67.461,33.105 76.945,46.363 74.66,60.41" /><path
+         id="path20"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         d="m 138.223,61.387 c -2.653,13.984 -16.09,23.207 -30.09,20.648 -14,-2.558 -23.309,-15.941 -20.844,-29.957 2.469,-14.016 15.789,-23.41 29.82,-21.035 14.032,2.375 23.516,15.633 21.231,29.68" /><path
+         id="path22"
+         style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         d="m 82.801,50.406 h 25.945 v 11.25 H 82.801 Z" /></g></g></svg>
