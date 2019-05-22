@@ -13,6 +13,10 @@
 8. As soon as the EDL21 receives data its green LED will light up for 5 seconds, when connected to a LoRa Network its blue LED will light up for 5 seconds
 9. Check the sent data (port 3), if payload is zero the EDL21 was not able to read data, recheck proper alignment
 
+## Latest Firmware Download
+
+[Download Firmware](http://files.lobaro.com/index.php/s/gd32WnADQLd7n2s)
+
 ## Reference decoder
 
 This is a decoder written in JavaScript that can be used to parse the device's 
