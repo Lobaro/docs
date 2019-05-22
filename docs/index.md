@@ -21,7 +21,7 @@ been added, correct.
 
 ## Tools
 
-### Lobaro-Tool
+### Configuration / Setup
 | Tool              | Technology      | 
 |:----------------- |:----------------|
 | [Lobaro Maintenance Tool](tools/lobaro-tool.md) | Win, Mac, Linux |
