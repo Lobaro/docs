@@ -9,6 +9,7 @@ The supplied information here might be incomplete but should be, as far as it ha
 been added, correct.
 </div>
 ## Sensoren
+
 ### Lobaro IoT Sensoren
 
 | Sensor          | Technologie     | 
@@ -18,6 +19,7 @@ been added, correct.
 | [1-Wire LoRaWAN Bridge](iot-devices/1-wire-lorawan.md)       | LoRaWAN |
 
 ## Tools
+
 ### Lobaro-Tool
 TBD
 
