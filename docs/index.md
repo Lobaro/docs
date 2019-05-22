@@ -1,8 +1,8 @@
 # Lobaro Documentation
 
 <div class="alert alert-primary" role="alert">
-This site is the new upcoming central documentation for products 
-of [Lobaro GmbH][lobaro].</div>
+This site is the new upcoming central documentation for IoT products 
+of [Lobaro GmbH](https://www.lobaro.de).</div>
 
 ## Hardware
 
