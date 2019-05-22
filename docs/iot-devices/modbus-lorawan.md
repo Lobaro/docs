@@ -7,7 +7,7 @@ data from environmental sensors like temperature and humidity.
 
 ## Configuration
 
-#### LoRaWAN
+### LoRaWAN
 The connection to the LoRaWAN network is defined by multiple configuration parameters.
 This need to be set according to your LoRaWAN network and the way your device is 
 supposed to be attached to it, or the device will not be able to send any data.
@@ -32,7 +32,7 @@ Several values are a number of bytes, that need to be entered as hexstrings (wit
 | `SF` | both | int | Initial LoRa spreading factor used for transmissions. Valid range is 7-12. The actual spreading factor used by change during operation if ADR is used. |
 | `ADR` | both | bool | Should adaptive data rate be used? `true` &equiv; use ADR, `false` &equiv; don't | 
 
-#### Modbus/UART
+### Modbus/UART
 There are several values that define the configuration via Modbus. These 
 values depend on the Slave devices that you want to read out. Please refer to your 
 Modbus Devices's manual to find out the correct configuration.
@@ -45,14 +45,14 @@ Modbus Devices's manual to find out the correct configuration.
 | `ModbusStopBits`   | UART stop bits | `0.5`, `1`, `1.5`, `2` (written exactly like this) |
 | `ModbusParity`     | UART parity | `NONE`, `EVEN`, `ODD` |
 
-#### Operation
+### Operation
 Configuration values defining the behaviour of the device. 
 
 | name | description | example value |
 |------|-------------|----------------|
 | `ModbusCron` | Cron expression defining when to read | `0 0/15 * * * *` for every 15 minutes |
 
-#### Register/Coil definition
+### Register/Coil definition
 Modbus defines four different object types form which values can be read:
 Coils, Discrete Inputs, Input Registers, and Holding Registers.
 For an introduction please refer to 
@@ -90,7 +90,7 @@ the four register strings on startup and reports invalid definitions. The device
 will not work while there are invalid definitions but will reboot repeatedly until 
 you fix the configuration.
 
-###### Example register definition strings
+#### Example register definition strings
 | definition | explanation |
 |------|------|
 | `1:0:3` | Read first three registers of device with address 1. |
