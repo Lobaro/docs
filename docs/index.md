@@ -16,7 +16,7 @@ been added, correct.
 | Sensor Name         | RF-Technology     | Target Measurement / Purpose   | 
 | :-------------  |:----------------|:----------------|
 | [Modbus LoRaWAN Bridge](iot-devices/modbus-lorawan.md)       | LoRaWAN | RS485 ModBus readout |
-| [Ultraschall LoRaWAN Sensor](iot-devices/usonic-lorawan.md)  | LoRaWAN | Ultrasonic level detection |
+| [Usonic LoRaWAN Sensor](iot-devices/usonic-lorawan.md)  | LoRaWAN | Ultrasonic level detection |
 | [1-Wire LoRaWAN Bridge](iot-devices/1-wire-lorawan.md)       | LoRaWAN | Multiple temperature measurements |
 | [EDL21 Electricity meter over LoRaWAN Bridge](iot-devices/edl21-opto-lorawan.md) | LoRaWAN | Electricity meter consumption |
 

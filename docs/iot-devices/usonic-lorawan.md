@@ -1,5 +1,7 @@
 # USonic LoRaWAN
 
+Alternatively also named "Oscar Sensor".
+
 ## Reference decoder
 
 This is a decoder written in JavaScript that can be used to parse the device's 
