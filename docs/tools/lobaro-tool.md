@@ -1,4 +1,4 @@
-# LOBARO MAINTENANCE TOOL
+# Lobaro Maintenance Tool
 
 Supports the PC based configuration of all Lobaro IoT sensors. It is available as free download for:
 
