@@ -3,7 +3,7 @@
 This site is the new upcoming central documentation for IoT products 
 of [Lobaro GmbH](https://www.lobaro.de).
 
-![Lobaro-Logo](./img/slogan_links_webHeader_.png)
+<!-- ![Lobaro-Logo](./img/slogan_links_webHeader_.png) -->
 
 ## Hardware
 
@@ -26,6 +26,8 @@ of [Lobaro GmbH](https://www.lobaro.de).
 ## Background Knowledge
 * [Introduction to CRON expressions](background/cron-expressions) 
 * [Introduction to LoRaWAN](background/lorawan) 
+* [Disposal of Lobaro devices](background/weee-disposal)
+* [Entsorgung von Geräten von Lobaro](background/weee-entsorgung) (German)
 
 
 [lobaro]: https://lobaro.com

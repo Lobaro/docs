@@ -1,13 +1,18 @@
 site_name: Lobaro Documentation
-
+site_description: Online documentation of the Lobaro GmbH, Industrial IoT Solutions. Manuals for our IoT Devices.
 theme:
     name: cinder
 #    name: readthedocs
     highlightjs: true
 repo_url: "https://github.com/lobaro/docs"
-site_favicon: favicon.ico
+# site_favicon: favicon.ico
 markdown_extensions:
+    - def_list
+    - toc:
+#          permalink: True
     - admonition
+extra_css:
+    - "css/lobarodoc.css"
 nav:
     - Home: index.md
     - Contact / Impressum: https://www.lobaro.com/contact/

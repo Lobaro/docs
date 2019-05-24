@@ -1,0 +1,57 @@
+/*div.navbar-header .navbar-brand:before {
+    content: url(/img/lobaro-rings-circle.svg);
+    height:40px;
+    width:40px;
+    margin-right:.6ex;
+}
+*/
+div.navbar-header .navbar-brand {
+    background-image: url(/img/lobaro-rings-circle.svg);
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 30px 30px;
+    padding-left: 35px;
+    display:block;
+}
+/* This
+h1[id]:before,
+h2[id]:before,
+h3[id]:before,
+h4[id]:before,
+h5[id]:before,
+h6[id]:before {
+    content:"";
+    display:block;
+    margin-top:0;
+    height:0px;
+}
+
+div[role=main] a.headerlink {
+    visibility: hidden;
+}
+
+div[role=main] h1:hover > a.headerlink,
+div[role=main] h2:hover > a.headerlink,
+div[role=main] h3:hover > a.headerlink,
+div[role=main] h4:hover > a.headerlink,
+div[role=main] h5:hover > a.headerlink,
+div[role=main] h6:hover > a.headerlink,
+div[role=main] dt:hover > a.headerlink,
+div[role=main] caption:hover > a.headerlink,
+div[role=main] p.caption:hover > a.headerlink,
+div[role=main] div.code-block-caption:hover > a.headerlink {
+    visibility: visible;
+}
+
+div[role=main] a.headerlink {
+    color: #008cba;
+    font-size: 0.8em;
+    padding: 0 4px 0 4px;
+    text-decoration: none;
+}
+
+div[role=main] a.headerlink:hover {
+    background-color: #008cba;
+    color: white;
+}
+*/
