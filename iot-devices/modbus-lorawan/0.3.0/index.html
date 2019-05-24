@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <meta name="description" content="Online documentation of the Lobaro GmbH, Industrial IoT Solutions. Manuals for our IoT Devices.">
     
     
     <link rel="../../../img/favicon.ico">
@@ -22,6 +22,7 @@
     <link href="../../../css/base.min.css" rel="stylesheet">
     <link href="../../../css/cinder.min.css" rel="stylesheet">
     <link href="../../../css/highlight.min.css" rel="stylesheet">
+    <link href="../../../css/lobarodoc.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -115,21 +116,28 @@
                 <li class="third-level"><a href="#data-messages">Data messages</a></li>
             <li class="second-level"><a href="#complex-setups">Complex setups</a></li>
                 
-            <li class="second-level"><a href="#technical-characteristics">Technical characteristics</a></li>
+            <li class="second-level"><a href="#appendixes">Appendixes</a></li>
                 
+                <li class="third-level"><a href="#technical-characteristics">Technical characteristics</a></li>
                 <li class="third-level"><a href="#ce-declaration-of-conformity">CE Declaration of Conformity</a></li>
-            <li class="second-level"><a href="#reference-decoder">Reference decoder</a></li>
-                
+                <li class="third-level"><a href="#disposal-weee-entsorgung">Disposal / WEEE / Entsorgung</a></li>
+                <li class="third-level"><a href="#reference-decoder">Reference decoder</a></li>
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
 
 <h1 id="modbus-lorawan-bridge">Modbus LoRaWAN Bridge</h1>
+<p><img alt="Modbus LoRaWAN Bridge on head rail" src="modbus-lorawan-hatrail.jpg" /></p>
 <p>The Lobaro Modbus LoRaWAN Bridge is a low power device that can be used to read values
 out of a variety of other devices via Modbus (ASCII/RTU) over a RS-485 interface
 and forward them over LoRaWAN, so that they can be accessed from an attached system.
 Typical applications include reading out electric and water meters or retrieving
 data from environmental sensors like temperature and humidity.</p>
+<p>The Modbus Bridge supports reading of all four object types that can be provided by 
+Modbus slave devices: Coil, Discrete Input, Input Register, and Holding Register. 
+Multiple different slave devices on the Bus can be accessed individually by a single 
+Bridge device. Reading intervals and register definitions can be configured very 
+flexibly to suit individual requirements.</p>
 <h2 id="configuration">Configuration</h2>
 <h3 id="lorawan">LoRaWAN</h3>
 <p>The connection to the LoRaWAN network is defined by multiple configuration parameters.
@@ -530,7 +538,8 @@ firmware that processes data the way you need.
 If you find that the data rate LoRaWAN offers is a limitation for your setup, we could also
 provide you with a Modbus solution that uses alternate data transmission technologies, for
 example NarrowBand-IoT.</p>
-<h2 id="technical-characteristics">Technical characteristics</h2>
+<h2 id="appendixes">Appendixes</h2>
+<h3 id="technical-characteristics">Technical characteristics</h3>
 <table>
 <thead>
 <tr>
@@ -626,8 +635,10 @@ example NarrowBand-IoT.</p>
 </tbody>
 </table>
 <h3 id="ce-declaration-of-conformity">CE Declaration of Conformity</h3>
-<p><a href="modbus-lorawan-ce-conformity.pdf">CE Declaration of Conformity</a> (pdf)</p>
-<h2 id="reference-decoder">Reference decoder</h2>
+<p><a href="modbus-lorawan-ce-conformity.pdf">CE Declaration of Conformity</a> (pdf).</p>
+<h3 id="disposal-weee-entsorgung">Disposal / WEEE / Entsorgung</h3>
+<p><a href="/background/weee-disposal">Information about the disposal of the Device</a>.</p>
+<h3 id="reference-decoder">Reference decoder</h3>
 <p>This is a decoder written in JavaScript that can be used to parse the device's 
 LoRaWAN messages. It can be used as is in 
 <a href="https://thethingsnetwork.org">The Things Network</a>.</p>
@@ -801,5 +812,5 @@ function Decoder(bytes, port) {
 
 <!--
 MkDocs version : 1.0.4
-Build Date UTC : 2019-05-22 18:52:03
+Build Date UTC : 2019-05-24 14:41:51
 -->
