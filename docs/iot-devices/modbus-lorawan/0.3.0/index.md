@@ -19,7 +19,7 @@ flexibly to suit individual requirements.
 
 ## Firmware
 
-[Download latest firmware v0.3.0](https://files.lobaro.com/index.php/s/FQgieASs9o7y5HP/download).
+[Download latest firmware v0.3.1](https://files.lobaro.com/index.php/s/FQgieASs9o7y5HP/download).
 
 ## Work Cycle
 
