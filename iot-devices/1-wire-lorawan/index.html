@@ -124,14 +124,12 @@ When the payload gets too big for a single LoRaWAN message, it is split into mul
 <p>Example payloads for each port:</p>
 <h3 id="status-message-port-1">Status Message (Port 1)</h3>
 <p>Payload: (No Example yet)</p>
-<p>Decoded:</p>
-<pre><code>{
-  &quot;temp&quot;: 20.4,
-  &quot;vBat&quot;: 3.0,
-  &quot;version&quot;: &quot;v0.2.0&quot;
-}
-</code></pre>
-
+<p>Decoded:
+<pre class="highlight"><code>{
+  "temp": 20.4,
+  "vBat": 3.0,
+  "version": "v0.2.0"
+}</code></pre></p>
 <h3 id="data-message-port-2">Data Message (Port 2)</h3>
 <p>Structure:</p>
 <table>
@@ -177,36 +175,34 @@ When the payload gets too big for a single LoRaWAN message, it is split into mul
 </table>
 <p>Example Payload:
 <code>01551e46920d0200da96b446920c0200d7dafc46920d0200d5202e4692050200dc</code></p>
-<p>Decoded:</p>
-<pre><code>{
-  &quot;sensors&quot;: [
+<p>Decoded:
+<pre class="highlight"><code>{
+  "sensors": [
     {
-      &quot;id&quot;: &quot;551e46920d02&quot;,
-      &quot;temp&quot;: 21.8
+      "id": "551e46920d02",
+      "temp": 21.8
     },
     {
-      &quot;id&quot;: &quot;96b446920c02&quot;,
-      &quot;temp&quot;: 21.5
+      "id": "96b446920c02",
+      "temp": 21.5
     },
     {
-      &quot;id&quot;: &quot;dafc46920d02&quot;,
-      &quot;temp&quot;: 21.3
+      "id": "dafc46920d02",
+      "temp": 21.3
     },
     {
-      &quot;id&quot;: &quot;202e46920502&quot;,
-      &quot;temp&quot;: 22
+      "id": "202e46920502",
+      "temp": 22
     }
   ],
-  &quot;success&quot;: true
-}
-</code></pre>
-
+  "success": true
+}</code></pre></p>
 <h3 id="parser-thethingsnetwork-ttn">Parser: TheThingsNetwork (TTN)</h3>
-<pre><code>function readVersion(bytes) {
+<pre class="highlight"><code>function readVersion(bytes) {
     if (bytes.length&lt;3) {
         return null;
     }
-    return &quot;v&quot; + bytes[0] + &quot;.&quot; + bytes[1] + &quot;.&quot; + bytes[2];
+    return "v" + bytes[0] + "." + bytes[1] + "." + bytes[2];
 }
 function parse_sint16(bytes, idx) {
     bytes = bytes.slice(idx || 0);
@@ -224,9 +220,9 @@ function parse_uint16(bytes, idx) {
 }
 
 function parse_hex(bytes, idx, end) {
-    var chars = &quot;0123456789abcdef&quot;;
+    var chars = "0123456789abcdef";
     bytes = bytes.slice(idx || 0, end || null);
-    var s = &quot;&quot;;
+    var s = "";
     for (var i=0; i&lt;bytes.length; i++) {
         var byte = bytes[i];
         s += chars.charAt(byte&gt;&gt;4);
@@ -237,9 +233,9 @@ function parse_hex(bytes, idx, end) {
 
 function DecoderPort1(bytes) {
     return {
-        &quot;version&quot;:readVersion(bytes),
-        &quot;temp&quot;: parse_sint16(bytes, 3) / 10,
-        &quot;vBat&quot;: parse_uint16(bytes, 5) / 1000,
+        "version":readVersion(bytes),
+        "temp": parse_sint16(bytes, 3) / 10,
+        "vBat": parse_uint16(bytes, 5) / 1000,
     };
 }
 
@@ -282,11 +278,10 @@ function Decoder(bytes, port) {
             return DecoderPort2(bytes);
     }
     return {
-        &quot;error&quot;: &quot;Invalid port&quot;,
-        &quot;port&quot;: port
+        "error": "Invalid port",
+        "port": port
     };
-}
-</code></pre></div>
+}</code></pre></div>
         
         
     </div>
@@ -307,6 +302,7 @@ function Decoder(bytes, port) {
     <script>var base_url = "../.."</script>
     
     <script src="../../js/base.js"></script>
+    <script src="../../js/mermaid.min.js"></script>
     <script src="../../search/main.js"></script>
 
     <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
@@ -378,5 +374,5 @@ function Decoder(bytes, port) {
 
 <!--
 MkDocs version : 1.0.4
-Build Date UTC : 2019-05-24 14:45:34
+Build Date UTC : 2019-05-24 15:51:50
 -->

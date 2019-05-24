@@ -104,6 +104,10 @@
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
         <li class="first-level active"><a href="#modbus-lorawan-bridge">Modbus LoRaWAN Bridge</a></li>
+            <li class="second-level"><a href="#firmware">Firmware</a></li>
+                
+            <li class="second-level"><a href="#work-cycle">Work Cycle</a></li>
+                
             <li class="second-level"><a href="#configuration">Configuration</a></li>
                 
                 <li class="third-level"><a href="#lorawan">LoRaWAN</a></li>
@@ -138,6 +142,17 @@ Modbus slave devices: Coil, Discrete Input, Input Register, and Holding Register
 Multiple different slave devices on the Bus can be accessed individually by a single 
 Bridge device. Reading intervals and register definitions can be configured very 
 flexibly to suit individual requirements.</p>
+<h2 id="firmware">Firmware</h2>
+<p><a href="https://files.lobaro.com/index.php/s/FQgieASs9o7y5HP/download">Download latest firmware v0.3.0</a>.</p>
+<h2 id="work-cycle">Work Cycle</h2>
+<div class="mermaid">graph LR;
+    init(Start)--&gt;check(Test Read);
+    check--&gt;join(LoRaWAN Join);
+    join--&gt;read(Data Collection);
+    read--&gt;send(Data Transfer);
+    send--&gt;sleep("Sleep");
+    sleep--&gt;|Cron expression| read;</div>
+
 <h2 id="configuration">Configuration</h2>
 <h3 id="lorawan">LoRaWAN</h3>
 <p>The connection to the LoRaWAN network is defined by multiple configuration parameters.
@@ -642,11 +657,11 @@ example NarrowBand-IoT.</p>
 <p>This is a decoder written in JavaScript that can be used to parse the device's 
 LoRaWAN messages. It can be used as is in 
 <a href="https://thethingsnetwork.org">The Things Network</a>.</p>
-<pre><code>function readVersion(bytes) {
+<pre class="highlight"><code>function readVersion(bytes) {
     if (bytes.length&lt;3) {
         return null;
     }
-    return &quot;v&quot; + bytes[0] + &quot;.&quot; + bytes[1] + &quot;.&quot; + bytes[2];
+    return "v" + bytes[0] + "." + bytes[1] + "." + bytes[2];
 }
 
 function int40_BE(bytes, idx) {
@@ -662,13 +677,13 @@ function int16_BE(bytes, idx) {
 
 function decode_status(bytes) {
     return {
-        &quot;port&quot;:1,
-        &quot;version&quot;:readVersion(bytes),
-        &quot;flags&quot;:bytes[3],
-        &quot;temp&quot;: int16_BE(bytes, 4) / 10,
-        &quot;vBat&quot;: int16_BE(bytes, 6) / 1000,
-        &quot;timestamp&quot;: int40_BE(bytes, 8),
-        &quot;operationMode&quot;: bytes[13]
+        "port":1,
+        "version":readVersion(bytes),
+        "flags":bytes[3],
+        "temp": int16_BE(bytes, 4) / 10,
+        "vBat": int16_BE(bytes, 6) / 1000,
+        "timestamp": int40_BE(bytes, 8),
+        "operationMode": bytes[13]
     };
 }
 
@@ -679,11 +694,11 @@ function decode_data(bytes, port) {
         var b = bytes.slice(5);
         while (b.length&gt;=4) {
             var r = {
-                &quot;device&quot;:b[0],
-                &quot;start&quot;:int16_BE(b, 1),
-                &quot;count&quot;:b[3] &amp; 0x7f,
-                &quot;error&quot;:!!(b[3]&gt;&gt;7),
-                &quot;data&quot;:null
+                "device":b[0],
+                "start":int16_BE(b, 1),
+                "count":b[3] &amp; 0x7f,
+                "error":!!(b[3]&gt;&gt;7),
+                "data":null
             };
             var dataLen = 0;
             if (fun&lt;=2) {
@@ -701,10 +716,10 @@ function decode_data(bytes, port) {
         }
     }
     return decoded = {
-        &quot;port&quot;: port,
-        &quot;function&quot;: fun,
-        &quot;timestamp&quot;: int40_BE(bytes, 0),
-        &quot;values&quot;: regs
+        "port": port,
+        "function": fun,
+        "timestamp": int40_BE(bytes, 0),
+        "values": regs
     };
 }
 
@@ -718,9 +733,8 @@ function Decoder(bytes, port) {
         case 14:
             return decode_data(bytes, port);
     }
-    return {&quot;error&quot;:&quot;invalid port&quot;, &quot;port&quot;:port};
-}
-</code></pre></div>
+    return {"error":"invalid port", "port":port};
+}</code></pre></div>
         
         
     </div>
@@ -741,6 +755,7 @@ function Decoder(bytes, port) {
     <script>var base_url = "../../.."</script>
     
     <script src="../../../js/base.js"></script>
+    <script src="../../../js/mermaid.min.js"></script>
     <script src="../../../search/main.js"></script>
 
     <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
@@ -812,5 +827,5 @@ function Decoder(bytes, port) {
 
 <!--
 MkDocs version : 1.0.4
-Build Date UTC : 2019-05-24 14:45:34
+Build Date UTC : 2019-05-24 15:51:50
 -->

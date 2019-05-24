@@ -118,7 +118,7 @@
 <p>This is a decoder written in JavaScript that can be used to parse the device's 
 LoRaWAN messages. It can be used as is in 
 <a href="https://thethingsnetwork.org">The Things Network</a>.</p>
-<pre><code>function decodeUInt16(byte1, byte2) {
+<pre class="highlight"><code>function decodeUInt16(byte1, byte2) {
     var decoded = byte1 | byte2 &lt;&lt; 8;
     if ((decoded &amp; 1 &lt;&lt; 15) &gt; 0) {  // value is negative (16bit 2's complement)
         decoded = ((~decoded) &amp; 0xffff) + 1;  // invert 16bits &amp; add 1 =&gt; now positive value
@@ -158,32 +158,30 @@ function Decoder(bytes, port) {
 
     // example decoder for status packet by lobaro
     if (port === 1) { // status packet
-        decoded.firmwareVersion = bytes[0] + &quot;.&quot; + bytes[1] + &quot;.&quot; + bytes[2];  // byte 0-3
+        decoded.firmwareVersion = bytes[0] + "." + bytes[1] + "." + bytes[2];  // byte 0-3
         decoded.vBat = (bytes[4] | bytes[5] &lt;&lt; 8) / 1000.0;  // byte 6-7 (originally in mV)
         decoded.temp = decodeUInt16(bytes[6], bytes[7]) / 10.0;  // byte 8-9 (originally in 10th degree C)
-        decoded.msg = &quot;Firmware Version: v&quot; + decoded.firmwareVersion + &quot; Battery: &quot; + decoded.vBat + &quot;V Temperature: &quot; + decoded.temp + &quot;°C&quot;;
+        decoded.msg = "Firmware Version: v" + decoded.firmwareVersion + " Battery: " + decoded.vBat + "V Temperature: " + decoded.temp + "°C";
     }
 
     return decoded;
-}
-</code></pre>
+}</code></pre>
 
 <h3 id="example-parser-result">Example parser result</h3>
-<pre><code>{
-  &quot;numResults&quot;: 1,
-  &quot;results&quot;: [
+<pre class="highlight"><code>{
+  "numResults": 1,
+  "results": [
     {
-      &quot;amplitude&quot;: 215,
-      &quot;distance_m&quot;: 0.761,
-      &quot;distance_mm&quot;: 761,
-      &quot;tof_us&quot;: 4539,
-      &quot;width&quot;: 122
+      "amplitude": 215,
+      "distance_m": 0.761,
+      "distance_mm": 761,
+      "tof_us": 4539,
+      "width": 122
     }
   ],
-  &quot;temp&quot;: 21.8,
-  &quot;vBat&quot;: 2.779
-}
-</code></pre>
+  "temp": 21.8,
+  "vBat": 2.779
+}</code></pre>
 
 <h3 id="meaning-of-payload-parameters">Meaning of Payload parameters</h3>
 <p>You can think of the usonic signal as a <em>strength of signal</em> or <em>volume</em> over time</p>
@@ -217,6 +215,7 @@ function Decoder(bytes, port) {
     <script>var base_url = "../.."</script>
     
     <script src="../../js/base.js"></script>
+    <script src="../../js/mermaid.min.js"></script>
     <script src="../../search/main.js"></script>
 
     <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
@@ -288,5 +287,5 @@ function Decoder(bytes, port) {
 
 <!--
 MkDocs version : 1.0.4
-Build Date UTC : 2019-05-24 14:45:34
+Build Date UTC : 2019-05-24 15:51:50
 -->
