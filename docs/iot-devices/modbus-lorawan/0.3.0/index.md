@@ -17,6 +17,22 @@ Multiple different slave devices on the Bus can be accessed individually by a si
 Bridge device. Reading intervals and register definitions can be configured very 
 flexibly to suit individual requirements.
 
+## Firmware
+
+[Download latest firmware v0.3.0](https://files.lobaro.com/index.php/s/FQgieASs9o7y5HP/download).
+
+## Work Cycle
+
+```mermaid
+graph LR;
+    init(Start)-->check(Test Read);
+    check-->join(LoRaWAN Join);
+    join-->read(Data Collection);
+    read-->send(Data Transfer);
+    send-->sleep("Sleep");
+    sleep-->|Cron expression| read;
+```
+
 ## Configuration
 
 ### LoRaWAN
