@@ -29,5 +29,4 @@ of [Lobaro GmbH](https://www.lobaro.de).
 * [Disposal of Lobaro devices](background/weee-disposal)
 * [Entsorgung von Geräten von Lobaro](background/weee-entsorgung) (German)
 
-
 [lobaro]: https://lobaro.com
