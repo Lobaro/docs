@@ -2,7 +2,7 @@
 
 We use CRON expressions setup the timing of our hardware during device configuration using the [Lobaro Maintenance Tool](/tools/lobaro-tool/) or remotely over the air.
 
-The CRON expressions consists of 6 fields, separated by space: e.g. `* 0/15 * * * *` , which describes time points every 15 minutes starting from minute 0.
+The CRON expressions consists of 6 fields, separated by space: e.g. `0 0/15 * * * *` , which describes time points every 15 minutes starting from minute 0.
 
 <div class="alert alert-primary" role="alert">
   CRON expression allow you define specific POINTS in time they are NOT helpful to define time durations. They can 
@@ -11,6 +11,8 @@ The CRON expressions consists of 6 fields, separated by space: e.g. `* 0/15 * * 
 </div>
 
 ##Meaning of the six fields:
+
+`0 0/15 * * * *` 
 
 | | Second  | Minute | Hour | Day of Month | Month of year | Day of Week |
 |-|-------- |--------|------|--------------|---------------|-------------|
