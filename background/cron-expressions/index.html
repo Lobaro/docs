@@ -125,7 +125,7 @@
 
 <h1 id="cron-expressions">Cron Expressions</h1>
 <p>We use CRON expressions setup the timing of our hardware during device configuration using the <a href="/tools/lobaro-tool/">Lobaro Maintenance Tool</a> or remotely over the air.</p>
-<p>The CRON expressions consists of 6 fields, separated by space: e.g. <code>* 0/15 * * * *</code> , which describes time points every 15 minutes starting from minute 0.</p>
+<p>The CRON expressions consists of 6 fields, separated by space: e.g. <code>0 0/15 * * * *</code> , which describes time points every 15 minutes starting from minute 0.</p>
 <div class="alert alert-primary" role="alert">
   CRON expression allow you define specific POINTS in time they are NOT helpful to define time durations. They can 
   be seen has the start time to trigger an action, for example initiating the sensor measurement or wireless sendout.
@@ -133,6 +133,7 @@
 </div>
 
 <h2 id="meaning-of-the-six-fields">Meaning of the six fields:</h2>
+<p><code>0 0/15 * * * *</code> </p>
 <table>
 <thead>
 <tr>
