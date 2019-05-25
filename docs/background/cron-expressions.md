@@ -4,6 +4,12 @@ We use CRON expressions setup the timing of our hardware during device configura
 
 The CRON expressions consists of 6 fields, separated by space: e.g. `* 0/15 * * * *` , which describes time points every 15 minutes starting from minute 0.
 
+<div class="alert alert-primary" role="alert">
+  CRON expression allow you define specific POINTS in time they are NOT helpful to define time durations. They can 
+  be seen has the start time to trigger an action, for example initiating the sensor measurement or wireless sendout.
+  The duration of an action is defined by a separate configuration parameter if needed.
+</div>
+
 ##Meaning of the six fields:
 
 | | Second  | Minute | Hour | Day of Month | Month of year | Day of Week |
@@ -12,11 +18,6 @@ The CRON expressions consists of 6 fields, separated by space: e.g. `* 0/15 * * 
 |Alternative |         |        |        |        | `JAN-DEC` | `SUN-SAT` |
 |Allowed special chars | `, - * /`| `, - * /`| `, - * /`| `, - * / ?`| `, - * /` | `, - * /` |
 
-<div class="alert alert-primary" role="alert">
-  CRON expression allow you define specific POINTS in time they are NOT helpful to define time durations. They can 
-  be seen has the start time to trigger an action, for example initiating the sensor measurement or wireless sendout.
-  The duration of an action is defined by a separate configuration parameter if needed.
-</div>
 
 ##Examples
 
