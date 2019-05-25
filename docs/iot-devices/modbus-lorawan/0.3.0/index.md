@@ -34,6 +34,7 @@ graph LR;
 ```
 
 ## Configuration
+The configuration is done using [Lobaro Maintenance Tool](/tools/lobaro-tool/) and the Lobaro USB PC adapter.
 
 ### LoRaWAN
 The connection to the LoRaWAN network is defined by multiple configuration parameters.
