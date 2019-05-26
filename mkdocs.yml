@@ -20,5 +20,5 @@ extra_javascript:
     - "js/mermaid.min.js"
 nav:
     - Documentation Home: index.md
-    - Company Home: https://www.lobaro.com
+    - Company Home: https://www.lobaro.com/lobaro-iot-produkte-dienste/
     - Contact / Impressum: https://www.lobaro.com/contact/
