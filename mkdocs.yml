@@ -19,5 +19,6 @@ extra_css:
 extra_javascript:
     - "js/mermaid.min.js"
 nav:
-    - Home: index.md
+    - Documentation Home: index.md
+    - Company Home: https://www.lobaro.com
     - Contact / Impressum: https://www.lobaro.com/contact/
