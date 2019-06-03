@@ -21,6 +21,13 @@ flexibly to suit individual requirements.
 
 [Download latest firmware v0.3.1](https://files.lobaro.com/index.php/s/FQgieASs9o7y5HP/download).
 
+### Changelog
+
+#### v0.3.0
+* Update Modbus to support all 4 types of registers.
+* Parity bit must not be substracted from Data bits anymore. `8E1` can now be confiured with `8 Data bits, EVEN parity, 1 Stop bit`.
+
+
 ## Work Cycle
 
 ```mermaid
