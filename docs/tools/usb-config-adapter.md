@@ -10,6 +10,10 @@ The USB configuration adapter can be used for:
 
 using the our free [Lobaro Maintenance Tool](./lobaro-tool.md) PC software.
 
+!!! note
+    The blue wire is not consistent the RTS pin and may be on some adapters inverted, e.g. beeing the GND wire. Check the 
+    orientation of the adapter with the picture above to determinate the acutal pins and do not relay on the the wire color coding.
+
 ## Driver Download
 The adapter uses a CP2102 USB to UART bridge internally. The driver is available for free download and must be installed prior first use:
 
