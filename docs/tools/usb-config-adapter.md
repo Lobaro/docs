@@ -8,7 +8,7 @@ The USB configuration adapter can be used for:
 * Firmware log diagnostics
 * Firmware updates
 
-using the our free [Lobaro Maintenance Tool](./lobaro-tool.md) PC software.
+using our free [Lobaro Maintenance Tool](./lobaro-tool.md) PC software.
 
 !!! note
     The blue wire is not consistent the RTS pin and may be on some adapters inverted, e.g. beeing the GND wire. Check the 
