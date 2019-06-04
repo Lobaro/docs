@@ -8,6 +8,8 @@ Supports the PC based configuration of all Lobaro IoT sensors. It is available a
 * Linux
 * Windows
 
+using the [Lobaro USB configuration adapter](./usb-config-adapter.md).
+
 ## Features
 
 * Change static sensor configuration

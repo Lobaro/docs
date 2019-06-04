@@ -21,7 +21,9 @@ of [Lobaro GmbH](https://www.lobaro.de).
 ### Configuration / Setup
 | Tool Name     | Technology     | Purpose   | 
 | :-------------  |:----------------|:----------------|
+| [Lobaro USB config adapter](tools/usb-config-adapter.md) | USB | Sensor USB interface |
 | [Lobaro Maintenance Tool](tools/lobaro-tool.md) | Win, Mac, Linux | Device configuration & diagnostics for all Lobaro devices|
+
 
 ## Background Knowledge
 * [Introduction to CRON expressions](background/cron-expressions) 
