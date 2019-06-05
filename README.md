@@ -3,6 +3,19 @@ This is the markdown source for the Lobaro online documentation. It is generated
 
 The generated documentation is available at https://docs.lobaro.com
 
+# Local Setup
+
+Install Python: https://www.python.org/downloads/
+
+Install Python dependencies:
+
+    pip install mkdocs mkdocs-cinder pymdown-extensions
+
+
+Run mkDocs
+
+    mkdocs serve
+
 ## Features
 For a feature description and general markdown information consult:
 
