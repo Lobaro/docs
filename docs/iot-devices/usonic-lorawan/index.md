@@ -2,6 +2,21 @@
 
 Alternatively also named "Oscar Sensor".
 
+## Technical description
+
+The device is based on the PGA460 from Texas Instruments ([http://www.ti.com/product/PGA460](http://www.ti.com/product/PGA460))
+
+The PGA enables tuning of the Ultrasonic Sensor for all kind of environments. The default firmware supports parameters tested in underground waste bins.
+
+Lobaro offers customized tuning and consulting for environments where the default configuration does not match.
+
+### Open Top vs. Closed Top
+
+As for now the sensor is shipped with an open top membran. This has advantages in sensibility and range, but is more prone to environmental impacts.
+
+Closed-Top Sensors (e.g. as used in Automotive) need more energy to send out a clear signal but are resistant against environmental impacts. 
+ 
+
 ## Reference decoder
 
 This is a decoder written in JavaScript that can be used to parse the device's 
