@@ -110,6 +110,9 @@
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
         <li class="first-level active"><a href="#usonic-lorawan">USonic LoRaWAN</a></li>
+            <li class="second-level"><a href="#technical-description">Technical description</a></li>
+                
+                <li class="third-level"><a href="#open-top-vs-closed-top">Open Top vs. Closed Top</a></li>
             <li class="second-level"><a href="#reference-decoder">Reference decoder</a></li>
                 
                 <li class="third-level"><a href="#example-parser-result">Example parser result</a></li>
@@ -120,6 +123,13 @@
 
 <h1 id="usonic-lorawan">USonic LoRaWAN</h1>
 <p>Alternatively also named "Oscar Sensor".</p>
+<h2 id="technical-description">Technical description</h2>
+<p>The device is based on the PGA460 from Texas Instruments (<a href="http://www.ti.com/product/PGA460">http://www.ti.com/product/PGA460</a>)</p>
+<p>The PGA enables tuning of the Ultrasonic Sensor for all kind of environments. The default firmware supports parameters tested in underground waste bins.</p>
+<p>Lobaro offers customized tuning and consulting for environments where the default configuration does not match.</p>
+<h3 id="open-top-vs-closed-top">Open Top vs. Closed Top</h3>
+<p>As for now the sensor is shipped with an open top membran. This has advantages in sensibility and range, but is more prone to environmental impacts.</p>
+<p>Closed-Top Sensors (e.g. as used in Automotive) need more energy to send out a clear signal but are resistant against environmental impacts. </p>
 <h2 id="reference-decoder">Reference decoder</h2>
 <p>This is a decoder written in JavaScript that can be used to parse the device's 
 LoRaWAN messages. It can be used as is in 
@@ -293,5 +303,5 @@ function Decoder(bytes, port) {
 
 <!--
 MkDocs version : 1.0.4
-Build Date UTC : 2019-06-05 09:21:16
+Build Date UTC : 2019-06-05 09:37:34
 -->
