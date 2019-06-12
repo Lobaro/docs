@@ -58,6 +58,7 @@ See also our [Introduction to Cron expressions](/background/cron-expressions).
 | `red/green/blue` | 300ms each | initial pattern after reset |
 | `red` | short, blinking | trying to recieve data for the first time after reset |
 | `green` | 5 seconds | successfully received data for the first time since reset |
+| `blue` | 5 seconds | initial connection to LoRaWAN network|
 | `blue` | short | sending data |
 
 
