@@ -112,6 +112,12 @@
         <li class="first-level active"><a href="#edl21-electricity-meter-over-lorawan-bridge">EDL21 Electricity meter over LoRaWAN Bridge</a></li>
             <li class="second-level"><a href="#quickstart">Quickstart</a></li>
                 
+            <li class="second-level"><a href="#configuration">Configuration</a></li>
+                
+                <li class="third-level"><a href="#lorawan">LoRaWAN</a></li>
+                <li class="third-level"><a href="#operation">Operation</a></li>
+            <li class="second-level"><a href="#led-blinking-patterns-explained-in-the-order-in-which-they-appear">LED blinking patterns explained in the order in which they appear</a></li>
+                
             <li class="second-level"><a href="#latest-firmware-download">Latest Firmware Download</a></li>
                 
             <li class="second-level"><a href="#reference-decoder">Reference decoder</a></li>
@@ -135,6 +141,140 @@
 <li>As soon as the EDL21 receives data its green LED will light up for 5 seconds, when connected to a LoRa Network its blue LED will light up for 5 seconds</li>
 <li>Check the sent data (port 3), if payload is zero the EDL21 was not able to read data, recheck proper alignment</li>
 </ol>
+<h2 id="configuration">Configuration</h2>
+<p>The configuration is done using <a href="/tools/lobaro-tool/">Lobaro Maintenance Tool</a> and the Lobaro USB PC adapter.</p>
+<h3 id="lorawan">LoRaWAN</h3>
+<p>The connection to the LoRaWAN network is defined by multiple configuration parameters.
+This need to be set according to your LoRaWAN network and the way your device is 
+supposed to be attached to it, or the device will not be able to send any data.</p>
+<p>There are two different methods to attach a device to a LoRaWAN network: 
+Over-the-air-activation (OTAA) and Activation-by-personalisation (ABP). 
+Depending on which method you are using you will have to set different values.</p>
+<p>Several values are a number of bytes, that need to be entered as hexstrings (without 
+<code>0x</code>-prefix). So e.g. the DevEUI is a value of 8 bytes encoded in hex will be 
+16 hexdigits long. A sample value would be <code>0123456789abcdef</code>.</p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>used</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>OTAA</code></td>
+<td>both</td>
+<td>bool</td>
+<td><code>true</code> &equiv; use OTAA, <code>false</code> &equiv; use ABP</td>
+</tr>
+<tr>
+<td><code>DevEUI</code></td>
+<td>OTAA</td>
+<td>hexbyte[8]</td>
+<td>the 8 byte DevEUI identifies the hardware on the join operation. The default value is a world wide unique value predefined in the hardware. Should not be changed unless required by the network provider.</td>
+</tr>
+<tr>
+<td><code>AppEUI</code></td>
+<td>OTAA</td>
+<td>hexbyte[8]</td>
+<td>ID defining the application used in the LoRaWAN network.</td>
+</tr>
+<tr>
+<td><code>AppKey</code></td>
+<td>OTAA</td>
+<td>hexbyte[16]</td>
+<td>Key used to encrypt communication with the LoRaWAN network.</td>
+</tr>
+<tr>
+<td><code>AppSKey</code></td>
+<td>ABP</td>
+<td>hexbyte[16]</td>
+<td>Application Session Key to be synced with the LoRaWAN network.</td>
+</tr>
+<tr>
+<td><code>NetSKey</code></td>
+<td>ABP</td>
+<td>hexbyte[16]</td>
+<td>Network Session Key to be synced with the LoRaWAN network.</td>
+</tr>
+<tr>
+<td><code>DevAdr</code></td>
+<td>ABP</td>
+<td>hexbyte[4]</td>
+<td>Device Address used to identify device in the LoRaWAN network.</td>
+</tr>
+<tr>
+<td><code>SF</code></td>
+<td>both</td>
+<td>int</td>
+<td>Initial LoRa spreading factor used for transmissions. Valid range is 7-12. The actual spreading factor used by change during operation if ADR is used.</td>
+</tr>
+<tr>
+<td><code>ADR</code></td>
+<td>both</td>
+<td>bool</td>
+<td>Should adaptive data rate be used? <code>true</code> &equiv; use ADR, <code>false</code> &equiv; don't</td>
+</tr>
+</tbody>
+</table>
+<h3 id="operation">Operation</h3>
+<p>Configuration values defining the behaviour of the device. </p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>description</th>
+<th>example value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ReadCron</code></td>
+<td>Cron expression defining when to read</td>
+<td><code>0 0/15 * * * *</code> for every 15 minutes</td>
+</tr>
+<tr>
+<td><code>ObisCode</code></td>
+<td>Comma separated list of ObisCodes to select a subset of the available information</td>
+<td>1-0:1.7.255*255 = Leistung (Momentan)</td>
+</tr>
+</tbody>
+</table>
+<p>See also our <a href="/background/cron-expressions">Introduction to Cron expressions</a>.</p>
+<h2 id="led-blinking-patterns-explained-in-the-order-in-which-they-appear">LED blinking patterns explained in the order in which they appear</h2>
+<table>
+<thead>
+<tr>
+<th>color</th>
+<th>duration</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>red/green/blue</code></td>
+<td>300ms each</td>
+<td>initial pattern after reset</td>
+</tr>
+<tr>
+<td><code>red</code></td>
+<td>short, blinking</td>
+<td>trying to recieve data for the first time after reset</td>
+</tr>
+<tr>
+<td><code>green</code></td>
+<td>5 seconds</td>
+<td>successfully received data for the first time since reset</td>
+</tr>
+<tr>
+<td><code>blue</code></td>
+<td>short</td>
+<td>sending data</td>
+</tr>
+</tbody>
+</table>
 <h2 id="latest-firmware-download">Latest Firmware Download</h2>
 <p><a href="http://files.lobaro.com/index.php/s/gd32WnADQLd7n2s">Download Firmware</a></p>
 <h2 id="reference-decoder">Reference decoder</h2>
@@ -407,5 +547,5 @@ function Decoder(bytes, port) {
 
 <!--
 MkDocs version : 1.0.4
-Build Date UTC : 2019-06-05 09:37:34
+Build Date UTC : 2019-06-12 12:25:19
 -->
