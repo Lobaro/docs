@@ -7,9 +7,9 @@ The generated documentation is available at https://docs.lobaro.com
 
 Install Python: https://www.python.org/downloads/
 
-Install Python dependencies:
+Install Python dependencies (in this directory):
 
-    pip install mkdocs mkdocs-cinder pymdown-extensions
+    pip install -r requirements.txt
 
 
 Run mkDocs
@@ -29,3 +29,14 @@ For a feature description and general markdown information consult:
 
 ## Legacy
 For legacy online documentation see [repo wiki](https://github.com/Lobaro/docs/wiki).
+
+## Charts
+This documentation uses [MermaidJS][mermaid] to render flow charts etc. Charts are directly 
+defined within the markdown source code and will be rendered in the client using 
+JavaScript. The integration of mermaid into mkdocs is realised using the 
+`pymdown-extensions`. Charts are defined in source code listings (with triple backticks ```) 
+with the custom language `mermaid` defined. This solution is taken from a comment to an 
+issue on github:  
+https://github.com/squidfunk/mkdocs-material/issues/693#issuecomment-411885426
+
+[mermaid]: https://mermaidjs.github.io/
