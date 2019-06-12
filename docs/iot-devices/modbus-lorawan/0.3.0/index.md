@@ -30,15 +30,30 @@ flexibly to suit individual requirements.
 
 ## Work Cycle
 
+The Modbus LoRaWAN Bridge has a simple work cycle. It spends most of the time in a deep sleep 
+state, to conserve energy. For every reading it wakes up for a few seconds, requests values 
+from the connected slave devices, uploads the data via LoRaWAN, and then goes to sleep again.
+The following flowchart illustrates the work cycle:
+
 ```mermaid
 graph LR;
-    init(Start)-->check(Test Read);
+    init(Init)-->check(Test Reading);
     check-->join(LoRaWAN Join);
     join-->read(Data Collection);
     read-->send(Data Transfer);
     send-->sleep("Sleep");
     sleep-->|Cron expression| read;
 ```
+
+Init
+:   When the device starts (because it has just been connected to a power source, or after 
+    a reboot) it begins in the *Init* state. A quick self-check is executed; if that succeeds, 
+    the green on-board LED blinks once, slowly. After that the configuration is evaluated and 
+    checked for invalid values. If any problems are detected during *Init*, the device's LED 
+    will light up for three times, and the device will then reboot. If everything is okay, the 
+    device will continue with the *Test Reading*.
+Test Reading
+:   
 
 ## Configuration
 The configuration is done using [Lobaro Maintenance Tool](/tools/lobaro-tool/) and the Lobaro USB PC adapter.

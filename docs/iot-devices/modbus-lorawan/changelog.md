@@ -1,6 +1,13 @@
 # Changelog for the Lobaro Modbus LoRaWAN Bridge
 
-## Unreleased
+## [Unreleased]
+### Added
+- Writing values to holding registers and coils.
+
+### Fixed
+- Flushing to avoid invalid byte received from switching from TX to RX.
+- Modbus mode ASCII now counts received bytes correctly.
+- DataLength of 7 bits can now correctly be set in config.
 
 ## [0.3.1] &ndash; 2019-05-24
 ### Fixed
