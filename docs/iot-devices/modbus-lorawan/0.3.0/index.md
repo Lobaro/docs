@@ -221,7 +221,7 @@ If you find that the data rate LoRaWAN offers is a limitation for your setup, we
 provide you with a Modbus solution that uses alternate data transmission technologies, for
 example NarrowBand-IoT.
 
-## Appendixes
+## Appendices
 
 ### Technical characteristics
 
