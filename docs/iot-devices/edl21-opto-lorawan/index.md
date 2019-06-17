@@ -48,7 +48,7 @@ Configuration values defining the behaviour of the device.
 | name | description | example value |
 |------|-------------|----------------|
 | `ReadCron` | Cron expression defining when to read | `0 0/15 * * * *` for every 15 minutes |
-| `ObisCode` | Comma separated list of ObisCodes to select a subset of the available information | 1-0:1.7.255*255 = Leistung (Momentan)
+| `ObisCode` | Comma separated list of ObisCodes to select a subset of the available information | `1-0:1.7.255*255` = Leistung (Momentan)
 
 See also our [Introduction to Cron expressions](/background/cron-expressions) and our [Introduction to Obis Codes](/background/obis-codes).
 
