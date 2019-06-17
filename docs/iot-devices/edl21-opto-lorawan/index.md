@@ -52,7 +52,9 @@ Configuration values defining the behaviour of the device.
 
 See also our [Introduction to Cron expressions](/background/cron-expressions) and our [Introduction to Obis Codes](/background/obis-codes).
 
-## LED blinking patterns explained in the order in which they appear
+## LED blinking patterns
+The following pattery are explained in the order in which they appear after initial power on / reset of the device.
+
 | color | duration | description
 |------|-------------|----------------|
 | `red/green/blue` | 300ms each | initial pattern after reset |
