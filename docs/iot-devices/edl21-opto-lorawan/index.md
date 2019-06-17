@@ -56,11 +56,13 @@ See also our [Introduction to Cron expressions](/background/cron-expressions) an
 | color | duration | description
 |------|-------------|----------------|
 | `red/green/blue` | 300ms each | initial pattern after reset |
-| `red` | short, blinking | trying to recieve data for the first time after reset |
-| `green` | 5 seconds | successfully received data for the first time since reset |
-| `blue` | 5 seconds | initial connection to LoRaWAN network|
-| `blue` | short | sending data |
+| `red` | short, blinking | trying to receive meter optical data for the first time after reset |
+| `green` | 5 seconds | successfully received meter optical data |
+| `blue` | 5 seconds | LoRaWAN network join |
+| `blue` | short | sending 1st LoRaWAN data |
+| `off` | - | low-power mode until next sendout cycle |
 
+As you can see by this the device will start the LoRaWAN join only after receiving optical data at least once.
 
 ## Latest Firmware Download
 
@@ -91,10 +93,6 @@ See also our [Introduction to Cron expressions](/background/cron-expressions) an
 | Max installation height  | 2m                                                                      |
 | **Standards** <br> <img title="CE" alt="CE logo" src="/img/symbol-ce.svg" height="60"> <img title="weee" title="weee logo" src="/img/symbol-weee.svg" height="60"> |
 |                          |                                                                         |
-
-### CE Declaration of Conformity
-
-[CE Declaration of Conformity](modbus-lorawan-ce-conformity.pdf) (pdf).
 
 ### Disposal / WEEE / Entsorgung
 
