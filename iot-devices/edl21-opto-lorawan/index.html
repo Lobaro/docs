@@ -120,6 +120,11 @@
                 
             <li class="second-level"><a href="#latest-firmware-download">Latest Firmware Download</a></li>
                 
+            <li class="second-level"><a href="#appendices">Appendices</a></li>
+                
+                <li class="third-level"><a href="#technical-characteristics">Technical characteristics</a></li>
+                <li class="third-level"><a href="#ce-declaration-of-conformity">CE Declaration of Conformity</a></li>
+                <li class="third-level"><a href="#disposal-weee-entsorgung">Disposal / WEEE / Entsorgung</a></li>
             <li class="second-level"><a href="#reference-decoder">Reference decoder</a></li>
                 
                 <li class="third-level"><a href="#example-parser-result">Example parser result</a></li>
@@ -282,6 +287,94 @@ Depending on which method you are using you will have to set different values.</
 </table>
 <h2 id="latest-firmware-download">Latest Firmware Download</h2>
 <p><a href="http://files.lobaro.com/index.php/s/gd32WnADQLd7n2s">Download Firmware</a></p>
+<h2 id="appendices">Appendices</h2>
+<h3 id="technical-characteristics">Technical characteristics</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Product</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Type name</td>
+<td>EDL21-LoRaWAN</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>Electricity meter over LoRaWAN Bridge</td>
+</tr>
+<tr>
+<td><strong>RF tranceiver</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Type</td>
+<td>Semtech SX1272</td>
+</tr>
+<tr>
+<td>Frequency</td>
+<td>863 MHz to 870 MHz</td>
+</tr>
+<tr>
+<td>Max. TX Power</td>
+<td>max. +14 dBm</td>
+</tr>
+<tr>
+<td>Typical RF Range</td>
+<td>&le;2km</td>
+</tr>
+<tr>
+<td>Ideal RF Range</td>
+<td>&le;10km (free line of sight)</td>
+</tr>
+<tr>
+<td><strong>LoRa communication</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Protocol</td>
+<td>Class A LoRaWAN 1.0.1 EU868</td>
+</tr>
+<tr>
+<td>Activation method</td>
+<td>Over-the-air-activation (OTAA) <br> Activation by personalization (ABP)</td>
+</tr>
+<tr>
+<td>Encryption</td>
+<td>AES128</td>
+</tr>
+<tr>
+<td><strong>Environmental Requirements</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Operating temperature</td>
+<td>-20°C &ndash; 55°C</td>
+</tr>
+<tr>
+<td>Max installation height</td>
+<td>2m</td>
+</tr>
+<tr>
+<td><strong>Standards</strong> <br> <img title="CE" alt="CE logo" src="/img/symbol-ce.svg" height="60"> <img title="weee" title="weee logo" src="/img/symbol-weee.svg" height="60"></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="ce-declaration-of-conformity">CE Declaration of Conformity</h3>
+<p><a href="modbus-lorawan-ce-conformity.pdf">CE Declaration of Conformity</a> (pdf).</p>
+<h3 id="disposal-weee-entsorgung">Disposal / WEEE / Entsorgung</h3>
+<p><a href="/background/weee-disposal">Information about the disposal of the Device</a>.</p>
 <h2 id="reference-decoder">Reference decoder</h2>
 <p>This is a decoder written in JavaScript that can be used to parse the device's 
 LoRaWAN messages. It can be used as is in 
@@ -552,5 +645,5 @@ function Decoder(bytes, port) {
 
 <!--
 MkDocs version : 1.0.4
-Build Date UTC : 2019-06-17 14:09:34
+Build Date UTC : 2019-06-17 14:14:59
 -->
