@@ -66,6 +66,40 @@ See also our [Introduction to Cron expressions](/background/cron-expressions) an
 
 [Download Firmware](http://files.lobaro.com/index.php/s/gd32WnADQLd7n2s)
 
+
+## Appendices
+
+### Technical characteristics
+
+|                          |                                                                         |
+|--------------------------|-------------------------------------------------------------------------|
+| **Product**              |                                                                         |
+| Type name                | EDL21-LoRaWAN                                                       |
+| Description              | Electricity meter over LoRaWAN Bridge                                              |
+| **RF tranceiver**        |                                                                         |
+| Type                     | Semtech SX1272                                                          |
+| Frequency                | 863 MHz to 870 MHz                                                      |
+| Max. TX Power            | max. +14 dBm                                                            |
+| Typical RF Range         | &le;2km                                                                 |
+| Ideal RF Range           | &le;10km (free line of sight)                                           |
+| **LoRa communication**   |                                                                         |
+| Protocol                 | Class A LoRaWAN 1.0.1 EU868                                             |
+| Activation method        | Over-the-air-activation (OTAA) <br> Activation by personalization (ABP) |
+| Encryption               | AES128                                                                  |
+| **Environmental Requirements** |                                                                   |
+| Operating temperature    | -20°C &ndash; 55°C                                                      |
+| Max installation height  | 2m                                                                      |
+| **Standards** <br> <img title="CE" alt="CE logo" src="/img/symbol-ce.svg" height="60"> <img title="weee" title="weee logo" src="/img/symbol-weee.svg" height="60"> |
+|                          |                                                                         |
+
+### CE Declaration of Conformity
+
+[CE Declaration of Conformity](modbus-lorawan-ce-conformity.pdf) (pdf).
+
+### Disposal / WEEE / Entsorgung
+
+[Information about the disposal of the Device](/background/weee-disposal).
+
 ## Reference decoder
 
 This is a decoder written in JavaScript that can be used to parse the device's 
