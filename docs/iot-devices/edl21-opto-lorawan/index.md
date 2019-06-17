@@ -61,7 +61,7 @@ The following pattery are explained in the order in which they appear after init
 | `red` | short, blinking | trying to receive meter optical data for the first time after reset |
 | `green` | 5 seconds | successfully received meter optical data |
 | `blue` | 5 seconds | LoRaWAN network join |
-| `blue` | short | sending 1st LoRaWAN data |
+| `blue` | short | sending LoRaWAN data uplink |
 | `off` | - | low-power mode until next sendout cycle |
 
 As you can see by this the device will start the LoRaWAN join only after receiving optical data at least once.
