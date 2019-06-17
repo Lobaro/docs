@@ -123,7 +123,6 @@
             <li class="second-level"><a href="#appendices">Appendices</a></li>
                 
                 <li class="third-level"><a href="#technical-characteristics">Technical characteristics</a></li>
-                <li class="third-level"><a href="#ce-declaration-of-conformity">CE Declaration of Conformity</a></li>
                 <li class="third-level"><a href="#disposal-weee-entsorgung">Disposal / WEEE / Entsorgung</a></li>
             <li class="second-level"><a href="#reference-decoder">Reference decoder</a></li>
                 
@@ -266,25 +265,31 @@ Depending on which method you are using you will have to set different values.</
 <tr>
 <td><code>red</code></td>
 <td>short, blinking</td>
-<td>trying to recieve data for the first time after reset</td>
+<td>trying to receive meter optical data for the first time after reset</td>
 </tr>
 <tr>
 <td><code>green</code></td>
 <td>5 seconds</td>
-<td>successfully received data for the first time since reset</td>
+<td>successfully received meter optical data</td>
 </tr>
 <tr>
 <td><code>blue</code></td>
 <td>5 seconds</td>
-<td>initial connection to LoRaWAN network</td>
+<td>LoRaWAN network join</td>
 </tr>
 <tr>
 <td><code>blue</code></td>
 <td>short</td>
-<td>sending data</td>
+<td>sending 1st LoRaWAN data</td>
+</tr>
+<tr>
+<td><code>off</code></td>
+<td>-</td>
+<td>low-power mode until next sendout cycle</td>
 </tr>
 </tbody>
 </table>
+<p>As you can see by this the device will start the LoRaWAN join only after receiving optical data at least once.</p>
 <h2 id="latest-firmware-download">Latest Firmware Download</h2>
 <p><a href="http://files.lobaro.com/index.php/s/gd32WnADQLd7n2s">Download Firmware</a></p>
 <h2 id="appendices">Appendices</h2>
@@ -371,8 +376,6 @@ Depending on which method you are using you will have to set different values.</
 </tr>
 </tbody>
 </table>
-<h3 id="ce-declaration-of-conformity">CE Declaration of Conformity</h3>
-<p><a href="modbus-lorawan-ce-conformity.pdf">CE Declaration of Conformity</a> (pdf).</p>
 <h3 id="disposal-weee-entsorgung">Disposal / WEEE / Entsorgung</h3>
 <p><a href="/background/weee-disposal">Information about the disposal of the Device</a>.</p>
 <h2 id="reference-decoder">Reference decoder</h2>
@@ -645,5 +648,5 @@ function Decoder(bytes, port) {
 
 <!--
 MkDocs version : 1.0.4
-Build Date UTC : 2019-06-17 14:26:54
+Build Date UTC : 2019-06-17 18:22:20
 -->
