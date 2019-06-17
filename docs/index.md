@@ -30,5 +30,6 @@ of [Lobaro GmbH](https://www.lobaro.de).
 * [Introduction to LoRaWAN](background/lorawan) 
 * [Disposal of Lobaro devices](background/weee-disposal)
 * [Entsorgung von Geräten von Lobaro](background/weee-entsorgung) (German)
+* [OBIS-Codes](background/obis-codes)
 
 [lobaro]: https://lobaro.com
