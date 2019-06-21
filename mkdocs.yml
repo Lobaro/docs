@@ -26,7 +26,7 @@ extra_javascript:
     - "js/mermaid.min.js"
 nav:
     - Documentation Home: index.md
-    - Devices:
+    - IoT Devices:
         - Modbus LoRaWAN Bridge: iot-devices/modbus-lorawan
         - Usonic LoRaWAN Sensor: iot-devices/usonic-lorawan
         - 1-Wire LoRaWAN Bridge: iot-devices/1-wire-lorawan
