@@ -3,7 +3,7 @@ This is the markdown source for the Lobaro online documentation. It is generated
 
 The generated documentation is available at https://docs.lobaro.com
 
-# Local Setup
+## Local Setup
 
 Install Python: https://www.python.org/downloads/
 
@@ -16,7 +16,7 @@ Run mkDocs
 
     mkdocs serve
 
-## Features
+### Features
 For a feature description and general markdown information consult:
 
 - [Cinder theme features](https://sourcefoundry.org/cinder/specimen/) 
@@ -27,7 +27,7 @@ For a feature description and general markdown information consult:
 
 
 
-## Legacy
+### Legacy
 For legacy online documentation see [repo wiki](https://github.com/Lobaro/docs/wiki).
 
 ## Charts

@@ -1,4 +1,4 @@
-# EDL21 Electricity meter over LoRaWAN Bridge
+# EDL21 Electricity meter LoRaWAN Bridge
 
 ![Lobaro EDL21 LoRaWAN Bridge](edl21_small.jpg)
 

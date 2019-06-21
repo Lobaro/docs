@@ -1,10 +1,16 @@
 site_name: Lobaro Documentation
 site_description: Online documentation of the Lobaro GmbH, Industrial IoT Solutions. Manuals for our IoT Devices.
 theme:
-    name: cinder
+#    name: cinder
+    name: material
 #    name: readthedocs
     highlightjs: true
+    palette:
+        primary: 'blue'
+        accent: 'blue'
 repo_url: "https://github.com/lobaro/docs"
+copyright: 'Lobaro GmbH'
+use_directory_urls: false
 markdown_extensions:
     - def_list
     - toc:
@@ -20,5 +26,11 @@ extra_javascript:
     - "js/mermaid.min.js"
 nav:
     - Documentation Home: index.md
-    - Company Home: https://www.lobaro.com/lobaro-iot-produkte-dienste/
+    - Devices:
+        - Modbus LoRaWAN Bridge: iot-devices/modbus-lorawan
+        - Usonic LoRaWAN Sensor: iot-devices/usonic-lorawan
+        - 1-Wire LoRaWAN Bridge: iot-devices/1-wire-lorawan
+        - EDL21 Electricity meter LoRaWAN Bridge: iot-devices/edl21-opto-lorawan
+    - Dashboard: dashboard
+#    - Company Home: https://www.lobaro.com/lobaro-iot-produkte-dienste/
     - Contact / Impressum: https://www.lobaro.com/contact/

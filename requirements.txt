@@ -1,3 +1,4 @@
 mkdocs==1.0.4
 mkdocs-cinder>=0.17.0
+mkdocs-material
 pymdown-extensions>=6.0
