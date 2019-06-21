@@ -1,9 +1,9 @@
 # Lobaro Documentation
 
 This site is the new upcoming central documentation for IoT products 
-of [Lobaro GmbH](https://www.lobaro.de).
+of [Lobaro GmbH](https://www.lobaro.de){: target="_blank"}.
 
-<!-- ![Lobaro-Logo](./img/slogan_links_webHeader_.png) -->
+<!-- ![Lobaro-Logo](./img/slogan_links_webHeader_.png){: style="height:40px;width:143px"} -->
 
 ## Hardware
 
