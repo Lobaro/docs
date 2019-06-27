@@ -1156,181 +1156,181 @@ Depending on which method you are using you will have to set different values.</
 <p>This is a decoder written in JavaScript that can be used to parse the device's 
 LoRaWAN messages. It can be used as is in 
 <a href="https://thethingsnetwork.org">The Things Network</a>.</p>
-<div class="highlight"><pre><span></span>function readName(bytes, i) {
-    return bytes.slice(i, i + 6);
-}
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">readName</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">bytes</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">i</span> <span class="o">+</span> <span class="mi">6</span><span class="p">);</span>
+<span class="p">}</span>
 
-function readValue(len, bytes, i) {
-    if (len &lt;= 0) {
-        return [];
-    }
-    return bytes.slice(i, i + len);
-}
+<span class="kd">function</span> <span class="nx">readValue</span><span class="p">(</span><span class="nx">len</span><span class="p">,</span> <span class="nx">bytes</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">len</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">[];</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">bytes</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">i</span> <span class="o">+</span> <span class="nx">len</span><span class="p">);</span>
+<span class="p">}</span>
 
-function toHexString(byteArray) {
-    var s = &#39;&#39;;
-    byteArray.forEach(function (byte) {
-        s += (&#39;0&#39; + (byte &amp; 0xFF).toString(16)).slice(-2);
-    });
-    return s;
-}
+<span class="kd">function</span> <span class="nx">toHexString</span><span class="p">(</span><span class="nx">byteArray</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+    <span class="nx">byteArray</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="kr">byte</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">s</span> <span class="o">+=</span> <span class="p">(</span><span class="s1">&#39;0&#39;</span> <span class="o">+</span> <span class="p">(</span><span class="kr">byte</span> <span class="o">&amp;</span> <span class="mh">0xFF</span><span class="p">).</span><span class="nx">toString</span><span class="p">(</span><span class="mi">16</span><span class="p">)).</span><span class="nx">slice</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">);</span>
+    <span class="p">});</span>
+    <span class="k">return</span> <span class="nx">s</span><span class="p">;</span>
+<span class="p">}</span>
 
-function parse_int8(bytes, idx) {
-    bytes = bytes.slice(idx || 0);
-    var t = bytes[0];
-    if ((t &amp; 1 &lt;&lt; 7) &gt; 0) { // temp is negative (16bit 2&#39;s complement)
-        t = ((~t) &amp; 0xff) + 1; // invert 16bits &amp; add 1 =&gt; now positive value
-        t = t * -1;
-    }
-    return t;
-}
+<span class="kd">function</span> <span class="nx">parse_int8</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">idx</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">bytes</span> <span class="o">=</span> <span class="nx">bytes</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="nx">idx</span> <span class="o">||</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">t</span> <span class="o">=</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+    <span class="k">if</span> <span class="p">((</span><span class="nx">t</span> <span class="o">&amp;</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">7</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// temp is negative (16bit 2&#39;s complement)</span>
+        <span class="nx">t</span> <span class="o">=</span> <span class="p">((</span><span class="o">~</span><span class="nx">t</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xff</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// invert 16bits &amp; add 1 =&gt; now positive value</span>
+        <span class="nx">t</span> <span class="o">=</span> <span class="nx">t</span> <span class="o">*</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">t</span><span class="p">;</span>
+<span class="p">}</span>
 
-function parse_int16(bytes, idx) {
-    bytes = bytes.slice(idx || 0);
-    var t = bytes[0] &lt;&lt; 8 | bytes[1] &lt;&lt; 0;
-    if( (t &amp; 1&lt;&lt;15) &gt; 0){ // temp is negative (16bit 2&#39;s complement)
-        t = ((~t)&amp; 0xffff)+1; // invert 16bits &amp; add 1 =&gt; now positive value
-        t=t*-1;
-    }
-    return t;
-}
-function parse_uint16(bytes, idx) {
-    bytes = bytes.slice(idx || 0);
-    var t = bytes[0] &lt;&lt; 8 | bytes[1] &lt;&lt; 0;
-    return t;
-}
+<span class="kd">function</span> <span class="nx">parse_int16</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">idx</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">bytes</span> <span class="o">=</span> <span class="nx">bytes</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="nx">idx</span> <span class="o">||</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">t</span> <span class="o">=</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span> <span class="o">|</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span> <span class="p">(</span><span class="nx">t</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="o">&lt;&lt;</span><span class="mi">15</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">){</span> <span class="c1">// temp is negative (16bit 2&#39;s complement)</span>
+        <span class="nx">t</span> <span class="o">=</span> <span class="p">((</span><span class="o">~</span><span class="nx">t</span><span class="p">)</span><span class="o">&amp;</span> <span class="mh">0xffff</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span> <span class="c1">// invert 16bits &amp; add 1 =&gt; now positive value</span>
+        <span class="nx">t</span><span class="o">=</span><span class="nx">t</span><span class="o">*-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">t</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">parse_uint16</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">idx</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">bytes</span> <span class="o">=</span> <span class="nx">bytes</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="nx">idx</span> <span class="o">||</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">t</span> <span class="o">=</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span> <span class="o">|</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">t</span><span class="p">;</span>
+<span class="p">}</span>
 
-function toNumber(bytes) {
-    var res = 0;
-    for (var i = 0, s = 0; i &lt; bytes.length; i++) {
-        res |= bytes[i] &lt;&lt; s;
-        s += 8;
-    }
-    return res;
-}
+<span class="kd">function</span> <span class="nx">toNumber</span><span class="p">(</span><span class="nx">bytes</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">s</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">bytes</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">res</span> <span class="o">|=</span> <span class="nx">bytes</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="nx">s</span><span class="p">;</span>
+        <span class="nx">s</span> <span class="o">+=</span> <span class="mi">8</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">res</span><span class="p">;</span>
+<span class="p">}</span>
 
-function readVersion(bytes) {
-    if (bytes.length&lt;3) {
-        return null;
-    }
-    return &quot;v&quot; + bytes[0] + &quot;.&quot; + bytes[1] + &quot;.&quot; + bytes[2];
-}
+<span class="kd">function</span> <span class="nx">readVersion</span><span class="p">(</span><span class="nx">bytes</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">bytes</span><span class="p">.</span><span class="nx">length</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="s2">&quot;v&quot;</span> <span class="o">+</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+<span class="p">}</span>
 
-function decodeStatus(bytes) {
-    var decoded = {
-        &quot;version&quot;:readVersion(bytes),
-        &quot;flags&quot;: bytes[3],
-        &quot;vBat&quot;: parse_uint16(bytes, 4) / 1000,
-        &quot;temp&quot;: parse_int16(bytes, 6) / 10,
-    };
+<span class="kd">function</span> <span class="nx">decodeStatus</span><span class="p">(</span><span class="nx">bytes</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">decoded</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;version&quot;</span><span class="o">:</span><span class="nx">readVersion</span><span class="p">(</span><span class="nx">bytes</span><span class="p">),</span>
+        <span class="s2">&quot;flags&quot;</span><span class="o">:</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+        <span class="s2">&quot;vBat&quot;</span><span class="o">:</span> <span class="nx">parse_uint16</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">,</span>
+        <span class="s2">&quot;temp&quot;</span><span class="o">:</span> <span class="nx">parse_int16</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span> <span class="o">/</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="p">};</span>
 
 
-    return decoded;
-}
+    <span class="k">return</span> <span class="nx">decoded</span><span class="p">;</span>
+<span class="p">}</span>
 
-function decodeSmlValuesV1(bytes) {
-    var decoded = {
-        values: [],
-    };
+<span class="kd">function</span> <span class="nx">decodeSmlValuesV1</span><span class="p">(</span><span class="nx">bytes</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">decoded</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="nx">values</span><span class="o">:</span> <span class="p">[],</span>
+    <span class="p">};</span>
 
-    if (bytes.length === 1) {
-        // No Data! Read error?
-        return decoded;
-    }
+    <span class="k">if</span> <span class="p">(</span><span class="nx">bytes</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// No Data! Read error?</span>
+        <span class="k">return</span> <span class="nx">decoded</span><span class="p">;</span>
+    <span class="p">}</span>
 
-    var pos = 0;
-    while (pos &lt; bytes.length) {
-        var name = readName(bytes, pos);
-        pos += 6;
-        var len = bytes[pos];
-        pos += 1;
-        var value = readValue(len, bytes, pos);
-        pos += len;
+    <span class="kd">var</span> <span class="nx">pos</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="nx">pos</span> <span class="o">&lt;</span> <span class="nx">bytes</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="nx">readName</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">pos</span><span class="p">);</span>
+        <span class="nx">pos</span> <span class="o">+=</span> <span class="mi">6</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">bytes</span><span class="p">[</span><span class="nx">pos</span><span class="p">];</span>
+        <span class="nx">pos</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">readValue</span><span class="p">(</span><span class="nx">len</span><span class="p">,</span> <span class="nx">bytes</span><span class="p">,</span> <span class="nx">pos</span><span class="p">);</span>
+        <span class="nx">pos</span> <span class="o">+=</span> <span class="nx">len</span><span class="p">;</span>
 
-        var val = {
-            nameHex: toHexString(name),
-            len: len,
-            value: toNumber(value),
-            valueHex: toHexString(value)
-        };
+        <span class="kd">var</span> <span class="nx">val</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="nx">nameHex</span><span class="o">:</span> <span class="nx">toHexString</span><span class="p">(</span><span class="nx">name</span><span class="p">),</span>
+            <span class="nx">len</span><span class="o">:</span> <span class="nx">len</span><span class="p">,</span>
+            <span class="nx">value</span><span class="o">:</span> <span class="nx">toNumber</span><span class="p">(</span><span class="nx">value</span><span class="p">),</span>
+            <span class="nx">valueHex</span><span class="o">:</span> <span class="nx">toHexString</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span>
+        <span class="p">};</span>
 
-        decoded.values.push(val);
-    }
+        <span class="nx">decoded</span><span class="p">.</span><span class="nx">values</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">val</span><span class="p">);</span>
+    <span class="p">}</span>
 
-    return decoded;
-}
+    <span class="k">return</span> <span class="nx">decoded</span><span class="p">;</span>
+<span class="p">}</span>
 
-function decodeSmlValuesV2(bytes) {
-    var decoded = {
-        values: [],
-    };
+<span class="kd">function</span> <span class="nx">decodeSmlValuesV2</span><span class="p">(</span><span class="nx">bytes</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">decoded</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="nx">values</span><span class="o">:</span> <span class="p">[],</span>
+    <span class="p">};</span>
 
-    if (bytes.length === 1) {
-        // No Data! Read error?
-        return decoded;
-    }
+    <span class="k">if</span> <span class="p">(</span><span class="nx">bytes</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// No Data! Read error?</span>
+        <span class="k">return</span> <span class="nx">decoded</span><span class="p">;</span>
+    <span class="p">}</span>
 
-    var pos = 0;
-    while (pos &lt; bytes.length) {
-        var name = readName(bytes, pos);
-        pos += 6;
-        var len = bytes[pos];
-        pos += 1;
-        var value = readValue(len, bytes, pos);
-        pos += len;
-        if (len &gt; 0) {
-            var exponent = parse_int8(bytes, pos);
-            pos += 1;
-        }
-        if (len &gt; 0) {
-            var val = {
-                nameHex: toHexString(name),
-                len: len,
-                value: toNumber(value) * Math.pow(10, exponent),
-                valueHex: toHexString(value),
-            }
-        } else {
-            var val = {
-                nameHex: toHexString(name),
-                len: len,
-                value: toNumber(value),
-                valueHex: toHexString(value),
-            }
-        }
+    <span class="kd">var</span> <span class="nx">pos</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="nx">pos</span> <span class="o">&lt;</span> <span class="nx">bytes</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="nx">readName</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">pos</span><span class="p">);</span>
+        <span class="nx">pos</span> <span class="o">+=</span> <span class="mi">6</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">bytes</span><span class="p">[</span><span class="nx">pos</span><span class="p">];</span>
+        <span class="nx">pos</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">readValue</span><span class="p">(</span><span class="nx">len</span><span class="p">,</span> <span class="nx">bytes</span><span class="p">,</span> <span class="nx">pos</span><span class="p">);</span>
+        <span class="nx">pos</span> <span class="o">+=</span> <span class="nx">len</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">len</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">exponent</span> <span class="o">=</span> <span class="nx">parse_int8</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">pos</span><span class="p">);</span>
+            <span class="nx">pos</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">len</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">val</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="nx">nameHex</span><span class="o">:</span> <span class="nx">toHexString</span><span class="p">(</span><span class="nx">name</span><span class="p">),</span>
+                <span class="nx">len</span><span class="o">:</span> <span class="nx">len</span><span class="p">,</span>
+                <span class="nx">value</span><span class="o">:</span> <span class="nx">toNumber</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="o">*</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">pow</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="nx">exponent</span><span class="p">),</span>
+                <span class="nx">valueHex</span><span class="o">:</span> <span class="nx">toHexString</span><span class="p">(</span><span class="nx">value</span><span class="p">),</span>
+            <span class="p">}</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">val</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="nx">nameHex</span><span class="o">:</span> <span class="nx">toHexString</span><span class="p">(</span><span class="nx">name</span><span class="p">),</span>
+                <span class="nx">len</span><span class="o">:</span> <span class="nx">len</span><span class="p">,</span>
+                <span class="nx">value</span><span class="o">:</span> <span class="nx">toNumber</span><span class="p">(</span><span class="nx">value</span><span class="p">),</span>
+                <span class="nx">valueHex</span><span class="o">:</span> <span class="nx">toHexString</span><span class="p">(</span><span class="nx">value</span><span class="p">),</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
 
-        decoded.values.push(val);
-    }
+        <span class="nx">decoded</span><span class="p">.</span><span class="nx">values</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">val</span><span class="p">);</span>
+    <span class="p">}</span>
 
-    return decoded;
-}
+    <span class="k">return</span> <span class="nx">decoded</span><span class="p">;</span>
+<span class="p">}</span>
 
-function Decoder(bytes, port) {
-    // Decode an uplink message from a buffer
-    // (array) of bytes to an object of fields.
-    if (port === 1) {
-        return decodeStatus(bytes);
-    }
-    if (port === 2) {
-        return decodeSmlValuesV1(bytes);
-    }
-    if (port == 3) {
-        return decodeSmlValuesV2(bytes);
-    }
-}
+<span class="kd">function</span> <span class="nx">Decoder</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">port</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Decode an uplink message from a buffer</span>
+    <span class="c1">// (array) of bytes to an object of fields.</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">port</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">decodeStatus</span><span class="p">(</span><span class="nx">bytes</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">port</span> <span class="o">===</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">decodeSmlValuesV1</span><span class="p">(</span><span class="nx">bytes</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">port</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">decodeSmlValuesV2</span><span class="p">(</span><span class="nx">bytes</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 
 <h3 id="example-parser-result">Example parser result</h3>
 <p>Test input: 01 00 01 08 00 FE 08 7B 7D 23 00 00 00 00 00 FF</p>
-<div class="highlight"><pre><span></span>{
-   &quot;values&quot;: [
-    {
-      &quot;len&quot;: 8,
-      &quot;nameHex&quot;: &quot;0100010800fe&quot;,
-      &quot;value&quot;: 232588.30000000002,
-      &quot;valueHex&quot;: &quot;7b7d230000000000&quot;
-    }
-  ]
-}
+<div class="highlight"><pre><span></span><span class="p">{</span>
+   <span class="nt">&quot;values&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;len&quot;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+      <span class="nt">&quot;nameHex&quot;</span><span class="p">:</span> <span class="s2">&quot;0100010800fe&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="mf">232588.30000000002</span><span class="p">,</span>
+      <span class="nt">&quot;valueHex&quot;</span><span class="p">:</span> <span class="s2">&quot;7b7d230000000000&quot;</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
 </pre></div>
                 
                   

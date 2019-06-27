@@ -603,9 +603,38 @@
       
     
     
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        LoRaWAN
+      </label>
+    
     <a href="lorawan.html" title="LoRaWAN" class="md-nav__link md-nav__link--active">
       LoRaWAN
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#parser" title="Parser" class="md-nav__link">
+    Parser
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -668,6 +697,22 @@
     
   
   
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#parser" title="Parser" class="md-nav__link">
+    Parser
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -691,6 +736,120 @@ frequencies to transmit its data.</p>
 <p>To operate LoRaWAN Sensors you need a <strong>LoRaWAN Network Server</strong>. A free to use, open source network server is The Things Network.
 They provide a very good documentation about the overall architecture and features of LoRaWAN:</p>
 <p><a href="https://www.thethingsnetwork.org/docs/" target="_blank">LoRaWAN Documentation (by TTN)</a></p>
+<h2 id="parser">Parser</h2>
+<p>LoRaWAN Application Servers need to decode sensor payloads. This is done with custom parser code.
+We provide TTN compatible JavaScript parsers as reference implementation for all our devices.</p>
+<p>Some common help functions for this parsers can be found in the following example:</p>
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">toHexString</span><span class="p">(</span><span class="nx">byteArray</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+    <span class="nx">byteArray</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="kr">byte</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">s</span> <span class="o">+=</span> <span class="p">(</span><span class="s1">&#39;0&#39;</span> <span class="o">+</span> <span class="p">(</span><span class="kr">byte</span> <span class="o">&amp;</span> <span class="mh">0xFF</span><span class="p">).</span><span class="nx">toString</span><span class="p">(</span><span class="mi">16</span><span class="p">)).</span><span class="nx">slice</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">);</span>
+    <span class="p">});</span>
+    <span class="k">return</span> <span class="nx">s</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">signed</span><span class="p">(</span><span class="nx">val</span><span class="p">,</span> <span class="nx">bits</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">((</span><span class="nx">val</span> <span class="o">&amp;</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="nx">bits</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// value is negative (16bit 2&#39;s complement)</span>
+        <span class="kd">var</span> <span class="nx">mask</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nx">bits</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="nx">val</span> <span class="o">=</span> <span class="p">(</span><span class="o">~</span><span class="nx">val</span> <span class="o">&amp;</span> <span class="nx">mask</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// invert all bits &amp; add 1 =&gt; now positive value</span>
+        <span class="nx">val</span> <span class="o">=</span> <span class="nx">val</span> <span class="o">*</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">val</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">int16_BE</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">idx</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">bytes</span> <span class="o">=</span> <span class="nx">bytes</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="nx">idx</span> <span class="o">||</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">signed</span><span class="p">(</span><span class="nx">bytes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span> <span class="o">|</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">16</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">int24_BE</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">idx</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">bytes</span> <span class="o">=</span> <span class="nx">bytes</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="nx">idx</span> <span class="o">||</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">signed</span><span class="p">(</span><span class="nx">bytes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">16</span> <span class="o">|</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span> <span class="o">|</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">24</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">int32_BE</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">idx</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">bytes</span> <span class="o">=</span> <span class="nx">bytes</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="nx">idx</span> <span class="o">||</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">signed</span><span class="p">(</span><span class="nx">bytes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">24</span> <span class="o">|</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">16</span> <span class="o">|</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span> <span class="o">|</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">32</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">int16_LE</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">idx</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">bytes</span> <span class="o">=</span> <span class="nx">bytes</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="nx">idx</span> <span class="o">||</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">signed</span><span class="p">(</span><span class="nx">bytes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span> <span class="o">|</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">16</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">int24_LE</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">idx</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">bytes</span> <span class="o">=</span> <span class="nx">bytes</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="nx">idx</span> <span class="o">||</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">signed</span><span class="p">(</span><span class="nx">bytes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">16</span> <span class="o">|</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span> <span class="o">|</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">24</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">int32_LE</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">idx</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">bytes</span> <span class="o">=</span> <span class="nx">bytes</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="nx">idx</span> <span class="o">||</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">signed</span><span class="p">(</span><span class="nx">bytes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">24</span> <span class="o">|</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">16</span> <span class="o">|</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span> <span class="o">|</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">32</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">int64_LE</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">idx</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">bytes</span> <span class="o">=</span> <span class="nx">bytes</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="nx">idx</span> <span class="o">||</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">signed</span><span class="p">(</span>
+        <span class="nx">bytes</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">56</span> <span class="o">|</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">48</span> <span class="o">|</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">40</span> <span class="o">|</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">32</span> <span class="o">|</span>
+        <span class="nx">bytes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">24</span> <span class="o">|</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">16</span> <span class="o">|</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span> <span class="o">|</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">32</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">toNumber</span><span class="p">(</span><span class="nx">bytes</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">s</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">bytes</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">res</span> <span class="o">|=</span> <span class="nx">bytes</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="nx">s</span><span class="p">;</span>
+        <span class="nx">s</span> <span class="o">+=</span> <span class="mi">8</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">res</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">bit</span><span class="p">(</span><span class="kr">byte</span><span class="p">,</span> <span class="nx">idx</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span><span class="kr">byte</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mh">0x01</span> <span class="o">&lt;&lt;</span> <span class="nx">idx</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">readVersion</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">idx</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">bytes</span> <span class="o">=</span> <span class="nx">bytes</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="nx">idx</span> <span class="o">||</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="k">return</span> <span class="s2">&quot;v&quot;</span> <span class="o">+</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="c1">// EXAMPLE PARSER:</span>
+
+<span class="c1">// 0001000566566D38000000000600E600EA0C02400040E740C7</span>
+<span class="c1">// 00 01 00 05 66 56 6D 38 00 00 00 00 06 00 E6 00 EA 0C 02 400040E740C7</span>
+<span class="cm">/*</span>
+<span class="cm">Alarm</span>
+<span class="cm">----------</span>
+<span class="cm">reason: Button 2 (5)</span>
+<span class="cm">sensorTime: 946689638</span>
+<span class="cm">vBat: 3306</span>
+<span class="cm">temperature: 230</span>
+<span class="cm">mems: &lt;64,-6336,-14528&gt;</span>
+<span class="cm">button1State: 0</span>
+<span class="cm">button2State: 1</span>
+<span class="cm">alarmAgeSec: 6</span>
+<span class="cm"> */</span>
+<span class="kd">function</span> <span class="nx">Decoder</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">port</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Decode an uplink message from a buffer</span>
+    <span class="c1">// (array) of bytes to an object of fields.</span>
+    <span class="kd">var</span> <span class="nx">decoded</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;version&quot;</span><span class="o">:</span> <span class="nx">readVersion</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="s2">&quot;reason&quot;</span><span class="o">:</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+        <span class="s2">&quot;sensorTime&quot;</span><span class="o">:</span> <span class="nx">int64_LE</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+        <span class="s2">&quot;alarmAgeSec&quot;</span><span class="o">:</span> <span class="nx">int16_LE</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span>
+        <span class="s2">&quot;temperature&quot;</span><span class="o">:</span> <span class="nx">int16_LE</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="mi">14</span><span class="p">)</span> <span class="o">/</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="s2">&quot;vBat&quot;</span><span class="o">:</span> <span class="nx">int16_LE</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">,</span>
+        <span class="s2">&quot;button1State&quot;</span><span class="o">:</span> <span class="nx">bit</span><span class="p">(</span><span class="nx">bytes</span><span class="p">[</span><span class="mi">18</span><span class="p">],</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="s2">&quot;button2State&quot;</span><span class="o">:</span> <span class="nx">bit</span><span class="p">(</span><span class="nx">bytes</span><span class="p">[</span><span class="mi">18</span><span class="p">],</span> <span class="mi">1</span><span class="p">),</span>
+        <span class="s2">&quot;memsX&quot;</span><span class="o">:</span> <span class="nx">int16_LE</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="mi">19</span><span class="p">),</span>
+        <span class="s2">&quot;memsY&quot;</span><span class="o">:</span> <span class="nx">int16_LE</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="mi">21</span><span class="p">),</span>
+        <span class="s2">&quot;memsZ&quot;</span><span class="o">:</span> <span class="nx">int16_LE</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="mi">23</span><span class="p">),</span>
+    <span class="p">};</span>
+
+    <span class="c1">// if (port === 1) decoded.led = bytes[0];</span>
+
+    <span class="k">return</span> <span class="nx">decoded</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
                 
                   
                 

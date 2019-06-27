@@ -838,71 +838,71 @@
 <p>This is a decoder written in JavaScript that can be used to parse the device's 
 LoRaWAN messages. It can be used as is in 
 <a href="https://thethingsnetwork.org">The Things Network</a>.</p>
-<div class="highlight"><pre><span></span>function decodeUInt16(byte1, byte2) {
-    var decoded = byte1 | byte2 &lt;&lt; 8;
-    if ((decoded &amp; 1 &lt;&lt; 15) &gt; 0) {  // value is negative (16bit 2&#39;s complement)
-        decoded = ((~decoded) &amp; 0xffff) + 1;  // invert 16bits &amp; add 1 =&gt; now positive value
-        decoded = decoded * -1;
-    }
-    return decoded;
-}
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">decodeUInt16</span><span class="p">(</span><span class="nx">byte1</span><span class="p">,</span> <span class="nx">byte2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">decoded</span> <span class="o">=</span> <span class="nx">byte1</span> <span class="o">|</span> <span class="nx">byte2</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">((</span><span class="nx">decoded</span> <span class="o">&amp;</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">15</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// value is negative (16bit 2&#39;s complement)</span>
+        <span class="nx">decoded</span> <span class="o">=</span> <span class="p">((</span><span class="o">~</span><span class="nx">decoded</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xffff</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>  <span class="c1">// invert 16bits &amp; add 1 =&gt; now positive value</span>
+        <span class="nx">decoded</span> <span class="o">=</span> <span class="nx">decoded</span> <span class="o">*</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">decoded</span><span class="p">;</span>
+<span class="p">}</span>
 
 
-function Decoder(bytes, port) {
-    // Decode an uplink message from a buffer
-    // (array) of bytes to an object of fields.
-    var decoded = {};
+<span class="kd">function</span> <span class="nx">Decoder</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">port</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Decode an uplink message from a buffer</span>
+    <span class="c1">// (array) of bytes to an object of fields.</span>
+    <span class="kd">var</span> <span class="nx">decoded</span> <span class="o">=</span> <span class="p">{};</span>
 
-    if (port === 2) { // Payload
-        decoded.vBat = (bytes[0] | bytes[1] &lt;&lt; 8) / 1000.0;  // byte 6-7 (originally in mV)
+    <span class="k">if</span> <span class="p">(</span><span class="nx">port</span> <span class="o">===</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Payload</span>
+        <span class="nx">decoded</span><span class="p">.</span><span class="nx">vBat</span> <span class="o">=</span> <span class="p">(</span><span class="nx">bytes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">|</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">/</span> <span class="mf">1000.0</span><span class="p">;</span>  <span class="c1">// byte 6-7 (originally in mV)</span>
 
-        decoded.temp = decodeUInt16(bytes[2], bytes[3]) / 10.0;
-        decoded.numResults = bytes[4];
-        var idx = 5;
+        <span class="nx">decoded</span><span class="p">.</span><span class="nx">temp</span> <span class="o">=</span> <span class="nx">decodeUInt16</span><span class="p">(</span><span class="nx">bytes</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">;</span>
+        <span class="nx">decoded</span><span class="p">.</span><span class="nx">numResults</span> <span class="o">=</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+        <span class="kd">var</span> <span class="nx">idx</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
 
-        decoded.results = [];
+        <span class="nx">decoded</span><span class="p">.</span><span class="nx">results</span> <span class="o">=</span> <span class="p">[];</span>
 
 
-        for (var i = 0; i &lt; decoded.numResults; i++) {
-            var result = {};
+        <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">decoded</span><span class="p">.</span><span class="nx">numResults</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">{};</span>
 
-            result.distance_mm = bytes[idx] | bytes[idx + 1] &lt;&lt; 8 | bytes[idx + 2] &lt;&lt; 16 | bytes[idx + 3] &lt;&lt; 24;
-            result.distance_m = result.distance_mm / 1000;
-            result.tof_us = bytes[idx + 4] | bytes[idx + 5] &lt;&lt; 8;
-            result.width = bytes[idx + 6];
-            result.amplitude = bytes[idx + 7];
-            decoded.results[i] = result;
-            idx += 8;
-        }
-    }
+            <span class="nx">result</span><span class="p">.</span><span class="nx">distance_mm</span> <span class="o">=</span> <span class="nx">bytes</span><span class="p">[</span><span class="nx">idx</span><span class="p">]</span> <span class="o">|</span> <span class="nx">bytes</span><span class="p">[</span><span class="nx">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span> <span class="o">|</span> <span class="nx">bytes</span><span class="p">[</span><span class="nx">idx</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">16</span> <span class="o">|</span> <span class="nx">bytes</span><span class="p">[</span><span class="nx">idx</span> <span class="o">+</span> <span class="mi">3</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">24</span><span class="p">;</span>
+            <span class="nx">result</span><span class="p">.</span><span class="nx">distance_m</span> <span class="o">=</span> <span class="nx">result</span><span class="p">.</span><span class="nx">distance_mm</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">;</span>
+            <span class="nx">result</span><span class="p">.</span><span class="nx">tof_us</span> <span class="o">=</span> <span class="nx">bytes</span><span class="p">[</span><span class="nx">idx</span> <span class="o">+</span> <span class="mi">4</span><span class="p">]</span> <span class="o">|</span> <span class="nx">bytes</span><span class="p">[</span><span class="nx">idx</span> <span class="o">+</span> <span class="mi">5</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">;</span>
+            <span class="nx">result</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">bytes</span><span class="p">[</span><span class="nx">idx</span> <span class="o">+</span> <span class="mi">6</span><span class="p">];</span>
+            <span class="nx">result</span><span class="p">.</span><span class="nx">amplitude</span> <span class="o">=</span> <span class="nx">bytes</span><span class="p">[</span><span class="nx">idx</span> <span class="o">+</span> <span class="mi">7</span><span class="p">];</span>
+            <span class="nx">decoded</span><span class="p">.</span><span class="nx">results</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">result</span><span class="p">;</span>
+            <span class="nx">idx</span> <span class="o">+=</span> <span class="mi">8</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
 
-    // example decoder for status packet by lobaro
-    if (port === 1) { // status packet
-        decoded.firmwareVersion = bytes[0] + &quot;.&quot; + bytes[1] + &quot;.&quot; + bytes[2];  // byte 0-3
-        decoded.vBat = (bytes[4] | bytes[5] &lt;&lt; 8) / 1000.0;  // byte 6-7 (originally in mV)
-        decoded.temp = decodeUInt16(bytes[6], bytes[7]) / 10.0;  // byte 8-9 (originally in 10th degree C)
-        decoded.msg = &quot;Firmware Version: v&quot; + decoded.firmwareVersion + &quot; Battery: &quot; + decoded.vBat + &quot;V Temperature: &quot; + decoded.temp + &quot;°C&quot;;
-    }
+    <span class="c1">// example decoder for status packet by lobaro</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">port</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// status packet</span>
+        <span class="nx">decoded</span><span class="p">.</span><span class="nx">firmwareVersion</span> <span class="o">=</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>  <span class="c1">// byte 0-3</span>
+        <span class="nx">decoded</span><span class="p">.</span><span class="nx">vBat</span> <span class="o">=</span> <span class="p">(</span><span class="nx">bytes</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">|</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">/</span> <span class="mf">1000.0</span><span class="p">;</span>  <span class="c1">// byte 6-7 (originally in mV)</span>
+        <span class="nx">decoded</span><span class="p">.</span><span class="nx">temp</span> <span class="o">=</span> <span class="nx">decodeUInt16</span><span class="p">(</span><span class="nx">bytes</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">7</span><span class="p">])</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">;</span>  <span class="c1">// byte 8-9 (originally in 10th degree C)</span>
+        <span class="nx">decoded</span><span class="p">.</span><span class="nx">msg</span> <span class="o">=</span> <span class="s2">&quot;Firmware Version: v&quot;</span> <span class="o">+</span> <span class="nx">decoded</span><span class="p">.</span><span class="nx">firmwareVersion</span> <span class="o">+</span> <span class="s2">&quot; Battery: &quot;</span> <span class="o">+</span> <span class="nx">decoded</span><span class="p">.</span><span class="nx">vBat</span> <span class="o">+</span> <span class="s2">&quot;V Temperature: &quot;</span> <span class="o">+</span> <span class="nx">decoded</span><span class="p">.</span><span class="nx">temp</span> <span class="o">+</span> <span class="s2">&quot;°C&quot;</span><span class="p">;</span>
+    <span class="p">}</span>
 
-    return decoded;
-}
+    <span class="k">return</span> <span class="nx">decoded</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 
 <h4 id="example-parser-result">Example parser result</h4>
-<div class="highlight"><pre><span></span>{
-  &quot;numResults&quot;: 1,
-  &quot;results&quot;: [
-    {
-      &quot;amplitude&quot;: 215,
-      &quot;distance_m&quot;: 0.761,
-      &quot;distance_mm&quot;: 761,
-      &quot;tof_us&quot;: 4539,
-      &quot;width&quot;: 122
-    }
-  ],
-  &quot;temp&quot;: 21.8,
-  &quot;vBat&quot;: 2.779
-}
+<div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;numResults&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="nt">&quot;results&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;amplitude&quot;</span><span class="p">:</span> <span class="mi">215</span><span class="p">,</span>
+      <span class="nt">&quot;distance_m&quot;</span><span class="p">:</span> <span class="mf">0.761</span><span class="p">,</span>
+      <span class="nt">&quot;distance_mm&quot;</span><span class="p">:</span> <span class="mi">761</span><span class="p">,</span>
+      <span class="nt">&quot;tof_us&quot;</span><span class="p">:</span> <span class="mi">4539</span><span class="p">,</span>
+      <span class="nt">&quot;width&quot;</span><span class="p">:</span> <span class="mi">122</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="nt">&quot;temp&quot;</span><span class="p">:</span> <span class="mf">21.8</span><span class="p">,</span>
+  <span class="nt">&quot;vBat&quot;</span><span class="p">:</span> <span class="mf">2.779</span>
+<span class="p">}</span>
 </pre></div>
 
 <p>You can think of the usonic signal as a <em>strength of signal</em> or <em>volume</em> over time</p>

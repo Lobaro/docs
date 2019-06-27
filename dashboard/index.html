@@ -791,24 +791,24 @@ In addition the parser can access an API to set device level properties and addi
 <p>When no parser on device level is defined, the parser for the device type will be executed. When no parser for the device type is defined, a hardcoded default parser will be executed.</p>
 <p>Parsers are written in JavaScript.</p>
 <p><strong>Example</strong></p>
-<div class="highlight"><pre><span></span>function Parse(input) {
-  // Decode an incoming message to an object of fields.
-  var decoded = {input: input};
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">Parse</span><span class="p">(</span><span class="nx">input</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Decode an incoming message to an object of fields.</span>
+  <span class="kd">var</span> <span class="nx">decoded</span> <span class="o">=</span> <span class="p">{</span><span class="nx">input</span><span class="o">:</span> <span class="nx">input</span><span class="p">};</span>
 
-  return decoded;
-}
+  <span class="k">return</span> <span class="nx">decoded</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 
 <h3 id="js-parser-api">JS Parser API</h3>
 <p>All functions are optional. Not calling them will not change any data.</p>
 <p>Update the physical location of the sensor
-<div class="highlight"><pre><span></span>Device.setLocation(lon, lat)
+<div class="highlight"><pre><span></span><span class="nx">Device</span><span class="p">.</span><span class="nx">setLocation</span><span class="p">(</span><span class="nx">lon</span><span class="p">,</span> <span class="nx">lat</span><span class="p">)</span>
 </pre></div></p>
 <p>Set an arbitary device property, displayed on the "Overview" tab of the device
-<div class="highlight"><pre><span></span>Device.setProperty(&quot;key&quot;, &quot;value);
+<div class="highlight"><pre><span></span><span class="nx">Device</span><span class="p">.</span><span class="nx">setProperty</span><span class="p">(</span><span class="s2">&quot;key&quot;</span><span class="p">,</span> <span class="err">&quot;</span><span class="nx">value</span><span class="p">);</span>
 </pre></div></p>
 <p>Set the Sensor time of the current data record. Used for display, filter, sorting
-<div class="highlight"><pre><span></span>Record.setTime(new Date());
+<div class="highlight"><pre><span></span><span class="nx">Record</span><span class="p">.</span><span class="nx">setTime</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">());</span>
 </pre></div></p>
                 
                   

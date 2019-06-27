@@ -1558,84 +1558,84 @@ example NarrowBand-IoT.</p>
 <p>This is a decoder written in JavaScript that can be used to parse the device's 
 LoRaWAN messages. It can be used as is in 
 <a href="https://thethingsnetwork.org">The Things Network</a>.</p>
-<div class="highlight"><pre><span></span>function readVersion(bytes) {
-    if (bytes.length&lt;3) {
-        return null;
-    }
-    return &quot;v&quot; + bytes[0] + &quot;.&quot; + bytes[1] + &quot;.&quot; + bytes[2];
-}
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">readVersion</span><span class="p">(</span><span class="nx">bytes</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">bytes</span><span class="p">.</span><span class="nx">length</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="s2">&quot;v&quot;</span> <span class="o">+</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+<span class="p">}</span>
 
-function int40_BE(bytes, idx) {
-    bytes = bytes.slice(idx || 0);
-    return bytes[0] &lt;&lt; 32 |
-        bytes[1] &lt;&lt; 24 | bytes[2] &lt;&lt; 16 | bytes[3] &lt;&lt; 8 | bytes[4] &lt;&lt; 0;
-}
+<span class="kd">function</span> <span class="nx">int40_BE</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">idx</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">bytes</span> <span class="o">=</span> <span class="nx">bytes</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="nx">idx</span> <span class="o">||</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">32</span> <span class="o">|</span>
+        <span class="nx">bytes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">24</span> <span class="o">|</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">16</span> <span class="o">|</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span> <span class="o">|</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
 
-function int16_BE(bytes, idx) {
-    bytes = bytes.slice(idx || 0);
-    return bytes[0] &lt;&lt; 8 | bytes[1] &lt;&lt; 0;
-}
+<span class="kd">function</span> <span class="nx">int16_BE</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">idx</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">bytes</span> <span class="o">=</span> <span class="nx">bytes</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="nx">idx</span> <span class="o">||</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span> <span class="o">|</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
 
-function decode_status(bytes) {
-    return {
-        &quot;port&quot;:1,
-        &quot;version&quot;:readVersion(bytes),
-        &quot;flags&quot;:bytes[3],
-        &quot;temp&quot;: int16_BE(bytes, 4) / 10,
-        &quot;vBat&quot;: int16_BE(bytes, 6) / 1000,
-        &quot;timestamp&quot;: int40_BE(bytes, 8),
-        &quot;operationMode&quot;: bytes[13]
-    };
-}
+<span class="kd">function</span> <span class="nx">decode_status</span><span class="p">(</span><span class="nx">bytes</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;port&quot;</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;version&quot;</span><span class="o">:</span><span class="nx">readVersion</span><span class="p">(</span><span class="nx">bytes</span><span class="p">),</span>
+        <span class="s2">&quot;flags&quot;</span><span class="o">:</span><span class="nx">bytes</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+        <span class="s2">&quot;temp&quot;</span><span class="o">:</span> <span class="nx">int16_BE</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="o">/</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="s2">&quot;vBat&quot;</span><span class="o">:</span> <span class="nx">int16_BE</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">,</span>
+        <span class="s2">&quot;timestamp&quot;</span><span class="o">:</span> <span class="nx">int40_BE</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>
+        <span class="s2">&quot;operationMode&quot;</span><span class="o">:</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">13</span><span class="p">]</span>
+    <span class="p">};</span>
+<span class="p">}</span>
 
-function decode_data(bytes, port) {
-    var fun = port - 10;
-    var regs = [];
-    if (bytes.length &gt; 5) {
-        var b = bytes.slice(5);
-        while (b.length&gt;=4) {
-            var r = {
-                &quot;device&quot;:b[0],
-                &quot;start&quot;:int16_BE(b, 1),
-                &quot;count&quot;:b[3] &amp; 0x7f,
-                &quot;error&quot;:!!(b[3]&gt;&gt;7),
-                &quot;data&quot;:null
-            };
-            var dataLen = 0;
-            if (fun&lt;=2) {
-                // coils, one bit per address
-                dataLen = Math.ceil(r.count/8.0);
-            } else {
-                // registers, 16 bits per address
-                dataLen = r.count*2;
-            }
-            if (b.length &gt;= dataLen+4) {
-                r.data = b.slice(4, 4 + dataLen);
-            }
-            regs.push(r);
-            b = b.slice(4+dataLen);
-        }
-    }
-    return decoded = {
-        &quot;port&quot;: port,
-        &quot;function&quot;: fun,
-        &quot;timestamp&quot;: int40_BE(bytes, 0),
-        &quot;values&quot;: regs
-    };
-}
+<span class="kd">function</span> <span class="nx">decode_data</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">port</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">fun</span> <span class="o">=</span> <span class="nx">port</span> <span class="o">-</span> <span class="mi">10</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">regs</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">bytes</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">bytes</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+        <span class="k">while</span> <span class="p">(</span><span class="nx">b</span><span class="p">.</span><span class="nx">length</span><span class="o">&gt;=</span><span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;device&quot;</span><span class="o">:</span><span class="nx">b</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                <span class="s2">&quot;start&quot;</span><span class="o">:</span><span class="nx">int16_BE</span><span class="p">(</span><span class="nx">b</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+                <span class="s2">&quot;count&quot;</span><span class="o">:</span><span class="nx">b</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">&amp;</span> <span class="mh">0x7f</span><span class="p">,</span>
+                <span class="s2">&quot;error&quot;</span><span class="o">:!!</span><span class="p">(</span><span class="nx">b</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">&gt;&gt;</span><span class="mi">7</span><span class="p">),</span>
+                <span class="s2">&quot;data&quot;</span><span class="o">:</span><span class="kc">null</span>
+            <span class="p">};</span>
+            <span class="kd">var</span> <span class="nx">dataLen</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">fun</span><span class="o">&lt;=</span><span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+                <span class="c1">// coils, one bit per address</span>
+                <span class="nx">dataLen</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">ceil</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">count</span><span class="o">/</span><span class="mf">8.0</span><span class="p">);</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="c1">// registers, 16 bits per address</span>
+                <span class="nx">dataLen</span> <span class="o">=</span> <span class="nx">r</span><span class="p">.</span><span class="nx">count</span><span class="o">*</span><span class="mi">2</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">b</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;=</span> <span class="nx">dataLen</span><span class="o">+</span><span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">r</span><span class="p">.</span><span class="nx">data</span> <span class="o">=</span> <span class="nx">b</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span> <span class="o">+</span> <span class="nx">dataLen</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="nx">regs</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">r</span><span class="p">);</span>
+            <span class="nx">b</span> <span class="o">=</span> <span class="nx">b</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">4</span><span class="o">+</span><span class="nx">dataLen</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">decoded</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;port&quot;</span><span class="o">:</span> <span class="nx">port</span><span class="p">,</span>
+        <span class="s2">&quot;function&quot;</span><span class="o">:</span> <span class="nx">fun</span><span class="p">,</span>
+        <span class="s2">&quot;timestamp&quot;</span><span class="o">:</span> <span class="nx">int40_BE</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="s2">&quot;values&quot;</span><span class="o">:</span> <span class="nx">regs</span>
+    <span class="p">};</span>
+<span class="p">}</span>
 
-function Decoder(bytes, port) {
-    switch (port) {
-        case 1:
-            return decode_status(bytes);
-        case 11:
-        case 12:
-        case 13:
-        case 14:
-            return decode_data(bytes, port);
-    }
-    return {&quot;error&quot;:&quot;invalid port&quot;, &quot;port&quot;:port};
-}
+<span class="kd">function</span> <span class="nx">Decoder</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">port</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">switch</span> <span class="p">(</span><span class="nx">port</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="mi">1</span><span class="o">:</span>
+            <span class="k">return</span> <span class="nx">decode_status</span><span class="p">(</span><span class="nx">bytes</span><span class="p">);</span>
+        <span class="k">case</span> <span class="mi">11</span><span class="o">:</span>
+        <span class="k">case</span> <span class="mi">12</span><span class="o">:</span>
+        <span class="k">case</span> <span class="mi">13</span><span class="o">:</span>
+        <span class="k">case</span> <span class="mi">14</span><span class="o">:</span>
+            <span class="k">return</span> <span class="nx">decode_data</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">port</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;error&quot;</span><span class="o">:</span><span class="s2">&quot;invalid port&quot;</span><span class="p">,</span> <span class="s2">&quot;port&quot;</span><span class="o">:</span><span class="nx">port</span><span class="p">};</span>
+<span class="p">}</span>
 </pre></div>
                 
                   
