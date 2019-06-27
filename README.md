@@ -19,12 +19,14 @@ Run mkDocs
 ### Features
 For a feature description and general markdown information consult:
 
-- [Material theme features](https://squidfunk.github.io/mkdocs-material/) 
+- [Material theme features](https://squidfunk.github.io/mkdocs-material/)
+- [pymdown addons](https://squidfunk.github.io/mkdocs-material/extensions/pymdown/) 
 - [(old) Cinder theme features](https://sourcefoundry.org/cinder/specimen/) 
 - [mkdocs writing your docs](https://www.mkdocs.org/user-guide/writing-your-docs/) 
 - [Markdown cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet)
 - [code display programming languages overview](https://highlightjs.org/static/demo/)
 - [Diagrams syntax](https://mermaidjs.github.io/sequenceDiagram.html)
+
 
 **Extentions**
 [attr_list](https://python-markdown.github.io/extensions/attr_list/) 
@@ -36,6 +38,8 @@ Scaled images
 URL open in new window
 
     [URL Text](http://url.example/index.html){: target="_blank"}
+    
+For e.g. copyright information use: [Footnotes](https://squidfunk.github.io/mkdocs-material/extensions/footnotes/)
 
 ### Legacy
 For legacy online documentation see [repo wiki](https://github.com/Lobaro/docs/wiki).

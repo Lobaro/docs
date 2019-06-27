@@ -1,5 +1,8 @@
 # Wireless mBUS over LoRaWAN Bridge
 
+![Lobaro wmbus LoRaWAN Bridge](files/Übersicht-wmbus-lora.jpg){: style="width:100%"}
+
+
 ## Target Measurement / Purpose
 Forwarding of wireless M-BUS messages via LoRaWAN.
 
@@ -60,3 +63,7 @@ function Decoder(bytes, port) {
 
 
 ```
+[^ 1]: Energy Meter, Water Meter and House Icons made by Freepik from www.flaticon.com is licensed by CC 3.0 BY
+Heater Icon made by Nikita Golubev from www.flaticon.com is licensed by CC 3.0 BY
+Map Icon Icons made by Darius Dan from www.flaticon.com is licensed by CC 3.0 BY
+LoRaWAN Logo © LoRa Alliance, NB-IoT Logo © GSM Association, wM-Bus Logo © www.m-bus.com
