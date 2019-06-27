@@ -8,8 +8,8 @@ theme:
   #    name: readthedocs
   highlightjs: true
   palette:
-    primary: 'blue'
-    accent: 'blue'
+    primary: 'white'
+    accent: 'indigo'
 repo_url: "https://github.com/lobaro/docs"
 copyright: 'Lobaro GmbH'
 use_directory_urls: false

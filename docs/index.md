@@ -12,10 +12,13 @@ of [Lobaro GmbH](https://www.lobaro.de){: target="_blank"}.
 | Sensor Name         | RF-Technology     | Target Measurement / Purpose |
 | :-------------  |:----------------|:----------------|
 | [Modbus LoRaWAN Bridge](iot-devices/modbus-lorawan)       | LoRaWAN | RS485 ModBus readout |
-| [Usonic LoRaWAN Sensor](iot-devices/usonic-lorawan)  | LoRaWAN | Ultrasonic level detection |
-| [1-Wire LoRaWAN Bridge](iot-devices/1-wire-lorawan)       | LoRaWAN | Multiple temperature measurements |
-| [EDL21 Electricity meter LoRaWAN Bridge](iot-devices/edl21-opto-lorawan) | LoRaWAN | Electricity meter consumption |
+| [Usonic LoRaWAN Sensor](iot-devices/usonic-lorawan)  | LoRaWAN | Ultrasonic object / distance detection |
+| [1-Wire LoRaWAN Bridge](iot-devices/1-wire-lorawan)       | LoRaWAN | Read multiple temperature sensors |
+| [EDL21 Electricity meter LoRaWAN Bridge](iot-devices/edl21-opto-lorawan) | LoRaWAN | Electricity meter readout |
 | [wMBUS LoRaWAN Bridge](iot-devices/wmbus-lorawan) | LoRaWAN | wMBUS enabled meter reading |
+| [Humidity & Temperature LoRaWAN Sensor](iot-devices/humidity-temp-lorawan) | LoRaWAN | Humidity and Temperature probe |
+| [GPS Tracker LoRaWAN](iot-devices/gps-lorawan) | LoRaWAN | GPS Tracker with motion detection |
+| [Pressure LoRaWAN Sensor](iot-devices/pressure-lorawan) | LoRaWAN | Measurement of liquid / water level |
 
 ## Tools
 
