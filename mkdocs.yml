@@ -12,7 +12,7 @@ theme:
     accent: 'indigo'
   font:
     text: 'Roboto'
-    code: 'Roboto Mono'
+    code: 'Cousine'
 
   feature:
     tabs: false

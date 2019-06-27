@@ -68,12 +68,6 @@ The following pattery are explained in the order in which they appear after init
 | `off` | - | low-power mode until next sendout cycle |
 
 As you can see by this the device will start the LoRaWAN join only after receiving optical data at least once.
-
-## Latest Firmware Download
-
-[Download Firmware](http://files.lobaro.com/index.php/s/gd32WnADQLd7n2s)
-
-
 ## Appendices
 
 ### Technical characteristics
