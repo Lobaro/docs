@@ -1,4 +1,4 @@
-# 1-Wire LoRaWAN Bridge
+# 1-Wire LoRaWAN Bridge (Temperature Sensors)
 
 ![1-wire-lorawan](files/1-wire-lorawan.png){: style="height: 200px"}
 
