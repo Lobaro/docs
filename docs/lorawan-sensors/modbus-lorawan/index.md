@@ -20,7 +20,7 @@ Multiple different slave devices on the Bus can be accessed individually by a si
 Bridge device. Reading intervals and register definitions can be configured very 
 flexibly to suit individual requirements.
 
-** PDF Download:**
+**PDF Download**
 
 * [Data Sheet with dimensions](files/Modbus-LoRaWAN-Specs.pdf)
 
