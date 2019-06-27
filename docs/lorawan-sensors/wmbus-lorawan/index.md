@@ -6,7 +6,7 @@
 ## Target Measurement / Purpose
 Forwarding of wireless M-BUS messages via LoRaWAN.
 
-** Features **
+**Features**
 
 * wMBUS C1/T1 and S1 modes
 * 868 MHz only (433 MHz on request)
