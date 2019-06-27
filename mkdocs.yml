@@ -49,6 +49,9 @@ nav:
       - GPS Tracker LoRaWAN:
           - Manual: iot-devices/gps-lorawan/index.md
           - Firmware & Changelog: iot-devices/gps-lorawan/firmware.md
+      - Pressure LoRaWAN Sensor:
+          - Manual: iot-devices/pressure-lorawan/index.md
+          - Firmware & Changelog: iot-devices/pressure-lorawan/firmware.md
 
   - Dashboard: dashboard/index.md
   - Background:
