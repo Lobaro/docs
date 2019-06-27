@@ -14,7 +14,7 @@ Example payloads for each port:
 Payload: (No Example yet)
 
 Decoded:
-```
+```json
 {
   "temp": 20.4,
   "vBat": 3.0,
@@ -37,7 +37,7 @@ Example Payload:
 `01551e46920d0200da96b446920c0200d7dafc46920d0200d5202e4692050200dc`
 
 Decoded:
-```
+```json
 {
   "sensors": [
     {
@@ -64,7 +64,7 @@ Decoded:
 ## Parser
 
 ### TheThingsNetwork (TTN)
-```
+```javascript
 function readVersion(bytes) {
     if (bytes.length<3) {
         return null;

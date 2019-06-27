@@ -273,7 +273,7 @@ This is a decoder written in JavaScript that can be used to parse the device's
 LoRaWAN messages. It can be used as is in 
 [The Things Network](https://thethingsnetwork.org).
 
-```
+```javascript
 function readVersion(bytes) {
     if (bytes.length<3) {
         return null;

@@ -28,7 +28,7 @@ This is a decoder written in JavaScript that can be used to parse the device's
 LoRaWAN messages. It can be used as is in 
 [The Things Network](https://thethingsnetwork.org).
 
-```
+```javascript
 function decodeUInt16(byte1, byte2) {
     var decoded = byte1 | byte2 << 8;
     if ((decoded & 1 << 15) > 0) {  // value is negative (16bit 2's complement)
@@ -80,7 +80,7 @@ function Decoder(bytes, port) {
 ```
 
 #### Example parser result
-```
+```json
 {
   "numResults": 1,
   "results": [

@@ -106,7 +106,7 @@ This is a decoder written in JavaScript that can be used to parse the device's
 LoRaWAN messages. It can be used as is in 
 [The Things Network](https://thethingsnetwork.org).
 
-```
+```javascript
 function readName(bytes, i) {
     return bytes.slice(i, i + 6);
 }
@@ -273,7 +273,7 @@ function Decoder(bytes, port) {
 ### Example parser result
 Test input: 01 00 01 08 00 FE 08 7B 7D 23 00 00 00 00 00 FF
 
-```
+```json
 {
    "values": [
     {

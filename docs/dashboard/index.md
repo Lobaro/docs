@@ -39,7 +39,7 @@ Parsers are written in JavaScript.
 
 **Example**
 
-```
+```javascript
 function Parse(input) {
   // Decode an incoming message to an object of fields.
   var decoded = {input: input};
@@ -53,17 +53,17 @@ function Parse(input) {
 All functions are optional. Not calling them will not change any data.
 
 Update the physical location of the sensor
-```
+```javascript
 Device.setLocation(lon, lat)
 ```
 
 Set an arbitary device property, displayed on the "Overview" tab of the device
-```
+```javascript
 Device.setProperty("key", "value);
 ```
 
 Set the Sensor time of the current data record. Used for display, filter, sorting
-```
+```javascript
 Record.setTime(new Date());
 ```
 
