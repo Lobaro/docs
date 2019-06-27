@@ -25,13 +25,14 @@ extra_css:
     - "css/lobarodoc.css"
 extra_javascript:
     - "js/mermaid.min.js"
-nav:
+xnav:
     - Documentation Home: index.md
     - IoT Devices:
-        - Modbus LoRaWAN Bridge: iot-devices/modbus-lorawan
-        - Usonic LoRaWAN Sensor: iot-devices/usonic-lorawan
-        - 1-Wire LoRaWAN Bridge: iot-devices/1-wire-lorawan
-        - EDL21 Electricity meter LoRaWAN Bridge: iot-devices/edl21-opto-lorawan
+        - Modbus LoRaWAN Bridge: iot-devices/modbus-lorawan/index.md
+        - Usonic LoRaWAN Sensor: iot-devices/usonic-lorawan/index.md
+        - 1-Wire LoRaWAN Bridge: iot-devices/1-wire-lorawan/index.md
+        - EDL21 Electricity meter LoRaWAN Bridge: iot-devices/edl21-opto-lorawan/index.md
+        - wMBUS LoRaWAN Bridge: iot-devices/wmbus-lorawan/index.md
     - Dashboard: dashboard
 #    - Company Home: https://www.lobaro.com/lobaro-iot-produkte-dienste/
     - Contact / Impressum: https://www.lobaro.com/contact/
