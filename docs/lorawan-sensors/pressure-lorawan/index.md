@@ -5,7 +5,7 @@
 ## Target Measurement / Purpose
 Precise liquid level measurement, e.g. for tanks, via LoRaWAN.
 
-** Features **
+**Features**
 
 * Cable length 1-15m
 * 0..1 Bar (10m water level)

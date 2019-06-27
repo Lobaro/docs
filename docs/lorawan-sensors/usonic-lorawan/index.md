@@ -3,7 +3,7 @@
 ## Target Measurement / Purpose
 Distance measurements via ultrasound.
 
-** Features: **
+**Features**
 
 * 30cm to 3m detection range
 * up to 8 detected objects
