@@ -4,8 +4,8 @@ version: 0.3.0
 # Modbus (ASCII / RTU) over LoRaWAN Bridge
 Version v0.3.0
 
-![Modbus LoRaWAN Bridge on head rail](files/modbus-lorawan.png){: style="width:50%; vertical-align: top; margin-right: 10px"}
-![Modbus LoRaWAN Bridge on head rail](files/modbus-lorawan-hatrail.jpg){: style="height:350px;border:1px black solid;"}
+
+![Modbus LoRaWAN Bridge on head rail](files/modbus-lorawan-hatrail.jpg){: style="width:30%;border:1px black solid;"}
 
 ## Target Measurement / Purpose
 The Lobaro Modbus LoRaWAN Bridge is a low power device that can be used to read values
@@ -13,6 +13,8 @@ out of a variety of other devices via Modbus (ASCII/RTU) over a RS-485 interface
 and forward them over LoRaWAN, so that they can be accessed from an attached system.
 Typical applications include reading out electric and water meters or retrieving
 data from environmental sensors like temperature and humidity.
+
+![Modbus LoRaWAN Bridge](files/modbus-lorawan.png){: style="width:50%; vertical-align: top;"}
 
 The Modbus Bridge supports reading of all four object types that can be provided by 
 Modbus slave devices: Coil, Discrete Input, Input Register, and Holding Register. 
