@@ -21,7 +21,7 @@ flexibly to suit individual requirements.
 
 **Downloads:**
 
-* [Data Sheet](Modbus-LoRaWAN-Specs.pdf)
+* [Data Sheet](files/Modbus-LoRaWAN-Specs.pdf)
 
 ## Work Cycle
 

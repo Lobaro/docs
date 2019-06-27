@@ -62,4 +62,7 @@ nav:
       - OBIS Codes: background/obis-codes.md
       - WEEE Disposal: background/weee-disposal.md
   #    - Company Home: https://www.lobaro.com/lobaro-iot-produkte-dienste/
+  - Tools:
+      - Lobaro Maintenance Tool: tools/lobaro-tool.md
+      - USB Config Adapter: tools/usb-config-adapter.md
   - Contact / Impressum: https://www.lobaro.com/contact/
