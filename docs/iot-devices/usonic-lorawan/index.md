@@ -79,7 +79,7 @@ function Decoder(bytes, port) {
 }
 ```
 
-#### Example parser result
+**Example parser result**
 ```json
 {
   "numResults": 1,
@@ -107,3 +107,23 @@ You can think of the usonic signal as a *strength of signal* or *volume* over ti
   distance to a detected object is calculated.
 * **Width** indicates how "wide" a detected signal is in time. That is the time in µs
   before the amplitude drops back below the threshold.
+
+### Encoder
+
+Used to update configuration on the device.
+
+```javascript
+function Encoder(object, port) {
+    // Encode downlink messages sent as
+    // object to an array or buffer of bytes.
+    var bytes = [];
+
+    string = object["string"] || "";
+
+    for (var i = 0; i < string.length; ++i) {
+        bytes.push(string.charCodeAt(i));
+    }
+
+    return bytes;
+}
+```
