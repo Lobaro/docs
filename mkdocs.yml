@@ -46,6 +46,9 @@ nav:
       - Humidity & Temperature LoRaWAN Sensor:
           - Manual: iot-devices/humidity-temp-lorawan/index.md
           - Firmware & Changelog: iot-devices/humidity-temp-lorawan/firmware.md
+      - GPS Tracker LoRaWAN:
+          - Manual: iot-devices/gps-lorawan/index.md
+          - Firmware & Changelog: iot-devices/gps-lorawan/firmware.md
 
   - Dashboard: dashboard/index.md
   - Background:
