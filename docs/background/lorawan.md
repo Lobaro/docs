@@ -9,4 +9,4 @@ frequencies to transmit its data.
 To operate LoRaWAN Sensors you need a **LoRaWAN Network Server**. A free to use, open source network server is The Things Network.
 They provide a very good documentation about the overall architecture and features of LoRaWAN:
 
-[LoRaWAN Documentation (by TTN)](https://www.thethingsnetwork.org/docs/)
+[LoRaWAN Documentation (by TTN)](https://www.thethingsnetwork.org/docs/){: target="_blank"}
