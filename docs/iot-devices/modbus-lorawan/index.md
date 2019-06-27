@@ -1,9 +1,9 @@
 ---
 version: 0.3.0
 ---
-# Manual
+# Modbus (ASCII / RTU) over LoRaWAN Bridge
 
-Modbus LoRaWAN Bridge (v0.3.0)
+Version v0.3.0
 
 ![Modbus LoRaWAN Bridge on head rail](files/modbus-lorawan-hatrail.jpg)
 
