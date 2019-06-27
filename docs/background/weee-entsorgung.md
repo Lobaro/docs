@@ -1,6 +1,6 @@
 # Entsorgung von Geräten von Lobaro
 
-*English version: [Disposal of Lobaro devices](../weee-disposal).*
+*English version: [Disposal of Lobaro devices](weee-disposal.md).*
 
 Diese Seite informiert Sie über das Vorgehen der Lobaro GmbH in Bezug auf die 
 EU Richtlinie 2002/96/EC über Elektro- und Elektronikaltgeräte (engl. WEEE), 

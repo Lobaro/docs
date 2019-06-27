@@ -1,5 +1,7 @@
 # 1-Wire LoRaWAN Bridge
 
+![1-wire-lorawan](files/1-wire-lorawan.png){: style="height: 200px"}
+
 Supports up to 20 DS18x20 1-Wire Temperature Sensors. The temperature form all sensors in read regualarly and send via LoRaWAN uplink.
 When the payload gets too big for a single LoRaWAN message, it is split into multiple uplinks.
 
@@ -8,7 +10,11 @@ When the payload gets too big for a single LoRaWAN message, it is split into mul
 
 ## Firmware
 
-[Download Firmware](http://files.lobaro.com/index.php/s/skqQyHTD3QE2fEN)
+[Changelog](changelog.md)
+
+**Downloads:**
+
+* [app-lorawan-onewire-bridge-0.2.0.hex](firmware/app-lorawan-onewire-bridge-0.2.0.hex)
 
 ## Payload
 
@@ -66,8 +72,9 @@ Decoded:
 }
 ```
 
+## Parser
 
-### Parser: TheThingsNetwork (TTN)
+### TheThingsNetwork (TTN)
 ```
 function readVersion(bytes) {
     if (bytes.length<3) {

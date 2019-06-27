@@ -1,10 +1,21 @@
 # USonic LoRaWAN
 
-Alternatively also named "Oscar Sensor".
+Also named "Oscar Sensor".
+
+## Firmware
+
+[Changelog](changelog.md)
+
+**Downloads:**
+
+* [app-lorawan-usonic-0.1.1.hex](firmware/app-lorawan-usonic-0.1.1.hex)
 
 ## Technical description
 
 The device is based on the PGA460 from Texas Instruments ([http://www.ti.com/product/PGA460](http://www.ti.com/product/PGA460))
+
+* [PGA460 Ultrasonic Module Hardware and Software Optimization](files/app_note.pdf){: target="_blank"}
+* [PGA460 Ultrasonic Signal Processor and Transducer](files/pga460.pdf){: target="_blank"}
 
 The PGA enables tuning of the Ultrasonic Sensor for all kind of environments. The default firmware supports parameters tested in underground waste bins.
 
@@ -17,7 +28,9 @@ As for now the sensor is shipped with an open top membran. This has advantages i
 Closed-Top Sensors (e.g. as used in Automotive) need more energy to send out a clear signal but are resistant against environmental impacts. 
  
 
-## Reference decoder
+## Parser
+
+### The Things Network (TTN)
 
 This is a decoder written in JavaScript that can be used to parse the device's 
 LoRaWAN messages. It can be used as is in 
@@ -74,7 +87,7 @@ function Decoder(bytes, port) {
 }
 ```
 
-### Example parser result
+#### Example parser result
 ```
 {
   "numResults": 1,
@@ -91,8 +104,6 @@ function Decoder(bytes, port) {
   "vBat": 2.779
 }
 ```
-
-### Meaning of Payload parameters
 
 You can think of the usonic signal as a *strength of signal* or *volume* over time
 
