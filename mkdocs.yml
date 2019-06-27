@@ -1,38 +1,46 @@
 site_name: Lobaro Documentation
 site_description: Online documentation of the Lobaro GmbH, Industrial IoT Solutions. Manuals for our IoT Devices.
 theme:
-#    name: cinder
-    name: material
-#    name: readthedocs
-    highlightjs: true
-    palette:
-        primary: 'blue'
-        accent: 'blue'
+  #    name: cinder
+  name: material
+  #    name: readthedocs
+  highlightjs: true
+  palette:
+    primary: 'blue'
+    accent: 'blue'
 repo_url: "https://github.com/lobaro/docs"
 copyright: 'Lobaro GmbH'
 use_directory_urls: false
 markdown_extensions:
-    - attr_list
-    - def_list
-    - toc:
-    - admonition
-    - pymdownx.superfences:
-        custom_fences:
-            - name: mermaid
-              class: mermaid
-              format: !!python/name:pymdownx.superfences.fence_div_format
+  - attr_list
+  - def_list
+  - toc:
+  - admonition
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_div_format
 extra_css:
-    - "css/lobarodoc.css"
+  - "css/lobarodoc.css"
 extra_javascript:
-    - "js/mermaid.min.js"
-xnav:
-    - Documentation Home: index.md
-    - IoT Devices:
-        - Modbus LoRaWAN Bridge: iot-devices/modbus-lorawan/index.md
-        - Usonic LoRaWAN Sensor: iot-devices/usonic-lorawan/index.md
-        - 1-Wire LoRaWAN Bridge: iot-devices/1-wire-lorawan/index.md
-        - EDL21 Electricity meter LoRaWAN Bridge: iot-devices/edl21-opto-lorawan/index.md
-        - wMBUS LoRaWAN Bridge: iot-devices/wmbus-lorawan/index.md
-    - Dashboard: dashboard
-#    - Company Home: https://www.lobaro.com/lobaro-iot-produkte-dienste/
-    - Contact / Impressum: https://www.lobaro.com/contact/
+  - "js/mermaid.min.js"
+nav:
+  - Overview: index.md
+  - IoT Devices:
+      - Modbus LoRaWAN Bridge: iot-devices/modbus-lorawan/index.md
+      - Usonic LoRaWAN Sensor: iot-devices/usonic-lorawan/index.md
+      - 1-Wire LoRaWAN Bridge: iot-devices/1-wire-lorawan/index.md
+      - EDL21 Electricity meter LoRaWAN Bridge: iot-devices/edl21-opto-lorawan/index.md
+      - wMBUS LoRaWAN Bridge:
+          - Manual: iot-devices/wmbus-lorawan/index.md
+          - Firmware: iot-devices/wmbus-lorawan/firmware.md
+          - Changelog: iot-devices/wmbus-lorawan/changelog.md
+  - Dashboard: dashboard/index.md
+  - Background:
+      - CRON Expressions: background/cron-expressions.md
+      - LoRaWAN: background/lorawan.md
+      - OBIS Codes: background/obis-codes.md
+      - WEEE Disposal: background/weee-disposal.md
+  #    - Company Home: https://www.lobaro.com/lobaro-iot-produkte-dienste/
+  - Contact / Impressum: https://www.lobaro.com/contact/

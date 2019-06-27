@@ -1,4 +1,4 @@
-# Lobaro Documentation
+# Overview
 
 This site is the new upcoming central documentation for IoT products 
 of [Lobaro GmbH](https://www.lobaro.de){: target="_blank"}.
@@ -9,12 +9,13 @@ of [Lobaro GmbH](https://www.lobaro.de){: target="_blank"}.
 
 ### Lobaro IoT Sensoren
 
-| Sensor Name         | RF-Technology     | Target Measurement / Purpose   | Latest Firmware   | 
-| :-------------  |:----------------|:----------------|:----------------:|
-| [Modbus LoRaWAN Bridge](iot-devices/modbus-lorawan/0.3.0/)       | LoRaWAN | RS485 ModBus readout | [Download](http://files.lobaro.com/index.php/s/nGepkXTjLoNMrnr)
-| [Usonic LoRaWAN Sensor](iot-devices/usonic-lorawan)  | LoRaWAN | Ultrasonic level detection | [Download](http://files.lobaro.com/index.php/s/9oRCgmKwTnYeFs4)
-| [1-Wire LoRaWAN Bridge](iot-devices/1-wire-lorawan)       | LoRaWAN | Multiple temperature measurements | [Download](http://files.lobaro.com/index.php/s/8JeG6Xa4FsnXbY6)
-| [EDL21 Electricity meter LoRaWAN Bridge](iot-devices/edl21-opto-lorawan) | LoRaWAN | Electricity meter consumption | [Download](http://files.lobaro.com/index.php/s/JdoTHFc6qrNHQkJ)
+| Sensor Name         | RF-Technology     | Target Measurement / Purpose |
+| :-------------  |:----------------|:----------------|
+| [Modbus LoRaWAN Bridge](iot-devices/modbus-lorawan/0.3.0/)       | LoRaWAN | RS485 ModBus readout |
+| [Usonic LoRaWAN Sensor](iot-devices/usonic-lorawan)  | LoRaWAN | Ultrasonic level detection |
+| [1-Wire LoRaWAN Bridge](iot-devices/1-wire-lorawan)       | LoRaWAN | Multiple temperature measurements |
+| [EDL21 Electricity meter LoRaWAN Bridge](iot-devices/edl21-opto-lorawan) | LoRaWAN | Electricity meter consumption |
+| [wMBUS LoRaWAN Bridge](iot-devices/wmbus-lorawan) | LoRaWAN | wMBUS enabled meter reading |
 
 ## Tools
 

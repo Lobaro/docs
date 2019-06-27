@@ -1,6 +1,6 @@
 # Disposal of Lobaro Devices
 
-*Deutsche Version: [Entsorgung von Geräten von Lobaro](../weee-entsorgung).*
+*Deutsche Version: [Entsorgung von Geräten von Lobaro](weee-entsorgung.md).*
 
 This page informs you on our policy in respect to EU 
 "Waste electrical and electronic equipment Directive" 2002/96/EC, 

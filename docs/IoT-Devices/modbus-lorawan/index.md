@@ -1,9 +1,11 @@
 ---
 version: 0.3.0
 ---
-# Modbus LoRaWAN Bridge
+# Manual
 
-![Modbus LoRaWAN Bridge on head rail](modbus-lorawan-hatrail.jpg)
+Modbus LoRaWAN Bridge (v0.3.0)
+
+![Modbus LoRaWAN Bridge on head rail](files/modbus-lorawan-hatrail.jpg)
 
 The Lobaro Modbus LoRaWAN Bridge is a low power device that can be used to read values
 out of a variety of other devices via Modbus (ASCII/RTU) over a RS-485 interface
@@ -17,15 +19,17 @@ Multiple different slave devices on the Bus can be accessed individually by a si
 Bridge device. Reading intervals and register definitions can be configured very 
 flexibly to suit individual requirements.
 
+**Downloads:**
+
+* [Data Sheet](Modbus-LoRaWAN-Specs.pdf)
+
 ## Firmware
 
-[Download latest firmware v0.3.1](https://files.lobaro.com/index.php/s/FQgieASs9o7y5HP/download).
+[Changelog](changelog.md)
 
-### Changelog
+**Downloads:**
 
-#### v0.3.0
-* Update Modbus to support all 4 types of registers.
-* Parity bit must not be substracted from Data bits anymore. `8E1` can now be confiured with `8 Data bits, EVEN parity, 1 Stop bit`.
+* [app-modbus-lora-bridge-0.3.1.hex](firmware/app-modbus-lora-bridge-0.3.1.hex).
 
 
 ## Work Cycle
@@ -266,7 +270,7 @@ example NarrowBand-IoT.
 
 ### CE Declaration of Conformity
 
-[CE Declaration of Conformity](modbus-lorawan-ce-conformity.pdf) (pdf).
+[CE Declaration of Conformity](files/modbus-lorawan-ce-conformity.pdf) (pdf).
 
 ### Disposal / WEEE / Entsorgung
 
