@@ -6,4 +6,7 @@ is openly specified by the [LoRa Alliance](https://lora-alliance.org/) and can
 be used freely if you have the necessary hardware. It is using publicly available 
 frequencies to transmit its data.
 
-TODO: basics OTAA, ABP, SF, ADR, ... 
+To operate LoRaWAN Sensors you need a **LoRaWAN Network Server**. A free to use, open source network server is The Things Network.
+They provide a very good documentation about the overall architecture and features of LoRaWAN:
+
+[LoRaWAN Documentation (by TTN)](https://www.thethingsnetwork.org/docs/)
