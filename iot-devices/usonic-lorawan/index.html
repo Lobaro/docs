@@ -387,18 +387,12 @@
     The Things Network (TTN)
   </a>
   
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#example-parser-result" title="Example parser result" class="md-nav__link">
-    Example parser result
-  </a>
-  
 </li>
         
-      </ul>
-    </nav>
+          <li class="md-nav__item">
+  <a href="#encoder" title="Encoder" class="md-nav__link">
+    Encoder
+  </a>
   
 </li>
         
@@ -627,6 +621,54 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-7" type="checkbox" id="nav-2-7">
+    
+    <label class="md-nav__link" for="nav-2-7">
+      GPS Tracker LoRaWAN
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-7">
+        GPS Tracker LoRaWAN
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../gps-lorawan/index.html" title="Manual" class="md-nav__link">
+      Manual
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../gps-lorawan/firmware.html" title="Firmware & Changelog" class="md-nav__link">
+      Firmware & Changelog
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -781,18 +823,12 @@
     The Things Network (TTN)
   </a>
   
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#example-parser-result" title="Example parser result" class="md-nav__link">
-    Example parser result
-  </a>
-  
 </li>
         
-      </ul>
-    </nav>
+          <li class="md-nav__item">
+  <a href="#encoder" title="Encoder" class="md-nav__link">
+    Encoder
+  </a>
   
 </li>
         
@@ -888,7 +924,7 @@ LoRaWAN messages. It can be used as is in
 <span class="p">}</span>
 </pre></div>
 
-<h4 id="example-parser-result">Example parser result</h4>
+<p><strong>Example parser result</strong>
 <div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;numResults&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
   <span class="nt">&quot;results&quot;</span><span class="p">:</span> <span class="p">[</span>
@@ -903,8 +939,7 @@ LoRaWAN messages. It can be used as is in
   <span class="nt">&quot;temp&quot;</span><span class="p">:</span> <span class="mf">21.8</span><span class="p">,</span>
   <span class="nt">&quot;vBat&quot;</span><span class="p">:</span> <span class="mf">2.779</span>
 <span class="p">}</span>
-</pre></div>
-
+</pre></div></p>
 <p>You can think of the usonic signal as a <em>strength of signal</em> or <em>volume</em> over time</p>
 <ul>
 <li><strong>Amplitude</strong> ranges from 0&ndash;255 and has no unit. It is highly influenced by 
@@ -916,6 +951,22 @@ LoRaWAN messages. It can be used as is in
 <li><strong>Width</strong> indicates how "wide" a detected signal is in time. That is the time in µs
   before the amplitude drops back below the threshold.</li>
 </ul>
+<h3 id="encoder">Encoder</h3>
+<p>Used to update configuration on the device.</p>
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">Encoder</span><span class="p">(</span><span class="nx">object</span><span class="p">,</span> <span class="nx">port</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Encode downlink messages sent as</span>
+    <span class="c1">// object to an array or buffer of bytes.</span>
+    <span class="kd">var</span> <span class="nx">bytes</span> <span class="o">=</span> <span class="p">[];</span>
+
+    <span class="nx">string</span> <span class="o">=</span> <span class="nx">object</span><span class="p">[</span><span class="s2">&quot;string&quot;</span><span class="p">]</span> <span class="o">||</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">string</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">bytes</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">string</span><span class="p">.</span><span class="nx">charCodeAt</span><span class="p">(</span><span class="nx">i</span><span class="p">));</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="nx">bytes</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
                 
                   
                 
