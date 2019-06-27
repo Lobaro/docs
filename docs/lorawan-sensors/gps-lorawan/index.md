@@ -1,8 +1,11 @@
-# GPS Tracker LoRaWAN 
+# GPS LoRaWAN Tracker
 
-![Product Image](files/GPS_LoRaWAN_Tracker_Opencase_frei.jpg){: style="height: 300px"}
+![Product Image](files/GPS_LoRaWAN_Tracker_Opencase_frei.jpg){: style="height:350px;border:1px black solid;"}
 
-## Documentation
+## Target Measurement / Purpose
+GPS position tracking via LoRaWAN.
+
+## PDF Documentation
 
 * [User Manual (en)](files/lorawan-gps-tracker_en.pdf)
 * [CE Conformity](files/scan-ce-conformity-gps-lorawan.pdf)

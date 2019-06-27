@@ -1,8 +1,11 @@
-# Pressure Sensor LoRaWAN (Water level detection)
+# Pressure Sensor LoRaWAN
 
-![Product Image](files/Lobaro-Pegelsonde-LoRaWAN.jpg){: style="height: 300px"}
+![LoRaWAN Pressure Sensor](files/Lobaro-Pegelsonde-LoRaWAN.jpg){: style="height:350px;border:1px black solid;"}
 
-## Features
+## Target Measurement / Purpose
+Precise liquid level measurement, e.g. for tanks, via LoRaWAN.
+
+** Features **
 
 * Cable length 1-15m
 * 0..1 Bar (10m water level)

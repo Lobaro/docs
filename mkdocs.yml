@@ -10,6 +10,13 @@ theme:
   palette:
     primary: 'white'
     accent: 'indigo'
+  font:
+    text: 'Roboto'
+    code: 'Roboto Mono'
+
+  feature:
+    tabs: false
+
 repo_url: "https://github.com/lobaro/docs"
 copyright: 'Lobaro GmbH'
 use_directory_urls: false
@@ -28,41 +35,41 @@ extra_css:
 extra_javascript:
   - "js/mermaid.min.js"
 nav:
-  - Overview: index.md
-  - IoT Devices:
-      - Modbus LoRaWAN Bridge:
-          - Manual: iot-devices/modbus-lorawan/index.md
-          - Firmware & Changelog: iot-devices/modbus-lorawan/firmware.md
-      - Usonic LoRaWAN Sensor:
-          - Manual: iot-devices/usonic-lorawan/index.md
-          - Firmware & Changelog: iot-devices/usonic-lorawan/firmware.md
-      - 1-Wire LoRaWAN Bridge:
-          - Manual: iot-devices/1-wire-lorawan/index.md
-          - Firmware & Changelog: iot-devices/1-wire-lorawan/firmware.md
-      - EDL21 LoRaWAN Bridge:
-          - Manual: iot-devices/edl21-opto-lorawan/index.md
-          - Firmware & Changelog: iot-devices/edl21-opto-lorawan/firmware.md
-      - wMBUS LoRaWAN Bridge:
-          - Manual: iot-devices/wmbus-lorawan/index.md
-          - Firmware & Changelog: iot-devices/wmbus-lorawan/firmware.md
-      - Humidity & Temperature LoRaWAN Sensor:
-          - Manual: iot-devices/humidity-temp-lorawan/index.md
-          - Firmware & Changelog: iot-devices/humidity-temp-lorawan/firmware.md
-      - GPS Tracker LoRaWAN:
-          - Manual: iot-devices/gps-lorawan/index.md
-          - Firmware & Changelog: iot-devices/gps-lorawan/firmware.md
-      - Pressure LoRaWAN Sensor:
-          - Manual: iot-devices/pressure-lorawan/index.md
-          - Firmware & Changelog: iot-devices/pressure-lorawan/firmware.md
-
-  - Dashboard: dashboard/index.md
-  - Background:
+  - Home: index.md
+  - LoRaWAN Sensors:
+      - wMBUS Bridge:
+          - Manual: lorawan-sensors/wmbus-lorawan/index.md
+          - Firmware & Changelog: lorawan-sensors/wmbus-lorawan/firmware.md
+      - Modbus Bridge:
+          - Manual: lorawan-sensors/modbus-lorawan/index.md
+          - Firmware & Changelog: lorawan-sensors/modbus-lorawan/firmware.md
+      - EDL21 Bridge:
+          - Manual: lorawan-sensors/edl21-opto-lorawan/index.md
+          - Firmware & Changelog: lorawan-sensors/edl21-opto-lorawan/firmware.md
+      - 1-Wire Bridge:
+          - Manual: lorawan-sensors/1-wire-lorawan/index.md
+          - Firmware & Changelog: lorawan-sensors/1-wire-lorawan/firmware.md
+      - GPS Tracker:
+          - Manual: lorawan-sensors/gps-lorawan/index.md
+          - Firmware & Changelog: lorawan-sensors/gps-lorawan/firmware.md
+      - Usonic Distance Sensor:
+          - Manual: lorawan-sensors/usonic-lorawan/index.md
+          - Firmware & Changelog: lorawan-sensors/usonic-lorawan/firmware.md
+      - Temp. + rH. Sensor:
+          - Manual: lorawan-sensors/humidity-temp-lorawan/index.md
+          - Firmware & Changelog: lorawan-sensors/humidity-temp-lorawan/firmware.md
+      - Liquid Level Sensor:
+          - Manual: lorawan-sensors/pressure-lorawan/index.md
+          - Firmware & Changelog: lorawan-sensors/pressure-lorawan/firmware.md
+  - Lobaro Dashboard: dashboard/index.md
+  - Lobaro Tools:
+      - Lobaro Maintenance Tool: tools/lobaro-tool.md
+      - USB Config Adapter: tools/usb-config-adapter.md
+  - Knowledge base:
       - CRON Expressions: background/cron-expressions.md
       - LoRaWAN: background/lorawan.md
       - OBIS Codes: background/obis-codes.md
       - WEEE Disposal: background/weee-disposal.md
   #    - Company Home: https://www.lobaro.com/lobaro-iot-produkte-dienste/
-  - Tools:
-      - Lobaro Maintenance Tool: tools/lobaro-tool.md
-      - USB Config Adapter: tools/usb-config-adapter.md
+
   - Contact / Impressum: https://www.lobaro.com/contact/

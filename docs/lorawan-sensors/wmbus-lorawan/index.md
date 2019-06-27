@@ -1,6 +1,15 @@
 # Wireless mBUS over LoRaWAN Bridge
 
-## Downloads
+## Target Measurement / Purpose
+Forwarding of wireless M-BUS messages via LoRaWAN.
+
+** Features **
+
+* wMBUS C1/T1 and S1 modes
+* 868 MHz only (433 MHz on request)
+
+
+## PDF Documentation
 
 * [PDF Manual (en) for firmware V1.5.1](files/lorawan-wmbus-bridge_en.pdf){: target="_blank"}
 * [Product Flyer](files/W-MBus Lora Bridge Flyer.pdf){: target="_blank"}

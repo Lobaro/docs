@@ -1,6 +1,12 @@
-# USonic LoRaWAN
+# Ultrasonic LoRaWAN Sensor (a.k.a. "Oscar")
 
-Also named "Oscar Sensor".
+## Target Measurement / Purpose
+Distance measurements via ultrasound.
+
+** Features: **
+
+* 30cm to 3m detection range
+* up to 8 detected objects
 
 ## Technical description
 

@@ -1,8 +1,10 @@
-# 1-Wire LoRaWAN Bridge (Temperature Sensors)
+# 1-Wire LoRaWAN Bridge
 
-![1-wire-lorawan](files/1-wire-lorawan.png){: style="height: 300px"}
+![1-wire-lorawan](files/1-wire-lorawan.png){: style="height:350px;border:1px black solid;"}
 
-Supports up to 20 DS18x20 1-Wire Temperature Sensors. The temperature form all sensors in read regualarly and send via LoRaWAN uplink.
+## Target Measurement / Purpose
+
+Supports up to 20 [DS18x20 1-Wire](https://www.maximintegrated.com/en/products/sensors/DS18B20.html){: target="_blank"} temperature sensors. The temperature form all sensors in read regualarly and send via LoRaWAN uplink.
 When the payload gets too big for a single LoRaWAN message, it is split into multiple uplinks.
 
 ## Payload

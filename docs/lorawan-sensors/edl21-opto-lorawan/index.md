@@ -1,6 +1,9 @@
 # EDL21 Electricity meter LoRaWAN Bridge
 
-![Lobaro EDL21 LoRaWAN Bridge](files/edl21_small.jpg)
+![Lobaro EDL21 LoRaWAN Bridge](files/edl21_small.jpg){: style="height:350px;border:1px black solid;"}
+
+## Target Measurement / Purpose
+Readout of EDL21 electricity meter with optical infrared "INFO" interface.
 
 ## Quickstart 
 1. Connect to the device with the [Lobaro Tool](https://www.lobaro.com/lobaro-maintenance-tool/) using the [Lobaro Config Adapter](https://www.lobaro-shop.com/product_info.php?info=p7_lobaro-usb-konfigurations-adapter.html) 
