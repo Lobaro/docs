@@ -1,5 +1,4 @@
-# Manual 
-**wMBUS over LoRaWAN Bridge**
+# Wireless M-Bus über LoRaWAN Bridge
 
 ## Downloads
 
