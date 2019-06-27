@@ -37,12 +37,16 @@ nav:
       - 1-Wire LoRaWAN Bridge:
           - Manual: iot-devices/1-wire-lorawan/index.md
           - Firmware & Changelog: iot-devices/1-wire-lorawan/firmware.md
-      - EDL21 Electricity meter LoRaWAN Bridge:
+      - EDL21 LoRaWAN Bridge:
           - Manual: iot-devices/edl21-opto-lorawan/index.md
           - Firmware & Changelog: iot-devices/edl21-opto-lorawan/firmware.md
       - wMBUS LoRaWAN Bridge:
           - Manual: iot-devices/wmbus-lorawan/index.md
           - Firmware & Changelog: iot-devices/wmbus-lorawan/firmware.md
+      - Humidity & Temperature LoRaWAN Sensor:
+          - Manual: iot-devices/humidity-temp-lorawan/index.md
+          - Firmware & Changelog: iot-devices/humidity-temp-lorawan/firmware.md
+
   - Dashboard: dashboard/index.md
   - Background:
       - CRON Expressions: background/cron-expressions.md
