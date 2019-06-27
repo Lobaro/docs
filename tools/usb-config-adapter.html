@@ -957,21 +957,21 @@ orientation of the adapter with the picture above to determinate the acutal pins
 <p><a href="https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers">CP2102 Driver Download</a> (MacOS, Windows, Linux)</p>
 <h2 id="hardware-connection-lorawan-sensors">Hardware Connection (LoRaWAN Sensors)</h2>
 <ul>
-<li><code>Boot0</code> of the Lobaro LoRa Hardware (STM32 based) is connected to <code>DTR</code> of the UART</li>
-<li><code>Reset</code> (active low) of the Lobaro LoRa Hardware (STM32 based) is connected to <code>RTS</code> of the UART</li>
+<li><code class="codehilite"><span class="n">Boot0</span></code> of the Lobaro LoRa Hardware (STM32 based) is connected to <code class="codehilite"><span class="n">DTR</span></code> of the UART</li>
+<li><code class="codehilite"><span class="k">Reset</span></code> (active low) of the Lobaro LoRa Hardware (STM32 based) is connected to <code class="codehilite"><span class="n">RTS</span></code> of the UART</li>
 </ul>
 <p>Normally the handling of these uart control is done internally by the <a href="lobaro-tool">Lobaro PC tool</a>.</p>
 <p>When using any other uart terminal make sure you control RTS and DTR of the UART correctly or cut the DTR/RTS wires 
 from the USB adapter connection if not needed.</p>
 <h3 id="dtr-control-line">DTR control line</h3>
 <ul>
-<li><code>Low / true</code> =&gt; Run Firmware after Reset (Default since BOOT0 has internal pull-down)</li>
-<li><code>High / false</code> =&gt; Run Bootloader after Reset</li>
+<li><code class="codehilite"><span class="n">Low</span> <span class="o">/</span> <span class="k">true</span></code> =&gt; Run Firmware after Reset (Default since BOOT0 has internal pull-down)</li>
+<li><code class="codehilite"><span class="n">High</span> <span class="o">/</span> <span class="k">false</span></code> =&gt; Run Bootloader after Reset</li>
 </ul>
 <h3 id="rts-control-line">RTS control line</h3>
 <ul>
-<li><code>High / false</code> =&gt; Run Firmware / Bootloader (Default since RESET has internal pull-up)</li>
-<li><code>Low / true</code> =&gt; Chip in RESET mode (not running)</li>
+<li><code class="codehilite"><span class="n">High</span> <span class="o">/</span> <span class="k">false</span></code> =&gt; Run Firmware / Bootloader (Default since RESET has internal pull-up)</li>
+<li><code class="codehilite"><span class="n">Low</span> <span class="o">/</span> <span class="k">true</span></code> =&gt; Chip in RESET mode (not running)</li>
 </ul>
 <h2 id="adapter-schematic">Adapter Schematic</h2>
 <p><a href="img/config-adapter-schematic.png">Picture USB Config Adapter</a></p>

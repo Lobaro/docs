@@ -976,7 +976,7 @@ When the payload gets too big for a single LoRaWAN message, it is split into mul
 <h3 id="status-message-port-1">Status Message (Port 1)</h3>
 <p>Payload: (No Example yet)</p>
 <p>Decoded:
-<div class="highlight"><pre><span></span><span class="p">{</span>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;temp&quot;</span><span class="p">:</span> <span class="mf">20.4</span><span class="p">,</span>
   <span class="nt">&quot;vBat&quot;</span><span class="p">:</span> <span class="mf">3.0</span><span class="p">,</span>
   <span class="nt">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;v0.2.0&quot;</span>
@@ -999,21 +999,21 @@ When the payload gets too big for a single LoRaWAN message, it is split into mul
 <td>success</td>
 <td align="left">0</td>
 <td align="left">1</td>
-<td><code>uint8</code></td>
+<td><code class="codehilite"><span class="n">uint8</span></code></td>
 <td>0 = Read error, 1 = Success</td>
 </tr>
 <tr>
 <td>sensor id</td>
 <td align="left">1</td>
 <td align="left">6</td>
-<td><code>[]byte</code></td>
+<td><code class="codehilite"><span class="p">[]</span><span class="n">byte</span></code></td>
 <td>6-Byte 1-Wire Sensor Id</td>
 </tr>
 <tr>
 <td>temperature</td>
 <td align="left">3</td>
 <td align="left">2</td>
-<td><code>int16 BE</code></td>
+<td><code class="codehilite"><span class="n">int16</span> <span class="n">BE</span></code></td>
 <td>Temperature in 1/10 °C</td>
 </tr>
 <tr>
@@ -1026,9 +1026,9 @@ When the payload gets too big for a single LoRaWAN message, it is split into mul
 </tbody>
 </table>
 <p>Example Payload:
-<code>01551e46920d0200da96b446920c0200d7dafc46920d0200d5202e4692050200dc</code></p>
+<code class="codehilite"><span class="mi">01551</span><span class="n">e46920d0200da96b446920c0200d7dafc46920d0200d5202e4692050200dc</span></code></p>
 <p>Decoded:
-<div class="highlight"><pre><span></span><span class="p">{</span>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;sensors&quot;</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
       <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;551e46920d02&quot;</span><span class="p">,</span>
@@ -1052,7 +1052,7 @@ When the payload gets too big for a single LoRaWAN message, it is split into mul
 </pre></div></p>
 <h2 id="parser">Parser</h2>
 <h3 id="thethingsnetwork-ttn">TheThingsNetwork (TTN)</h3>
-<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">readVersion</span><span class="p">(</span><span class="nx">bytes</span><span class="p">)</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><span class="kd">function</span> <span class="nx">readVersion</span><span class="p">(</span><span class="nx">bytes</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">bytes</span><span class="p">.</span><span class="nx">length</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
     <span class="p">}</span>

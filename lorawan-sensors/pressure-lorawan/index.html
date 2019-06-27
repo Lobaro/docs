@@ -916,7 +916,7 @@
 <p><img alt="LoRaWAN Pressure Sensor" src="files/Lobaro-Pegelsonde-LoRaWAN.jpg" style="height:350px;border:1px black solid;" /></p>
 <h2 id="target-measurement-purpose">Target Measurement / Purpose</h2>
 <p>Precise liquid level measurement, e.g. for tanks, via LoRaWAN.</p>
-<p><strong> Features </strong></p>
+<p>** Features **</p>
 <ul>
 <li>Cable length 1-15m</li>
 <li>0..1 Bar (10m water level)</li>
@@ -926,7 +926,7 @@
 <h2 id="payload-format">Payload Format</h2>
 <p><img alt="Payload Format" src="files/payload-format.png" /></p>
 <h3 id="parser-the-things-network">Parser: The Things Network</h3>
-<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">decodeFloat32</span><span class="p">(</span><span class="nx">bytes</span><span class="p">)</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><span class="kd">function</span> <span class="nx">decodeFloat32</span><span class="p">(</span><span class="nx">bytes</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">sign</span> <span class="o">=</span> <span class="p">(</span><span class="nx">bytes</span> <span class="o">&amp;</span> <span class="mh">0x80000000</span><span class="p">)</span> <span class="o">?</span> <span class="o">-</span><span class="mi">1</span> <span class="o">:</span> <span class="mi">1</span><span class="p">;</span>
     <span class="kd">var</span> <span class="nx">exponent</span> <span class="o">=</span> <span class="p">((</span><span class="nx">bytes</span> <span class="o">&gt;&gt;</span> <span class="mi">23</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xFF</span><span class="p">)</span> <span class="o">-</span> <span class="mi">127</span><span class="p">;</span>
     <span class="kd">var</span> <span class="nx">significand</span> <span class="o">=</span> <span class="p">(</span><span class="nx">bytes</span> <span class="o">&amp;</span> <span class="o">~</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">23</span><span class="p">));</span>

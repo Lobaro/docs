@@ -1185,7 +1185,7 @@ Modbus slave devices: Coil, Discrete Input, Input Register, and Holding Register
 Multiple different slave devices on the Bus can be accessed individually by a single 
 Bridge device. Reading intervals and register definitions can be configured very 
 flexibly to suit individual requirements.</p>
-<p><strong> PDF Download:</strong></p>
+<p>** PDF Download:**</p>
 <ul>
 <li><a href="files/Modbus-LoRaWAN-Specs.pdf">Data Sheet with dimensions</a></li>
 </ul>
@@ -1223,8 +1223,8 @@ supposed to be attached to it, or the device will not be able to send any data.<
 Over-the-air-activation (OTAA) and Activation-by-personalisation (ABP). 
 Depending on which method you are using you will have to set different values.</p>
 <p>Several values are a number of bytes, that need to be entered as hexstrings (without 
-<code>0x</code>-prefix). So e.g. the DevEUI is a value of 8 bytes encoded in hex will be 
-16 hexdigits long. A sample value would be <code>0123456789abcdef</code>.</p>
+<code class="codehilite"><span class="mi">0</span><span class="n">x</span></code>-prefix). So e.g. the DevEUI is a value of 8 bytes encoded in hex will be 
+16 hexdigits long. A sample value would be <code class="codehilite"><span class="mi">0123456789</span><span class="n">abcdef</span></code>.</p>
 <table>
 <thead>
 <tr>
@@ -1236,58 +1236,58 @@ Depending on which method you are using you will have to set different values.</
 </thead>
 <tbody>
 <tr>
-<td><code>OTAA</code></td>
+<td><code class="codehilite"><span class="n">OTAA</span></code></td>
 <td>both</td>
 <td>bool</td>
-<td><code>true</code> &equiv; use OTAA, <code>false</code> &equiv; use ABP</td>
+<td><code class="codehilite"><span class="k">true</span></code> &equiv; use OTAA, <code class="codehilite"><span class="k">false</span></code> &equiv; use ABP</td>
 </tr>
 <tr>
-<td><code>DevEUI</code></td>
+<td><code class="codehilite"><span class="n">DevEUI</span></code></td>
 <td>OTAA</td>
 <td>hexbyte[8]</td>
 <td>the 8 byte DevEUI identifies the hardware on the join operation. The default value is a world wide unique value predefined in the hardware. Should not be changed unless required by the network provider.</td>
 </tr>
 <tr>
-<td><code>AppEUI</code></td>
+<td><code class="codehilite"><span class="n">AppEUI</span></code></td>
 <td>OTAA</td>
 <td>hexbyte[8]</td>
 <td>ID defining the application used in the LoRaWAN network.</td>
 </tr>
 <tr>
-<td><code>AppKey</code></td>
+<td><code class="codehilite"><span class="n">AppKey</span></code></td>
 <td>OTAA</td>
 <td>hexbyte[16]</td>
 <td>Key used to encrypt communication with the LoRaWAN network.</td>
 </tr>
 <tr>
-<td><code>AppSKey</code></td>
+<td><code class="codehilite"><span class="n">AppSKey</span></code></td>
 <td>ABP</td>
 <td>hexbyte[16]</td>
 <td>Application Session Key to be synced with the LoRaWAN network.</td>
 </tr>
 <tr>
-<td><code>NetSKey</code></td>
+<td><code class="codehilite"><span class="n">NetSKey</span></code></td>
 <td>ABP</td>
 <td>hexbyte[16]</td>
 <td>Network Session Key to be synced with the LoRaWAN network.</td>
 </tr>
 <tr>
-<td><code>DevAdr</code></td>
+<td><code class="codehilite"><span class="n">DevAdr</span></code></td>
 <td>ABP</td>
 <td>hexbyte[4]</td>
 <td>Device Address used to identify device in the LoRaWAN network.</td>
 </tr>
 <tr>
-<td><code>SF</code></td>
+<td><code class="codehilite"><span class="n">SF</span></code></td>
 <td>both</td>
 <td>int</td>
 <td>Initial LoRa spreading factor used for transmissions. Valid range is 7-12. The actual spreading factor used by change during operation if ADR is used.</td>
 </tr>
 <tr>
-<td><code>ADR</code></td>
+<td><code class="codehilite"><span class="n">ADR</span></code></td>
 <td>both</td>
 <td>bool</td>
-<td>Should adaptive data rate be used? <code>true</code> &equiv; use ADR, <code>false</code> &equiv; don't</td>
+<td>Should adaptive data rate be used? <code class="codehilite"><span class="k">true</span></code> &equiv; use ADR, <code class="codehilite"><span class="k">false</span></code> &equiv; don't</td>
 </tr>
 </tbody>
 </table>
@@ -1305,29 +1305,29 @@ Modbus Devices's manual to find out the correct configuration.</p>
 </thead>
 <tbody>
 <tr>
-<td><code>ModbusProtocol</code></td>
+<td><code class="codehilite"><span class="n">ModbusProtocol</span></code></td>
 <td>Which Modbus-Protocol to use</td>
-<td><code>RTU</code>. <code>ASCII</code></td>
+<td><code class="codehilite"><span class="n">RTU</span></code>. <code class="codehilite"><span class="n">ASCII</span></code></td>
 </tr>
 <tr>
-<td><code>ModbusBaud</code></td>
+<td><code class="codehilite"><span class="n">ModbusBaud</span></code></td>
 <td>UART Baud rate</td>
-<td><code>9600</code>, <code>19200</code>, <code>38400</code>, ...</td>
+<td><code class="codehilite"><span class="mi">9600</span></code>, <code class="codehilite"><span class="mi">19200</span></code>, <code class="codehilite"><span class="mi">38400</span></code>, ...</td>
 </tr>
 <tr>
-<td><code>ModbusDataLendth</code></td>
+<td><code class="codehilite"><span class="n">ModbusDataLendth</span></code></td>
 <td>UART data length</td>
-<td><code>7</code>, <code>8</code>, <code>9</code></td>
+<td><code class="codehilite"><span class="mi">7</span></code>, <code class="codehilite"><span class="mi">8</span></code>, <code class="codehilite"><span class="mi">9</span></code></td>
 </tr>
 <tr>
-<td><code>ModbusStopBits</code></td>
+<td><code class="codehilite"><span class="n">ModbusStopBits</span></code></td>
 <td>UART stop bits</td>
-<td><code>0.5</code>, <code>1</code>, <code>1.5</code>, <code>2</code> (written exactly like this)</td>
+<td><code class="codehilite"><span class="mi">0</span><span class="p">.</span><span class="mi">5</span></code>, <code class="codehilite"><span class="mi">1</span></code>, <code class="codehilite"><span class="mi">1</span><span class="p">.</span><span class="mi">5</span></code>, <code class="codehilite"><span class="mi">2</span></code> (written exactly like this)</td>
 </tr>
 <tr>
-<td><code>ModbusParity</code></td>
+<td><code class="codehilite"><span class="n">ModbusParity</span></code></td>
 <td>UART parity</td>
-<td><code>NONE</code>, <code>EVEN</code>, <code>ODD</code></td>
+<td><code class="codehilite"><span class="k">NONE</span></code>, <code class="codehilite"><span class="n">EVEN</span></code>, <code class="codehilite"><span class="n">ODD</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -1343,9 +1343,9 @@ Modbus Devices's manual to find out the correct configuration.</p>
 </thead>
 <tbody>
 <tr>
-<td><code>ModbusCron</code></td>
+<td><code class="codehilite"><span class="n">ModbusCron</span></code></td>
 <td>Cron expression defining when to read</td>
-<td><code>0 0/15 * * * *</code> for every 15 minutes</td>
+<td><code class="codehilite"><span class="mi">0</span> <span class="mi">0</span><span class="o">/</span><span class="mi">15</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span></code> for every 15 minutes</td>
 </tr>
 </tbody>
 </table>
@@ -1367,30 +1367,30 @@ the Modbus Bridge, one for each of the types. </p>
 </thead>
 <tbody>
 <tr>
-<td><code>Coils</code></td>
+<td><code class="codehilite"><span class="n">Coils</span></code></td>
 <td>Coils to read (single bit read-only values)</td>
-<td><code>0x01</code></td>
+<td><code class="codehilite"><span class="mi">0</span><span class="n">x01</span></code></td>
 </tr>
 <tr>
-<td><code>DiscreteInputs</code></td>
+<td><code class="codehilite"><span class="n">DiscreteInputs</span></code></td>
 <td>Discrete Inputs to read (single bit read/write values)</td>
-<td><code>0x02</code></td>
+<td><code class="codehilite"><span class="mi">0</span><span class="n">x02</span></code></td>
 </tr>
 <tr>
-<td><code>HoldingRegisters</code></td>
+<td><code class="codehilite"><span class="n">HoldingRegisters</span></code></td>
 <td>Holding Registers to read (2 byte read-only values)</td>
-<td><code>0x03</code></td>
+<td><code class="codehilite"><span class="mi">0</span><span class="n">x03</span></code></td>
 </tr>
 <tr>
-<td><code>InputRegisters</code></td>
+<td><code class="codehilite"><span class="n">InputRegisters</span></code></td>
 <td>Input Register to read (2 byte read/write values)</td>
-<td><code>0x04</code></td>
+<td><code class="codehilite"><span class="mi">0</span><span class="n">x04</span></code></td>
 </tr>
 </tbody>
 </table>
 <p>Each value can define multiple different registers/coils to be read on one or multiple 
 devices connected via Modbus. The format is identical for all four types.</p>
-<p>Each single definition consists of three values separated by colons (<code>:</code>). </p>
+<p>Each single definition consists of three values separated by colons (<code class="codehilite"><span class="p">:</span></code>). </p>
 <ol>
 <li>The address of the Modbus device that should be read from. Valid device addresses 
 range from  1 to 247; with a single slave device on your bus this is often 1.</li>
@@ -1402,9 +1402,9 @@ than 22 leads to problems on high spreading factors so that the data will not
 be transferred completely via LoRaWAN.</li>
 </ol>
 <p>Multiple of these register definitions can be used if they are separated by 
-commas (<code>,</code> no spaces after the comma).</p>
+commas (<code class="codehilite"><span class="p">,</span></code> no spaces after the comma).</p>
 <p>You can use one or multiple of the register/coil types. If you do not want to use 
-a type e.g. <code>Coils</code>, set that definition to an empty string. The device will parse 
+a type e.g. <code class="codehilite"><span class="n">Coils</span></code>, set that definition to an empty string. The device will parse 
 the four register strings on startup and reports invalid definitions. The device 
 will not work while there are invalid definitions but will reboot repeatedly until 
 you fix the configuration.</p>
@@ -1418,15 +1418,15 @@ you fix the configuration.</p>
 </thead>
 <tbody>
 <tr>
-<td><code>1:0:3</code></td>
+<td><code class="codehilite"><span class="mi">1</span><span class="o">:</span><span class="mi">0</span><span class="o">:</span><span class="mi">3</span></code></td>
 <td>Read first three registers of device with address 1.</td>
 </tr>
 <tr>
-<td><code>2:40001:1,2:2000:10</code></td>
+<td><code class="codehilite"><span class="mi">2</span><span class="o">:</span><span class="mi">40001</span><span class="o">:</span><span class="mi">1</span><span class="o">,</span><span class="mi">2</span><span class="o">:</span><span class="mi">2000</span><span class="o">:</span><span class="mi">10</span></code></td>
 <td>Read registers 40001 and 2000 to 2009 of device 2.</td>
 </tr>
 <tr>
-<td><code>4:0:2,5:0:2,5:20:1</code></td>
+<td><code class="codehilite"><span class="mi">4</span><span class="o">:</span><span class="mi">0</span><span class="o">:</span><span class="mi">2</span><span class="o">,</span><span class="mi">5</span><span class="o">:</span><span class="mi">0</span><span class="o">:</span><span class="mi">2</span><span class="o">,</span><span class="mi">5</span><span class="o">:</span><span class="mi">20</span><span class="o">:</span><span class="mi">1</span></code></td>
 <td>Read registers 0 and 1 of device 4 as well as registers 0, 1, and register 20 of device 5.</td>
 </tr>
 </tbody>
@@ -1447,19 +1447,19 @@ you fix the configuration.</p>
 </tr>
 <tr>
 <td align="right">11</td>
-<td align="left">Data from reading Coils (function <code>0x01</code>).</td>
+<td align="left">Data from reading Coils (function <code class="codehilite"><span class="mi">0</span><span class="n">x01</span></code>).</td>
 </tr>
 <tr>
 <td align="right">12</td>
-<td align="left">Data from reading Discrete Inputs (function <code>0x02</code>).</td>
+<td align="left">Data from reading Discrete Inputs (function <code class="codehilite"><span class="mi">0</span><span class="n">x02</span></code>).</td>
 </tr>
 <tr>
 <td align="right">13</td>
-<td align="left">Data from reading Holding Registers (function <code>0x03</code>).</td>
+<td align="left">Data from reading Holding Registers (function <code class="codehilite"><span class="mi">0</span><span class="n">x03</span></code>).</td>
 </tr>
 <tr>
 <td align="right">14</td>
-<td align="left">Data from reading Input Registers (function <code>0x04</code>).</td>
+<td align="left">Data from reading Input Registers (function <code class="codehilite"><span class="mi">0</span><span class="n">x04</span></code>).</td>
 </tr>
 </tbody>
 </table>
@@ -1484,49 +1484,49 @@ maximum of one status message per day. </p>
 <td>version</td>
 <td align="right">0</td>
 <td align="right">3</td>
-<td><code>uint8[3]</code></td>
+<td><code class="codehilite"><span class="n">uint8</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span></code></td>
 <td>Version of firmware running on the device</td>
-<td><code>[1, 0, 4]</code> &equiv; <code>v1.0.4</code></td>
+<td><code class="codehilite"><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span></code> &equiv; <code class="codehilite"><span class="n">v1</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">4</span></code></td>
 </tr>
 <tr>
 <td>flag</td>
 <td align="right">3</td>
 <td align="right">1</td>
-<td><code>uint8</code></td>
+<td><code class="codehilite"><span class="n">uint8</span></code></td>
 <td>Status flag, for internal use</td>
-<td><code>0</code></td>
+<td><code class="codehilite"><span class="mi">0</span></code></td>
 </tr>
 <tr>
 <td>temperature</td>
 <td align="right">4</td>
 <td align="right">2</td>
-<td><code>int16</code></td>
+<td><code class="codehilite"><span class="n">int16</span></code></td>
 <td>Device's internal temperature in tenth °C</td>
-<td><code>246</code> &equiv; <code>24.6°C</code></td>
+<td><code class="codehilite"><span class="mi">246</span></code> &equiv; <code class="codehilite"><span class="mi">24</span><span class="p">.</span><span class="mi">6</span><span class="err">°</span><span class="k">C</span></code></td>
 </tr>
 <tr>
 <td>voltage</td>
 <td align="right">6</td>
 <td align="right">2</td>
-<td><code>int16</code></td>
+<td><code class="codehilite"><span class="n">int16</span></code></td>
 <td>Voltage supplied by power source in mV</td>
-<td><code>3547</code> &equiv; <code>3.547V</code></td>
+<td><code class="codehilite"><span class="mi">3547</span></code> &equiv; <code class="codehilite"><span class="mi">3</span><span class="p">.</span><span class="mi">547</span><span class="n">V</span></code></td>
 </tr>
 <tr>
 <td>timestamp</td>
 <td align="right">8</td>
 <td align="right">5</td>
-<td><code>int40</code></td>
+<td><code class="codehilite"><span class="n">int40</span></code></td>
 <td>Internal date/time at creation of the status packet as UNIX timestamp</td>
-<td><code>1533055905</code></td>
+<td><code class="codehilite"><span class="mi">1533055905</span></code></td>
 </tr>
 <tr>
 <td>mode</td>
 <td align="right">13</td>
 <td align="right">1</td>
-<td><code>uint8</code></td>
+<td><code class="codehilite"><span class="n">uint8</span></code></td>
 <td>Operation mode the device runs</td>
-<td><code>1</code></td>
+<td><code class="codehilite"><span class="mi">1</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -1563,39 +1563,39 @@ has occurred, however in this case the content of those bytes is undefined.</p>
 <td>addr</td>
 <td align="right">0</td>
 <td align="right">1</td>
-<td><code>uint8</code></td>
+<td><code class="codehilite"><span class="n">uint8</span></code></td>
 <td>Modbus address of slave device.</td>
 </tr>
 <tr>
 <td>start</td>
 <td align="right">1</td>
 <td align="right">2</td>
-<td><code>uint16</code></td>
+<td><code class="codehilite"><span class="n">uint16</span></code></td>
 <td>Address of first coil/register read.</td>
 </tr>
 <tr>
 <td>cnt+err</td>
 <td align="right">3</td>
 <td align="right">1</td>
-<td><code>uint8</code></td>
+<td><code class="codehilite"><span class="n">uint8</span></code></td>
 <td>Highest bit: error indicator, 7 lower bits: number of consecutive coils/registers read.</td>
 </tr>
 <tr>
 <td>data</td>
 <td align="right">4</td>
 <td align="right">n</td>
-<td><code>uint8[n]</code></td>
+<td><code class="codehilite"><span class="n">uint8</span><span class="o">[</span><span class="n">n</span><span class="o">]</span><span class="w"></span></code></td>
 <td>Raw data bytes as sent by the slave device.</td>
 </tr>
 </tbody>
 </table>
-<p>To get <code>cnt</code>, the number of coils/registers read, you need to only read the lower 7 
-bits of the fourth byte (e.g. by using something like <code>data[3] &amp; 0x7f</code>). The highest 
-bit is <code>0</code> on successful reads and <code>1</code> if an error occurred. See our reference 
+<p>To get <code class="codehilite"><span class="n">cnt</span></code>, the number of coils/registers read, you need to only read the lower 7 
+bits of the fourth byte (e.g. by using something like <code class="codehilite"><span class="k">data</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">&amp;</span> <span class="mi">0</span><span class="n">x7f</span></code>). The highest 
+bit is <code class="codehilite"><span class="mi">0</span></code> on successful reads and <code class="codehilite"><span class="mi">1</span></code> if an error occurred. See our reference 
 decoder if you have trouble reading the format.</p>
-<p>The length of the data <code>n</code> for Coils and Discrete Inputs (Ports 11 and 12) the value 
-of <code>cnt</code> divided by 8 rounded up (that is the minimal number of bytes needed to 
-store <code>cnt</code> bits). For Registers (Ports 13 and 14) the data length is <code>cnt * 2</code>, since 
+<p>The length of the data <code class="codehilite"><span class="n">n</span></code> for Coils and Discrete Inputs (Ports 11 and 12) the value 
+of <code class="codehilite"><span class="n">cnt</span></code> divided by 8 rounded up (that is the minimal number of bytes needed to 
+store <code class="codehilite"><span class="n">cnt</span></code> bits). For Registers (Ports 13 and 14) the data length is <code class="codehilite"><span class="n">cnt</span> <span class="o">*</span> <span class="mi">2</span></code>, since 
 registers contain two bytes of data.</p>
 <p>Please refer to the <em>reference decoder</em> usable in TTN at the end of this document.</p>
 <h2 id="complex-setups">Complex setups</h2>
@@ -1718,7 +1718,7 @@ example NarrowBand-IoT.</p>
 <p>This is a decoder written in JavaScript that can be used to parse the device's 
 LoRaWAN messages. It can be used as is in 
 <a href="https://thethingsnetwork.org">The Things Network</a>.</p>
-<p><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">readVersion</span><span class="p">(</span><span class="nx">bytes</span><span class="p">)</span> <span class="p">{</span>
+<p><div class="codehilite"><pre><span></span><span class="kd">function</span> <span class="nx">readVersion</span><span class="p">(</span><span class="nx">bytes</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">bytes</span><span class="p">.</span><span class="nx">length</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
     <span class="p">}</span>

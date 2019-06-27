@@ -912,8 +912,8 @@
 <p>The Lobaro Dashboard can be found at <a href="https://dashboard.lobaro.com" target="_blank">dashboard.lobaro.com</a></p>
 <h2 id="overview">Overview</h2>
 <p>The Dashboard shows device data received via various data sources like LoRaWAN, NB.IoT, GSM, etc..</p>
-<p>Incoming data from a connected Sensor received by a <code>Datasource</code> and mapped to a single <code>Device</code> 
-where the <code>Raw Data</code> is saved and a <code>Parser</code> gets executed. The result of the parser is saved as <code>Device Data</code>
+<p>Incoming data from a connected Sensor received by a <code class="codehilite"><span class="n">Datasource</span></code> and mapped to a single <code class="codehilite"><span class="n">Device</span></code> 
+where the <code class="codehilite"><span class="n">Raw</span> <span class="k">Data</span></code> is saved and a <code class="codehilite"><span class="n">Parser</span></code> gets executed. The result of the parser is saved as <code class="codehilite"><span class="n">Device</span> <span class="k">Data</span></code>
 used for visualization inside the dashboard.</p>
 <div class="mermaid">graph LR;
     data&gt;Sensor Data]--&gt;ds(Datasource)
@@ -935,7 +935,7 @@ In addition the parser can access an API to set device level properties and addi
 <p>When no parser on device level is defined, the parser for the device type will be executed. When no parser for the device type is defined, a hardcoded default parser will be executed.</p>
 <p>Parsers are written in JavaScript.</p>
 <p><strong>Example</strong></p>
-<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">Parse</span><span class="p">(</span><span class="nx">input</span><span class="p">)</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><span class="kd">function</span> <span class="nx">Parse</span><span class="p">(</span><span class="nx">input</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">// Decode an incoming message to an object of fields.</span>
   <span class="kd">var</span> <span class="nx">decoded</span> <span class="o">=</span> <span class="p">{</span><span class="nx">input</span><span class="o">:</span> <span class="nx">input</span><span class="p">};</span>
 
@@ -946,13 +946,13 @@ In addition the parser can access an API to set device level properties and addi
 <h3 id="js-parser-api">JS Parser API</h3>
 <p>All functions are optional. Not calling them will not change any data.</p>
 <p>Update the physical location of the sensor
-<div class="highlight"><pre><span></span><span class="nx">Device</span><span class="p">.</span><span class="nx">setLocation</span><span class="p">(</span><span class="nx">lon</span><span class="p">,</span> <span class="nx">lat</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><span class="nx">Device</span><span class="p">.</span><span class="nx">setLocation</span><span class="p">(</span><span class="nx">lon</span><span class="p">,</span> <span class="nx">lat</span><span class="p">)</span>
 </pre></div></p>
 <p>Set an arbitary device property, displayed on the "Overview" tab of the device
-<div class="highlight"><pre><span></span><span class="nx">Device</span><span class="p">.</span><span class="nx">setProperty</span><span class="p">(</span><span class="s2">&quot;key&quot;</span><span class="p">,</span> <span class="err">&quot;</span><span class="nx">value</span><span class="p">);</span>
+<div class="codehilite"><pre><span></span><span class="nx">Device</span><span class="p">.</span><span class="nx">setProperty</span><span class="p">(</span><span class="s2">&quot;key&quot;</span><span class="p">,</span> <span class="err">&quot;</span><span class="nx">value</span><span class="p">);</span>
 </pre></div></p>
 <p>Set the Sensor time of the current data record. Used for display, filter, sorting
-<div class="highlight"><pre><span></span><span class="nx">Record</span><span class="p">.</span><span class="nx">setTime</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">());</span>
+<div class="codehilite"><pre><span></span><span class="nx">Record</span><span class="p">.</span><span class="nx">setTime</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">());</span>
 </pre></div></p>
                 
                   

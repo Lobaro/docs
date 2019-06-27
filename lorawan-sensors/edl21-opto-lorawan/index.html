@@ -1074,8 +1074,8 @@ supposed to be attached to it, or the device will not be able to send any data.<
 Over-the-air-activation (OTAA) and Activation-by-personalisation (ABP). 
 Depending on which method you are using you will have to set different values.</p>
 <p>Several values are a number of bytes, that need to be entered as hexstrings (without 
-<code>0x</code>-prefix). So e.g. the DevEUI is a value of 8 bytes encoded in hex will be 
-16 hexdigits long. A sample value would be <code>0123456789abcdef</code>.</p>
+<code class="codehilite"><span class="mi">0</span><span class="n">x</span></code>-prefix). So e.g. the DevEUI is a value of 8 bytes encoded in hex will be 
+16 hexdigits long. A sample value would be <code class="codehilite"><span class="mi">0123456789</span><span class="n">abcdef</span></code>.</p>
 <table>
 <thead>
 <tr>
@@ -1087,58 +1087,58 @@ Depending on which method you are using you will have to set different values.</
 </thead>
 <tbody>
 <tr>
-<td><code>OTAA</code></td>
+<td><code class="codehilite"><span class="n">OTAA</span></code></td>
 <td>both</td>
 <td>bool</td>
-<td><code>true</code> &equiv; use OTAA, <code>false</code> &equiv; use ABP</td>
+<td><code class="codehilite"><span class="k">true</span></code> &equiv; use OTAA, <code class="codehilite"><span class="k">false</span></code> &equiv; use ABP</td>
 </tr>
 <tr>
-<td><code>DevEUI</code></td>
+<td><code class="codehilite"><span class="n">DevEUI</span></code></td>
 <td>OTAA</td>
 <td>hexbyte[8]</td>
 <td>the 8 byte DevEUI identifies the hardware on the join operation. The default value is a world wide unique value predefined in the hardware. Should not be changed unless required by the network provider.</td>
 </tr>
 <tr>
-<td><code>AppEUI</code></td>
+<td><code class="codehilite"><span class="n">AppEUI</span></code></td>
 <td>OTAA</td>
 <td>hexbyte[8]</td>
 <td>ID defining the application used in the LoRaWAN network.</td>
 </tr>
 <tr>
-<td><code>AppKey</code></td>
+<td><code class="codehilite"><span class="n">AppKey</span></code></td>
 <td>OTAA</td>
 <td>hexbyte[16]</td>
 <td>Key used to encrypt communication with the LoRaWAN network.</td>
 </tr>
 <tr>
-<td><code>AppSKey</code></td>
+<td><code class="codehilite"><span class="n">AppSKey</span></code></td>
 <td>ABP</td>
 <td>hexbyte[16]</td>
 <td>Application Session Key to be synced with the LoRaWAN network.</td>
 </tr>
 <tr>
-<td><code>NetSKey</code></td>
+<td><code class="codehilite"><span class="n">NetSKey</span></code></td>
 <td>ABP</td>
 <td>hexbyte[16]</td>
 <td>Network Session Key to be synced with the LoRaWAN network.</td>
 </tr>
 <tr>
-<td><code>DevAdr</code></td>
+<td><code class="codehilite"><span class="n">DevAdr</span></code></td>
 <td>ABP</td>
 <td>hexbyte[4]</td>
 <td>Device Address used to identify device in the LoRaWAN network.</td>
 </tr>
 <tr>
-<td><code>SF</code></td>
+<td><code class="codehilite"><span class="n">SF</span></code></td>
 <td>both</td>
 <td>int</td>
 <td>Initial LoRa spreading factor used for transmissions. Valid range is 7-12. The actual spreading factor used by change during operation if ADR is used.</td>
 </tr>
 <tr>
-<td><code>ADR</code></td>
+<td><code class="codehilite"><span class="n">ADR</span></code></td>
 <td>both</td>
 <td>bool</td>
-<td>Should adaptive data rate be used? <code>true</code> &equiv; use ADR, <code>false</code> &equiv; don't</td>
+<td>Should adaptive data rate be used? <code class="codehilite"><span class="k">true</span></code> &equiv; use ADR, <code class="codehilite"><span class="k">false</span></code> &equiv; don't</td>
 </tr>
 </tbody>
 </table>
@@ -1154,14 +1154,14 @@ Depending on which method you are using you will have to set different values.</
 </thead>
 <tbody>
 <tr>
-<td><code>ReadCron</code></td>
+<td><code class="codehilite"><span class="n">ReadCron</span></code></td>
 <td>Cron expression defining when to read</td>
-<td><code>0 0/15 * * * *</code> for every 15 minutes</td>
+<td><code class="codehilite"><span class="mi">0</span> <span class="mi">0</span><span class="o">/</span><span class="mi">15</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span></code> for every 15 minutes</td>
 </tr>
 <tr>
-<td><code>ObisCode</code></td>
+<td><code class="codehilite"><span class="n">ObisCode</span></code></td>
 <td>Comma separated list of ObisCodes to select a subset of the available information</td>
-<td><code>1-0:1.7.255*255</code> = Leistung (Momentan)</td>
+<td><code class="codehilite"><span class="mi">1</span><span class="o">-</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">.</span><span class="mi">7</span><span class="p">.</span><span class="mi">255</span><span class="o">*</span><span class="mi">255</span></code> = Leistung (Momentan)</td>
 </tr>
 </tbody>
 </table>
@@ -1178,32 +1178,32 @@ Depending on which method you are using you will have to set different values.</
 </thead>
 <tbody>
 <tr>
-<td><code>red/green/blue</code></td>
+<td><code class="codehilite"><span class="n">red</span><span class="o">/</span><span class="n">green</span><span class="o">/</span><span class="n">blue</span></code></td>
 <td>300ms each</td>
 <td>initial pattern after reset</td>
 </tr>
 <tr>
-<td><code>red</code></td>
+<td><code class="codehilite"><span class="n">red</span></code></td>
 <td>short, blinking</td>
 <td>trying to receive meter optical data for the first time after reset</td>
 </tr>
 <tr>
-<td><code>green</code></td>
+<td><code class="codehilite"><span class="n">green</span></code></td>
 <td>5 seconds</td>
 <td>successfully received meter optical data</td>
 </tr>
 <tr>
-<td><code>blue</code></td>
+<td><code class="codehilite"><span class="n">blue</span></code></td>
 <td>5 seconds</td>
 <td>LoRaWAN network join</td>
 </tr>
 <tr>
-<td><code>blue</code></td>
+<td><code class="codehilite"><span class="n">blue</span></code></td>
 <td>short</td>
 <td>sending LoRaWAN data uplink</td>
 </tr>
 <tr>
-<td><code>off</code></td>
+<td><code class="codehilite"><span class="k">off</span></code></td>
 <td>-</td>
 <td>low-power mode until next sendout cycle</td>
 </tr>
@@ -1300,7 +1300,7 @@ Depending on which method you are using you will have to set different values.</
 <p>This is a decoder written in JavaScript that can be used to parse the device's 
 LoRaWAN messages. It can be used as is in 
 <a href="https://thethingsnetwork.org">The Things Network</a>.</p>
-<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">readName</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><span class="kd">function</span> <span class="nx">readName</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nx">bytes</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">i</span> <span class="o">+</span> <span class="mi">6</span><span class="p">);</span>
 <span class="p">}</span>
 
@@ -1465,7 +1465,7 @@ LoRaWAN messages. It can be used as is in
 
 <h3 id="example-parser-result">Example parser result</h3>
 <p>Test input: 01 00 01 08 00 FE 08 7B 7D 23 00 00 00 00 00 FF</p>
-<div class="highlight"><pre><span></span><span class="p">{</span>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
    <span class="nt">&quot;values&quot;</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
       <span class="nt">&quot;len&quot;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>

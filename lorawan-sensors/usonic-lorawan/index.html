@@ -969,7 +969,7 @@
                 <h1 id="ultrasonic-lorawan-sensor-aka-oscar">Ultrasonic LoRaWAN Sensor (a.k.a. "Oscar")</h1>
 <h2 id="target-measurement-purpose">Target Measurement / Purpose</h2>
 <p>Distance measurements via ultrasound.</p>
-<p><strong> Features: </strong></p>
+<p>** Features: **</p>
 <ul>
 <li>30cm to 3m detection range</li>
 <li>up to 8 detected objects</li>
@@ -990,7 +990,7 @@
 <p>This is a decoder written in JavaScript that can be used to parse the device's 
 LoRaWAN messages. It can be used as is in 
 <a href="https://thethingsnetwork.org">The Things Network</a>.</p>
-<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">decodeUInt16</span><span class="p">(</span><span class="nx">byte1</span><span class="p">,</span> <span class="nx">byte2</span><span class="p">)</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><span class="kd">function</span> <span class="nx">decodeUInt16</span><span class="p">(</span><span class="nx">byte1</span><span class="p">,</span> <span class="nx">byte2</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">decoded</span> <span class="o">=</span> <span class="nx">byte1</span> <span class="o">|</span> <span class="nx">byte2</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">;</span>
     <span class="k">if</span> <span class="p">((</span><span class="nx">decoded</span> <span class="o">&amp;</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">15</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// value is negative (16bit 2&#39;s complement)</span>
         <span class="nx">decoded</span> <span class="o">=</span> <span class="p">((</span><span class="o">~</span><span class="nx">decoded</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xffff</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>  <span class="c1">// invert 16bits &amp; add 1 =&gt; now positive value</span>
@@ -1041,7 +1041,7 @@ LoRaWAN messages. It can be used as is in
 </pre></div>
 
 <p><strong>Example parser result</strong>
-<div class="highlight"><pre><span></span><span class="p">{</span>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;numResults&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
   <span class="nt">&quot;results&quot;</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
@@ -1069,7 +1069,7 @@ LoRaWAN messages. It can be used as is in
 </ul>
 <h3 id="encoder">Encoder</h3>
 <p>Used to update configuration on the device.</p>
-<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">Encoder</span><span class="p">(</span><span class="nx">object</span><span class="p">,</span> <span class="nx">port</span><span class="p">)</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><span class="kd">function</span> <span class="nx">Encoder</span><span class="p">(</span><span class="nx">object</span><span class="p">,</span> <span class="nx">port</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// Encode downlink messages sent as</span>
     <span class="c1">// object to an array or buffer of bytes.</span>
     <span class="kd">var</span> <span class="nx">bytes</span> <span class="o">=</span> <span class="p">[];</span>
