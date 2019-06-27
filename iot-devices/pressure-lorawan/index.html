@@ -643,16 +643,23 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#parser" title="Parser" class="md-nav__link">
-    Parser
+  <a href="#features" title="Features" class="md-nav__link">
+    Features
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#payload-format" title="Payload Format" class="md-nav__link">
+    Payload Format
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#the-things-network" title="The Things Network" class="md-nav__link">
-    The Things Network
+  <a href="#parser-the-things-network" title="Parser: The Things Network" class="md-nav__link">
+    Parser: The Things Network
   </a>
   
 </li>
@@ -812,16 +819,23 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#parser" title="Parser" class="md-nav__link">
-    Parser
+  <a href="#features" title="Features" class="md-nav__link">
+    Features
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#payload-format" title="Payload Format" class="md-nav__link">
+    Payload Format
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#the-things-network" title="The Things Network" class="md-nav__link">
-    The Things Network
+  <a href="#parser-the-things-network" title="Parser: The Things Network" class="md-nav__link">
+    Parser: The Things Network
   </a>
   
 </li>
@@ -852,13 +866,16 @@
                 
                 <h1 id="pressure-sensor-lorawan-water-level-detection">Pressure Sensor LoRaWAN (Water level detection)</h1>
 <p><img alt="Product Image" src="files/Lobaro-Pegelsonde-LoRaWAN.jpg" style="height: 300px" /></p>
-<p>The sensor is available with different specifications:</p>
+<h2 id="features">Features</h2>
 <ul>
 <li>Cable length 1-15m</li>
 <li>0..1 Bar (10m water level)</li>
+<li>Waterproof IP67 Housing</li>
+<li>Multi-year Battery life, ultra low power (&lt; 10µA)</li>
 </ul>
-<h2 id="parser">Parser</h2>
-<h3 id="the-things-network">The Things Network</h3>
+<h2 id="payload-format">Payload Format</h2>
+<p><img alt="Payload Format" src="files/payload-format.png" /></p>
+<h3 id="parser-the-things-network">Parser: The Things Network</h3>
 <div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">decodeFloat32</span><span class="p">(</span><span class="nx">bytes</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">sign</span> <span class="o">=</span> <span class="p">(</span><span class="nx">bytes</span> <span class="o">&amp;</span> <span class="mh">0x80000000</span><span class="p">)</span> <span class="o">?</span> <span class="o">-</span><span class="mi">1</span> <span class="o">:</span> <span class="mi">1</span><span class="p">;</span>
     <span class="kd">var</span> <span class="nx">exponent</span> <span class="o">=</span> <span class="p">((</span><span class="nx">bytes</span> <span class="o">&gt;&gt;</span> <span class="mi">23</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xFF</span><span class="p">)</span> <span class="o">-</span> <span class="mi">127</span><span class="p">;</span>
