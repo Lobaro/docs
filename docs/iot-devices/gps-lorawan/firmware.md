@@ -4,7 +4,7 @@
 
 **Downloads**:
 
-* [app-lorawan-gps-button-5.0.3.hex](firmware/app-lorawan-gps-button-5.0.3.hex)
+* [app-lorawan-gps-button-5.0.5.hex](firmware/app-lorawan-gps-button-5.0.5.hex)
 * [app-lorawan-gps-button-4.0.9.hex](firmware/app-lorawan-gps-button-4.0.9.hex)
 
 ## Changelog
