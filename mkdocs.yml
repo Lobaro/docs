@@ -3,6 +3,8 @@ site_description: Online documentation of the Lobaro GmbH, Industrial IoT Soluti
 theme:
   #    name: cinder
   name: material
+  favicon: favicon.ico
+  logo: img/lobaro-rings-circle.svg
   #    name: readthedocs
   highlightjs: true
   palette:

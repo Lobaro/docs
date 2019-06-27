@@ -17,7 +17,7 @@
 
 * Flushing to avoid invalid byte received from switching from TX to RX.
 * Modbus mode ASCII now counts received bytes correctly.
-* DataLength of 7 bits can now correctly be set in config.
+* DataLength of 7 bits can now correctly be set in config again.
 
 ### [0.3.1] &ndash; 2019-05-24
 **Fixed**
