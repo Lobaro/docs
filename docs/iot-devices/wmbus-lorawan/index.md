@@ -1,4 +1,4 @@
-# Wireless M-Bus über LoRaWAN Bridge
+# Wireless mBUS over LoRaWAN Bridge
 
 ## Downloads
 
