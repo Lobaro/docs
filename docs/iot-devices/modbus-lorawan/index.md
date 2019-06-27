@@ -23,15 +23,6 @@ flexibly to suit individual requirements.
 
 * [Data Sheet](Modbus-LoRaWAN-Specs.pdf)
 
-## Firmware
-
-[Changelog](changelog.md)
-
-**Downloads:**
-
-* [app-modbus-lora-bridge-0.3.1.hex](firmware/app-modbus-lora-bridge-0.3.1.hex).
-
-
 ## Work Cycle
 
 The Modbus LoRaWAN Bridge has a simple work cycle. It spends most of the time in a deep sleep 

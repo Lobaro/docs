@@ -2,14 +2,6 @@
 
 Also named "Oscar Sensor".
 
-## Firmware
-
-[Changelog](changelog.md)
-
-**Downloads:**
-
-* [app-lorawan-usonic-0.1.1.hex](firmware/app-lorawan-usonic-0.1.1.hex)
-
 ## Technical description
 
 The device is based on the PGA460 from Texas Instruments ([http://www.ti.com/product/PGA460](http://www.ti.com/product/PGA460))

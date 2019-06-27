@@ -2,14 +2,6 @@
 
 ![Lobaro EDL21 LoRaWAN Bridge](files/edl21_small.jpg)
 
-## Firmware
-
-[Changelog](changelog.md)
-
-**Downloads:**
-
-* [app-edl21-opto-0.2.0+LoRa.hex](firmware/app-edl21-opto-0.2.0+LoRa.hex)
-
 ## Quickstart 
 1. Connect to the device with the [Lobaro Tool](https://www.lobaro.com/lobaro-maintenance-tool/) using the [Lobaro Config Adapter](https://www.lobaro-shop.com/product_info.php?info=p7_lobaro-usb-konfigurations-adapter.html) 
 2. Under Configuration click "Reload Config" and change the fields ReadCron and ObisCode as you need followed by clicking on "Write to Device" [click here for a configuration example](files/edl21_config_tool.jpg)

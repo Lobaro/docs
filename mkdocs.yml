@@ -28,14 +28,21 @@ extra_javascript:
 nav:
   - Overview: index.md
   - IoT Devices:
-      - Modbus LoRaWAN Bridge: iot-devices/modbus-lorawan/index.md
-      - Usonic LoRaWAN Sensor: iot-devices/usonic-lorawan/index.md
-      - 1-Wire LoRaWAN Bridge: iot-devices/1-wire-lorawan/index.md
-      - EDL21 Electricity meter LoRaWAN Bridge: iot-devices/edl21-opto-lorawan/index.md
+      - Modbus LoRaWAN Bridge:
+          - Manual: iot-devices/modbus-lorawan/index.md
+          - Firmware & Changelog: iot-devices/modbus-lorawan/firmware.md
+      - Usonic LoRaWAN Sensor:
+          - Manual: iot-devices/usonic-lorawan/index.md
+          - Firmware & Changelog: iot-devices/usonic-lorawan/firmware.md
+      - 1-Wire LoRaWAN Bridge:
+          - Manual: iot-devices/1-wire-lorawan/index.md
+          - Firmware & Changelog: iot-devices/1-wire-lorawan/firmware.md
+      - EDL21 Electricity meter LoRaWAN Bridge:
+          - Manual: iot-devices/edl21-opto-lorawan/index.md
+          - Firmware & Changelog: iot-devices/edl21-opto-lorawan/firmware.md
       - wMBUS LoRaWAN Bridge:
           - Manual: iot-devices/wmbus-lorawan/index.md
-          - Firmware: iot-devices/wmbus-lorawan/firmware.md
-          - Changelog: iot-devices/wmbus-lorawan/changelog.md
+          - Firmware & Changelog: iot-devices/wmbus-lorawan/firmware.md
   - Dashboard: dashboard/index.md
   - Background:
       - CRON Expressions: background/cron-expressions.md

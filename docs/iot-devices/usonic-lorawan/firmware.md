@@ -1,4 +1,11 @@
-# Changelog 
+# USonic LoRaWAN
+
+## Firmware
+**Downloads:**
+
+* [app-lorawan-usonic-0.1.1.hex](firmware/app-lorawan-usonic-0.1.1.hex)
+
+## Changelog 
 
 **Firmware:** app-lorawan-usonic
 
