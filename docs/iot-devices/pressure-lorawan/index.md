@@ -2,14 +2,18 @@
 
 ![Product Image](files/Lobaro-Pegelsonde-LoRaWAN.jpg){: style="height: 300px"}
 
-The sensor is available with different specifications:
+## Features
 
 * Cable length 1-15m
 * 0..1 Bar (10m water level)
+* Waterproof IP67 Housing
+* Multi-year Battery life, ultra low power (< 10µA)
 
-## Parser
+## Payload Format
 
-### The Things Network
+![Payload Format](files/payload-format.png)
+
+### Parser: The Things Network
 
 ```javascript
 function decodeFloat32(bytes) {
