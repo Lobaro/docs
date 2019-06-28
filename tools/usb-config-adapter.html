@@ -733,6 +733,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#default-uart-configuration" title="Default UART Configuration" class="md-nav__link">
+    Default UART Configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#dtr-control-line" title="DTR control line" class="md-nav__link">
     DTR control line
   </a>
@@ -894,6 +901,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#default-uart-configuration" title="Default UART Configuration" class="md-nav__link">
+    Default UART Configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#dtr-control-line" title="DTR control line" class="md-nav__link">
     DTR control line
   </a>
@@ -963,6 +977,34 @@ orientation of the adapter with the picture above to determinate the acutal pins
 <p>Normally the handling of these uart control is done internally by the <a href="lobaro-tool">Lobaro PC tool</a>.</p>
 <p>When using any other uart terminal make sure you control RTS and DTR of the UART correctly or cut the DTR/RTS wires 
 from the USB adapter connection if not needed.</p>
+<h3 id="default-uart-configuration">Default UART Configuration</h3>
+<p>The default UART configuration that is used by all Lobaro devices on the "Config" port.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BaudRate</td>
+<td>115200</td>
+</tr>
+<tr>
+<td>Parity</td>
+<td>EvenParity</td>
+</tr>
+<tr>
+<td>StopBits</td>
+<td>OneStopBit</td>
+</tr>
+<tr>
+<td>DataBits</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
 <h3 id="dtr-control-line">DTR control line</h3>
 <ul>
 <li><code class="codehilite"><span class="n">Low</span> <span class="o">/</span> <span class="k">true</span></code> =&gt; Run Firmware after Reset (Default since BOOT0 has internal pull-down)</li>
