@@ -29,6 +29,17 @@ Normally the handling of these uart control is done internally by the [Lobaro PC
 When using any other uart terminal make sure you control RTS and DTR of the UART correctly or cut the DTR/RTS wires 
 from the USB adapter connection if not needed.
 
+### Default UART Configuration
+
+The default UART configuration that is used by all Lobaro devices on the "Config" port.
+
+|         |              |
+|---------|--------------|
+|BaudRate | 115200       |
+|Parity   | EvenParity   |
+|StopBits | OneStopBit   |
+|DataBits | 8            |
+
 ### DTR control line
 
 * ```Low / true``` => Run Firmware after Reset (Default since BOOT0 has internal pull-down)
