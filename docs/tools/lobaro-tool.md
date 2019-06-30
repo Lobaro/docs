@@ -2,15 +2,11 @@
 
 ![Screenshot Lobaro-Tool](./img/Lobaro_Tool_ConfigFeature.png)
 
-Supports the PC based configuration of all Lobaro IoT sensors. It is available as free download for:
+Supports the PC based configuration of all Lobaro IoT sensors. 
 
-* MAC
-* Linux
-* Windows
+It is intend to be used in conjunction with our [**USB configuration adapter**](./usb-config-adapter.md). 
 
-using the [Lobaro USB configuration adapter](./usb-config-adapter.md).
-
-## Features
+## Purpose
 
 * Change static sensor configuration
 * Perform firmware updates for your Lobaro devices
@@ -29,31 +25,30 @@ using the [Lobaro USB configuration adapter](./usb-config-adapter.md).
     * Chrome
     * Edge
        
+!!! warning "USB Driver"
+
+    The **CP2102 USB driver** needs to be installed before using the Lobaro-tool.
     
-## Installation
+    [**Download CP2102 Driver Download**](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers){: target="_blank"}       
+    
+## Download & Installation
 
-### Download & Install USB driver
-[CP2102 Driver Download](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers) for your operating system.
-
-
-### Download & Install Lobaro tool
-
-[Tool Download](https://files.lobaro.com/index.php/s/jJULuRooWzLnYO9) for your operating system.
+[**Download Lobaro Tool**](https://files.lobaro.com/index.php/s/jJULuRooWzLnYO9?path=%2Fv1.4.x){: target="_blank"}
 
 Latest stable version is v1.4.x
 
-#### MacOSX / Linux
-Download the "lobaro-tool" file, e.g. to a directory "lobaro" in your home path. Then set this file to executable:
+### MacOSX / Linux 
+After downloading the "lobaro-tool" file, e.g. to a directory "lobaro" in your home path. Then set this file to executable:
 ```Bash
 cd ~/lobaro
 chmod +x lobaro-tool
 ```
-#### Windows
-After downloading simly start the "lobaro-tool.exe" with double click. 
+### Windows
+After downloading simply start the "lobaro-tool.exe" with double click. 
 
 Alternativly download the windows installer and start this.
 
-!!! note
+!!! danger
     Windows might show up a security warning and ask you to proceed anyway.
 
 

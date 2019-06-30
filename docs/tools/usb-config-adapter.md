@@ -2,32 +2,38 @@
 
 ![Picture USB Config Adapter](./img/lobaro-config-adapter.jpg)
 
-The USB configuration adapter can be used for:
+The Lobaro USB configuration adapter connects the configuration serial uart of our hardware to a PC. It is useful for:
 
-* Sensor initial configuration
-* Firmware log diagnostics
+* Sensor initial configuration, e.g. network parameters
+* Viewing firmware log/debug diagnostic output
 * Firmware updates
 
 using our free [Lobaro Maintenance Tool](./lobaro-tool.md) PC software.
 
-!!! note
-    The blue wire is not consistent the RTS pin and may be on some adapters inverted, e.g. beeing the GND wire. Check the 
-    orientation of the adapter with the picture above to determinate the acutal pins and do not rely on the the wire color coding.
+!!! warning "Wire orientation"
+    The blue wire is not consistent the RTS pin and may be on some adapters inverted, e.g. being the GND wire. Check the 
+    orientation of the adapter with the picture above to determinate the actual pins and do not rely on the the wire color coding.
 
-## Driver Download
-The adapter uses a CP2102 USB to UART bridge internally. The driver is available for free download and must be installed prior first use:
+!!! info "USB Driver"
 
-[CP2102 Driver Download](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers) (MacOS, Windows, Linux)
+    The **CP2102 USB driver** needs to be installed before using it.
+    
+    [**Download CP2102 Driver Download**](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers){: target="_blank"} 
 
 ## Hardware Connection (LoRaWAN Sensors)
 
-* ```Boot0``` of the Lobaro LoRa Hardware (STM32 based) is connected to ```DTR``` of the UART
-* ```Reset``` (active low) of the Lobaro LoRa Hardware (STM32 based) is connected to ```RTS``` of the UART
+The adapter uses a six-wire [JST-ZH series](http://www.jst-mfg.com/product/detail_e.php?series=287){: target="_blank"} 
+connector for attaching Lobaro hardware.
 
-Normally the handling of these uart control is done internally by the [Lobaro PC tool](lobaro-tool).
+* `Boot0` of Lobaro sensors is connected to `DTR` line of the PC uart
+* `Reset` (active low) of Lobaro sensors is connected to `RTS` line of the PC uart
 
-When using any other uart terminal make sure you control RTS and DTR of the UART correctly or cut the DTR/RTS wires 
-from the USB adapter connection if not needed.
+!!! note
+    Normally the handling of these uart control is done automatically by the [Lobaro PC tool](lobaro-tool).
+
+When using an alternative uart terminal tool (e.g. [HTERM](http://www.der-hammer.info/terminal/){: target="_blank"}) make 
+sure you setup the RTS and DTR lines correctly or simply cut the DTR/RTS wires 
+from the USB adapter if the reset and/or bootloader functions are not needed.
 
 ### Default UART Configuration
 
@@ -42,14 +48,14 @@ The default 8N1 UART configuration that is used by all Lobaro devices on the "Co
 
 ### DTR control line
 
-* ```Low / true``` => Run Firmware after Reset (Default since BOOT0 has internal pull-down)
-* ```High / false``` => Run Bootloader after Reset
+* `Low` / `true` => Run Firmware after Reset (Default since BOOT0 has internal pull-down)
+* `High` / `false` => Run Bootloader after Reset
 
 
 ### RTS control line
 
-* ```High / false``` => Run Firmware / Bootloader (Default since RESET has internal pull-up)
-* ```Low / true``` => Chip in RESET mode (not running)
+* `High` / `false` => Run Firmware / Bootloader (Default since RESET has internal pull-up)
+* `Low` / `true` => Chip in RESET mode (not running)
 
 ## Adapter Schematic
 [Picture USB Config Adapter](./img/config-adapter-schematic.png)
