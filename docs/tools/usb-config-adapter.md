@@ -13,7 +13,7 @@ using our free [Lobaro Maintenance Tool](./lobaro-tool.md) PC software.
 !!! warning "Wire orientation"
     The blue wire is not consistent the RST/RTS pin(1) and may be inverted on some adapters, e.g. being the GND wire pin(6).
     Check the orientation of the adapter with the picture above to determinate the actual pin ordering 
-    and **do not simply rely** on the the wire color coding!
+    and **do not simply rely** on the the wire color coding alone!
 
 !!! info "USB Driver"
 
