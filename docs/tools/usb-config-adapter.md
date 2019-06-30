@@ -31,12 +31,12 @@ from the USB adapter connection if not needed.
 
 ### Default UART Configuration
 
-The default UART configuration that is used by all Lobaro devices on the "Config" port.
+The default 8N1 UART configuration that is used by all Lobaro devices on the "Config" port:
 
 |         |              |
 |---------|--------------|
 |BaudRate | 115200       |
-|Parity   | EvenParity   |
+|Parity   | No Parity    |
 |StopBits | OneStopBit   |
 |DataBits | 8            |
 
