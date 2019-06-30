@@ -20,6 +20,7 @@ Run mkDocs
 For a feature description and general markdown information consult:
 
 - [Material theme features](https://squidfunk.github.io/mkdocs-material/)
+- [Styling Features](https://yakworks.github.io/mkdocs-material-components/blocks/)
 - [pymdown addons](https://squidfunk.github.io/mkdocs-material/extensions/pymdown/) 
 - [(old) Cinder theme features](https://sourcefoundry.org/cinder/specimen/) 
 - [mkdocs writing your docs](https://www.mkdocs.org/user-guide/writing-your-docs/) 
