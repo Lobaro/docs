@@ -2,11 +2,16 @@
 
 ![Screenshot Lobaro-Tool](./img/Lobaro_Tool_ConfigFeature.png)
 
+!!! info "Downloads"
+    [**Lobaro Maintenance Tool Download**](https://files.lobaro.com/index.php/s/jJULuRooWzLnYO9?path=%2Fv1.4.x){: target="_blank"}
+    
+    [**CP2102 Driver Download**](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers){: target="_blank"}  
+
 Supports the PC based configuration of all Lobaro IoT sensors. 
 
 It is intend to be used in conjunction with our [**USB configuration adapter**](./usb-config-adapter.md). 
 
-## Purpose
+## Features
 
 * Change static sensor configuration
 * Perform firmware updates for your Lobaro devices
@@ -27,18 +32,14 @@ It is intend to be used in conjunction with our [**USB configuration adapter**](
        
 !!! warning "USB Driver"
 
-    The **CP2102 USB driver** needs to be installed before using the Lobaro-tool.
+    The CP2102 USB driver **MUST** to be installed before using the Lobaro-tool.
     
-    [**Download CP2102 Driver Download**](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers){: target="_blank"}       
+    [**CP2102 Driver Download**](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers){: target="_blank"}       
     
 ## Download & Installation
 
-[**Download Lobaro Tool**](https://files.lobaro.com/index.php/s/jJULuRooWzLnYO9?path=%2Fv1.4.x){: target="_blank"}
-
-Latest stable version is v1.4.x
-
-### MacOSX / Linux 
-After downloading the "lobaro-tool" file, e.g. to a directory "lobaro" in your home path. Then set this file to executable:
+### macOS / Linux 
+After downloading the "lobaro-tool" file, e.g. to a directory "lobaro" in your home path. Then make the tool file executable:
 ```Bash
 cd ~/lobaro
 chmod +x lobaro-tool
@@ -48,8 +49,8 @@ After downloading simply start the "lobaro-tool.exe" with double click.
 
 Alternativly download the windows installer and start this.
 
-!!! danger
-    Windows might show up a security warning and ask you to proceed anyway.
+!!! note
+    Windows might show up a security warning and ask you to proceed anyway. This is behavior is normal.
 
 
 
