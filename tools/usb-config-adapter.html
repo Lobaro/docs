@@ -718,13 +718,6 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#driver-download" title="Driver Download" class="md-nav__link">
-    Driver Download
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#hardware-connection-lorawan-sensors" title="Hardware Connection (LoRaWAN Sensors)" class="md-nav__link">
     Hardware Connection (LoRaWAN Sensors)
   </a>
@@ -886,13 +879,6 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#driver-download" title="Driver Download" class="md-nav__link">
-    Driver Download
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#hardware-connection-lorawan-sensors" title="Hardware Connection (LoRaWAN Sensors)" class="md-nav__link">
     Hardware Connection (LoRaWAN Sensors)
   </a>
@@ -954,29 +940,37 @@
                 
                 <h1 id="lobaro-usb-configuration-adapter">Lobaro USB configuration adapter</h1>
 <p><img alt="Picture USB Config Adapter" src="img/lobaro-config-adapter.jpg" /></p>
-<p>The USB configuration adapter can be used for:</p>
+<p>The Lobaro USB configuration adapter connects the configuration serial uart of our hardware to a PC. It is useful for:</p>
 <ul>
-<li>Sensor initial configuration</li>
-<li>Firmware log diagnostics</li>
+<li>Sensor initial configuration, e.g. network parameters</li>
+<li>Viewing firmware log/debug diagnostic output</li>
 <li>Firmware updates</li>
 </ul>
 <p>using our free <a href="lobaro-tool.html">Lobaro Maintenance Tool</a> PC software.</p>
+<div class="admonition warning">
+<p class="admonition-title">Wire orientation</p>
+<p>The blue wire is not consistent the RTS pin and may be on some adapters inverted, e.g. being the GND wire. Check the 
+orientation of the adapter with the picture above to determinate the actual pins and do not rely on the the wire color coding.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">USB Driver</p>
+<p>The <strong>CP2102 USB driver</strong> needs to be installed before using it.</p>
+<p><a href="https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers" target="_blank"><strong>Download CP2102 Driver Download</strong></a> </p>
+</div>
+<h2 id="hardware-connection-lorawan-sensors">Hardware Connection (LoRaWAN Sensors)</h2>
+<p>The adapter uses a six-wire <a href="http://www.jst-mfg.com/product/detail_e.php?series=287" target="_blank">JST-ZH series</a> 
+connector for attaching Lobaro hardware.</p>
+<ul>
+<li><code>Boot0</code> of Lobaro sensors is connected to <code>DTR</code> line of the PC uart</li>
+<li><code>Reset</code> (active low) of Lobaro sensors is connected to <code>RTS</code> line of the PC uart</li>
+</ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The blue wire is not consistent the RTS pin and may be on some adapters inverted, e.g. beeing the GND wire. Check the 
-orientation of the adapter with the picture above to determinate the acutal pins and do not rely on the the wire color coding.</p>
+<p>Normally the handling of these uart control is done automatically by the <a href="lobaro-tool">Lobaro PC tool</a>.</p>
 </div>
-<h2 id="driver-download">Driver Download</h2>
-<p>The adapter uses a CP2102 USB to UART bridge internally. The driver is available for free download and must be installed prior first use:</p>
-<p><a href="https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers">CP2102 Driver Download</a> (MacOS, Windows, Linux)</p>
-<h2 id="hardware-connection-lorawan-sensors">Hardware Connection (LoRaWAN Sensors)</h2>
-<ul>
-<li><code class="codehilite"><span class="n">Boot0</span></code> of the Lobaro LoRa Hardware (STM32 based) is connected to <code class="codehilite"><span class="n">DTR</span></code> of the UART</li>
-<li><code class="codehilite"><span class="k">Reset</span></code> (active low) of the Lobaro LoRa Hardware (STM32 based) is connected to <code class="codehilite"><span class="n">RTS</span></code> of the UART</li>
-</ul>
-<p>Normally the handling of these uart control is done internally by the <a href="lobaro-tool">Lobaro PC tool</a>.</p>
-<p>When using any other uart terminal make sure you control RTS and DTR of the UART correctly or cut the DTR/RTS wires 
-from the USB adapter connection if not needed.</p>
+<p>When using an alternative uart terminal tool (e.g. <a href="http://www.der-hammer.info/terminal/" target="_blank">HTERM</a>) make 
+sure you setup the RTS and DTR lines correctly or simply cut the DTR/RTS wires 
+from the USB adapter if the reset and/or bootloader functions are not needed.</p>
 <h3 id="default-uart-configuration">Default UART Configuration</h3>
 <p>The default 8N1 UART configuration that is used by all Lobaro devices on the "Config" port:</p>
 <table>
@@ -1007,13 +1001,13 @@ from the USB adapter connection if not needed.</p>
 </table>
 <h3 id="dtr-control-line">DTR control line</h3>
 <ul>
-<li><code class="codehilite"><span class="n">Low</span> <span class="o">/</span> <span class="k">true</span></code> =&gt; Run Firmware after Reset (Default since BOOT0 has internal pull-down)</li>
-<li><code class="codehilite"><span class="n">High</span> <span class="o">/</span> <span class="k">false</span></code> =&gt; Run Bootloader after Reset</li>
+<li><code>Low</code> / <code>true</code> =&gt; Run Firmware after Reset (Default since BOOT0 has internal pull-down)</li>
+<li><code>High</code> / <code>false</code> =&gt; Run Bootloader after Reset</li>
 </ul>
 <h3 id="rts-control-line">RTS control line</h3>
 <ul>
-<li><code class="codehilite"><span class="n">High</span> <span class="o">/</span> <span class="k">false</span></code> =&gt; Run Firmware / Bootloader (Default since RESET has internal pull-up)</li>
-<li><code class="codehilite"><span class="n">Low</span> <span class="o">/</span> <span class="k">true</span></code> =&gt; Chip in RESET mode (not running)</li>
+<li><code>High</code> / <code>false</code> =&gt; Run Firmware / Bootloader (Default since RESET has internal pull-up)</li>
+<li><code>Low</code> / <code>true</code> =&gt; Chip in RESET mode (not running)</li>
 </ul>
 <h2 id="adapter-schematic">Adapter Schematic</h2>
 <p><a href="img/config-adapter-schematic.png">Picture USB Config Adapter</a></p>

@@ -1010,7 +1010,7 @@
                 
                 <h1 id="cron-expressions">Cron Expressions</h1>
 <p>We use CRON expressions setup the timing of our hardware during device configuration using the <a href="/tools/lobaro-tool/">Lobaro Maintenance Tool</a> or remotely over the air.</p>
-<p>The CRON expressions consists of 6 fields, separated by space: e.g. <code class="codehilite"><span class="mi">0</span> <span class="mi">0</span><span class="o">/</span><span class="mi">15</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span></code> , which describes time points every 15 minutes starting from minute 0.</p>
+<p>The CRON expressions consists of 6 fields, separated by space: e.g. <code>0 0/15 * * * *</code> , which describes time points every 15 minutes starting from minute 0.</p>
 <div class="alert alert-primary" role="alert">
   CRON expression allow you define specific POINTS in time they are NOT helpful to define time durations. They can 
   be seen has the start time to trigger an action, for example initiating the sensor measurement or wireless sendout.
@@ -1018,7 +1018,7 @@
 </div>
 
 <h2 id="meaning-of-the-six-fields">Meaning of the six fields:</h2>
-<p><code class="codehilite"><span class="mi">0</span> <span class="mi">0</span><span class="o">/</span><span class="mi">15</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span></code> </p>
+<p><code>0 0/15 * * * *</code> </p>
 <table>
 <thead>
 <tr>
@@ -1034,12 +1034,12 @@
 <tbody>
 <tr>
 <td>Range</td>
-<td><code class="codehilite"><span class="p">(</span><span class="mi">0</span><span class="o">-</span><span class="mi">59</span><span class="p">)</span></code></td>
-<td><code class="codehilite"><span class="p">(</span><span class="mi">0</span><span class="o">-</span><span class="mi">59</span><span class="p">)</span></code></td>
-<td><code class="codehilite"><span class="p">(</span><span class="mi">0</span><span class="o">-</span><span class="mi">23</span><span class="p">)</span></code></td>
-<td><code class="codehilite"><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">31</span><span class="p">)</span></code></td>
-<td><code class="codehilite"><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">12</span><span class="p">)</span></code></td>
-<td><code class="codehilite"><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">7</span><span class="p">)</span></code></td>
+<td><code>(0-59)</code></td>
+<td><code>(0-59)</code></td>
+<td><code>(0-23)</code></td>
+<td><code>(1-31)</code></td>
+<td><code>(1-12)</code></td>
+<td><code>(1-7)</code></td>
 </tr>
 <tr>
 <td>Alternative</td>
@@ -1047,17 +1047,17 @@
 <td></td>
 <td></td>
 <td></td>
-<td><code class="codehilite"><span class="n">JAN</span><span class="o">-</span><span class="nb">DEC</span></code></td>
-<td><code class="codehilite"><span class="n">SUN</span><span class="o">-</span><span class="n">SAT</span></code></td>
+<td><code>JAN-DEC</code></td>
+<td><code>SUN-SAT</code></td>
 </tr>
 <tr>
 <td>Allowed special chars</td>
-<td><code class="codehilite"><span class="p">,</span> <span class="o">-</span> <span class="o">*</span> <span class="o">/</span></code></td>
-<td><code class="codehilite"><span class="p">,</span> <span class="o">-</span> <span class="o">*</span> <span class="o">/</span></code></td>
-<td><code class="codehilite"><span class="p">,</span> <span class="o">-</span> <span class="o">*</span> <span class="o">/</span></code></td>
-<td><code class="codehilite"><span class="p">,</span> <span class="o">-</span> <span class="o">*</span> <span class="o">/</span> <span class="o">?</span></code></td>
-<td><code class="codehilite"><span class="p">,</span> <span class="o">-</span> <span class="o">*</span> <span class="o">/</span></code></td>
-<td><code class="codehilite"><span class="p">,</span> <span class="o">-</span> <span class="o">*</span> <span class="o">/</span></code></td>
+<td><code>, - * /</code></td>
+<td><code>, - * /</code></td>
+<td><code>, - * /</code></td>
+<td><code>, - * / ?</code></td>
+<td><code>, - * /</code></td>
+<td><code>, - * /</code></td>
 </tr>
 </tbody>
 </table>
@@ -1067,32 +1067,32 @@
 <tr>
 <th>Cron definition</th>
 <th>Description</th>
-<th>Trigger time point(s) (hh<img alt="🇲🇲" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/1f1f2-1f1f2.svg" title=":mm:" />ss)</th>
+<th>Trigger time point(s) (hh:mm:ss)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code class="codehilite"><span class="mi">0</span> <span class="mi">5</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span></code></td>
+<td><code>0 5 * * * *</code></td>
 <td>Hourly at minute 5, second 0</td>
 <td>00:05:00, 01:05:00, 02:05:00...</td>
 </tr>
 <tr>
-<td><code class="codehilite"><span class="mi">0</span> <span class="mi">1</span><span class="o">/</span><span class="mi">10</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span></code></td>
+<td><code>0 1/10 * * * *</code></td>
 <td>Every 10 minutes starting from minute 1, second 0</td>
 <td>00:01:00, 00:11:00, 00:21:00, [...], 01:01:00, [...]</td>
 </tr>
 <tr>
-<td><code class="codehilite"><span class="mi">0</span> <span class="mi">0</span> <span class="mi">6</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span></code></td>
+<td><code>0 0 6 * * *</code></td>
 <td>Daily on hour 6, minute 0, second 0</td>
 <td>06:00:00</td>
 </tr>
 <tr>
-<td><code class="codehilite"><span class="mi">0</span> <span class="mi">0</span> <span class="mi">13</span> <span class="mi">1</span><span class="p">,</span><span class="mi">15</span> <span class="o">*</span> <span class="o">*</span></code></td>
+<td><code>0 0 13 1,15 * *</code></td>
 <td>Hour 13, minute 0, second 0 on day 1 and 15</td>
 <td>13:00:00 at 1<sup>st</sup> and 15<sup>th</sup> of month</td>
 </tr>
 <tr>
-<td><code class="codehilite"><span class="mi">0</span> <span class="mi">15</span> <span class="mi">9</span> <span class="mi">1</span><span class="o">-</span><span class="mi">5</span> <span class="o">*</span> <span class="o">*</span></code></td>
+<td><code>0 15 9 1-5 * *</code></td>
 <td>Hour 9, minute 15, second 0 on day 1 to 5</td>
 <td>09:15:00 at 1<sup>st</sup> to 5<sup>th</sup> of month</td>
 </tr>
@@ -1108,15 +1108,15 @@ If needed by your target application Lobaro can deliver on request special firmw
 acquisition intervals based on a real time clock (RTC) which stays in sync with the real time on your wrist. </p>
 </div>
 <h2 id="special-characters">Special Characters:</h2>
-<h3 id="star-asterisk">star, asterisk (<code class="codehilite"><span class="o">*</span></code>)</h3>
+<h3 id="star-asterisk">star, asterisk (<code>*</code>)</h3>
 <p>Used to select all values within a field. For example, "*" in the minute field means "every minute".</p>
-<h3 id="question-mark">question mark (<code class="codehilite"><span class="o">?</span></code>)</h3>
+<h3 id="question-mark">question mark (<code>?</code>)</h3>
 <p>Useful when you need to specify something in one of the two fields in which the character is allowed, but not the other. For example, if I want my trigger to fire on a particular day of the month (say, the 10<sup>th</sup>), but don’t care what day of the week that happens to be, I would put “10” in the day-of-month field, and “?” in the day-of-week field. See the examples below for clarification.</p>
-<h3 id="dash-minus-">dash, minus (<code class="codehilite"><span class="o">-</span></code>)</h3>
+<h3 id="dash-minus-">dash, minus (<code>-</code>)</h3>
 <p>Used to specify ranges. For example, “10-12” in the hour field means “the hours 10, 11 and 12”.</p>
-<h3 id="comma">comma (<code class="codehilite"><span class="p">,</span></code>)</h3>
+<h3 id="comma">comma (<code>,</code>)</h3>
 <p>Used to specify additional values. For example, “MON,WED,FRI” in the day-of-week field means “the days Monday, Wednesday, and Friday”.</p>
-<h3 id="slash">slash (<code class="codehilite"><span class="o">/</span></code>)</h3>
+<h3 id="slash">slash (<code>/</code>)</h3>
 <p>Used to specify increments. For example, “0/15” in the seconds field means “the seconds 0, 15, 30, and 45”. And “5/15” in the seconds field means “the seconds 5, 20, 35, and 50”. You can also specify ‘/’ after the ‘’ character - in this case ‘’ is equivalent to having ‘0’ before the ‘/’. ‘&#8531;’ in the day-of-month field means “fire every 3 days starting on the first day of the month”.</p>
 <h2 id="online-cron-generators-and-tester">Online CRON Generators and Tester:</h2>
 <ul>
