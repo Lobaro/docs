@@ -11,8 +11,9 @@ The Lobaro USB configuration adapter connects the configuration serial uart of o
 using our free [Lobaro Maintenance Tool](./lobaro-tool.md) PC software.
 
 !!! warning "Wire orientation"
-    The blue wire is not consistent the RTS pin and may be on some adapters inverted, e.g. being the GND wire. Check the 
-    orientation of the adapter with the picture above to determinate the actual pins and do not rely on the the wire color coding.
+    The blue wire is not consistent the RTS pin(1) and may be inverted on some adapters, e.g. being the GND wire pin(6).
+    Check the orientation of the adapter with the picture above to determinate the actual pin ordering 
+    and **do not simply rely** on the the wire color coding!
 
 !!! info "USB Driver"
 
