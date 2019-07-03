@@ -59,6 +59,7 @@ nav:
       - Modbus Bridge:
           - Manual: lorawan-sensors/modbus-lorawan/index.md
           - Firmware & Changelog: lorawan-sensors/modbus-lorawan/firmware.md
+          - Versions: lorawan-sensors/modbus-lorawan/versions.md
       - EDL21 Bridge:
           - Manual: lorawan-sensors/edl21-opto-lorawan/index.md
           - Firmware & Changelog: lorawan-sensors/edl21-opto-lorawan/firmware.md

@@ -12,6 +12,41 @@ They provide a very good documentation about the overall architecture and featur
 [LoRaWAN Documentation (by TTN)](https://www.thethingsnetwork.org/docs/){: target="_blank"}
 
 
+## Timestamps
+
+Many of our devices include timestamps somewhere in their payloads. The encoding of 
+timestamps in our payload is the same in all our LoRaWAN devices except some of our oldest. 
+There are some details you should be aware of.
+
+1. Format: Points in time are represented as [UNIX-timestamps](https://en.wikipedia.org/wiki/Unix_time)
+   within our products. That is a integer value indicating the number of seconds that have passed 
+   since 0:00h on January 1 1970 in UTC.
+2. Encoding: We encode the UNIX-timestamp in a signed 40 bit big endian integer (`int40`, 5 bytes long).
+   The 40 bit integer is unconventional but used with good reasoning. UNIX-timestamps have traditionally 
+   been stored as signed 32 bit integers (`int32`). This poses the problem that points in time 
+   [later than January 2038 cannot be expressed](https://en.wikipedia.org/wiki/Year_2038_problem).
+   A simple solution to this is switching to store timestamps in singed 64 bit integers. This is 
+   a suitable solution for modern computers and our devices do that internally for calculations. 
+   The problem is that 64 bit integers take 8 bytes of space, and with LoRaWAN every byte is 
+   precious. 3 of those 8 bytes will be zeros for thousands of years to come, so we chose to 
+   increase the size of our timestamps by only a single byte to 40 bit. This lets us store 
+   timestamps up unto the year 19391, which we dare to say is enough. <br>
+   Storing numerical values with a number of bits that is not a power of 2 might be unusual, but there 
+   is nothing wrong with it. If you have problems decoding 40 bit values you can find an example 
+   implementation in JavaScript below in our example TTN parser.
+3. Device's internal clock: The timestamp uploaded by the devices is always referring to the 
+   device's internal clock. That clock is not always in sync with actual time. In fact when you 
+   power up the device it has no way to know what time it is. It sets the internal clock to 
+   2010-01-01T00:00:00. For many applications this is not a problem! If you set the device's 
+   cron to execute at 0h, 6h, 12h, and 18h it will activate every 6 hours at the same times 
+   every day. But when exactly the device is activated depends on the the time it was first 
+   powered on. <br>
+   If you require your device to run in sync with actual time you can set its clock 
+   using the configuration adapter and the Lobaro Tool. LoRaWAN 1.1 also introduced time 
+   synchronization over the air which is supported by some of our devices. You will need 
+   to use a LoRaWAN Network Server that also supports this feature.
+
+
 ## Parser
 
 LoRaWAN Application Servers need to decode sensor payloads. This is done with custom parser code.
@@ -50,6 +85,11 @@ function int24_BE(bytes, idx) {
 function int32_BE(bytes, idx) {
     bytes = bytes.slice(idx || 0);
     return signed(bytes[0] << 24 | bytes[1] << 16 | bytes[2] << 8 | bytes[3] << 0, 32);
+}
+
+function int40_BE(bytes, idx) {
+    bytes = bytes.slice(idx || 0);
+    return signed(bytes[0] << 32 | bytes[1] << 24 | bytes[2] << 16 | bytes[3] << 8 | bytes[4] << 0, 40);
 }
 
 function int16_LE(bytes, idx) {
