@@ -389,6 +389,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#040" title="[0.4.0]" class="md-nav__link">
+    [0.4.0]
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#031-2019-05-24" title="[0.3.1] &ndash; 2019-05-24" class="md-nav__link">
     [0.3.1] &ndash; 2019-05-24
   </a>
@@ -398,6 +405,13 @@
           <li class="md-nav__item">
   <a href="#030-2019-05-15" title="[0.3.0] &ndash; 2019-05-15" class="md-nav__link">
     [0.3.0] &ndash; 2019-05-15
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#010-2018-08-13" title="[0.1.0] &ndash; 2018-08-13" class="md-nav__link">
+    [0.1.0] &ndash; 2018-08-13
   </a>
   
 </li>
@@ -415,6 +429,18 @@
   
 </nav>
     
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="versions.html" title="Versions" class="md-nav__link">
+      Versions
+    </a>
   </li>
 
         
@@ -903,6 +929,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#040" title="[0.4.0]" class="md-nav__link">
+    [0.4.0]
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#031-2019-05-24" title="[0.3.1] &ndash; 2019-05-24" class="md-nav__link">
     [0.3.1] &ndash; 2019-05-24
   </a>
@@ -912,6 +945,13 @@
           <li class="md-nav__item">
   <a href="#030-2019-05-15" title="[0.3.0] &ndash; 2019-05-15" class="md-nav__link">
     [0.3.0] &ndash; 2019-05-15
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#010-2018-08-13" title="[0.1.0] &ndash; 2018-08-13" class="md-nav__link">
+    [0.1.0] &ndash; 2018-08-13
   </a>
   
 </li>
@@ -950,7 +990,25 @@
 <h3 id="unreleased">[Unreleased]</h3>
 <p><strong>Added</strong></p>
 <ul>
+<li>Remote configuration via LoRaWAN.</li>
+<li>Clock synchronisation via LoRaWAN.</li>
+</ul>
+<p><strong>Changed</strong></p>
+<ul>
+<li>Random delay before Uplink (to prevent persistent collisions when using multiple devices).</li>
+</ul>
+<h3 id="040">[0.4.0]</h3>
+<p><strong>Added</strong></p>
+<ul>
 <li>Writing values to holding registers and coils.</li>
+<li>Execution of arbitrary Modbus commands triggered by LoRaWAN Downlink messages.</li>
+<li>Support for LoRaWAN Operation Mode Class C (for short reaction time to Downlinks).</li>
+<li>Automated register writing and broadcasts possible through new configuration.</li>
+</ul>
+<p><strong>Changed</strong></p>
+<ul>
+<li>Automated reading (triggered by cron) is now configured by entering actual Modbus commands (more flexibility and usage of already existing Modbus syntax &ndash; <em>this breaks old configurations</em>).</li>
+<li>Upload format changed to sending raw response to Modbus commands (<em>this breaks existing integrations</em>).</li>
 </ul>
 <p><strong>Fixed</strong></p>
 <ul>
@@ -968,7 +1026,15 @@
 <ul>
 <li>Initial release of Firmware for new Hardware revision (with RS485-addon).</li>
 <li>Update Modbus to support all 4 types of registers.</li>
+</ul>
+<p><strong>Changed</strong></p>
+<ul>
 <li>Parity bit must not be substracted from Data bits anymore. <code>8E1</code> can now be confiured with <code>8 Data bits, EVEN parity, 1 Stop bit</code>.</li>
+</ul>
+<h3 id="010-2018-08-13">[0.1.0] &ndash; 2018-08-13</h3>
+<p><strong>Added</strong></p>
+<ul>
+<li>Original hardware release (with RS-485 on holding PCB).</li>
 </ul>
                 
                   
@@ -1005,13 +1071,13 @@
           </a>
         
         
-          <a href="../edl21-opto-lorawan/index.html" title="Manual" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="versions.html" title="Versions" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Manual
+                Versions
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
