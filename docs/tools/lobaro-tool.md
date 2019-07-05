@@ -43,6 +43,7 @@ After downloading the "lobaro-tool" file, e.g. to a directory "lobaro" in your h
 ```Bash
 cd ~/lobaro
 chmod +x lobaro-tool
+./lobaro-tool
 ```
 ### Windows
 After downloading simply start the "lobaro-tool.exe" with double click. 
