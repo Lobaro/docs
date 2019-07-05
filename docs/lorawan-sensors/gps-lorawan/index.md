@@ -1,9 +1,31 @@
 # GPS LoRaWAN Tracker
 
-![Product Image](files/GPS_LoRaWAN_Tracker_Opencase_frei.jpg){: style="height:350px;border:1px black solid;"}
+
+![Product Image](files/gpslorawan.png){: style="height:400px;border:1px black solid;"}
 
 ## Target Measurement / Purpose
-GPS position tracking via LoRaWAN.
+
+The LoRaWAN GPS Tracker (GPS-LoRaWAN) is a battery powered tracking device, that
+uses the satellite based positioning service GPS to determine its location and transmits the
+obtained coordinates via LoRaWAN radio technology. Intervals between measurements can
+be freely congured, in order to adjust the device to individual needs.
+An integrated motion sensor detects changes in the device's movement (if it is picked up or
+transported in a vehicle). This allows the device to switch between an `Active Mode` in which
+frequent updates are uploaded during phases of movement and an `Alive Mode` that saves
+battery power by sending only few updates. While not sending updates, the device enters a
+sleep mode that only uses ∼30 µA.
+Figure 1 shows the GPS Tracker with opened casing. The most important components are
+indicated and explained.
+Please read the manual carefully before operating the device. A safe operation of the
+device is only possible if you follow the guides provided in this manual. Using the device
+dierently than intended by Lobaro my cause damage to people, the environment, or
+the device.
+
+![Modbus LoRaWAN Bridge](files/lorawan.png){: style="width:50%; vertical-align: top;"}
+
+## The Device
+
+![Modbus LoRaWAN Bridge](files/device.png){: style="width:60%; vertical-align: top;"}
 
 !!! info "Consider using the latest firmware on your hardware"
     * [**See available firmware downloads**](firmware.md){: target="_blank"}
