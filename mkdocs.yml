@@ -52,6 +52,7 @@ extra_javascript:
   - "js/mermaid.min.js"
 nav:
   - Home: index.md
+  - Hardware Variations: hardware.md
   - LoRaWAN Sensors:
       - wMBUS Bridge:
           - Manual: lorawan-sensors/wmbus-lorawan/index.md
