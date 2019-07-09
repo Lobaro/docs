@@ -55,7 +55,7 @@ We offer to deliver our hardware in the following housings:
 !!! note "Only for LoRaWAN products"
     Only our LoRaWAN hardware supports AA-Batteries inside the Lobaro Box Housing.
 
-We recommend to use [Energyzer Ultimate Lithium](https://www.energizer.eu/de/product/energizer-ultimate-lithium-aa/) for our products.
+We recommend to use [Energizer Ultimate Lithium](https://www.energizer.eu/de/product/energizer-ultimate-lithium-aa/) for our products.
 
 * Size: AA-Cell
 * Voltage: 1.5V
