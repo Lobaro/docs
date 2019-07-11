@@ -30,6 +30,81 @@ the device.
 !!! info "Consider using the latest firmware on your hardware"
     * [**See available firmware downloads**](firmware.md){: target="_blank"}
 
+
+## Work Cycle
+
+```mermaid
+graph LR;
+    GPS(GPS Collection)
+    Data(Data Transfer)
+    Active(Active Sleep)
+    Alive(Alive Sleep)
+    init(Initial)==>check(LoRaWAN Join);
+    check(LoRaWAN Join)==>GPS(GPS Collect.);
+    Data==>|recent movement|Active(Active Sleep);
+    GPS==>Data(Data Transfer);
+    Active==>|short time cron expression|GPS(GPS Collection);
+    Data(Data Transfer)==>|no recent movement|Alive(Alive Sleep);
+    Alive==>|Movement or long ttime cron expression|GPS(GPS Collection);
+```
+The GPS Tracker has a work cycle that adapts to detected motion of the device.
+
+## Intial Phase
+
+This is the phase that is executed after the device is started of restarted. The LED flashes
+once and the configuration is evaluated. If successful, the LoRaWAN Join phase is executed
+next.
+
+## LoRaWAN Join Phase
+
+If the Device is configured to use over the air activation (OTAA), the OTAA Join is performed
+at this point. The device will repeatedly try to join its LoRaWAN network until the process
+is successful. It then enters the Data Collection Phase.
+If the Device is configured to use ABP instead of OTAA, this phase is left immediately and
+the Data Collection Phase is entered.
+
+## GPS Collection Phase
+
+During the GPS Collection Phase the device will try to determine its coordinates (latitude,
+longitude, and height) using GPS. You can identify this phase by the onboard LED flashing
+on and off in one second intervals.
+Once the position has been determined successfully (or the attempt timed out and failed,
+because of bad GPS reception), the device enters the Data Transfer Phase.
+
+## Data Transfer Phase
+
+During the Data Transfer Phase the Tracker uploads the GPS coordinates to the LoRaWAN
+network. The message contains the information if the measurement was successful. Some
+status information about the device are included as well.
+For a detailed description of the data sent refer to chapter 5.
+After data transfer, the GPS Tracker enters a sleep state to save power. Depending on
+how much time passed since the last physical movement of the device (determined by the
+internal motion sensor), the Tracker enters diferent sleep phases. If the time since the last
+detected motion is less than a timeout value (configurable, standard value is 65 minutes),
+the device remains in `Active mode` enters only a short sleep phase (`Active Sleep`). If no
+motion was detected for a time longer than the timeout, the device enters the `Alive Sleep`
+Phase, which typically has a much longer sleeping time, but in which the device will also be
+activated through movement.
+
+## Active Sleep Phase
+
+Even in Active Mode, the device spends most of its time in a deep sleep state to conserve
+energy. The frequency with which the Tracker wakes up in Active Mode can be configured
+using a Cron expression (see chapter 4.4). Typical values for active sleep time are 5 or 15
+minutes.
+When in Active Sleep Phase, the device will not be triggered to gather more GPS positions
+through motion, but movement of the device will still be registered to keep the Tracker in
+Active Mode.
+
+## Alive Sleep Phase
+When no movement has been detected for a long amount of time (configurable), the device
+stops sending updates, since there is not much point in sending frequent position information
+when the device does not change its position. In Alive Mode, only very few updates are sent
+to keep the network informed about the device's health. Typically one message is sent per
+day in this mode (frequency can be configured with a cron expression, see chapter 4.4).
+When physical movement is detected by the internal motion sensor during this phase, the
+GPS Tracker immediately wakes up and switches to Active Mode.
+
 ## PDF Documentation
 
 * [User Manual (en)](files/lorawan-gps-tracker_en.pdf)
