@@ -6,10 +6,13 @@
 
 * [app-lorawan-gps-button-5.0.5.hex](firmware/app-lorawan-gps-button-5.0.5.hex)
 * [app-lorawan-gps-button-4.0.9.hex](firmware/app-lorawan-gps-button-4.0.9.hex)
+* [app-lorawan-gps-button-6.0.0.hex](firmware/app-lorawan-gps-button-6.0.0.hex)
 
 ## Changelog
 
-
+### v6.0.0 - 11.07.2019
+- inverted powerpin for telit module
+- added nmea prefix GN ( Glonass+GPS ) to the parser
 
 ### v5.0.5 - 09.01.2019
 - Update LoRaWAN Stack
