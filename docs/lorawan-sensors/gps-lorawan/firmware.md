@@ -1,4 +1,4 @@
-# Name of Sensor
+# LoRaWAN GPS Tracker
 
 ## Firmware
 
