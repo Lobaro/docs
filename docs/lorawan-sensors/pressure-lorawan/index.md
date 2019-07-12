@@ -9,7 +9,7 @@ Precise liquid level measurement, e.g. for tanks, via LoRaWAN.
 
 * Cable length 1-15m
 * 0..1 Bar (10m water level)
-* Waterproof IP67 Housing
+* Waterproof IP66 Housing
 * Multi-year Battery life, ultra low power (< 10µA)
 
 ## Payload Format
