@@ -11,8 +11,14 @@ They provide a very good documentation about the overall architecture and featur
 
 [LoRaWAN Documentation (by TTN)](https://www.thethingsnetwork.org/docs/){: target="_blank"}
 
+## LoRa
 
-## Timestamps
+LoRa is the modulation used in LoRaWAN. It's patented by Semtech.
+
+To calculate LoRa specific parameters like transmit time you can use 
+the [SX1272 LoRa Calculator](files/SX1272LoRaCalculatorSetup.exe) from Semtech.
+
+## Timestamp
 
 Many of our devices include timestamps somewhere in their payloads. The encoding of 
 timestamps in our payload is the same in all our LoRaWAN devices except some of our oldest. 
