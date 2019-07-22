@@ -60,6 +60,7 @@ function Decoder(bytes, port) {
     var decoded = {
         pressure: decodeFloat32(int32_LE(bytes, 0)),
         temp: decodeInt16(int16_LE(bytes,4)) / 100,
+        v_batt: decodeInt16(int16_LE(bytes,6)) / 1000,
     };
 
     // if (port === 1) decoded.led = bytes[0];
