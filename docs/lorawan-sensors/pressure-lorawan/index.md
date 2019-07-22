@@ -14,6 +14,14 @@ Precise liquid level measurement, e.g. for tanks, via LoRaWAN.
 
 ## Payload Format
 
+Port: 1
+Payload: 6 Bytes
+
+| PRESSURE | PRESSURE | PRESSURE | PRESSURE | TEMP | TEMP | V_BATT | V_BATT |
+|------|------|------|------|-----|------|------|------|
+|flaot32|float32|float32|float32|int16|int16|int16|int16|
+|Byte 0|Byte 1|Byte 2|Byte 3|LSB|MSB|LSB|MSB|    
+
 ![Payload Format](files/payload-format.png)
 
 ### Parser: The Things Network
