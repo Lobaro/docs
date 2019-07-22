@@ -991,6 +991,7 @@
     <span class="kd">var</span> <span class="nx">decoded</span> <span class="o">=</span> <span class="p">{</span>
         <span class="nx">pressure</span><span class="o">:</span> <span class="nx">decodeFloat32</span><span class="p">(</span><span class="nx">int32_LE</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span>
         <span class="nx">temp</span><span class="o">:</span> <span class="nx">decodeInt16</span><span class="p">(</span><span class="nx">int16_LE</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span> <span class="o">/</span> <span class="mi">100</span><span class="p">,</span>
+        <span class="nx">v_batt</span><span class="o">:</span> <span class="nx">decodeInt16</span><span class="p">(</span><span class="nx">int16_LE</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">,</span>
     <span class="p">};</span>
 
     <span class="c1">// if (port === 1) decoded.led = bytes[0];</span>
