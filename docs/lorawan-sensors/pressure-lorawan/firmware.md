@@ -4,8 +4,8 @@
 
 **Downloads**:
 
-* [app-keller-pressure-0.0.3.hex](firmware/app-keller-pressure-0.0.3.hex)
 * [app-keller-pressure-0.2.0.hex](firmware/app-keller-pressure-0.2.0.hex)
+* [app-keller-pressure-0.0.3.hex](firmware/app-keller-pressure-0.0.3.hex)
 
 ## Changelog
 
