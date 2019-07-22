@@ -948,6 +948,44 @@
 <li>Multi-year Battery life, ultra low power (&lt; 10µA)</li>
 </ul>
 <h2 id="payload-format">Payload Format</h2>
+<p>Port: 1
+Payload: 6 Bytes</p>
+<table>
+<thead>
+<tr>
+<th>PRESSURE</th>
+<th>PRESSURE</th>
+<th>PRESSURE</th>
+<th>PRESSURE</th>
+<th>TEMP</th>
+<th>TEMP</th>
+<th>V_BATT</th>
+<th>V_BATT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>flaot32</td>
+<td>float32</td>
+<td>float32</td>
+<td>float32</td>
+<td>int16</td>
+<td>int16</td>
+<td>int16</td>
+<td>int16</td>
+</tr>
+<tr>
+<td>Byte 0</td>
+<td>Byte 1</td>
+<td>Byte 2</td>
+<td>Byte 3</td>
+<td>LSB</td>
+<td>MSB</td>
+<td>LSB</td>
+<td>MSB</td>
+</tr>
+</tbody>
+</table>
 <p><img alt="Payload Format" src="files/payload-format.png" /></p>
 <h3 id="parser-the-things-network">Parser: The Things Network</h3>
 <div class="codehilite"><pre><span></span><span class="kd">function</span> <span class="nx">decodeFloat32</span><span class="p">(</span><span class="nx">bytes</span><span class="p">)</span> <span class="p">{</span>
