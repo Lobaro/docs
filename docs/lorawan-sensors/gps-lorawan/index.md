@@ -14,7 +14,7 @@ GPS position tracking via LoRaWAN.
 
 ### The Things Network
 
-For Version 4.x,5.x and 6.x
+For Version 4.x, 5.x and 6.x
 
 ```javascript
 function signed(val, bits) {
