@@ -8,6 +8,10 @@
 
 ## Changelog
 
+### v0.3.0 (24.07.2019)
+--------------------
+* Temp sensors will be printed and sent sorted by ID
+
 ### v0.2.0 (15.02.2019)
 * Add parameter "SendSensorId" to allow skipping sensor IDs in payload
 
