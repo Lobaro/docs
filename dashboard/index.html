@@ -704,6 +704,26 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#rest-api" title="REST API" class="md-nav__link">
+    REST API
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#filter-query-parameters" title="Filter query parameters" class="md-nav__link">
+    Filter query parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#parser" title="Parser" class="md-nav__link">
     Parser
   </a>
@@ -894,6 +914,26 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#rest-api" title="REST API" class="md-nav__link">
+    REST API
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#filter-query-parameters" title="Filter query parameters" class="md-nav__link">
+    Filter query parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#parser" title="Parser" class="md-nav__link">
     Parser
   </a>
@@ -947,6 +987,46 @@ used for visualization inside the dashboard.</p>
     device--&gt;raw[Raw Data]
     parser--&gt;parsed[Device Data]</div>
 
+<h2 id="rest-api">REST API</h2>
+<p>The API is located and documented at:<br />
+<a href="https://backend.lobaro.com/api" target="_blank">https://backend.lobaro.com/api</a></p>
+<h3 id="filter-query-parameters">Filter query parameters</h3>
+<p>Filters parameters can be appended to some requests in the form of <code>f:&lt;parameter&gt;=&lt;op&gt;:&lt;value&gt;</code> 
+e.g. <code>f:createdAt=gt:&lt;timestamp&gt;</code> to filter by createdAt date. </p>
+<p>The Value must be URL encoded e.g. a timestamp might look like <code>gt:2000-01-01T02:37:00%2B01:00</code></p>
+<p>The allowed <code>&lt;parameter&gt;</code> is specified for each endpoint separately.</p>
+<p><code>&lt;op&gt;</code> must be one of the following operators:</p>
+<table>
+<thead>
+<tr>
+<th>In Query</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>eq</code></td>
+<td><code>=</code></td>
+</tr>
+<tr>
+<td><code>lte</code></td>
+<td><code>&lt;=</code></td>
+</tr>
+<tr>
+<td><code>lt</code></td>
+<td><code>&lt;</code></td>
+</tr>
+<tr>
+<td><code>gte</code></td>
+<td><code>&gt;=</code></td>
+</tr>
+<tr>
+<td><code>gt</code></td>
+<td><code>&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<p>If no operator is given the default <code>eq</code> operator will be used.</p>
 <h2 id="parser">Parser</h2>
 <p>A Parser takes raw input from the Sensor API and converts the data into a unified format used by the Dashboard.
 In addition the parser can access an API to set device level properties and additional meta information outside of the actual data record.</p>
