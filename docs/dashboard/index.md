@@ -1,6 +1,6 @@
 # Lobaro Dashboard
 
-The Lobaro Dashboard can be found at <a href="https://dashboard.lobaro.com" target="_blank">dashboard.lobaro.com</a>
+The Lobaro Dashboard can be found at [dashboard.lobaro.com](https://dashboard.lobaro.com){: target="_blank"}
 
 ## Overview
 
@@ -20,7 +20,32 @@ graph LR;
     parser-->parsed[Device Data]
 ```
 
+## REST API
 
+The API is located and documented at:  
+ [https://backend.lobaro.com/api](https://backend.lobaro.com/api){: target="_blank"}
+
+### Filter query parameters
+
+Filters parameters can be appended to some requests in the form of `f:<parameter>=<op>:<value>` 
+e.g. `f:createdAt=gt:<timestamp>` to filter by createdAt date. 
+
+The Value must be URL encoded e.g. a timestamp might look like `gt:2000-01-01T02:37:00%2B01:00`
+
+
+The allowed `<parameter>` is specified for each endpoint separately.
+
+`<op>` must be one of the following operators:
+
+| In Query | Meaning |
+|----------|---------|
+| `eq` | `=` |
+| `lte` | `<=` |
+| `lt` | `<` |
+| `gte` | `>=` |
+| `gt` | `>` |
+
+If no operator is given the default `eq` operator will be used.
 
 ## Parser
 
