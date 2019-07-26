@@ -4,7 +4,7 @@
 
 **Downloads:**
 
-* [app-lorawan-onewire-bridge-0.3.0.hex](firmware/app-lorawan-onewire-bridge-0.2.0.hex)
+* [app-lorawan-onewire-bridge-0.3.0.hex](firmware/app-lorawan-onewire-bridge-0.3.0.hex)
 
 ## Changelog
 
