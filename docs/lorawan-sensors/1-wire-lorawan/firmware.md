@@ -10,7 +10,7 @@
 
 ### v0.3.1 (29.07.2019)
 --------------------
-* Temp sensors will be printed and sent sorted by Config String / by ID or just by ID if Config String is empty
+* Temp sensors will be printed and sent sorted by paramter "SensorIdOrder" and by ID or just by ID if paramter "SensorIdOrder" is empty
 
 ### v0.2.0 (15.02.2019)
 * Add parameter "SendSensorId" to allow skipping sensor IDs in payload
