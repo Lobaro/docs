@@ -482,6 +482,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#configuration" title="Configuration" class="md-nav__link">
+    Configuration
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#payload" title="Payload" class="md-nav__link">
     Payload
   </a>
@@ -925,6 +932,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#configuration" title="Configuration" class="md-nav__link">
+    Configuration
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#payload" title="Payload" class="md-nav__link">
     Payload
   </a>
@@ -995,6 +1009,29 @@
 <h2 id="target-measurement-purpose">Target Measurement / Purpose</h2>
 <p>Supports up to 20 <a href="https://www.maximintegrated.com/en/products/sensors/DS18B20.html" target="_blank">DS18x20 1-Wire</a> temperature sensors. The temperature form all sensors in read regualarly and send via LoRaWAN uplink.
 When the payload gets too big for a single LoRaWAN message, it is split into multiple uplinks.</p>
+<h2 id="configuration">Configuration</h2>
+<p>Without configuration the sensors will be transmitted ordered by the 48 Bit id, ignoring the Sensorfamily prefix and the Checksum.</p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>description</th>
+<th>example value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SendInternalTemp</code></td>
+<td>Toggle output of internal sensor</td>
+<td>"true" or "false"</td>
+</tr>
+<tr>
+<td><code>SensorIdOrder</code></td>
+<td>Semicolon separated list of 48 Bit IDs in hex</td>
+<td>22ffffff0000;44ffffff0000;11ffffff0000</td>
+</tr>
+</tbody>
+</table>
 <h2 id="payload">Payload</h2>
 <p>Example payloads for each port:</p>
 <h3 id="status-message-port-1">Status Message (Port 1)</h3>
