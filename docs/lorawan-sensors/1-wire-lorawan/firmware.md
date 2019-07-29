@@ -4,13 +4,13 @@
 
 **Downloads:**
 
-* [app-lorawan-onewire-bridge-0.3.0.hex](firmware/app-lorawan-onewire-bridge-0.3.0.hex)
+* [app-lorawan-onewire-bridge-0.3.1.hex](firmware/app-lorawan-onewire-bridge-0.3.1.hex)
 
 ## Changelog
 
-### v0.3.0 (24.07.2019)
+### v0.3.1 (29.07.2019)
 --------------------
-* Temp sensors will be printed and sent sorted by ID
+* Temp sensors will be printed and sent sorted by Config String / by ID or just by ID if Config String is empty
 
 ### v0.2.0 (15.02.2019)
 * Add parameter "SendSensorId" to allow skipping sensor IDs in payload

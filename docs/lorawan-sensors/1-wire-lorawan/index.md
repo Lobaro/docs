@@ -7,6 +7,17 @@
 Supports up to 20 [DS18x20 1-Wire](https://www.maximintegrated.com/en/products/sensors/DS18B20.html){: target="_blank"} temperature sensors. The temperature form all sensors in read regualarly and send via LoRaWAN uplink.
 When the payload gets too big for a single LoRaWAN message, it is split into multiple uplinks.
 
+
+## Configuration
+Without configuration the sensors will be transmitted ordered by the 48 Bit id, ignoring the Sensorfamily prefix and the Checksum.
+ 
+| name | description | example value |
+|------|-------------|----------------|
+| `SendInternalTemp` | Toggle output of internal sensor | "true" or "false"|
+| `SensorIdOrder` | Semicolon separated list of 48 Bit IDs in hex | 22ffffff0000;44ffffff0000;11ffffff0000 |
+
+
+
 ## Payload
 
 Example payloads for each port:
