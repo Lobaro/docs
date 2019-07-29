@@ -18,6 +18,12 @@
 
 - Random delay before Uplink (to prevent persistent collisions when using multiple devices).
 
+### [0.4.1]
+**Fixed**
+
+- Changed error indication bit on error 11 from `0xf0` to `0x80`.
+- Fixed issue when parsing multiple Modbus commands from config.
+
 ### [0.4.0]
 **Added**
 

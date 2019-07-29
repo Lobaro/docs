@@ -1,10 +1,10 @@
 ---
-version: 0.4.0
+version: 0.4.1
 ---
 # Modbus (ASCII / RTU) over LoRaWAN Bridge
-<!-- Version v0.4.0 *(since 2019-07-27)* <br>
+<!-- Version v0.4.1 *(since 2019-07-29)* <br>
 This is the latest version. For older revisions please refer to the [version overview](versions.md). -->
-Version v0.4.0 *(since 2019-07-27)* <br>
+Version v0.4.1 *(since 2019-07-27)* <br>
 This the manual for an unreleased version of the firmware. For older revisions please refer to the [version overview](../versions.md).
 
 
