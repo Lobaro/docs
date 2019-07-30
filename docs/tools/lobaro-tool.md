@@ -3,9 +3,9 @@
 ![Screenshot Lobaro-Tool](./img/Lobaro_Tool_ConfigFeature.png)
 
 !!! info "Downloads"
-    * [**Lobaro Maintenance Tool Download (v1.4.2 Windows)**](files/tool-1-4-2/lobaro-tool-windows/lobaro-tool.exe){: target="_blank"}
-    * [**Lobaro Maintenance Tool Download (v1.4.2 Linux)**](files/tool-1-4-2/lobaro-tool-linux/lobaro-tool){: target="_blank"}
-    * [**Lobaro Maintenance Tool Download (v1.4.2 Mac)**](files/tool-1-4-2/lobaro-tool-mac/lobaro-tool){: target="_blank"}
+    * [**Lobaro Maintenance Tool Download (v1.4.3 Windows)**](files/tool-1-4-3/lobaro-tool-windows/lobaro-tool.exe){: target="_blank"}
+    * [**Lobaro Maintenance Tool Download (v1.4.3 Linux)**](files/tool-1-4-3/lobaro-tool-linux/lobaro-tool){: target="_blank"}
+    * [**Lobaro Maintenance Tool Download (v1.4.3 Mac)**](files/tool-1-4-3/lobaro-tool-mac/lobaro-tool){: target="_blank"}
     * [**CP2102 Driver Download**](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers){: target="_blank"}  
 
 Supports the PC based configuration of all Lobaro IoT sensors. 
@@ -56,6 +56,9 @@ Alternativly download the windows installer and start this.
 
 
 ## Changelog
+
+### 1.4.3 - 30.07.2019
+- Fix a bug where writing the config does not work.
 
 ### 1.4.2 - 29.07.2019
 - Fix a bug where the program hangs up while connecting to a wrong serial port in "auto" mode.
