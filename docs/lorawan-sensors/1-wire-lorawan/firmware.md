@@ -4,10 +4,14 @@
 
 **Downloads:**
 
-* [app-lorawan-onewire-bridge-0.3.2.hex](firmware/app-lorawan-onewire-bridge-0.3.2.hex)
+* [app-lorawan-onewire-bridge-0.3.3.hex](firmware/app-lorawan-onewire-bridge-0.3.3.hex)
 
 ## Changelog
 --------------------
+### v0.3.3 (01.08.2019)
+
+* Added ADR config parameter
+
 ### v0.3.2 (01.08.2019)
 
 * Fixed Onewire init after DeepSleep
