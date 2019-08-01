@@ -4,12 +4,16 @@
 
 **Downloads:**
 
-* [app-lorawan-onewire-bridge-0.3.1.hex](firmware/app-lorawan-onewire-bridge-0.3.1.hex)
+* [app-lorawan-onewire-bridge-0.3.2.hex](firmware/app-lorawan-onewire-bridge-0.3.2.hex)
 
 ## Changelog
+--------------------
+### v0.3.2 (01.08.2019)
+
+* Fixed Onewire init after DeepSleep
 
 ### v0.3.1 (29.07.2019)
---------------------
+
 * Temp sensors will be printed and sent sorted by parameter "SensorIdOrder" and by ID or just by ID if parameter "SensorIdOrder" is empty
 
 ### v0.2.0 (15.02.2019)
