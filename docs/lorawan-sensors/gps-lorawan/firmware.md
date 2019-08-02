@@ -4,13 +4,14 @@
 
 **Downloads**:
 
-* [app-lorawan-gps-button-6.0.2.hex](firmware/app-lorawan-gps-button-6.0.2.hex) (hardware v2.x)
+* [app-lorawan-gps-button-6.0.3.hex](firmware/app-lorawan-gps-button-6.0.3.hex) (hardware v2.x)
 * [app-lorawan-gps-button-5.0.5.hex](firmware/app-lorawan-gps-button-5.0.5.hex) (hardware v1.x)
 * [app-lorawan-gps-button-4.0.9.hex](firmware/app-lorawan-gps-button-4.0.9.hex) (hardware v1.x)
 
 ## Changelog
-
-
+--------------------
+### v6.0.3 - 02.08.2019
+* fixed temperature sensor readout
 
 ### v6.0.2 - 22.07.2019
 - inverted powerpin for telit module (hardware v2.1)
