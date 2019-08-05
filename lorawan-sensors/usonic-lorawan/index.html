@@ -598,6 +598,33 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#configuration" title="Configuration" class="md-nav__link">
+    Configuration
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lorawan-parameters" title="LoRaWAN Parameters" class="md-nav__link">
+    LoRaWAN Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ultrasonic-parameters" title="Ultrasonic Parameters" class="md-nav__link">
+    Ultrasonic Parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#parser" title="Parser" class="md-nav__link">
     Parser
   </a>
@@ -945,6 +972,33 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#configuration" title="Configuration" class="md-nav__link">
+    Configuration
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lorawan-parameters" title="LoRaWAN Parameters" class="md-nav__link">
+    LoRaWAN Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ultrasonic-parameters" title="Ultrasonic Parameters" class="md-nav__link">
+    Ultrasonic Parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#parser" title="Parser" class="md-nav__link">
     Parser
   </a>
@@ -1009,6 +1063,116 @@
 <h3 id="open-top-vs-closed-top">Open Top vs. Closed Top</h3>
 <p>As for now the sensor is shipped with an open top membran. This has advantages in sensibility and range, but is more prone to environmental impacts.</p>
 <p>Closed-Top Sensors (e.g. as used in Automotive) need more energy to send out a clear signal but are resistant against environmental impacts. </p>
+<h2 id="configuration">Configuration</h2>
+<h3 id="lorawan-parameters">LoRaWAN Parameters</h3>
+<p>The connection to the LoRaWAN network is defined by multiple configuration parameters.
+This need to be set according to your LoRaWAN network and the way your device is 
+supposed to be attached to it, or the device will not be able to send any data.</p>
+<p>There are two different methods to attach a device to a LoRaWAN network: 
+Over-the-air-activation (OTAA) and Activation-by-personalisation (ABP). 
+Depending on which method you are using you will have to set different values.</p>
+<p>Several values are a number of bytes, that need to be entered as hexstrings (without 
+<code>0x</code>-prefix). So e.g. the DevEUI is a value of 8 bytes encoded in hex will be 
+16 hexdigits long. A sample value would be <code>0123456789abcdef</code>.</p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>used</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>OTAA</code></td>
+<td>both</td>
+<td>bool</td>
+<td><code>true</code> &equiv; use OTAA, <code>false</code> &equiv; use ABP</td>
+</tr>
+<tr>
+<td><code>DevEUI</code></td>
+<td>OTAA</td>
+<td>hexbyte[8]</td>
+<td>the 8 byte DevEUI identifies the hardware on the join operation. The default value is a world wide unique value predefined in the hardware. Should not be changed unless required by the network provider.</td>
+</tr>
+<tr>
+<td><code>AppEUI</code></td>
+<td>OTAA</td>
+<td>hexbyte[8]</td>
+<td>ID defining the application used in the LoRaWAN network.</td>
+</tr>
+<tr>
+<td><code>AppKey</code></td>
+<td>OTAA</td>
+<td>hexbyte[16]</td>
+<td>Key used to encrypt communication with the LoRaWAN network.</td>
+</tr>
+<tr>
+<td><code>AppSKey</code></td>
+<td>ABP</td>
+<td>hexbyte[16]</td>
+<td>Application Session Key to be synced with the LoRaWAN network.</td>
+</tr>
+<tr>
+<td><code>NetSKey</code></td>
+<td>ABP</td>
+<td>hexbyte[16]</td>
+<td>Network Session Key to be synced with the LoRaWAN network.</td>
+</tr>
+<tr>
+<td><code>DevAdr</code></td>
+<td>ABP</td>
+<td>hexbyte[4]</td>
+<td>Device Address used to identify device in the LoRaWAN network.</td>
+</tr>
+<tr>
+<td><code>SF</code></td>
+<td>both</td>
+<td>int</td>
+<td>Initial LoRa spreading factor used for transmissions. Valid range is 7-12. The actual spreading factor used by change during operation if ADR is used.</td>
+</tr>
+<tr>
+<td><code>ADR</code></td>
+<td>both</td>
+<td>bool</td>
+<td>Should adaptive data rate be used? <code>true</code> &equiv; use ADR, <code>false</code> &equiv; don't</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ultrasonic-parameters">Ultrasonic Parameters</h3>
+<p>Parameters specific to the sensor.</p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ReadDistCron</td>
+<td>String</td>
+<td>Cron to start the Distrance readout, blank=DISABLE (See: <a href="../../background/cron-expressions.html">CRON Expressions</a>)</td>
+</tr>
+<tr>
+<td>UsonicPreset</td>
+<td>Int</td>
+<td>Preset for Ultrasonic</td>
+</tr>
+<tr>
+<td>UsonicTest</td>
+<td>Bool</td>
+<td>Enables Test-Mode, Measurement is executed and logged permanently</td>
+</tr>
+<tr>
+<td>LogDump</td>
+<td>Bool</td>
+<td>Also log the Raw Data Dump of the Ultrasonic sensor</td>
+</tr>
+</tbody>
+</table>
 <h2 id="parser">Parser</h2>
 <h3 id="the-things-network-ttn">The Things Network (TTN)</h3>
 <p>This is a decoder written in JavaScript that can be used to parse the device's 
