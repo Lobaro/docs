@@ -25,6 +25,22 @@ As for now the sensor is shipped with an open top membran. This has advantages i
 
 Closed-Top Sensors (e.g. as used in Automotive) need more energy to send out a clear signal but are resistant against environmental impacts. 
  
+## Configuration
+
+### LoRaWAN Parameters
+
+{!lorawan-sensors/config-lorawan.md!}
+
+### Ultrasonic Parameters
+
+Parameters specific to the sensor.
+
+| name |  type | description |
+|------|-------|-------------|
+| ReadDistCron | String      | Cron to start the Distrance readout, blank=DISABLE (See: [CRON Expressions](../../background/cron-expressions.md)) |
+| UsonicPreset | Int         | Preset for Ultrasonic |
+| UsonicTest | Bool          | Enables Test-Mode, Measurement is executed and logged permanently |
+| LogDump | Bool             | Also log the Raw Data Dump of the Ultrasonic sensor | 
 
 ## Parser
 
