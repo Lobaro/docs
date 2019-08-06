@@ -26,7 +26,7 @@ markdown_extensions:
   - markdown_include.include: # enables including other files into pages with {!filename!}
       base_path: docs
   - toc:
-  - admonition
+  - admonition # Enables alert boxes with e.g. !!! note "title"
   - footnotes
   - codehilite
   - pymdownx.superfences:

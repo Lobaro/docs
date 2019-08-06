@@ -105,8 +105,43 @@ day in this mode (frequency can be configured with a cron expression, see chapte
 When physical movement is detected by the internal motion sensor during this phase, the
 GPS Tracker immediately wakes up and switches to Active Mode.
 
-## PDF Documentation
+## Configuration, The Lobaro Maintenance Tool
 
+![Modbus LoRaWAN Bridge](files/maintenancetool.png){: style="width:60%; vertical-align: top;"}
+
+The initial device configuration can be done very comfortably from your PC via the serial
+configuration interface. Beside the needed Lobaro USB to UART adapter the Lobaro Main-
+tenance Tool 1 needs to be installed. This tool is freely available for various operating systems
+including Windows, Linux, Mac and Linux-ARM (e.g. Raspberry-PI) on and works with all
+Lobaro sensors.
+Technically this software opens a webserver on port 8585 that runs in a background console
+window. The actual user interface can be accessed normally using a standard web browser
+at address http://localhost:8585. Normally your default browser should be
+opened with this URL automatically after tool startup . Even remote configuration and logobservation
+over the Internet is possible, e.g. having a Raspberry PI via USB connected to
+the Lobaro device and accessing the maintenance tool from a remote machines browser over
+the Internet.
+Additionally to the device setup the tool can also be used for firmware updates ('Firmware
+Tab') , watching real-time device diagnostic output ('Logs Tab') and initiating device restarts.
+
+
+!!! info "Info"
+    Please note that the device is automatically restarted each time the configuration has been changed!
+
+## Connecting the USB config adapter
+For configuration and Firmware updates we provide a special serial-USB adapter that can be
+connected as shown in Figure 4. The corresponding connector on the PCB is marked with
+the word 'Config'.
+The USB-adapter will add a virtual serial 'COM' Port to your system. Your operating system
+needs the CP210x USB to UART Bridge2 driver installed. A download link is provided next
+to the 'Connect' button when you start the Maintenance Tool.
+While the config adapter is connected, the device will be powered from the USB port with
+a regulated voltage of 3.3V. It is not necessary - although it would be no problem - having
+batteries inserted or a different supply connected while using the config adapter. All
+configuration parameters will be kept non-volatile regardless of the power supply.
+
+![Modbus LoRaWAN Bridge](files/config.png){: style="width:50%; display: block; margin: 0 auto;"}
+## PDF Documentation
 * [User Manual (en)](files/lorawan-gps-tracker_en.pdf)
 * [CE Conformity](files/scan-ce-conformity-gps-lorawan.pdf)
 
