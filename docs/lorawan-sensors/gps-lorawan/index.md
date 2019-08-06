@@ -295,8 +295,8 @@ used directly for decoding in The Things Network.
 |-|-|-|-|
 |flags|uint8|Status flags, for internal use|0|
 |temp|int16|Temperature inside the device in 1/10°C|246 ≙ 24.6 °C|
-
-
+|v_bat|uint16|Current battery voltage in mV|3547 ≙ 3:547 V|
+|latitude deg|int8|Whole degrees of the latitude|-90 to 90|
 
 ## PDF Documentation
 * [User Manual (en)](files/lorawan-gps-tracker_en.pdf)
