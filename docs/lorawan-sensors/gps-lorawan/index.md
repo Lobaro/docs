@@ -1,14 +1,14 @@
 # GPS LoRaWAN Tracker
 
 
-![Product Image](files/gpslorawan.png){: style="height:400px;border:1px black solid;"}
+![Product Image](files/gpslorawan.png){: style="height:400px;display: block; margin: 0 auto;"}
 
 ## Target Measurement / Purpose
 
 The LoRaWAN GPS Tracker (GPS-LoRaWAN) is a battery powered tracking device, that
 uses the satellite based positioning service GPS to determine its location and transmits the
 obtained coordinates via LoRaWAN radio technology. Intervals between measurements can
-be freely congured, in order to adjust the device to individual needs.
+be freely configured, in order to adjust the device to individual needs.
 An integrated motion sensor detects changes in the device's movement (if it is picked up or
 transported in a vehicle). This allows the device to switch between an `Active Mode` in which
 frequent updates are uploaded during phases of movement and an `Alive Mode` that saves
@@ -21,11 +21,11 @@ device is only possible if you follow the guides provided in this manual. Using 
 dierently than intended by Lobaro my cause damage to people, the environment, or
 the device.
 
-![Modbus LoRaWAN Bridge](files/lorawan.png){: style="width:50%; vertical-align: top;"}
+![Modbus LoRaWAN Bridge](files/lorawan.png){: style="width:50%; display: block; margin: 0 auto;"}
 
 ## The Device
 
-![Modbus LoRaWAN Bridge](files/device.png){: style="width:60%; vertical-align: top;"}
+![Modbus LoRaWAN Bridge](files/device.png){: style="width:60%; display: block; margin: 0 auto;"}
 
 !!! info "Consider using the latest firmware on your hardware"
     * [**See available firmware downloads**](firmware.md){: target="_blank"}
@@ -107,7 +107,7 @@ GPS Tracker immediately wakes up and switches to Active Mode.
 
 ## Configuration, The Lobaro Maintenance Tool
 
-![Modbus LoRaWAN Bridge](files/maintenancetool.png){: style="width:60%; vertical-align: top;"}
+![Modbus LoRaWAN Bridge](files/maintenancetool.png){: style="width:60%; display: block; margin: 0 auto;"}
 
 The initial device configuration can be done very comfortably from your PC via the serial
 configuration interface. Beside the needed Lobaro USB to UART adapter the Lobaro Main-
@@ -141,6 +141,163 @@ batteries inserted or a different supply connected while using the config adapte
 configuration parameters will be kept non-volatile regardless of the power supply.
 
 ![Modbus LoRaWAN Bridge](files/config.png){: style="width:50%; display: block; margin: 0 auto;"}
+
+## System Parameters
+After being successfully connected to the hardware using the Lobaro Maintenance Tool you
+can press 'Reload Config' in the 'Configuration' tab to read the current configuration from the
+device. For every parameter a default value is stored non volatile inside the hardware to which
+you can revert using the 'Restore default' button in case anything got miss configured.
+All LoRaWAN & other firmware parameters are explained in the following.
+
+## LoRaWAN network parameters
+A large part of the configuration parameters are used to control the device's usage of Lo-
+RaWAN. Table 1 lists all of them. There are two different ways to use LoRaWAN: over-the-air
+activation (OTAA) and activation by personalization (ABP). Some configuration parameters
+are only used with one of those methods, others are used for both.
+
+|      Name  |     Type  |     Used     | Description|
+|------------|-----------|--------------|------------|
+|        OTAA|    bool   |      both    | true: use over-the-air activation (OTAA) <br> false: use activation by personalization (ABP)|
+|         DevEUI|    bytes[8]       |   OTAA           |the 8 byte long DevEUI is used with OTAA to identify the device on join. The default is predefined in the hardware and guarantees an ID that is unique world wide. Should not be changed unless required by the network provider. Hex format without 0x prefix.           |
+|    AppEUI        |      bytes[8]     |     OTAA         |   ID defining the application used in the LoRaWAN network. Hex format without 0x prefix.         |
+|         AppKey   |   bytes[16]        |     OTAA          |     Application Key as defined by the LoRaWAN network operator. This is used to encrypt communication, so keep it secret. Hex format without 0x prefix.      |
+|     OTAADelay       |      int     |      OTAA        |      Seconds to wait for a new attempt after an unsuccessful OTAA join. The actual waiting time will be randomly increased by up to a third of that amount, in order to avoid devices repeatedly interfering with each other through bad timing. The default value is 300, which means the timeout between attempts is 300-400 seconds.      |
+|   AppSKey         |    bytes[16]       |    ABP          |     App Session Key as defined by the LoRaWAN network operator. Hex format without 0x prefix.       |
+|       NetSKey     |     bytes[16]      |        ABP      |     Network Session Key ad defined by the LoRaWAN network operator. Hex format without 0x prefix.       |
+|        DevAdr    |      bytes[4]     |    ABP          |    Device Address as defined by the LoRaWAN network operator. Hex format without 0x prefix.        |
+|       SF     |        int   |     both         |  Initial LoRa spreading factor used for transmissions. Valid range is 7-12. The actual spreading factor used might change during operation of the device if Adaptive Data Rate (ADR) is used.          |
+|          TxPower  |      int     |      both        |        Initial transmission output power in dBm. The Lo-RaWAN protocol allows only specific values: 2, 5, 8, 11, 14. The actual power used might change during operation if Adaptive Data Rate (ADR) is used.    |
+|        ADR    |      bool     |         both     |       true: use adaptive data rate (ADR) <br> false: don't use adaptive data rate (ADR)     |
+
+##GPS configuration parameters
+The behaviour of the GPS Tracker and how it switches between its two operation modes
+('Active' and 'Alive') can be adjusted to your needs. Table 2 explains the configuration
+parameters used for this.
+
+|      Name  |     Type  | Description|
+|------------|-----------|------------|
+|      ActiveCron      |   string        |     Cron expression defining how often the device will take a measurement and send its position over LoRaWAN while the Tracker is in Active Mode. This expression should trigger much more frequent than the one for Alive Mode. The standard is 0 0/15 * * * *, which will trigger every 15 minutes. See chapter "Cron expressions" for an introduction to cron expressions.       |
+|        AliveCron    |   string        | Cron expression defining how often the device will wake up when in Alive Mode. This should be less frequent than in Active Mode. The standard is 0 0 0/12 * * *, which translates to twice each day. See chapter "Cron expressions" for an introduction to cron expressions.           |
+|      gpsTO      |      int     |  Time in seconds to wait for GPS to get a fix before timing out. The standard value is 180 seconds.          |
+|      actTO      |      int     |      Time in minutes without movement after which the Tracker switches to Alive Mode. The standard value is 65 minutes.      |
+|        memsTh    |       int    |  Threshold for the internal motion detector to register movement. Values range from 2 to 255. A higher value makes the device less sensitive.<br>2 Environment (wind or steps) may trigger.<br>5 Standard, picking up the device will activate it. <br> 20 Carefully picking it up will not trigger the device.<br>50 When carried, running will trigger, walking won't.<br>100+ Shaking will activate, dropping the device might not.          |
+|      CayenneLPP      |   bool        |      Use alternative Cayenne LPP upload format. Standard: false, e.g. use Lobaro Format. See chapter "myDevices Cayenne format" for an introduction to this format.      |
+
+##Cron expressions
+Cron expressions are used to define specific points in time and regular repetitions of them.
+The schedule for data collecting phases is defined using the Cron format which is very
+powerful format to define repeatedly occurring events.
+Standard Lobaro devices typically do not need to know the real time for proper operation.
+All times are relative to the random time when batteries are inserted. If needed
+by the target application Lobaro can deliver on request special hardware support for keeping
+data acquisition intervals based on a real time clock which stays in sync with the real time.
+Please contact Lobaro directly if you need such a custom product variant.
+
+A cron expression consists of 6 values separated by spaces:
+
+* Seconds (0-59)
+* Minutes (0-59)
+* Hours (0-23)
+* Days (1-31)
+* Month (1-12)
+* Day of Week (SUN-SAT b= [0,6])
+
+Examples of CRON definitions: <br>
+
+|       ||
+|------------|-----------|
+|0 5 ****    |hourly at minute 5, second 0 (at 00:05:00, 01:05:00, ...)|
+|0 1/10 * * * *  |every 10 minutes from minute 1, second 0 (minutes 1, 11, 21, ...)|
+|0 0 6 * * *     |daily at 6:00:00|
+|0 0 13 1,15 * * |1st and 15th day of every month at 13:00:00|
+|0 0 9 1-5 * *   |every month daily from day 1 till 5 at 9:00:00|
+
+##LoRaWAN Data Upload Formats
+After reading GPS coordinates (either successfully or unsuccessfully), the Tracker uploads the
+data using LoRaWAN. As LoRaWAN can only transmit very short messages, the message
+formats contain only data bytes, no keys or data types are included. The meaning of a byte
+is determined by its position within a message. The tracker supports two dierent upload
+formats as described in the following:
+
+##Lobaro upload format (since Firmware Version 5)
+Only a single massage format is used by the GPS Tracker, it has a fixed length of 17 bytes.
+Figure 5 and table 3 explain the message format used.
+This format uses the decimal degrees notation for the location, e.g. 53:4724° north and
+9:9334° east. Positive (+) values indicate north longitudes and east latitudes, negative (-)
+values indicate south longitudes and west latitudes. Both location values are transmitted as
+signed integers in big endian format and get multiplied by 100:000. So after receiving the
+location data must be divided by this factor.
+Multi byte integers are transmitted as big endian. Values that would require decimal places
+are transmitted in smaller units, e.g. 1
+100000 degree (as described before), to handle only with
+integers.
+
+##Fields, Data Packet
+
+|name|type|description|example / range|
+|-|-|-|-|
+|temp|int16|Temperature inside the device in 1/10°C|246 =  24.6 °C|  
+|v_bat|uint16|Current battery voltage in mV|3547 = 3.547 V|
+|latitude deg|int32|int32 degrees of the latitude x 100 000|-9 000 000 to 9 000 000|
+|longitude deg|int32|degrees of the longitude x 100 000|-18 000 000 to 18 000 000|
+|altitude|int24|Altitude of the device in centimeters|-8 388 607 to 8 388 606|
+|flags|uint8|Status flag, refer to table 4|00bin = invalid, alive <br> 01bin = valid, alive <br> 10bin = invalid, active <br> 11bin = valid, active|
+|sat|uint8|GPS satellites found / in view|7|
+
+##Status flag
+
+|bit|function|not set|set|
+|-|-|-|-|
+|1|Validity of last measurement|invalid|valid|
+|2|Current operation mode|alive|active|
+|3-8|reserved for future use|||
+
+If during some configurable period of time (see "gpsTO" parameter in table "GPS configuration parameters") no GPS
+location can be found the last known valid GPS location will be transmitted but with the
+valid flag set to false.
+We provide a JavaScript reference implementation of a decoder for the data packages as easy
+to use download, which can be used directly for decoding in The Things Network.
+
+##myDevices Cayenne format
+As an alternative for the Lobaro data format the tracker can be configured to send Cayenne
+LPP compatible LoRaWAN uploads. myDevices Cayenne8 allows you to quickly visualize the
+via LoRaWAN transmitted data of the Lobaro GPS-tracker. You can use Cayenne as a tool
+to visualize real-time and historical data, sent over The Things Network and various other
+LoRaWAN providers.
+To use the alternative upload format configuration parameter "CayenneLPP" must be set to
+"true" as described in section "GPS configuration parameters" The advantages of using the cayenne format is a quick
+device evaluation without programming some custom backend and/or front software. Disadvantages
+are bigger LoRaWAN message sizes due to the additional schema meta information
+overhead the format needs.
+
+The Lobaro GPS Trackers maps its data to cayenne channels as follows:
+
+|description|cayenne channel|cayenne type|
+|-|-|-|
+|Internal Temperature|0|Temperature|
+|Battery Voltage|1|AnalogOutput|
+|GPS data|2|GPS|
+|satellites found|3|Digital Output|
+
+##Legacy Lobaro upload format (up to Firmware Version 4)
+This format is not supported any more since firmware version V5.0.0! Please consider updating
+your device firmware using the Lobaro maintenance tool.
+Only a single massage format is used by the GPS Tracker, it has a fixed length of 15 bytes.
+This format uses the degrees with decimal minutes notation for the location.
+Multi byte integers are transmitted as big endian. Values that would require decimal places
+are transmitted in smaller units (e.g. mV instead of V).
+The table underneath explains the message format used. We provide a JavaScript reference
+implementation of a decoder for the data packages as easy to use download9, which can be
+used directly for decoding in The Things Network.
+
+
+|name|type|description|example/range|
+|-|-|-|-|
+|flags|uint8|Status flags, for internal use|0|
+|temp|int16|Temperature inside the device in 1/10°C|246 ≙ 24.6 °C|
+
+
+
 ## PDF Documentation
 * [User Manual (en)](files/lorawan-gps-tracker_en.pdf)
 * [CE Conformity](files/scan-ce-conformity-gps-lorawan.pdf)
