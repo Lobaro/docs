@@ -209,9 +209,8 @@ For a detailed description of the data sent refer to chapter 5.2.
 ###Sleep Phase
 After transferring all data packets the Bridge enters the Sleep Phase. During this it is completely
 inactive to avoid wasting power. It remains sleeping until one of the cron expressions
-given in the conguration triggers. When that happens, it enters the Data Collection Phase
+given in the configuration triggers. When that happens, it enters the Data Collection Phase
 again.
-wMBUS
 
 ##Configuration
 
