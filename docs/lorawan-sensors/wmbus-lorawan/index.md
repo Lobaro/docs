@@ -171,6 +171,11 @@ graph LR;
     trans(LoRaWAN Transfer)==>sleep(Sleep);
     sleep(Sleep)==>|Cron expression|wmbus(wMBUS Collection)
 ```
+The Bridge has a simple work cycle that consists of five phases.
+
+
+
+
 
 ## Target Measurement / Purpose
 Forwarding of wireless M-BUS messages via LoRaWAN.
