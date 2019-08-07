@@ -2,6 +2,7 @@
 version: 0.3.0
 ---
 # Modbus (ASCII / RTU) over LoRaWAN Bridge
+
 Version v0.3.0
 
 <!-- *This manual is for an older version of the Modbus Bridge!* <br>
@@ -9,9 +10,10 @@ Version v0.3.0
 
 This is the latest version. For older revisions please refer to the [version overview](versions.md).
 
-
-
 ![Modbus LoRaWAN Bridge on head rail](files/modbus-lorawan-hatrail.jpg){: style="width:40%;border:1px black solid;"}
+
+!!! info "Consider using the latest firmware on your hardware"
+    * [**See available firmware downloads**](firmware.md){: target="_blank"}
 
 ## Target Measurement / Purpose
 The Lobaro Modbus LoRaWAN Bridge is a low power device that can be used to read values

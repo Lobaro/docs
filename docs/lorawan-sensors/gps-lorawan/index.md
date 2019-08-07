@@ -5,6 +5,9 @@
 ## Target Measurement / Purpose
 GPS position tracking via LoRaWAN.
 
+!!! info "Consider using the latest firmware on your hardware"
+    * [**See available firmware downloads**](firmware.md){: target="_blank"}
+
 ## PDF Documentation
 
 * [User Manual (en)](files/lorawan-gps-tracker_en.pdf)

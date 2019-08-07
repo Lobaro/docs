@@ -2,6 +2,9 @@
 
 ![LoRaWAN Pressure Sensor](files/Lobaro-Pegelsonde-LoRaWAN.jpg){: style="height:350px;border:1px black solid;"}
 
+!!! info "Consider using the latest firmware on your hardware"
+    * [**See available firmware downloads**](firmware.md){: target="_blank"}
+
 ## Target Measurement / Purpose
 Precise liquid level measurement, e.g. for tanks, via LoRaWAN.
 

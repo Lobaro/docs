@@ -2,6 +2,8 @@
 
 ![Lobaro wmbus LoRaWAN Bridge](files/Übersicht-wmbus-lora.jpg){: style="width:100%"}
 
+!!! info "Consider using the latest firmware on your hardware"
+    * [**See available firmware downloads**](firmware.md){: target="_blank"}
 
 ## Target Measurement / Purpose
 Forwarding of wireless M-BUS messages via LoRaWAN.

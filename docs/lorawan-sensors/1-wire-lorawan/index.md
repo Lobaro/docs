@@ -2,6 +2,9 @@
 
 ![1-wire-lorawan](files/1-wire-lorawan.png){: style="height:350px;border:1px black solid;"}
 
+!!! info "Consider using the latest firmware on your hardware"
+    * [**See available firmware downloads**](firmware.md){: target="_blank"}
+
 ## Target Measurement / Purpose
 
 Supports up to 20 [DS18x20 1-Wire](https://www.maximintegrated.com/en/products/sensors/DS18B20.html){: target="_blank"} temperature sensors. The temperature form all sensors in read regualarly and send via LoRaWAN uplink.

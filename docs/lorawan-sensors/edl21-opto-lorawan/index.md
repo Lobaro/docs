@@ -2,6 +2,9 @@
 
 ![Lobaro EDL21 LoRaWAN Bridge](files/edl21_small.jpg){: style="height:350px;border:1px black solid;"}
 
+!!! info "Consider using the latest firmware on your hardware"
+    * [**See available firmware downloads**](firmware.md){: target="_blank"}
+
 ## Target Measurement / Purpose
 Readout of EDL21 electricity meter with optical infrared "INFO" interface.
 

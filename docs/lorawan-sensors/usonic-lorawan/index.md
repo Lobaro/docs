@@ -1,5 +1,8 @@
 # Ultrasonic LoRaWAN Sensor (a.k.a. "Oscar")
 
+!!! info "Consider using the latest firmware on your hardware"
+    * [**See available firmware downloads**](firmware.md){: target="_blank"}
+
 ## Target Measurement / Purpose
 Distance measurements via ultrasound.
 

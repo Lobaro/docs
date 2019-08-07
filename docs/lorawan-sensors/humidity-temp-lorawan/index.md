@@ -2,6 +2,9 @@
 
 ![Humidity & Temperature LoRaWAN Sensor](files/LoRaWAN-HumiditySensor.jpg){: style="height:300px;border:1px black solid"}
 
+!!! info "Consider using the latest firmware on your hardware"
+    * [**See available firmware downloads**](firmware.md){: target="_blank"}
+
 ## Target Measurement / Purpose
 Temperature and relative humidity measurements with external probe and LoRaWAN.
 
