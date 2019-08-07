@@ -216,7 +216,7 @@ again.
 
 ###The Lobaro Maintenance Tool
 
-
+![Modbus LoRaWAN Bridge](files/main.png){: style="width:60%; display: block; margin: 0 auto;"}
 
 
 ## Target Measurement / Purpose
