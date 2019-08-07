@@ -287,7 +287,7 @@ This format uses the degrees with decimal minutes notation for the location.
 Multi byte integers are transmitted as big endian. Values that would require decimal places
 are transmitted in smaller units (e.g. mV instead of V).
 The table underneath explains the message format used. We provide a JavaScript reference
-implementation of a decoder for the data packages as easy to use download9, which can be
+implementation of a decoder for the data packages as easy to use download, which can be
 used directly for decoding in The Things Network.
 
 
@@ -297,6 +297,12 @@ used directly for decoding in The Things Network.
 |temp|int16|Temperature inside the device in 1/10°C|246 ≙ 24.6 °C|
 |v_bat|uint16|Current battery voltage in mV|3547 ≙ 3:547 V|
 |latitude deg|int8|Whole degrees of the latitude|-90 to 90|
+
+##Example
+
+As an illustration, if the received data would consist of the 15 bytes (hexencoded):
+00 01 18 0D 69 35 1C 0F 71 09 38 02 4B 01 06
+
 
 ## PDF Documentation
 * [User Manual (en)](files/lorawan-gps-tracker_en.pdf)
