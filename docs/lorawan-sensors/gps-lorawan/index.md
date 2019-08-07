@@ -222,27 +222,26 @@ formats as described in the following:
 ##Lobaro upload format (since Firmware Version 5)
 Only a single massage format is used by the GPS Tracker, it has a fixed length of 17 bytes.
 Figure 5 and table 3 explain the message format used.
-This format uses the decimal degrees notation for the location, e.g. 53:4724° north and
-9:9334° east. Positive (+) values indicate north longitudes and east latitudes, negative (-)
+This format uses the decimal degrees notation for the location, e.g. 53.4724° north and
+9.9334° east. Positive (+) values indicate north longitudes and east latitudes, negative (-)
 values indicate south longitudes and west latitudes. Both location values are transmitted as
-signed integers in big endian format and get multiplied by 100:000. So after receiving the
+signed integers in *big endian* format and get multiplied by 100.000. So after receiving the
 location data must be divided by this factor.
 Multi byte integers are transmitted as big endian. Values that would require decimal places
-are transmitted in smaller units, e.g. 1
-100000 degree (as described before), to handle only with
+are transmitted in smaller units, e.g. 1/100000 degree (as described before), to handle only with
 integers.
 
 ##Fields, Data Packet
 
-|name|type|description|example / range|
-|-|-|-|-|
-|temp|int16|Temperature inside the device in 1/10°C|246 =  24.6 °C|  
-|v_bat|uint16|Current battery voltage in mV|3547 = 3.547 V|
-|latitude deg|int32|int32 degrees of the latitude x 100 000|-9 000 000 to 9 000 000|
-|longitude deg|int32|degrees of the longitude x 100 000|-18 000 000 to 18 000 000|
-|altitude|int24|Altitude of the device in centimeters|-8 388 607 to 8 388 606|
-|flags|uint8|Status flag, refer to table 4|00bin = invalid, alive <br> 01bin = valid, alive <br> 10bin = invalid, active <br> 11bin = valid, active|
-|sat|uint8|GPS satellites found / in view|7|
+|name|bits|type|description|example / range|
+|-|-|-|-|-|
+|temp|0-1|int16|Temperature inside the device in 1/10°C|246 =  24.6 °C|  
+|v_bat|2-3|uint16|Current battery voltage in mV|3547 = 3.547 V|
+|latitude deg|4-7|int32|int32 degrees of the latitude x 100 000|-9 000 000 to 9 000 000|
+|longitude deg|8-11|int32|degrees of the longitude x 100 000|-18 000 000 to 18 000 000|
+|altitude|12-14|int24|Altitude of the device in centimeters|-8 388 607 to 8 388 606|
+|flags|15|uint8|Status flag, refer to table 4|00bin = invalid, alive <br> 01bin = valid, alive <br> 10bin = invalid, active <br> 11bin = valid, active|
+|sat|16|uint8|GPS satellites found / in view|7|
 
 ##Status flag
 
