@@ -14,11 +14,11 @@ transported in a vehicle). This allows the device to switch between an `Active M
 frequent updates are uploaded during phases of movement and an `Alive Mode` that saves
 battery power by sending only few updates. While not sending updates, the device enters a
 sleep mode that only uses ∼30 µA.
-Figure 1 shows the GPS Tracker with opened casing. The most important components are
+The pictures above and below show the GPS Tracker with opened casing. The most important components are
 indicated and explained.
 Please read the manual carefully before operating the device. A safe operation of the
 device is only possible if you follow the guides provided in this manual. Using the device
-dierently than intended by Lobaro my cause damage to people, the environment, or
+differently than intended by Lobaro my cause damage to people, the environment, or
 the device.
 
 ![Modbus LoRaWAN Bridge](files/lorawan.png){: style="width:50%; display: block; margin: 0 auto;"}
@@ -45,11 +45,11 @@ graph LR;
     GPS==>Data(Data Transfer);
     Active==>|short time cron expression|GPS(GPS Collection);
     Data(Data Transfer)==>|no recent movement|Alive(Alive Sleep);
-    Alive==>|Movement or long ttime cron expression|GPS(GPS Collection);
+    Alive==>|movement or long time cron expression|GPS(GPS Collection);
 ```
 The GPS Tracker has a work cycle that adapts to detected motion of the device.
 
-## Intial Phase
+## Initial Phase
 
 This is the phase that is executed after the device is started of restarted. The LED flashes
 once and the configuration is evaluated. If successful, the LoRaWAN Join phase is executed
@@ -76,7 +76,7 @@ because of bad GPS reception), the device enters the Data Transfer Phase.
 During the Data Transfer Phase the Tracker uploads the GPS coordinates to the LoRaWAN
 network. The message contains the information if the measurement was successful. Some
 status information about the device are included as well.
-For a detailed description of the data sent refer to chapter 5.
+For a detailed description of the data sent refer to "LoRaWAN Data Upload Formats".
 After data transfer, the GPS Tracker enters a sleep state to save power. Depending on
 how much time passed since the last physical movement of the device (determined by the
 internal motion sensor), the Tracker enters diferent sleep phases. If the time since the last
@@ -90,7 +90,7 @@ activated through movement.
 
 Even in Active Mode, the device spends most of its time in a deep sleep state to conserve
 energy. The frequency with which the Tracker wakes up in Active Mode can be configured
-using a Cron expression (see chapter 4.4). Typical values for active sleep time are 5 or 15
+using a Cron expression (see "GPS configuration parameters"). Typical values for active sleep time are 5 or 15
 minutes.
 When in Active Sleep Phase, the device will not be triggered to gather more GPS positions
 through motion, but movement of the device will still be registered to keep the Tracker in
@@ -101,7 +101,7 @@ When no movement has been detected for a long amount of time (configurable), the
 stops sending updates, since there is not much point in sending frequent position information
 when the device does not change its position. In Alive Mode, only very few updates are sent
 to keep the network informed about the device's health. Typically one message is sent per
-day in this mode (frequency can be configured with a cron expression, see chapter 4.4).
+day in this mode (frequency can be configured with a cron expression, see "GPS configuration parameters").
 When physical movement is detected by the internal motion sensor during this phase, the
 GPS Tracker immediately wakes up and switches to Active Mode.
 
@@ -110,8 +110,7 @@ GPS Tracker immediately wakes up and switches to Active Mode.
 ![Modbus LoRaWAN Bridge](files/maintenancetool.png){: style="width:60%; display: block; margin: 0 auto;"}
 
 The initial device configuration can be done very comfortably from your PC via the serial
-configuration interface. Beside the needed Lobaro USB to UART adapter the Lobaro Main-
-tenance Tool 1 needs to be installed. This tool is freely available for various operating systems
+configuration interface. Beside the needed Lobaro USB to UART adapter the Lobaro Maintenance Tool 1 needs to be installed. This tool is freely available for various operating systems
 including Windows, Linux, Mac and Linux-ARM (e.g. Raspberry-PI) on and works with all
 Lobaro sensors.
 Technically this software opens a webserver on port 8585 that runs in a background console
@@ -130,7 +129,7 @@ Tab') , watching real-time device diagnostic output ('Logs Tab') and initiating 
 
 ## Connecting the USB config adapter
 For configuration and Firmware updates we provide a special serial-USB adapter that can be
-connected as shown in Figure 4. The corresponding connector on the PCB is marked with
+connected as shown in the picture underneath. The corresponding connector on the PCB is marked with
 the word 'Config'.
 The USB-adapter will add a virtual serial 'COM' Port to your system. Your operating system
 needs the CP210x USB to UART Bridge2 driver installed. A download link is provided next
@@ -151,7 +150,7 @@ All LoRaWAN & other firmware parameters are explained in the following.
 
 ## LoRaWAN network parameters
 A large part of the configuration parameters are used to control the device's usage of Lo-
-RaWAN. Table 1 lists all of them. There are two different ways to use LoRaWAN: over-the-air
+RaWAN. The table lists all of them. There are two different ways to use LoRaWAN: over-the-air
 activation (OTAA) and activation by personalization (ABP). Some configuration parameters
 are only used with one of those methods, others are used for both.
 
@@ -171,7 +170,7 @@ are only used with one of those methods, others are used for both.
 
 ##GPS configuration parameters
 The behaviour of the GPS Tracker and how it switches between its two operation modes
-('Active' and 'Alive') can be adjusted to your needs. Table 2 explains the configuration
+('Active' and 'Alive') can be adjusted to your needs. The table explains the configuration
 parameters used for this.
 
 |      Name  |     Type  | Description|
@@ -216,12 +215,12 @@ Examples of CRON definitions: <br>
 After reading GPS coordinates (either successfully or unsuccessfully), the Tracker uploads the
 data using LoRaWAN. As LoRaWAN can only transmit very short messages, the message
 formats contain only data bytes, no keys or data types are included. The meaning of a byte
-is determined by its position within a message. The tracker supports two dierent upload
+is determined by its position within a message. The tracker supports two different upload
 formats as described in the following:
 
 ##Lobaro upload format (since Firmware Version 5)
 Only a single massage format is used by the GPS Tracker, it has a fixed length of 17 bytes.
-Figure 5 and table 3 explain the message format used.
+The table explains the message format used.
 This format uses the decimal degrees notation for the location, e.g. 53.4724° north and
 9.9334° east. Positive (+) values indicate north longitudes and east latitudes, negative (-)
 values indicate south longitudes and west latitudes. Both location values are transmitted as
@@ -233,14 +232,14 @@ integers.
 
 ##Fields, Data Packet
 
-|name|bits|type|description|example / range|
+|name|bytes|type|description|example / range|
 |-|-|-|-|-|
 |temp|0-1|int16|Temperature inside the device in 1/10°C|246 =  24.6 °C|  
 |v_bat|2-3|uint16|Current battery voltage in mV|3547 = 3.547 V|
 |latitude deg|4-7|int32|int32 degrees of the latitude x 100 000|-9 000 000 to 9 000 000|
 |longitude deg|8-11|int32|degrees of the longitude x 100 000|-18 000 000 to 18 000 000|
 |altitude|12-14|int24|Altitude of the device in centimeters|-8 388 607 to 8 388 606|
-|flags|15|uint8|Status flag, refer to table 4|00bin = invalid, alive <br> 01bin = valid, alive <br> 10bin = invalid, active <br> 11bin = valid, active|
+|flags|15|uint8|Status flag, refer to table below|00bin = invalid, alive <br> 01bin = valid, alive <br> 10bin = invalid, active <br> 11bin = valid, active|
 |sat|16|uint8|GPS satellites found / in view|7|
 
 ##Status flag
@@ -259,7 +258,7 @@ to use download, which can be used directly for decoding in The Things Network.
 
 ##myDevices Cayenne format
 As an alternative for the Lobaro data format the tracker can be configured to send Cayenne
-LPP compatible LoRaWAN uploads. myDevices Cayenne8 allows you to quickly visualize the
+LPP compatible LoRaWAN uploads. myDevices Cayenne allows you to quickly visualize the
 via LoRaWAN transmitted data of the Lobaro GPS-tracker. You can use Cayenne as a tool
 to visualize real-time and historical data, sent over The Things Network and various other
 LoRaWAN providers.
@@ -300,7 +299,7 @@ used directly for decoding in The Things Network.
 ##Example
 
 !!! info "As an illustration, if the received data would consist of the 15 bytes (hexencoded):" 
-    00 01 18 0D 69 35 1C 0F 71 09 38 02 4B 01 06
+    **00 01 18 0D 69 35 1C 0F 71 09 38 02 4B 01 06**
 
 |type|example|description|
 |-|-|-|
