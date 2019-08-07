@@ -300,8 +300,18 @@ used directly for decoding in The Things Network.
 
 ##Example
 
-As an illustration, if the received data would consist of the 15 bytes (hexencoded):
-00 01 18 0D 69 35 1C 0F 71 09 38 02 4B 01 06
+!!! info "As an illustration, if the received data would consist of the 15 bytes (hexencoded):" 
+    00 01 18 0D 69 35 1C 0F 71 09 38 02 4B 01 06
+
+|type|example|description|
+|-|-|-|
+|flag|**00**|for internal use, ignore|
+|temp|**01 18**|0118 hex = 0280dec ≙ 280 d°C = 28.0 °C|
+|v_bat|**0D 69**|0D89 hex = 3465dec ≙ 3465mV = 3.465V|
+|latitude|**35 1C 0F 71**|35hex = 53dec ≙ 53° <br> 1C hex = 28dec ≙ 28' <br> 0F71 hex = 3953dec ≙ 0.3953' <br> 351C0F71 ≙ 53°28.3952' = 53.473255° = 53°28'23.718'' North|
+|longitude|**09 38 02 4B**|09 hex = 09dec ≙ 09°<br> 38 hex = 56dec ≙ 56' <br> 024B hex = 0587dec ≙ 0.0587'<br> 0938024B ≙ 9°56.0587' = 9.934 312° = 9°56'3.522'' East|
+|valid|**01**|01hex ≙ valid measurement, could receive GPS signal|
+|sat|**06**|06hex = 06dec ≙ Signal of 6 satellites received for measurement|
 
 
 ## PDF Documentation
