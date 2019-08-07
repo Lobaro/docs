@@ -36,12 +36,30 @@ the device.**
 !!! info "Consider using the latest firmware on your hardware"
     * [**See available firmware downloads**](firmware.md){: target="_blank"}
 
-##The Device
+##The Device 
 
-![Lobaro wmbus LoRaWAN Bridge](files/Übersicht-wmbus-lora.jpg){: style="width:100%"}
+!!! info "Example without Power Addon"
+![Modbus LoRaWAN Bridge](files/wmbusbridge.png){: style="width:60%; display: block; margin: 0 auto;"}
 
+!!! info "Example with Power Addon"
+![Modbus LoRaWAN Bridge](files/wmbusbridgePOWERADDON.png){: style="width:50%; display: block; margin: 0 auto;"}
 
-
+###Device installation
+The device must be fixed on a flat surface using the lateral mounting holes of the case, see
+chapter 6.1 for a detailed description of all housing dimensions. Alternatively we offer as
+accessory a mounting clip for a standard 35mm DIN rail. The device can then easily snapped
+on a such rails. It can therefore be added to a variety of racks alongside other devices.
+Under any circumstances the device must not be mounted higher than 2 meters above
+ground to avoid any risks in case of falling down!
+For optimal RF performance (e.g. LoRa range) any metal obstacles near the internal antenna
+should be avoided. In this case 'near' is defined as keep-out distance of about 3-5 centimeters
+around the antenna. The internal helix antenna can be identified by the winding pcb traces
+near the white printed encircled 'connectivity' symbol. In any case a device mounting directly
+on top of a metal surface is not advisable since it will degrade the possible RF range. Stone
+walls, wood or plastic standos are perfectly ok.
+In case of challenging installation locations (e.g. in basements) or unavoidable long distances
+to the next LoRaWAN gateway, Lobaro oers on request custom product variant equipped
+with a 'SMA' connector to support a external antenna connection.
 
 
 
