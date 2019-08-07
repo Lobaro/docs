@@ -160,6 +160,18 @@ demanding cases Lobaro can offer better solutions using higher bandwidth transmi
 like NB-IoT3 or classical 4G/LTE. Contact us if you need such a alternative solution
 by sending your request to info@lobaro.com - either English or German is fine.
 
+##Work Cycle
+
+```mermaid
+graph LR;
+    wmbus(wMBUS Collection)
+    init(Initial)==>check(LoRaWAN Join);
+    check(LoRaWAN Join)==>wmbus(wMBUS Collection);
+    wmbus(wMBUS Collection)==>trans(LoRaWAN Transfer);
+    trans(LoRaWAN Transfer)==>sleep(Sleep);
+    sleep(Sleep)==>|Cron expression|wmbus(wMBUS Collection)
+```
+
 ## Target Measurement / Purpose
 Forwarding of wireless M-BUS messages via LoRaWAN.
 
