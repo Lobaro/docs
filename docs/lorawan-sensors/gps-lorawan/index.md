@@ -49,13 +49,13 @@ graph LR;
 ```
 The GPS Tracker has a work cycle that adapts to detected motion of the device.
 
-## Initial Phase
+### Initial Phase
 
 This is the phase that is executed after the device is started of restarted. The LED flashes
 once and the configuration is evaluated. If successful, the LoRaWAN Join phase is executed
 next.
 
-## LoRaWAN Join Phase
+### LoRaWAN Join Phase
 
 If the Device is configured to use over the air activation (OTAA), the OTAA Join is performed
 at this point. The device will repeatedly try to join its LoRaWAN network until the process
@@ -63,7 +63,7 @@ is successful. It then enters the Data Collection Phase.
 If the Device is configured to use ABP instead of OTAA, this phase is left immediately and
 the Data Collection Phase is entered.
 
-## GPS Collection Phase
+### GPS Collection Phase
 
 During the GPS Collection Phase the device will try to determine its coordinates (latitude,
 longitude, and height) using GPS. You can identify this phase by the onboard LED flashing
@@ -71,7 +71,7 @@ on and off in one second intervals.
 Once the position has been determined successfully (or the attempt timed out and failed,
 because of bad GPS reception), the device enters the Data Transfer Phase.
 
-## Data Transfer Phase
+### Data Transfer Phase
 
 During the Data Transfer Phase the Tracker uploads the GPS coordinates to the LoRaWAN
 network. The message contains the information if the measurement was successful. Some
@@ -86,7 +86,7 @@ motion was detected for a time longer than the timeout, the device enters the `A
 Phase, which typically has a much longer sleeping time, but in which the device will also be
 activated through movement.
 
-## Active Sleep Phase
+### Active Sleep Phase
 
 Even in Active Mode, the device spends most of its time in a deep sleep state to conserve
 energy. The frequency with which the Tracker wakes up in Active Mode can be configured
@@ -96,7 +96,7 @@ When in Active Sleep Phase, the device will not be triggered to gather more GPS 
 through motion, but movement of the device will still be registered to keep the Tracker in
 Active Mode.
 
-## Alive Sleep Phase
+### Alive Sleep Phase
 When no movement has been detected for a long amount of time (configurable), the device
 stops sending updates, since there is not much point in sending frequent position information
 when the device does not change its position. In Alive Mode, only very few updates are sent
@@ -127,7 +127,7 @@ Tab') , watching real-time device diagnostic output ('Logs Tab') and initiating 
 !!! info "Info"
     Please note that the device is automatically restarted each time the configuration has been changed!
 
-## Connecting the USB config adapter
+### Connecting the USB config adapter
 For configuration and Firmware updates we provide a special serial-USB adapter that can be
 connected as shown in the picture underneath. The corresponding connector on the PCB is marked with
 the word 'Config'.
@@ -141,14 +141,14 @@ configuration parameters will be kept non-volatile regardless of the power suppl
 
 ![Modbus LoRaWAN Bridge](files/config.png){: style="width:50%; display: block; margin: 0 auto;"}
 
-## System Parameters
+### System Parameters
 After being successfully connected to the hardware using the Lobaro Maintenance Tool you
 can press 'Reload Config' in the 'Configuration' tab to read the current configuration from the
 device. For every parameter a default value is stored non volatile inside the hardware to which
 you can revert using the 'Restore default' button in case anything got miss configured.
 All LoRaWAN & other firmware parameters are explained in the following.
 
-## LoRaWAN network parameters
+### LoRaWAN network parameters
 A large part of the configuration parameters are used to control the device's usage of Lo-
 RaWAN. The table lists all of them. There are two different ways to use LoRaWAN: over-the-air
 activation (OTAA) and activation by personalization (ABP). Some configuration parameters
@@ -168,7 +168,7 @@ are only used with one of those methods, others are used for both.
 |          TxPower  |      int     |      both        |        Initial transmission output power in dBm. The Lo-RaWAN protocol allows only specific values: 2, 5, 8, 11, 14. The actual power used might change during operation if Adaptive Data Rate (ADR) is used.    |
 |        ADR    |      bool     |         both     |       true: use adaptive data rate (ADR) <br> false: don't use adaptive data rate (ADR)     |
 
-##GPS configuration parameters
+###GPS configuration parameters
 The behaviour of the GPS Tracker and how it switches between its two operation modes
 ('Active' and 'Alive') can be adjusted to your needs. The table explains the configuration
 parameters used for this.
@@ -182,7 +182,7 @@ parameters used for this.
 |        memsTh    |       int    |  Threshold for the internal motion detector to register movement. Values range from 2 to 255. A higher value makes the device less sensitive.<br>2 Environment (wind or steps) may trigger.<br>5 Standard, picking up the device will activate it. <br> 20 Carefully picking it up will not trigger the device.<br>50 When carried, running will trigger, walking won't.<br>100+ Shaking will activate, dropping the device might not.          |
 |      CayenneLPP      |   bool        |      Use alternative Cayenne LPP upload format. Standard: false, e.g. use Lobaro Format. See chapter "myDevices Cayenne format" for an introduction to this format.      |
 
-##Cron expressions
+###Cron expressions
 Cron expressions are used to define specific points in time and regular repetitions of them.
 The schedule for data collecting phases is defined using the Cron format which is very
 powerful format to define repeatedly occurring events.
@@ -218,7 +218,7 @@ formats contain only data bytes, no keys or data types are included. The meaning
 is determined by its position within a message. The tracker supports two different upload
 formats as described in the following:
 
-##Lobaro upload format (since Firmware Version 5)
+###Lobaro upload format (since Firmware Version 5)
 Only a single massage format is used by the GPS Tracker, it has a fixed length of 17 bytes.
 The table explains the message format used.
 This format uses the decimal degrees notation for the location, e.g. 53.4724° north and
@@ -230,7 +230,7 @@ Multi byte integers are transmitted as big endian. Values that would require dec
 are transmitted in smaller units, e.g. 1/100000 degree (as described before), to handle only with
 integers.
 
-##Fields, Data Packet
+###Fields, Data Packet
 
 |name|bytes|type|description|example / range|
 |-|-|-|-|-|
@@ -242,7 +242,7 @@ integers.
 |flags|15|uint8|Status flag, refer to table below|00bin = invalid, alive <br> 01bin = valid, alive <br> 10bin = invalid, active <br> 11bin = valid, active|
 |sat|16|uint8|GPS satellites found / in view|7|
 
-##Status flag
+###Status flag
 
 |bit|function|not set|set|
 |-|-|-|-|
@@ -256,7 +256,7 @@ valid flag set to false.
 We provide a JavaScript reference implementation of a decoder for the data packages as easy
 to use download, which can be used directly for decoding in The Things Network.
 
-##myDevices Cayenne format
+###myDevices Cayenne format
 As an alternative for the Lobaro data format the tracker can be configured to send Cayenne
 LPP compatible LoRaWAN uploads. myDevices Cayenne allows you to quickly visualize the
 via LoRaWAN transmitted data of the Lobaro GPS-tracker. You can use Cayenne as a tool
@@ -277,7 +277,7 @@ The Lobaro GPS Trackers maps its data to cayenne channels as follows:
 |GPS data|2|GPS|
 |satellites found|3|Digital Output|
 
-##Legacy Lobaro upload format (up to Firmware Version 4)
+###Legacy Lobaro upload format (up to Firmware Version 4)
 This format is not supported any more since firmware version V5.0.0! Please consider updating
 your device firmware using the Lobaro maintenance tool.
 Only a single massage format is used by the GPS Tracker, it has a fixed length of 15 bytes.
@@ -296,7 +296,7 @@ used directly for decoding in The Things Network.
 |v_bat|uint16|Current battery voltage in mV|3547 ≙ 3:547 V|
 |latitude deg|int8|Whole degrees of the latitude|-90 to 90|
 
-##Example
+####Example
 
 !!! info "As an illustration, if the received data would consist of the 15 bytes (hexencoded):" 
     **00 01 18 0D 69 35 1C 0F 71 09 38 02 4B 01 06**
