@@ -173,6 +173,49 @@ graph LR;
 ```
 The Bridge has a simple work cycle that consists of five phases.
 
+###Initial Phase
+This is the phase that is executed after the device is started of restarted. The Bridge performs
+a quick self test which you can easily spot by the green internal LED flashing. After that,
+the configuration is evaluated. If successful, the LoRaWAN Join phase is executed next.
+
+###LoRaWAN Join Phase
+If the Bridge is congured to use over the air activation (OTAA), the OTAA join is performed
+at this point. The device will repeatedly try to join its LoRaWAN network until the process
+is successful. It then enters the Data Collection Phase.
+If the Bridge is configured to use ABP instead of OTAA, this phase is left immediately and
+the Data Collection Phase is entered according to the cron configuration.
+
+###Data Collection Phase
+During the wMBUS collection phase the device receives any wireless M-Bus data with valid
+CRC and stores it for the following LoRaWAN upload phase but only if the received telegram
+passes the user defined white list filters. Similar telegrams of one identical meter may be
+received multiple times during this phase. In this case the newest telegram with the same
+id, type and length will replace the previously received one. Only the latest telegram will be
+uploaded via LoRaWAN.
+After the configured amount of time for collecting data the LoRaWAN data transfer phase
+is entered.
+
+###Data Transfer Phase
+During the Data Transfer Phase the Bridge uploads all previously stored wMBUS data using
+LoRaWAN. Depending on original wMBUS telegram byte sitze this can require multiple LoRaWAN
+messages to be sent. Since LoRa requires any device to respect a strict duty cycle,
+it is possible, that the Bridge will need to wait before sending its messages. If this happens,
+the device will enter a power saving modus while waiting for the next message. It is possible
+that transferring all data will take several minutes.
+In addition to the wireless M-Bus data, the Bridge sends a status packet once a day during
+this phase. The status packet will always be transmitted prior to any data packets.
+For a detailed description of the data sent refer to chapter 5.2.
+
+###Sleep Phase
+After transferring all data packets the Bridge enters the Sleep Phase. During this it is completely
+inactive to avoid wasting power. It remains sleeping until one of the cron expressions
+given in the conguration triggers. When that happens, it enters the Data Collection Phase
+again.
+wMBUS
+
+##Configuration
+
+###The Lobaro Maintenance Tool
 
 
 
