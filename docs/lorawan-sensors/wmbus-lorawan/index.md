@@ -62,21 +62,103 @@ In case of challenging installation locations (e.g. in basements) or unavoidable
 to the next LoRaWAN gateway, Lobaro offers on request custom product variant equipped
 with a 'SMA' connector to support a external antenna connection.
 
+###Power Supply
+The wMBUS over LoRaWAN Bridge default power supply consists of two series connected
+off-the-shelf 1.5V 'AA' sized batteries. Be sure to get the polarity right, see the '+'-Symbol on
+the board. In general only AA cells of the types Alkali-Manganese (1.5V, LR6) and Lithium-
+Iron-Sulphide (1.5V, FR6) are allowed to be inserted in the device. Lobaro recommends the
+use of FR6 batteries like the Energizer Ultimate Lithium over LR6 types because of the higher
+capacity and better discharge properties.
 
+!!! warning "Other Batteries or accumulators with a nominal voltage of more than 1.5V must not inserted into the device under any circumstances. In particular, lithium based cells with a nominal voltage of 3.6V or 3.7V must not be used on the AA battery slots!"
 
+On request we can supply custom product variants with special housings powered by even
+bigger batteries. For example a 3.6V C sized mono cell typically has a capacity of 9Ah with
+leads to a 3x increased battery life compared to the standard AA-cells. With D sized cells of
+typically 19Ah capacity this value can be doubled once again (6x). Also available on request
+are options with permanent external power supply (230V, 9-24V, 5V USB).
 
+###Battery life time
+The battery life time of the wireless M-Bus to LoRaWAN Bridge can not be specifed trustworthy
+without knowledge of the detailed installation scenario. At least estimations for the
+following custom project based parameters have to be known:
 
++ Meter count per single wMBUS bridge, e.g. 10 different meters.
 
++ Needed LoRaWAN transmission interval, e.g. daily uploads.
 
++ Average wireless M-Bus telegram size in bytes, e.g. 35 byte.
 
++ Wireless M-Bus telegram transmission interval of the meter, e.g. every 10 seconds.
 
++ Typically used LoRa Spreading Factor / LoRa link quality, e.g. SF10.
 
+Depending on these parameters battery life times from a few months to over 15 years can
+be achieved. You may send us your use-case details as described above to info@lobaro.com
+and we will return to you a custom battery lifetime calculation, a recommendation for the
+best power supply scheme and the needed minimal battery capacity.
 
+####Example calculation
+In this battery lifetime calculation scenario the target meters send a 35 byte long ('L-Field')
+wireless M-Bus telegram constantly every 10 seconds. This behavior is for example very
+similar to a 'Hydrus' ultrasonic water meter of Diehl Metering2. The Diehl meter itself has a
+specified battery life time of 12 years.
+Because of the mentioned 10 second send interval it is sufficient to configure the bridge for
+a wireless M-Bus listen period of 20 seconds by setting the bridge configuration parameter
+cmodeDurSec to a value of 20 (refer to section 4.3.2). This will ensure that all meters of
+interest sent their consumption telegrams at least onces during the configured listen period
+of the bridge.
+For a worst-case battery-lifetime calculation the weakest possible LoRaWAN connectivity has
+been selected. That means to reach a LoRaWAN Gateway the Lobaro hardware has to send
+out its Uplink data very slowly (&ge; 2 seconds) and redundant by using a LoRa spreading factor
+of 12. Beside this the actual usable battery capacity has been set to 80% of the nominal
+value. The resulting worst-case minimal battery-life times are presented in table 1.
 
+#####Table 1:Battery life for daily LoRaWAN uploads with SF12
+|Collected meters|Battery Life (years) AA cell (3Ah)|Battery Life (years) Baby cell(9Ah)|
+|-|-|-|
+|1|10.7|32.0|
+|5|7.0|21.1|
+|10|4.9|14.8|
+|20|3.1|9.3|
+|40|1.8|5.3|
+|80|1.0|2.9|
 
+#####Table 2:Battery life for daily LoRaWAN uploads with SF7
 
+|Collected meters|Battery Life (years) AA cell (3Ah)|Battery Life (years) Baby cell(9Ah)|
+|-|-|-|
+|1|12.1|36.4|
+|5|11.8|35.4|
+|10|11.4|34.4|
+|20|10.6|31.9|
+|40|9.4|28.3|
+|80|7.7|23.0|
 
+Estimations for the opposite situation with a excellent LoRa link quality and thus the possible
+usage of SF7 are also presented in table 2.
+In real world installations the possible spreading factor may be optimized anytime by setting
+up additional LoRaWAN Gateways near the meters of interest.
 
+####Usage scenario recommendations
+As a simple rule of thumb using the Lobaro wireless M-Bus over LoRaWAN bridge is a good
+fit in applications that require daily (or less often) consumption values of 1 to 40 installed
+wireless M-Bus meters. For installations with a higher meter count simply more Lobaro
+bridges may be used.
+Another key factor for high battery lifetime is to select or configure your wireless M-Bus
+meters in a way that they send short telegrams very frequently, proven good values are
+periods smaller than 30 seconds and telegram sizes smaller 50 bytes. This helps to minimize
+the needed wMBus listening time period and avoids the need for multiple LoRaWAN packets
+per single telegram (data splitting). Beside this the bridge is naturally most economical when multiple meters per single bridge
+can be collected and forwarded via LoRWAN. Although for some applications a 1:1 setup,
+e.g. one bridge per meter, may deliver enough benefits to justify the invest.
+For hourly or even more frequent meter data uploads, as requested by some of our customers,
+LoRaWAN isn't the perfect match from a technology point of view. The same holds
+for scenarios where hundreds of meters are expected to be transfered by a single bridge,
+e.g. in 'sub-metering' applications with tons of installed heat cost allocators. For such more
+demanding cases Lobaro can offer better solutions using higher bandwidth transmission techniques
+like NB-IoT3 or classical 4G/LTE. Contact us if you need such a alternative solution
+by sending your request to info@lobaro.com - either English or German is fine.
 
 ## Target Measurement / Purpose
 Forwarding of wireless M-BUS messages via LoRaWAN.
