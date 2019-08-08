@@ -430,9 +430,46 @@ offer for quick device evaluation. API Integration into production systems is al
 but in this case a separate agreement about a royalty fee must be achieved up front. For
 more information on licensing our wireless M-Bus parsing API plase send us your request via
 email to info@lobaro.com - either English or German is fine.
-wMBUS
 
-
+## Technical characteristics
+|||
+|-|-|
+|**Product**||
+|Type name|wMBUS-LoRaWAN|
+|Description|wMBUS over LoRaWAN Bridge|
+|**RF transceiver**||
+|Chipset|Semtech SX1272|
+|Frequency Range|863 to 870 MHz|
+|TX Power|≤ 14 dBm|
+|**LoRa communication**||
+|LoRaWAN Protocol|LoRaWAN 1.0.1, Class A, EU868|
+|Activation method|Over-the-air activation (OTAA) <br> Activation by personalization (ABP)|
+|Encryption|AES128|
+|Typically RF range|≤ 2km|
+|Ideal RF range|≤ 10km (free line of sight)|
+|**Wireless M-BUS communication**||
+|Supported Modes (EN13757-4)|S1, C1, T1|
+|Frequencies|868.3 MHz, 868.95 MHz|
+|RF Range|≤ 30m|
+|Telegram memory|up to 500 telegrams (on request: 1.500)|
+|**Power Supply**||
+|Nominal Supply Voltage|3V|
+|Supply Voltage Range|2.2V - 3.7V|
+|Power supply|2xAA battery, 1.5V (LR6/FR6) <br> 5V USB powered over Lobaro Adapter <br> On Request: 230V mains adapter, 3.6V Battery|
+|**Current consumption @3V**||
+|Normal|≤3 mA|
+|Wireless M-BUS RX|≤14 mA|
+|LoRa RX|≤14 mA|
+|LoRa TX|≤80 mA|
+|Sleep with RTC running|≤20 µA|
+|**Mechanical dimensions**||
+|Size|114.3 mm x 59.3 mm x 26.8 mm|
+|Housing Material|ABS plastic|
+|**Environmental Requirements**||
+|Operating temperature range|-20°C to +55°C|
+|Max. Installation height|2m|
+|**Conformity**||
+|||
 
 ## Target Measurement / Purpose
 Forwarding of wireless M-BUS messages via LoRaWAN.
