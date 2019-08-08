@@ -3,7 +3,7 @@
 
 ![Product Image](files/gpslorawan.png){: style="height:400px;display: block; margin: 0 auto;"}
 
-## Target Measurement / Purpose
+## Overview
 
 The LoRaWAN GPS Tracker (GPS-LoRaWAN) is a battery powered tracking device, that
 uses the satellite based positioning service GPS to determine its location and transmits the
@@ -16,20 +16,56 @@ battery power by sending only few updates. While not sending updates, the device
 sleep mode that only uses ∼30 µA.
 The pictures above and below show the GPS Tracker with opened casing. The most important components are
 indicated and explained.
-Please read the manual carefully before operating the device. A safe operation of the
+**Please read the manual carefully before operating the device. A safe operation of the
 device is only possible if you follow the guides provided in this manual. Using the device
 differently than intended by Lobaro my cause damage to people, the environment, or
-the device.
+the device.**
 
 ![Modbus LoRaWAN Bridge](files/lorawan.png){: style="width:50%; display: block; margin: 0 auto;"}
 
-## The Device
+### The Device
 
 ![Modbus LoRaWAN Bridge](files/device.png){: style="width:60%; display: block; margin: 0 auto;"}
 
-!!! info "Consider using the latest firmware on your hardware"
-    * [**See available firmware downloads**](firmware.md){: target="_blank"}
+## Operating the GPS Tracker
+Once appropriate batteries are inserted into the device, it will start working. The Tracker will
+most likely need to be adjusted to your personal LoRaWAN configuration (see chapter "Configuration").
 
+### Batteries
+
+The LoRaWAN GPS Tracker default power supply consists of two series connected off-theshelf
+1.5V 'AA' sized batteries. Be sure to get the polarity right, see the '+'-Symbol on the
+board. In general only AA cells of the types Alkali-Manganese (1.5V, LR6) and Lithium-Iron-
+Sulphide (1.5V, FR6) are allowed to be inserted in the device. Lobaro recommends the use
+of FR6 batteries like the Energizer Ultimate Lithium over LR6 types because of the higher
+capacity and better discharge properties.
+
+!!! warning "Other Batteries or accumulators with a nominal voltage of more than 1.5V must not inserted into the device under any circumstances. In particular, lithium based cells with a nominal voltage of 3.6V or 3.7V must not be used on the AA battery slots!"
+
+On request we can supply custom product variants with special housings powered by even
+bigger batteries. For example a 3.6V C sized mono cell typically has a capacity of 9Ah with
+leads to a 3x increased battery life compared to the standard AA-cells. With D sized cells of
+typically 19Ah capacity this value can be doubled once again (6x). Also available on request
+are options with permanent external power supply (230V, 9-24V, 5V USB).
+
+### Installation
+
+The device must be fixed on a flat surface using the lateral mounting holes of the case, see
+chapter 6.1 for a detailed description of all housing dimensions. Alternatively we offer as
+accessory a mounting clip for a standard 35mm DIN rail. The device can then easily snapped
+on a such rails. It can therefore be added to a variety of racks alongside other devices.
+
+!!! warning "Under any circumstances the device must not be mounted higher than 2 meters above ground to avoid any risks in case of falling down!"
+
+For optimal RF performance (e.g. LoRa range) any metal obstacles near the internal antenna
+should be avoided. In this case 'near' is defined as keep-out distance of about 3-5 centimeters
+around the antenna. The internal helix antenna can be identified by the winding pcb traces
+near the white printed encircled 'connectivity' symbol. In any case a device mounting directly
+on top of a metal surface is not advisable since it will degrade the possible RF range. Stone
+walls, wood or plastic standoffs are perfectly ok.
+In case of challenging installation locations (e.g. in basements) or unavoidable long distances
+to the next LoRaWAN gateway, Lobaro offers on request custom product variant equipped
+with a 'SMA' connector to support a external antenna connection.
 
 ## Work Cycle
 
@@ -49,13 +85,13 @@ graph LR;
 ```
 The GPS Tracker has a work cycle that adapts to detected motion of the device.
 
-### Initial Phase
+#### Initial Phase
 
 This is the phase that is executed after the device is started of restarted. The LED flashes
 once and the configuration is evaluated. If successful, the LoRaWAN Join phase is executed
 next.
 
-### LoRaWAN Join Phase
+#### LoRaWAN Join Phase
 
 If the Device is configured to use over the air activation (OTAA), the OTAA Join is performed
 at this point. The device will repeatedly try to join its LoRaWAN network until the process
@@ -63,7 +99,7 @@ is successful. It then enters the Data Collection Phase.
 If the Device is configured to use ABP instead of OTAA, this phase is left immediately and
 the Data Collection Phase is entered.
 
-### GPS Collection Phase
+#### GPS Collection Phase
 
 During the GPS Collection Phase the device will try to determine its coordinates (latitude,
 longitude, and height) using GPS. You can identify this phase by the onboard LED flashing
@@ -71,7 +107,7 @@ on and off in one second intervals.
 Once the position has been determined successfully (or the attempt timed out and failed,
 because of bad GPS reception), the device enters the Data Transfer Phase.
 
-### Data Transfer Phase
+#### Data Transfer Phase
 
 During the Data Transfer Phase the Tracker uploads the GPS coordinates to the LoRaWAN
 network. The message contains the information if the measurement was successful. Some
@@ -86,7 +122,7 @@ motion was detected for a time longer than the timeout, the device enters the `A
 Phase, which typically has a much longer sleeping time, but in which the device will also be
 activated through movement.
 
-### Active Sleep Phase
+#### Active Sleep Phase
 
 Even in Active Mode, the device spends most of its time in a deep sleep state to conserve
 energy. The frequency with which the Tracker wakes up in Active Mode can be configured
@@ -96,7 +132,7 @@ When in Active Sleep Phase, the device will not be triggered to gather more GPS 
 through motion, but movement of the device will still be registered to keep the Tracker in
 Active Mode.
 
-### Alive Sleep Phase
+#### Alive Sleep Phase
 When no movement has been detected for a long amount of time (configurable), the device
 stops sending updates, since there is not much point in sending frequent position information
 when the device does not change its position. In Alive Mode, only very few updates are sent
