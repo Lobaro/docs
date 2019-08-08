@@ -348,6 +348,42 @@ used directly for decoding in The Things Network.
 |valid|**01**|01hex ≙ valid measurement, could receive GPS signal|
 |sat|**06**|06hex = 06dec ≙ Signal of 6 satellites received for measurement|
 
+## Technical characteristics
+|||
+|-|-|
+|**Product**||
+|Type name|GPS-LoRaWAN|
+|Description|LoRaWAN GPS Tracker|
+|**RF transceiver**||
+|Chipset|Semtech SX1272|
+|Frequency Range|863 to 870 MHz|
+|TX Power|≤ 14 dBm|
+|Typically RF range|≤ 2km|
+|Ideal RF range|≤ 10km (free line of sight)|
+|**LoRa communication**||
+|LoRaWAN Protocol|LoRaWAN 1.0.1, Class A, EU868|
+|Activation method|Over-the-air activation (OTAA) <br> Activation by personalization (ABP)|
+|Encryption|AES128|
+|**Power**||
+|Power supply|2xAA sized battery, 1.5 V, LR6/FR6|
+|Supply voltage|UNom = 3.0V, UMin = 2.2V, UMax = 3.7V|
+|Capacity|∼ 30000 LoRaWAN messages @SF11|
+|**Current consumption @3V**||
+|Normal|≤3 mA|
+|Wireless M-BUS RX|≤14 mA|
+|LoRa RX|≤14 mA|
+|LoRa TX|≤80 mA|
+|Sleep with GPS standby and MEMS running|≤20 µA|
+|**Mechanical dimensions**||
+|Size|114.3 mm x 59.3 mm x 26.8 mm|
+|Housing Material|ABS plastic|
+|**Environmental Requirements**||
+|Operating temperature range|-20°C to +55°C|
+|Max. Installation height|2m|
+|**Conformity**||
+|<img title="CE" alt="CE logo" src="/img/symbol-ce.svg" height="60"> <img title="weee" title="weee logo" src="/img/symbol-weee.svg" height="60">||
+
+
 
 ## PDF Documentation
 * [User Manual (en)](files/lorawan-gps-tracker_en.pdf)
