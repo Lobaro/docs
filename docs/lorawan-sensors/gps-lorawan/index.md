@@ -146,7 +146,7 @@ GPS Tracker immediately wakes up and switches to Active Mode.
 ![Modbus LoRaWAN Bridge](files/maintenancetool.png){: style="width:60%; display: block; margin: 0 auto;"}
 
 The initial device configuration can be done very comfortably from your PC via the serial
-configuration interface. Beside the needed Lobaro USB to UART adapter the Lobaro Maintenance Tool 1 needs to be installed. This tool is freely available for various operating systems
+configuration interface. Beside the needed Lobaro USB to UART adapter the [**Lobaro Maintenance Tool**](https://www.lobaro.com/lobaro-maintenance-tool/){: target="_blank"} needs to be installed. This tool is freely available for various operating systems
 including Windows, Linux, Mac and Linux-ARM (e.g. Raspberry-PI) on and works with all
 Lobaro sensors.
 Technically this software opens a webserver on port 8585 that runs in a background console
@@ -168,7 +168,7 @@ For configuration and Firmware updates we provide a special serial-USB adapter t
 connected as shown in the picture underneath. The corresponding connector on the PCB is marked with
 the word 'Config'.
 The USB-adapter will add a virtual serial 'COM' Port to your system. Your operating system
-needs the CP210x USB to UART Bridge2 driver installed. A download link is provided next
+needs the CP210x USB to [**UART bridge**](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers){: target="_blank"} driver installed. A download link is provided next
 to the 'Connect' button when you start the Maintenance Tool.
 While the config adapter is connected, the device will be powered from the USB port with
 a regulated voltage of 3.3V. It is not necessary - although it would be no problem - having
@@ -220,11 +220,12 @@ parameters used for this.
 
 ###Cron expressions
 Cron expressions are used to define specific points in time and regular repetitions of them.
-The schedule for data collecting phases is defined using the Cron format which is very
-powerful format to define repeatedly occurring events.
-Standard Lobaro devices typically do not need to know the real time for proper operation.
-All times are relative to the random time when batteries are inserted. If needed
-by the target application Lobaro can deliver on request special hardware support for keeping
+The schedule for data collecting phases is defined using the [**Cron**](https://en.wikipedia.org/wiki/Cron){: target="_blank"} format which is very
+powerful format to define repeatedly [**occurring events**](https://github.com/lobaro/docs/wiki/CRON-Expressions){: target="_blank"}.
+
+!!! info "Standard Lobaro devices typically do not need to know the real time for proper operation. All times are relative to the random time when batteries are inserted."
+
+If needed by the target application Lobaro can deliver on request special hardware support for keeping
 data acquisition intervals based on a real time clock which stays in sync with the real time.
 Please contact Lobaro directly if you need such a custom product variant.
 
@@ -290,11 +291,11 @@ If during some configurable period of time (see "gpsTO" parameter in table "GPS 
 location can be found the last known valid GPS location will be transmitted but with the
 valid flag set to false.
 We provide a JavaScript reference implementation of a decoder for the data packages as easy
-to use download, which can be used directly for decoding in The Things Network.
+to use [**download**](https://www.lobaro.com/portfolio/lorawan-gps-tracker/){: target="_blank"}, which can be used directly for decoding in [**The Things Network**](https://www.thethingsnetwork.org/){: target="_blank"}.
 
 ###myDevices Cayenne format
 As an alternative for the Lobaro data format the tracker can be configured to send Cayenne
-LPP compatible LoRaWAN uploads. myDevices Cayenne allows you to quickly visualize the
+LPP compatible LoRaWAN uploads. [**myDevices Cayenne**](https://mydevices.com/){: target="_blank"} allows you to quickly visualize the
 via LoRaWAN transmitted data of the Lobaro GPS-tracker. You can use Cayenne as a tool
 to visualize real-time and historical data, sent over The Things Network and various other
 LoRaWAN providers.
@@ -321,7 +322,7 @@ This format uses the degrees with decimal minutes notation for the location.
 Multi byte integers are transmitted as big endian. Values that would require decimal places
 are transmitted in smaller units (e.g. mV instead of V).
 The table underneath explains the message format used. We provide a JavaScript reference
-implementation of a decoder for the data packages as easy to use download, which can be
+implementation of a decoder for the data packages as easy to use [**download**](https://www.lobaro.com/portfolio/lorawan-gps-tracker/){: target="_blank"} , which can be
 used directly for decoding in The Things Network.
 
 
