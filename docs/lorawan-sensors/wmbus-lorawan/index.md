@@ -24,13 +24,13 @@ The metering data will not be decrypted by the LoRaWAN Bridge, instead an unchan
 1:1 forwarding takes place via one or more LoRaWAN packets (depending on the wMBUS
 telegram byte size). Thus the end-to-end encryption of sensitive wireless MBUS consumption
 data is preserved.
-Initial conguration, firmware updates & status readouts are done user-friendly via USB on the
+Initial configuration, firmware updates & status readouts are done user-friendly via USB on the
 PC with the Lobaro Tool (Windows, Linux, Mac). An additional possibility of configuration in the field "over the air" by means of LoRaWAN downlinks will soon also be available via
 firmware update.
 
 **Please read the manual carefully before operating the device. A safe operation of the
 device is only possible if you follow the guides provided in this manual. Using the device
-differently than intended by Lobaro my cause damage to people, the environment, or
+differently than intended by Lobaro may cause damage to people, the environment, or
 the device.**
 
 !!! info "Consider using the latest firmware on your hardware"
@@ -46,7 +46,7 @@ the device.**
 
 ###Device installation
 The device must be fixed on a flat surface using the lateral mounting holes of the case, see
-chapter 6.1 for a detailed description of all housing dimensions. Alternatively we offer as
+chapter "Housing Dimensions" for a detailed description of all housing dimensions. Alternatively we offer as
 accessory a mounting clip for a standard 35mm DIN rail. The device can then easily snapped
 on a such rails. It can therefore be added to a variety of racks alongside other devices.
 
@@ -101,11 +101,11 @@ best power supply scheme and the needed minimal battery capacity.
 ####Example calculation
 In this battery lifetime calculation scenario the target meters send a 35 byte long ('L-Field')
 wireless M-Bus telegram constantly every 10 seconds. This behavior is for example very
-similar to a 'Hydrus' ultrasonic water meter of Diehl Metering2. The Diehl meter itself has a
+similar to a 'Hydrus' ultrasonic water meter of [**Diehl Metering**](https://www.diehl.com/metering/){: target="_blank"}. The Diehl meter itself has a
 specified battery life time of 12 years.
 Because of the mentioned 10 second send interval it is sufficient to configure the bridge for
 a wireless M-Bus listen period of 20 seconds by setting the bridge configuration parameter
-cmodeDurSec to a value of 20 (refer to section 4.3.2). This will ensure that all meters of
+cmodeDurSec to a value of 20 (refer to section "wMBUS bridge parameters"). This will ensure that all meters of
 interest sent their consumption telegrams at least onces during the configured listen period
 of the bridge.
 For a worst-case battery-lifetime calculation the weakest possible LoRaWAN connectivity has
@@ -157,7 +157,7 @@ LoRaWAN isn't the perfect match from a technology point of view. The same holds
 for scenarios where hundreds of meters are expected to be transfered by a single bridge,
 e.g. in 'sub-metering' applications with tons of installed heat cost allocators. For such more
 demanding cases Lobaro can offer better solutions using higher bandwidth transmission techniques
-like NB-IoT3 or classical 4G/LTE. Contact us if you need such a alternative solution
+like NB-IoT (Narrowband IoT) or classical 4G/LTE. Contact us if you need such a alternative solution
 by sending your request to info@lobaro.com - either English or German is fine.
 
 ##Work Cycle
@@ -179,7 +179,7 @@ a quick self test which you can easily spot by the green internal LED flashing. 
 the configuration is evaluated. If successful, the LoRaWAN Join phase is executed next.
 
 ###LoRaWAN Join Phase
-If the Bridge is congured to use over the air activation (OTAA), the OTAA join is performed
+If the Bridge is configured to use over the air activation (OTAA), the OTAA join is performed
 at this point. The device will repeatedly try to join its LoRaWAN network until the process
 is successful. It then enters the Data Collection Phase.
 If the Bridge is configured to use ABP instead of OTAA, this phase is left immediately and
@@ -204,7 +204,7 @@ the device will enter a power saving modus while waiting for the next message. I
 that transferring all data will take several minutes.
 In addition to the wireless M-Bus data, the Bridge sends a status packet once a day during
 this phase. The status packet will always be transmitted prior to any data packets.
-For a detailed description of the data sent refer to chapter 5.2.
+For a detailed description of the data sent refer to chapter "Data Packet".
 
 ###Sleep Phase
 After transferring all data packets the Bridge enters the Sleep Phase. During this it is completely
@@ -219,8 +219,7 @@ again.
 ![Modbus LoRaWAN Bridge](files/main.png){: style="width:60%; display: block; margin: 0 auto;"}
 
 The initial device configuration can be done very comfortably from your PC via the serial
-configuration interface. Beside the needed Lobaro USB to UART adapter the Lobaro Main-
-tenance Tool 4 needs to be installed. This tool is freely available for various operating systems
+configuration interface. Beside the needed Lobaro USB to UART adapter the [**Lobaro Maintenance Tool**](https://www.lobaro.com/lobaro-maintenance-tool/){: target="_blank"} needs to be installed. This tool is freely available for various operating systems
 including Windows, Linux, Mac and Linux-ARM (e.g. Raspberry-PI) on and works with all
 Lobaro sensors.
 Technically this software opens a webserver on port 8585 that runs in a background console
@@ -241,7 +240,7 @@ For configuration and firmware updates we provide a special serial-USB adapter t
 connected as shown in the picture below. The corresponding connector on the PCB is marked with
 the word 'Config'.
 The USB-adapter will add a virtual serial 'COM' Port to your system. Your operating system
-needs the CP210x USB to UART Bridge5 driver installed. A download link is provided next
+needs the CP210x USB to [**UART Bridge**](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers){: target="_blank"} driver installed. A download link is provided next
 to the 'Connect' button when you start the Maintenance Tool.
 While the config adapter is connected, the device will be powered from the USB port with
 a regulated voltage of 3.3V. It is not necessary - although it would be no problem - having
@@ -298,8 +297,8 @@ are only used with one of those methods, others are used for both.
 
 ####Cron expressions
 Cron expressions are used to define specific points in time and regular repetitions of them.
-The schedule for data collecting phases is defined using the Cron6 format which is very
-powerful format to define repeatedly occurring events.
+The schedule for data collecting phases is defined using the [**Cron**](https://en.wikipedia.org/wiki/Cron){: target="_blank"} format which is very
+powerful format to define repeatedly [**occurring events**](https://github.com/lobaro/docs/wiki/CRON-Expressions){: target="_blank"}.
 
 !!! info "Standard Lobaro devices typically do not need to know the real time for proper operation. All times are relative to the random time when batteries are inserted."
 
@@ -355,7 +354,7 @@ bit integer using little endian encoding.
 |temp|int16|5-6|Temperature measured inside the device in 1/10 °C|246 ≡ 24.6°C|
 
 We provide a JavaScript reference implementation of a decoder for this status packet on
-GitHub, which can be used directly for decoding in The Things Network.
+[**GitHub**](https://github.com/lobaro/ttn-data-formats/blob/master/wmbus-bridge/decoder.js){: target="_blank"}, which can be used directly for decoding in [**The Things Network**](https://www.thethingsnetwork.org/){: target="_blank"}.
 
 ###Data Packet
 
@@ -410,7 +409,7 @@ an email to info@lobaro.com - either English or German is fine.
 ####Decoding wireless M-Bus
 After receiving the raw wireless M-Bus telegrams from your LoRaWAN network provider
 the actual metering data has to be decrypted and decoded by a backend service for further
-processing. The details of this are described in the EN 13757 norm and the newer OMS10
+processing. The details of this are described in the EN 13757 norm and the newer [**OMS**](https://oms-group.org/en/download4all/oms-specification/){: target="_blank"}
 specification, which is a clarification of the original underlying norm.
 A universal wireless M-Bus decoder is a relatively complicated piece of software if you start
 implementing it from scratch since the norm covers many different use cases, units, meter
@@ -469,7 +468,12 @@ email to info@lobaro.com - either English or German is fine.
 |Operating temperature range|-20°C to +55°C|
 |Max. Installation height|2m|
 |**Conformity**||
-|||
+|<img title="CE" alt="CE logo" src="/img/symbol-ce.svg" height="60"> <img title="weee" title="weee logo" src="/img/symbol-weee.svg" height="60">||
+
+###Housing Dimensions
+
+![Modbus LoRaWAN Bridge](files/housing.png){: style="width:80%; display: block; margin: 0 auto;"}
+
 
 ## Target Measurement / Purpose
 Forwarding of wireless M-BUS messages via LoRaWAN.
