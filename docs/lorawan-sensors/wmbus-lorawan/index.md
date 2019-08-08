@@ -351,8 +351,88 @@ bit integer using little endian encoding.
 |name|type|bytes|description|example|
 |-|-|-|-|-|
 |version|uint8[3]|0-2|Version of the firmware running on the device|1, 5, 1 ≡ v1.5.1|
-|v_bat|uint16|Battery voltage in mV|3-4|2947 ≡ 2:947V|
-|temp|int16|Temperature measured inside the device in 1/10 °C|5-6|246 ≡ 24.6°C|
+|v_bat|uint16|3-4|Battery voltage in mV|2947 ≡ 2:947V|
+|temp|int16|5-6|Temperature measured inside the device in 1/10 °C|246 ≡ 24.6°C|
+
+We provide a JavaScript reference implementation of a decoder for this status packet on
+GitHub, which can be used directly for decoding in The Things Network.
+
+###Data Packet
+
+After each wMBUS collecting phase, all saved telegrams (up to 500 can be stored) will be
+uploaded via LoRaWAN uplink messages as fast as possible. The received wMBUS telegrams
+that did pass the configured white list filters will be uploaded without any modification in one
+or more LoRaWAN messages.
+If a wMBUS telegram is bigger than the bridge configuration parameter loraMaxMsgSize the
+transmission will be done using multiple LoRaWAN messages. This parameter is limited to ≤
+50 bytes due to LoRaWANs maximum payload size restrictions. In case of telegram splitting
+is needed the receiving backend application server as to reassemble the original wMBUS
+telegram before decryption & parsing of the meter data. This is done by simply joining the
+messages together in the order of receive.
+The LoRaWAN port encodes identifies a LoRaWAN fragment of the original wireless M-Bus
+telegram. This way partial messages can be identified using the LoRaWAN Port:
+
++ 10 < LoRaWAN Port < 100 ≡ (Part Number | Total Parts)
+
+Gaps in the LoRaWAN Frame Counter are giving a hint for missing telegram parts which can
+happen in LoRaWAN since it's a ALOHA based protocol, e.g. collisions and some packet
+losses are accepted by principle of operation. In case the backend noticed a missing packet
+the wMBUS telegram can't be assembled anymore as described before.
+
+####Examples
+
+Examples (with loraMaxMsgSize = 50):
+
++ A 48 Byte wMBUS telegram will be send on LoRaWAN port 11. Port 11 says it is the first message of only one message (no splitting).
++ A 75 byte wMBUS telegram will be send in two messages on LoRaWAN ports 12 and 22. Port 12 means this part one of a wMBUS telegram that got splitted into two LoRaWAN messages. Port 22 means that this data is the 2nd part of the original wMBUS data. Both parts have to been concatenated in the order of receive by the backend.
++ A 101 byte wMBUS telegram will be send in three messages on LoRaWAN ports 13, 23 and 33. Port 13 means this part one of a wMBUS telegram that got splitted into three LoRaWAN messages. Port 23 means that this data is the 2nd part of the original wMBUS data. Port 33 means that this data is the 3rd part of the original wMBUS data. All three parts have to been concatenated in the order of receive by the backend.
+
+####Upload Rate
+The bridge has to work in compliance with the European SRD 868 1% duty-cycle regulations.
+This implies as a rule of thumb the device can upload at most wMBUS telegrams for 36
+seconds every hour. The actual transmit time ('ToA: time on air') for each LoRaWAN
+message depends on the byte size and the used LoRa spreading factor (SF) which denes how
+redundant LoRa data is send. This means a device with good connectivity and consequently
+using LoRa SF7 (ToA ≤ 0,050s) can upload much faster more data than a node using LoRa
+SF11 (ToA ≥ 1s) due to a hard to reach LoRaWAN gateway. The bridge will upload in
+conformity with the regulations automatically as fast as possible. When it has to wait it
+enters a low power sleep mode until the next transmission is possible again.
+The next data collection phase will be started only after completion of the previous upload
+phase in respect to the configured cmodeCron or smodeCron, whichever is earlier. Because
+of this it is advisable to define the cron parameters with an estimation of the upload duration
+in mind. This will avoid unexpected 'skipping' of data collection phases.
+If you find that the data rate LoRaWAN offers is a limitation for your setup, we could also
+provide you with a wireless M-Bus solution that uses alternate data transmission technologies,
+for example GSM/LTE or NarrowBand-IoT.
+Find our contact information under https://www.lobaro.com/contact/, or simple send us
+an email to info@lobaro.com - either English or German is fine.
+
+####Decoding wireless M-Bus
+After receiving the raw wireless M-Bus telegrams from your LoRaWAN network provider
+the actual metering data has to be decrypted and decoded by a backend service for further
+processing. The details of this are described in the EN 13757 norm and the newer OMS10
+specification, which is a clarification of the original underlying norm.
+A universal wireless M-Bus decoder is a relatively complicated piece of software if you start
+implementing it from scratch since the norm covers many different use cases, units, meter
+types and data formats. If you know in advance the exact telegram format of the deployed
+meters in your setup a hard coded data decoding may be a feasible approach. This is because
+wireless M-Bus devices often send the same telegram format in every transmission. Please
+contact the manufacturer of your meters for the needed telegram format details.
+
+![Modbus LoRaWAN Bridge](files/decoder.png){: style="width:60%; display: block; margin: 0 auto;"}
+
+An an alternative to support a quick evaluation of our hardware Lobaro offers a easy to use
+webservice which is designed to decode all sorts of wMBUS input data including decryption
+if the correct key has been provided (see picture above). This REST API returns a JSON object including all encapsulated fields, e.g. the actual metering values. This greatly simplifies the
+bridge integration into your web based service or application.
+A 12 months period of free access to this API is included in our 'wmbus bridge testpacket'
+offer for quick device evaluation. API Integration into production systems is also possible,
+but in this case a separate agreement about a royalty fee must be achieved up front. For
+more information on licensing our wireless M-Bus parsing API plase send us your request via
+email to info@lobaro.com - either English or German is fine.
+wMBUS
+
+
 
 ## Target Measurement / Purpose
 Forwarding of wireless M-BUS messages via LoRaWAN.
