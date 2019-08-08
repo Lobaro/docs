@@ -218,6 +218,141 @@ again.
 
 ![Modbus LoRaWAN Bridge](files/main.png){: style="width:60%; display: block; margin: 0 auto;"}
 
+The initial device configuration can be done very comfortably from your PC via the serial
+configuration interface. Beside the needed Lobaro USB to UART adapter the Lobaro Main-
+tenance Tool 4 needs to be installed. This tool is freely available for various operating systems
+including Windows, Linux, Mac and Linux-ARM (e.g. Raspberry-PI) on and works with all
+Lobaro sensors.
+Technically this software opens a webserver on port 8585 that runs in a background console
+window. The actual user interface can be accessed normally using a standard web browser
+at address http://localhost:8585 (picture above). Normally your default browser should be
+opened with this URL automatically after tool startup . Even remote configuration and logobservation
+over the Internet is possible, e.g. having a Raspberry PI via USB connected to
+the Lobaro device and accessing the maintenance tool from a remote machines browser over
+the Internet.
+Additionally to the device setup the tool can also be used for firmware updates ('Firmware
+Tab') , watching real-time device diagnostic output ('Logs Tab') and initiating device restarts.
+
+!!! info "Please note that the device is automatically restarted each time the configuration has been changed!"
+
+###Connecting the USB config adapter
+
+For configuration and firmware updates we provide a special serial-USB adapter that can be
+connected as shown in the picture below. The corresponding connector on the PCB is marked with
+the word 'Config'.
+The USB-adapter will add a virtual serial 'COM' Port to your system. Your operating system
+needs the CP210x USB to UART Bridge5 driver installed. A download link is provided next
+to the 'Connect' button when you start the Maintenance Tool.
+While the config adapter is connected, the device will be powered from the USB port with
+a regulated voltage of 3.3V. It is not necessary - although it would be no problem - having
+batteries inserted or a different supply connected while using the config adapter. All
+configuration parameters will be kept non-volatile regardless of the power supply.
+
+![Modbus LoRaWAN Bridge](files/config.png){: style="width:60%; display: block; margin: 0 auto;"}
+
+###System parameters
+
+After being successfully connected to the hardware using the Lobaro Maintenance Tool you
+can press 'Reload Config' in the 'Configuration' tab to read the current configuration from the
+device. For every parameter a default value is stored non volatile inside the hardware to which
+you can revert using the 'Restore default' button in case anything got miss configured.
+All LoRaWAN & other firmware parameters are explained in the following.
+
+####LoRaWAN network parameters
+A large part of the configuration parameters are used to control the device's usage of LoRaWAN.
+Table 3 lists all of them. There are two different ways to use LoRaWAN: over-the-air
+activation (OTAA) and activation by personalization (ABP). Some configuration parameters
+are only used with one of those methods, others are used for both.
+
+#####Table 3: LoRaWAN network parameters
+
+|Name|Type|Used|Description|
+|-|-|-|-|
+|OTAA|bool|both|true: use over-the-air activation (OTAA) <br> false: use activation by personalization (ABP)|
+|DevEUI|bytes[8]|OTAA|the 8 byte long DevEUI is used with OTAA to identify the device on join. The default is predefined in the hardware and guarantees an ID that is unique world wide. Should not be changed unless required by the network provider. Hex format without 0x prefix.|
+|AppEUI|bytes[8]|OTAA|ID defining the application used in the LoRaWAN network. Hex format without 0x prefix.|
+|AppKey|bytes[16]|OTAA|Application Key as defined by the LoRaWAN network operator. This is used to encrypt communication, so keep it secret. Hex format without 0x prefix.|
+|OTAADelay|int|OTAA|Seconds to wait for a new attempt after an unsuccessful OTAA join. The actual waiting time will be randomly increased by up to a third of that amount, in order to avoid devices repeatedly interfering with each other through bad timing. The default value is 300, which means the timeout between attempts is 300-400 seconds.|
+|AppSKey|bytes[16]|ABP|App Session Key as defined by the LoRaWAN network operator. Hex format without 0x prefix.|
+|NetSKey|bytes[16]|ABP|Network Session Key ad defined by the LoRaWAN network operator. Hex format without 0x prefix.|
+|DevAdr|bytes[4]|ABP|Device Address as defined by the LoRaWAN network operator. Hex format without 0x prefix.|
+|SF|int|both|Initial LoRa spreading factor used for transmissions. Valid range is 7-12. The actual spreading factor used might change during operation of the device if Adaptive Data Rate (ADR) is used.|
+|TxPower|int|both|Initial transmission output power in dBm. The LoRaWAN protocol allows only specific values: 2, 5, 8, 11, 14. The actual power used might change during operation if Adaptive Data Rate (ADR) is used.|
+|ADR|bool|both|true: use adaptive data rate (ADR) <br> false: don't use adaptive data rate (ADR)|
+
+####wMBUS bridge parameters
+
+#####Table 4: lists all parameters that a relevant for wireless M-Bus bridge firmware behavior
+
+|Name|Type|Description|
+|-|-|-|
+|loraMaxMsgSize|int|Received wireless M-Bus telegrams might have a byte size bigger than a single LoRaWAN message can hold. This parameter defines the bytes per LoRaWAN message before a partition over multiple LoRaWAN Uplink msg appears. (Range 10-50 bytes)|
+|resetHours|int|Hours after which the firmware will reset and rejoin the network. Can support the change of LoRaWAN network providers with already deployed devices. (0 = never)|
+|cmodeCron|string|Cron Expression defining when the device starts wMBUS T1/C1 mode receive phases. Please refer to chapter "Cron expression" for an introduction. (blank = no T1/C1 receive)|
+|cmodeDurSec|int|Duration in seconds for each C1/T1-mode wMBUS receive phase, if cmodeCron != blank. Should be chosen in relation the wMBUS sendout interval of the target meter.|
+|smodeCron|string|Cron Expression defining when the device starts wMBUS S1 mode receive phases. Please refer to chapter "Cron expression" for an introduction. (blank = no S1 receive)|
+|smodeDurSec|int|Duration in seconds for each S1-mode wMBUS receive phase, if smodeCron != blank. Should be chosen in relation the wMBUS sendout interval of the target meter.|
+|devFilter|string|wMBUS device id white-list filter using 8 digits with leading zeros list separated by ','. Example '88009035,06198833'. (blank = filter inactive)|
+|mFilter|string|wMBUS manufacturer white-list filter separated by ',' . Example: 'DME,QDS' for receiving just telegrams from Diehl Metering GmbH and Qundis GmbH meters. Telegrams with different 3 character wMBUS manufacturer id will not be uploaded via LoRaWAN. (blank = filter inactive)|
+|typFilter|string|wMBUS device type white-list filter list separated by ','. Example: '08,07' for Heat-Cost and Water meters. Please refer to appendix B.1 for a list of possible values. (blank = filter inactive)|
+
+####Cron expressions
+Cron expressions are used to define specific points in time and regular repetitions of them.
+The schedule for data collecting phases is defined using the Cron6 format which is very
+powerful format to define repeatedly occurring events.
+
+!!! info "Standard Lobaro devices typically do not need to know the real time for proper operation. All times are relative to the random time when batteries are inserted."
+
+If needed by the target application Lobaro can deliver on request special hardware support for keeping
+data acquisition intervals based on a real time clock which stays in sync with the real time.
+Please contact Lobaro directly if you need such a custom product variant.
+A cron expression consists of 6 values separated by spaces:
+
++ Seconds (0-59)
+
++ Minutes (0-59)
+
++ Hours (0-23)
+
++ Days (1-31)
+
++ Month (1-12)
+
++ Day of Week (SUN-SAT b= [0,6])
+
+Examples of CRON definitions:
+
+|||
+|-|-|
+|0 5 * * * *    |     Hourly at minute 5, second 0 (at 00:05:00, 01:05:00, ...) |
+|0 1/10 * * * *  |    every 10 minutes from minute 1, second 0 (minutes 1, 11, 21, ...)|
+|0 0 6 * * *      |   Daily at 6:00:00 |
+|0 0 13 1,15 * *    | 1st and 15th day of every month at 13:00:00 |
+|0 0 9 1-5 * *    |   Every month daily from day 1 till 5 at 9:00:00 |
+
+##LoRaWAN Data Upload Formats
+
+After collecting wireless M-Bus telegrams over the air, the Bridge starts uploading data
+via LoRaWAN. There exist two data formats that are transmitted over different LoRaWAN
+ports.
+As LoRaWAN can only transmit very short messages, the message formats contain only data
+bytes. The meaning of a byte is determined by its position within a message. The following
+describes the package formats used by the wireless M-Bus Bridge.
+
+###Status Packet
+
+Port 1 - In order to provide some information about the health & connectivity state of the
+device itself, the device sends a status update at a daily basis. The status packet is sent
+on the first upload phase after activation of the device (after reboot) and then repeatedly in
+every upload phase that takes place a day or longer after the previous status packet. It has
+a fixed length of 7 bytes. The battery voltages and ambient temperature are encodes as 16
+bit integer using little endian encoding.
+
+|name|type|bytes|description|example|
+|-|-|-|-|-|
+|version|uint8[3]|0-2|Version of the firmware running on the device|1, 5, 1 ≡ v1.5.1|
+|v_bat|uint16|Battery voltage in mV|3-4|2947 ≡ 2:947V|
+|temp|int16|Temperature measured inside the device in 1/10 °C|5-6|246 ≡ 24.6°C|
 
 ## Target Measurement / Purpose
 Forwarding of wireless M-BUS messages via LoRaWAN.
