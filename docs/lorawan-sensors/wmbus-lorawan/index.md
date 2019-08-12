@@ -98,7 +98,7 @@ be achieved. You may send us your use-case details as described above to info@lo
 and we will return to you a custom battery lifetime calculation, a recommendation for the
 best power supply scheme and the needed minimal battery capacity.
 
-####Example calculation
+#### Example calculation
 In this battery lifetime calculation scenario the target meters send a 35 byte long ('L-Field')
 wireless M-Bus telegram constantly every 10 seconds. This behavior is for example very
 similar to a 'Hydrus' ultrasonic water meter of [**Diehl Metering**](https://www.diehl.com/metering/){: target="_blank"}. The Diehl meter itself has a
@@ -112,9 +112,10 @@ For a worst-case battery-lifetime calculation the weakest possible LoRaWAN conne
 been selected. That means to reach a LoRaWAN Gateway the Lobaro hardware has to send
 out its Uplink data very slowly (&ge; 2 seconds) and redundant by using a LoRa spreading factor
 of 12. Beside this the actual usable battery capacity has been set to 80% of the nominal
-value. The resulting worst-case minimal battery-life times are presented in table 1.
+value. The resulting worst-case minimal battery-life times are presented below.
 
-#####Table 1:Battery life for daily LoRaWAN uploads with SF12
+**Battery life for daily LoRaWAN uploads with SF12**
+
 |Collected meters|Battery Life (years) AA cell (3Ah)|Battery Life (years) Baby cell(9Ah)|
 |-|-|-|
 |1|10.7|32.0|
@@ -124,7 +125,12 @@ value. The resulting worst-case minimal battery-life times are presented in tabl
 |40|1.8|5.3|
 |80|1.0|2.9|
 
-#####Table 2:Battery life for daily LoRaWAN uploads with SF7
+Estimations for the opposite situation with a excellent LoRa link quality and thus the possible
+usage of SF7 are presented below.
+In real world installations the possible spreading factor may be optimized anytime by setting
+up additional LoRaWAN Gateways near the meters of interest.
+
+**Battery life for daily LoRaWAN uploads with SF7**
 
 |Collected meters|Battery Life (years) AA cell (3Ah)|Battery Life (years) Baby cell(9Ah)|
 |-|-|-|
@@ -135,12 +141,9 @@ value. The resulting worst-case minimal battery-life times are presented in tabl
 |40|9.4|28.3|
 |80|7.7|23.0|
 
-Estimations for the opposite situation with a excellent LoRa link quality and thus the possible
-usage of SF7 are also presented in table 2.
-In real world installations the possible spreading factor may be optimized anytime by setting
-up additional LoRaWAN Gateways near the meters of interest.
 
-####Usage scenario recommendations
+
+#### Usage scenario recommendations
 As a simple rule of thumb using the Lobaro wireless M-Bus over LoRaWAN bridge is a good
 fit in applications that require daily (or less often) consumption values of 1 to 40 installed
 wireless M-Bus meters. For installations with a higher meter count simply more Lobaro
