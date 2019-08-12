@@ -4,7 +4,7 @@
 
 The Lobaro wireless M-Bus (wMBUS) to LoRaWAN Bridge is a cost-effective & energye
 efficient device that receives, caches and transparently forwards wireless M-Bus metering
-data from up to 500 consumption meters via any LoRaWAN network onto the Internet.
+data from up to 500 consumption meters via any LoRaWAN network onto the Internet.  
 Many gas, water, electricity and heat meters can be read wirelessly today using the common
 short range Wireless M-Bus standard. Because such wMBUS enabled meters use the classical
 energy saving FSK radio modulation, the wireless range is often limited to less than 50m
@@ -219,7 +219,7 @@ again.
 ![Modbus LoRaWAN Bridge](files/main.png){: style="width:60%; display: block; margin: 0 auto;"}
 
 The initial device configuration can be done very comfortably from your PC via the serial
-configuration interface. Beside the needed Lobaro USB to UART adapter the [**Lobaro Maintenance Tool**](https://www.lobaro.com/lobaro-maintenance-tool/){: target="_blank"} needs to be installed. This tool is freely available for various operating systems
+configuration interface. Beside the needed Lobaro USB to UART adapter the [**Lobaro Maintenance Tool**](../../tools/lobaro-tool.md){: target="_blank"} needs to be installed. This tool is freely available for various operating systems
 including Windows, Linux, Mac and Linux-ARM (e.g. Raspberry-PI) on and works with all
 Lobaro sensors.
 Technically this software opens a webserver on port 8585 that runs in a background console
@@ -240,7 +240,7 @@ For configuration and firmware updates we provide a special serial-USB adapter t
 connected as shown in the picture below. The corresponding connector on the PCB is marked with
 the word 'Config'.
 The USB-adapter will add a virtual serial 'COM' Port to your system. Your operating system
-needs the CP210x USB to [**UART Bridge**](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers){: target="_blank"} driver installed. A download link is provided next
+needs the [CP210x USB to UART Bridge](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers){: target="_blank"} driver installed. A download link is provided next
 to the 'Connect' button when you start the Maintenance Tool.
 While the config adapter is connected, the device will be powered from the USB port with
 a regulated voltage of 3.3V. It is not necessary - although it would be no problem - having
@@ -257,13 +257,11 @@ device. For every parameter a default value is stored non volatile inside the ha
 you can revert using the 'Restore default' button in case anything got miss configured.
 All LoRaWAN & other firmware parameters are explained in the following.
 
-####LoRaWAN network parameters
+#### LoRaWAN network parameters
 A large part of the configuration parameters are used to control the device's usage of LoRaWAN.
-Table 3 lists all of them. There are two different ways to use LoRaWAN: over-the-air
+There are two different ways to use LoRaWAN: over-the-air
 activation (OTAA) and activation by personalization (ABP). Some configuration parameters
 are only used with one of those methods, others are used for both.
-
-#####Table 3: LoRaWAN network parameters
 
 |Name|Type|Used|Description|
 |-|-|-|-|
@@ -279,9 +277,7 @@ are only used with one of those methods, others are used for both.
 |TxPower|int|both|Initial transmission output power in dBm. The LoRaWAN protocol allows only specific values: 2, 5, 8, 11, 14. The actual power used might change during operation if Adaptive Data Rate (ADR) is used.|
 |ADR|bool|both|true: use adaptive data rate (ADR) <br> false: don't use adaptive data rate (ADR)|
 
-####wMBUS bridge parameters
-
-#####Table 4: lists all parameters that a relevant for wireless M-Bus bridge firmware behavior
+#### wMBUS bridge parameters
 
 |Name|Type|Description|
 |-|-|-|
@@ -295,10 +291,10 @@ are only used with one of those methods, others are used for both.
 |mFilter|string|wMBUS manufacturer white-list filter separated by ',' . Example: 'DME,QDS' for receiving just telegrams from Diehl Metering GmbH and Qundis GmbH meters. Telegrams with different 3 character wMBUS manufacturer id will not be uploaded via LoRaWAN. (blank = filter inactive)|
 |typFilter|string|wMBUS device type white-list filter list separated by ','. Example: '08,07' for Heat-Cost and Water meters. Please refer to appendix B.1 for a list of possible values. (blank = filter inactive)|
 
-####Cron expressions
+#### Cron expressions
 Cron expressions are used to define specific points in time and regular repetitions of them.
-The schedule for data collecting phases is defined using the [**Cron**](https://en.wikipedia.org/wiki/Cron){: target="_blank"} format which is very
-powerful format to define repeatedly [**occurring events**](https://github.com/lobaro/docs/wiki/CRON-Expressions){: target="_blank"}.
+The schedule for data collecting phases is defined using the [**CRON**](../../background/cron-expressions.md){: target="_blank"} format which is very
+powerful format to define repeatedly occurring events.
 
 !!! info "Standard Lobaro devices typically do not need to know the real time for proper operation. All times are relative to the random time when batteries are inserted."
 
