@@ -8,27 +8,26 @@
 The LoRaWAN GPS Tracker (GPS-LoRaWAN) is a battery powered tracking device, that
 uses the satellite based positioning service GPS to determine its location and transmits the
 obtained coordinates via LoRaWAN radio technology. Intervals between measurements can
-be freely configured, in order to adjust the device to individual needs.
+be freely configured, in order to adjust the device to individual needs.  
 An integrated motion sensor detects changes in the device's movement (if it is picked up or
 transported in a vehicle). This allows the device to switch between an `Active Mode` in which
 frequent updates are uploaded during phases of movement and an `Alive Mode` that saves
 battery power by sending only few updates. While not sending updates, the device enters a
-sleep mode that only uses ∼30 µA.
+sleep mode that only uses ∼30 µA.  
 The pictures above and below show the GPS Tracker with opened casing. The most important components are
 indicated and explained.
+
 **Please read the manual carefully before operating the device. A safe operation of the
 device is only possible if you follow the guides provided in this manual. Using the device
 differently than intended by Lobaro my cause damage to people, the environment, or
 the device.**
 
-![Modbus LoRaWAN Bridge](files/lorawan.png){: style="width:50%; display: block; margin: 0 auto;"}
-
-### The Device
+![Modbus LoRaWAN Bridge](files/lorawan.png){: style="width:30%; display: block; margin: 0 auto;"}
 
 ![Modbus LoRaWAN Bridge](files/device.png){: style="width:60%; display: block; margin: 0 auto;"}
 
 ## Operating the GPS Tracker
-Once appropriate batteries are inserted into the device, it will start working. The Tracker will
+Once batteries are inserted into the device, it will start working. The Tracker will
 most likely need to be adjusted to your personal LoRaWAN configuration (see chapter "Configuration").
 
 ### Batteries
@@ -40,7 +39,9 @@ Sulphide (1.5V, FR6) are allowed to be inserted in the device. Lobaro recommends
 of FR6 batteries like the Energizer Ultimate Lithium over LR6 types because of the higher
 capacity and better discharge properties.
 
-!!! warning "Other Batteries or accumulators with a nominal voltage of more than 1.5V must not inserted into the device under any circumstances. In particular, lithium based cells with a nominal voltage of 3.6V or 3.7V must not be used on the AA battery slots!"
+!!! warning 
+    Other Batteries or accumulators with a nominal voltage of more than 1.5V must not inserted into the device under any circumstances. 
+    In particular, lithium based cells with a nominal voltage of 3.6V or 3.7V must not be used on the AA battery slots!
 
 On request we can supply custom product variants with special housings powered by even
 bigger batteries. For example a 3.6V C sized mono cell typically has a capacity of 9Ah with
@@ -50,12 +51,13 @@ are options with permanent external power supply (230V, 9-24V, 5V USB).
 
 ### Installation
 
-The device must be fixed on a flat surface using the lateral mounting holes of the case, see
+The device can be fixed on a flat surface using the lateral mounting holes of the case, see
 chapter 6.1 for a detailed description of all housing dimensions. Alternatively we offer as
 accessory a mounting clip for a standard 35mm DIN rail. The device can then easily snapped
 on a such rails. It can therefore be added to a variety of racks alongside other devices.
 
-!!! warning "Under any circumstances the device must not be mounted higher than 2 meters above ground to avoid any risks in case of falling down!"
+!!! note 
+    Under any circumstances the device must not be mounted higher than 2 meters above ground to avoid any risks in case of falling down!
 
 For optimal RF performance (e.g. LoRa range) any metal obstacles near the internal antenna
 should be avoided. In this case 'near' is defined as keep-out distance of about 3-5 centimeters
@@ -146,9 +148,11 @@ GPS Tracker immediately wakes up and switches to Active Mode.
 ![Modbus LoRaWAN Bridge](files/maintenancetool.png){: style="width:60%; display: block; margin: 0 auto;"}
 
 The initial device configuration can be done very comfortably from your PC via the serial
-configuration interface. Beside the needed Lobaro USB to UART adapter the [**Lobaro Maintenance Tool**](https://www.lobaro.com/lobaro-maintenance-tool/){: target="_blank"} needs to be installed. This tool is freely available for various operating systems
+configuration interface. Beside the needed Lobaro USB to UART adapter the 
+[**Lobaro Maintenance Tool**](../../tools/lobaro-tool.md){: target="_blank"} needs to be installed. This tool is freely available for various operating systems
 including Windows, Linux, Mac and Linux-ARM (e.g. Raspberry-PI) on and works with all
 Lobaro sensors.
+
 Technically this software opens a webserver on port 8585 that runs in a background console
 window. The actual user interface can be accessed normally using a standard web browser
 at address http://localhost:8585. Normally your default browser should be
@@ -156,19 +160,21 @@ opened with this URL automatically after tool startup . Even remote configuratio
 over the Internet is possible, e.g. having a Raspberry PI via USB connected to
 the Lobaro device and accessing the maintenance tool from a remote machines browser over
 the Internet.
+
 Additionally to the device setup the tool can also be used for firmware updates ('Firmware
 Tab') , watching real-time device diagnostic output ('Logs Tab') and initiating device restarts.
 
 
 !!! info "Info"
-    Please note that the device is automatically restarted each time the configuration has been changed!
+    Please note that the device might be restarted each time the configuration gets plugged/unplugged!
 
 ### Connecting the USB config adapter
 For configuration and Firmware updates we provide a special serial-USB adapter that can be
 connected as shown in the picture underneath. The corresponding connector on the PCB is marked with
 the word 'Config'.
+
 The USB-adapter will add a virtual serial 'COM' Port to your system. Your operating system
-needs the CP210x USB to [**UART bridge**](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers){: target="_blank"} driver installed. A download link is provided next
+needs the [CP210x USB to UART bridge](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers){: target="_blank"} driver installed. A download link is provided next
 to the 'Connect' button when you start the Maintenance Tool.
 While the config adapter is connected, the device will be powered from the USB port with
 a regulated voltage of 3.3V. It is not necessary - although it would be no problem - having
@@ -219,14 +225,16 @@ parameters used for this.
 |      CayenneLPP      |   bool        |      Use alternative Cayenne LPP upload format. Standard: false, e.g. use Lobaro Format. See chapter "myDevices Cayenne format" for an introduction to this format.      |
 
 ###Cron expressions
-Cron expressions are used to define specific points in time and regular repetitions of them.
-The schedule for data collecting phases is defined using the [**Cron**](https://en.wikipedia.org/wiki/Cron){: target="_blank"} format which is very
-powerful format to define repeatedly [**occurring events**](https://github.com/lobaro/docs/wiki/CRON-Expressions){: target="_blank"}.
+Cron expressions are used to define specific points in time and regular repetitions of them.  
+The schedule for data collecting phases is defined using the [CRON](../../background/cron-expressions.md){: target="_blank"} format which is very
+powerful format to define repeatedly occurring events.
 
-!!! info "Standard Lobaro devices typically do not need to know the real time for proper operation. All times are relative to the random time when batteries are inserted."
+!!! info 
+    Standard Lobaro devices typically do not need to know the real time for proper operation. 
+    All times are relative to the initial time when batteries are inserted.
 
 If needed by the target application Lobaro can deliver on request special hardware support for keeping
-data acquisition intervals based on a real time clock which stays in sync with the real time.
+data acquisition intervals based on a real time clock which stays in sync with the real time.  
 Please contact Lobaro directly if you need such a custom product variant.
 
 A cron expression consists of 6 values separated by spaces:
@@ -290,12 +298,12 @@ integers.
 If during some configurable period of time (see "gpsTO" parameter in table "GPS configuration parameters") no GPS
 location can be found the last known valid GPS location will be transmitted but with the
 valid flag set to false.
-We provide a JavaScript reference implementation of a decoder for the data packages as easy
-to use [**download**](https://www.lobaro.com/portfolio/lorawan-gps-tracker/){: target="_blank"}, which can be used directly for decoding in [**The Things Network**](https://www.thethingsnetwork.org/){: target="_blank"}.
+We provide a [JavaScript reference implementation](#parser) of a decoder for the data packages, 
+which can be used directly for decoding in [The Things Network](https://www.thethingsnetwork.org/){: target="_blank"}.
 
 ###myDevices Cayenne format
 As an alternative for the Lobaro data format the tracker can be configured to send Cayenne
-LPP compatible LoRaWAN uploads. [**myDevices Cayenne**](https://mydevices.com/){: target="_blank"} allows you to quickly visualize the
+LPP compatible LoRaWAN uploads. [myDevices Cayenne](https://mydevices.com/){: target="_blank"} allows you to quickly visualize the
 via LoRaWAN transmitted data of the Lobaro GPS-tracker. You can use Cayenne as a tool
 to visualize real-time and historical data, sent over The Things Network and various other
 LoRaWAN providers.
@@ -314,16 +322,14 @@ The Lobaro GPS Trackers maps its data to cayenne channels as follows:
 |GPS data|2|GPS|
 |satellites found|3|Digital Output|
 
-###Legacy Lobaro upload format (up to Firmware Version 4)
+### Legacy upload format (up to Firmware Version 4)
 This format is not supported any more since firmware version V5.0.0! Please consider updating
 your device firmware using the Lobaro maintenance tool.
 Only a single massage format is used by the GPS Tracker, it has a fixed length of 15 bytes.
 This format uses the degrees with decimal minutes notation for the location.
 Multi byte integers are transmitted as big endian. Values that would require decimal places
 are transmitted in smaller units (e.g. mV instead of V).
-The table underneath explains the message format used. We provide a JavaScript reference
-implementation of a decoder for the data packages as easy to use [**download**](https://www.lobaro.com/portfolio/lorawan-gps-tracker/){: target="_blank"} , which can be
-used directly for decoding in The Things Network.
+The table underneath explains the message format used.
 
 
 |name|type|description|example/range|
