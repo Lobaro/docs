@@ -89,7 +89,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#gps-lorawan-tracker" tabindex="1" class="md-skip">
+      <a href="#gps-glonass-lorawan-tracker" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -1346,20 +1346,23 @@
                   <a href="https://github.com/lobaro/docs/edit/master/docs/lorawan-sensors/gps-lorawan/index.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="gps-lorawan-tracker">GPS LoRaWAN Tracker</h1>
+                <h1 id="gps-glonass-lorawan-tracker">GPS / GLONASS LoRaWAN Tracker</h1>
 <p><img alt="Product Image" src="files/gpslorawan.png" style="height:400px;display: block; margin: 0 auto;" /></p>
+<div class="admonition info">
+<p class="admonition-title">Hardware Revisions</p>
+<p>The picture above shows the tracker in <strong>hardware revision 2</strong> with GPS and additional GLONASS support for best positioning.
+Hardware revision 1 with GPS only is no longer available. </p>
+</div>
 <h2 id="overview">Overview</h2>
 <p>The LoRaWAN GPS Tracker (GPS-LoRaWAN) is a battery powered tracking device, that
-uses the satellite based positioning service GPS to determine its location and transmits the
+uses the satellite based positioning services GPS and GLONASS to determine its location and transmits the
 obtained coordinates via LoRaWAN radio technology. Intervals between measurements can
 be freely configured, in order to adjust the device to individual needs.<br />
 An integrated motion sensor detects changes in the device's movement (if it is picked up or
 transported in a vehicle). This allows the device to switch between an <code>Active Mode</code> in which
 frequent updates are uploaded during phases of movement and an <code>Alive Mode</code> that saves
 battery power by sending only few updates. While not sending updates, the device enters a
-sleep mode that only uses ∼30 µA.<br />
-The pictures above and below show the GPS Tracker with opened casing. The most important components are
-indicated and explained.</p>
+sleep mode that only uses ∼30 µA.  </p>
 <p><strong>Please read the manual carefully before operating the device. A safe operation of the
 device is only possible if you follow the guides provided in this manual. Using the device
 differently than intended by Lobaro my cause damage to people, the environment, or
@@ -1494,7 +1497,12 @@ While the config adapter is connected, the device will be powered from the USB p
 a regulated voltage of 3.3V. It is not necessary - although it would be no problem - having
 batteries inserted or a different supply connected while using the config adapter. All
 configuration parameters will be kept non-volatile regardless of the power supply.</p>
-<p><img alt="Modbus LoRaWAN Bridge" src="files/config.png" style="width:50%; display: block; margin: 0 auto;" /></p>
+<p><img alt="GPS Tracker" src="files/config.png" style="width:50%; display: block; margin: 0 auto;" /></p>
+<div class="admonition info">
+<p class="admonition-title">Hardware Revisions</p>
+<p>The picture above shows the tracker in <strong>hardware revision 1</strong> with GPS only support.
+Hardware revision 1 with GPS only is no longer available. </p>
+</div>
 <h3 id="system-parameters">System Parameters</h3>
 <p>After being successfully connected to the hardware using the Lobaro Maintenance Tool you
 can press 'Reload Config' in the 'Configuration' tab to read the current configuration from the
