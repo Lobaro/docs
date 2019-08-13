@@ -4,10 +4,14 @@
 
 **Downloads:**
 
-* [app-lorawan-onewire-bridge-0.3.3.hex](firmware/app-lorawan-onewire-bridge-0.3.3.hex)
+* [app-lorawan-onewire-bridge-0.3.4.hex](firmware/app-lorawan-onewire-bridge-0.3.4.hex)
 
 ## Changelog
 --------------------
+### v0.3.4 (13.08.2019)
+
+* fixed bug in sorting algorithm
+
 ### v0.3.3 (01.08.2019)
 
 * Added ADR config parameter
