@@ -56,7 +56,7 @@ are options with permanent external power supply (230V, 9-24V, 5V USB).
 ### Installation
 
 The device can be fixed on a flat surface using the lateral mounting holes of the case, see
-chapter 6.1 for a detailed description of all housing dimensions. Alternatively we offer as
+[Hardware Variations](../../hardware.md) for a detailed description of all housing dimensions. Alternatively we offer as
 accessory a mounting clip for a standard 35mm DIN rail. The device can then easily snapped
 on a such rails. It can therefore be added to a variety of racks alongside other devices.
 
