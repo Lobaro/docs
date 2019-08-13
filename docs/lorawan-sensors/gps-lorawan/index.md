@@ -5,7 +5,9 @@
 
 !!! info "Hardware Revisions"
     The picture above shows the tracker in **hardware revision 2** with GPS and additional GLONASS support for best positioning.
-    Hardware revision 1 with GPS only is no longer available. 
+    Hardware revision 1 with GPS only is no longer available.
+    
+    [**Show pictures of different hardware revisions**](firmware.md){: target="_blank"} 
     
 ## Overview
 
