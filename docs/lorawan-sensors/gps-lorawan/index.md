@@ -1,12 +1,16 @@
-# GPS LoRaWAN Tracker
+# GPS / GLONASS LoRaWAN Tracker
 
 
 ![Product Image](files/gpslorawan.png){: style="height:400px;display: block; margin: 0 auto;"}
 
+!!! info "Hardware Revisions"
+    The picture above shows the tracker in **hardware revision 2** with GPS and additional GLONASS support for best positioning.
+    Hardware revision 1 with GPS only is no longer available. 
+    
 ## Overview
 
 The LoRaWAN GPS Tracker (GPS-LoRaWAN) is a battery powered tracking device, that
-uses the satellite based positioning service GPS to determine its location and transmits the
+uses the satellite based positioning services GPS and GLONASS to determine its location and transmits the
 obtained coordinates via LoRaWAN radio technology. Intervals between measurements can
 be freely configured, in order to adjust the device to individual needs.  
 An integrated motion sensor detects changes in the device's movement (if it is picked up or
@@ -14,8 +18,6 @@ transported in a vehicle). This allows the device to switch between an `Active M
 frequent updates are uploaded during phases of movement and an `Alive Mode` that saves
 battery power by sending only few updates. While not sending updates, the device enters a
 sleep mode that only uses ∼30 µA.  
-The pictures above and below show the GPS Tracker with opened casing. The most important components are
-indicated and explained.
 
 **Please read the manual carefully before operating the device. A safe operation of the
 device is only possible if you follow the guides provided in this manual. Using the device
@@ -181,7 +183,11 @@ a regulated voltage of 3.3V. It is not necessary - although it would be no probl
 batteries inserted or a different supply connected while using the config adapter. All
 configuration parameters will be kept non-volatile regardless of the power supply.
 
-![Modbus LoRaWAN Bridge](files/config.png){: style="width:50%; display: block; margin: 0 auto;"}
+![GPS Tracker](files/config.png){: style="width:50%; display: block; margin: 0 auto;"}
+
+!!! info "Hardware Revisions"
+    The picture above shows the tracker in **hardware revision 1** with GPS only support.
+    Hardware revision 1 with GPS only is no longer available. 
 
 ### System Parameters
 After being successfully connected to the hardware using the Lobaro Maintenance Tool you

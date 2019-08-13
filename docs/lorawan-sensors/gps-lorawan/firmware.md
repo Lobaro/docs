@@ -1,12 +1,30 @@
 # LoRaWAN GPS Tracker
 
-## Firmware
+## Firmware Downloads
+
+
+### Hardware Revision 2.x
+
+![Product GPS Tracker HW2](files/gpslorawan.png){: style="height:250px;display: block; margin: 0 auto;"}
 
 **Downloads**:
 
 * [app-lorawan-gps-button-6.0.3.hex](firmware/app-lorawan-gps-button-6.0.3.hex) (hardware v2.x)
+
+### Hardware Revision 1.x 
+
+![GPS Tracker HW1](files/config.png){: style="height:150px; display: block; margin: 0 auto;"}
+
+**Downloads**:
+
 * [app-lorawan-gps-button-5.0.5.hex](firmware/app-lorawan-gps-button-5.0.5.hex) (hardware v1.x)
 * [app-lorawan-gps-button-4.0.9.hex](firmware/app-lorawan-gps-button-4.0.9.hex) (hardware v1.x)
+
+!!! info 
+    The LoRaWAN GPS data uplink data encoding has been changed between firmware 4.x ("legacy format") and 5.x. See the manual for details.
+    
+!!! warning
+    This hardware revision is no longer available for sale! Consider using the improved HW Rev 2.x.
 
 ## Changelog
 --------------------
