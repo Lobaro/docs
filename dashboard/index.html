@@ -1053,7 +1053,10 @@ In addition the parser can access an API to set device level properties and addi
 <div class="codehilite"><pre><span></span><span class="nx">Device</span><span class="p">.</span><span class="nx">setLocation</span><span class="p">(</span><span class="nx">lon</span><span class="p">,</span> <span class="nx">lat</span><span class="p">)</span>
 </pre></div></p>
 <p>Set an arbitary device property, displayed on the "Overview" tab of the device
-<div class="codehilite"><pre><span></span><span class="nx">Device</span><span class="p">.</span><span class="nx">setProperty</span><span class="p">(</span><span class="s2">&quot;key&quot;</span><span class="p">,</span> <span class="err">&quot;</span><span class="nx">value</span><span class="p">);</span>
+<div class="codehilite"><pre><span></span><span class="nx">Device</span><span class="p">.</span><span class="nx">setProperty</span><span class="p">(</span><span class="s2">&quot;key&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">);</span>
+</pre></div></p>
+<p>Get an arbitary device property, displayed on the "Overview" tab of the device
+<div class="codehilite"><pre><span></span><span class="kd">var</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">Device</span><span class="p">.</span><span class="nx">getProperty</span><span class="p">(</span><span class="s2">&quot;key&quot;</span><span class="p">);</span>
 </pre></div></p>
 <p>Set the Sensor time of the current data record. Used for display, filter, sorting
 <div class="codehilite"><pre><span></span><span class="nx">Record</span><span class="p">.</span><span class="nx">setTime</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">());</span>
