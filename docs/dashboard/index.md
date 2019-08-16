@@ -84,7 +84,12 @@ Device.setLocation(lon, lat)
 
 Set an arbitary device property, displayed on the "Overview" tab of the device
 ```javascript
-Device.setProperty("key", "value);
+Device.setProperty("key", "value");
+```
+
+Get an arbitary device property, displayed on the "Overview" tab of the device
+```javascript
+var value = Device.getProperty("key");
 ```
 
 Set the Sensor time of the current data record. Used for display, filter, sorting
