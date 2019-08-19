@@ -20,6 +20,8 @@ Precise liquid level measurement, e.g. for tanks, via LoRaWAN.
 Port: 1
 Payload: 6 Bytes
 
+Temperature is transmitted in 1/100&deg;C, battery voltage in Millivolt and pressure in Bar.
+
 | PRESSURE | PRESSURE | PRESSURE | PRESSURE | TEMP | TEMP | V_BATT | V_BATT |
 |------|------|------|------|-----|------|------|------|
 |flaot32|float32|float32|float32|int16|int16|int16|int16|
