@@ -18,7 +18,7 @@ Precise liquid level measurement, e.g. for tanks, via LoRaWAN.
 ## Payload Format
 
 Port: 1
-Payload: 6 Bytes
+Payload: 8 Bytes
 
 Temperature is transmitted in 1/100&deg;C, battery voltage in Millivolt and pressure in Bar.
 
