@@ -4,12 +4,16 @@
 
 **Downloads:**
 
-* [app-edl21-opto-0.2.0+LoRa.hex](firmware/app-edl21-opto-0.2.0+LoRa.hex)
+* [app-edl21-opto-0.2.0+LoRa.hex](firmware/app-edl21-opto-0.2.0+LoRa.hex) OLD Opto-Head Version
+
+* [app-edl21-opto-0.3.1+LoRa.hex](firmware/app-edl21-opto-0.3.1+LoRa.hex) New Opto-Head Version
+
+
 
 ## Changelog
 
 **Firmware:** app-edl21-opto
 
-### v0.2.0
+### v0.3.0
 
 * Initial release for new round Opto-Head
