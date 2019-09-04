@@ -15,7 +15,7 @@
     
     Download: [app-wmbus-bridge-2.1.3+LoRa.hex](firmware/app-wmbus-bridge-2.1.3+LoRa.hex)
     
-## Changelog
+## Changelogs
 
 ### v2.1.3 (11.03.2019)
 - New Parameter: learnedListenSec to define how long to listen when meters was learned
@@ -51,6 +51,8 @@ When learning was completed during one listening interval the device will only w
 When missing one device for whatever reason, the bridge will start the learning mode again and stay awake for one full listening period.
 
 While receiving learned sensors the maximum receive interval is doubled but ends as soon as all learned devices are received.
+
+---
 
 ### v1.6.0 (20.05.2019)
 - Add additional config parameter "cmodeCompatibility" to allow wideband receive as fallback
