@@ -114,7 +114,9 @@ phase. The status packet will always be transmitted prior to any data packets.
 After transferring all data packets the device enters the Sleep Phase. During this it is completely inactive to avoid wasting power. It remains sleeping until the cron expression given in
 the configuration triggers. When that happens, it enters the Data Collection Phase again
 
-## Configuration, The Lobaro Maintenance Tool
+## Configuration
+
+###The Lobaro Maintenance Tool
 
 ![maintenancetool](files/maintenancetool.png){: style="width:60%; display: block; margin: 0 auto;"}
 
@@ -131,6 +133,131 @@ the Lobaro device and accessing the maintenance tool from a remote machines brow
 the Internet.
 Additionally to the device setup the tool can also be used for firmware updates ('Firmware
 Tab') , watching real-time device diagnostic output ('Logs Tab') and initiating device restarts.
+
+!!! info "Info"
+    Please note that the device might be restarted each time the configuration has been changed!
+
+### Connecting the USB config adapter
+For configuration and Firmware updates we provide a special serial-USB adapter that can be
+connected as shown in the picture underneath. The corresponding connector on the PCB is marked with
+the word 'Config'.
+The USB-adapter will add a virtual serial 'COM' Port to your system. Your operating system
+needs the [CP210x USB to UART bridge](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers){: target="_blank"} driver installed. A download link is provided next
+to the 'Connect' button when you start the Maintenance Tool.
+While the config adapter is connected, the device will be powered from the USB port with
+a regulated voltage of 3.3V. It is not necessary - although it would be no problem - having
+batteries inserted or a different supply connected while using the config adapter. All
+configuration parameters will be kept non-volatile regardless of the power supply.
+
+![lorawanhumiditysensor](files/config.png){: style="width:50%; display: block; margin: 0 auto;"}
+
+### System Parameters
+After being successfully connected to the hardware using the Lobaro Maintenance Tool you
+can press 'Reload Config' in the 'Configuration' tab to read the current configuration from the
+device. For every parameter a default value is stored non volatile inside the hardware to which
+you can revert using the 'Restore default' button in case anything got miss configured.
+All LoRaWAN & other firmware parameters are explained in the following.
+
+### LoRaWAN Parameters
+
+{!lorawan-sensors/config-lorawan.md!}
+
+### Sensor configuration parameters
+
+The only parameter outside of the LoRaWAN-configuration is a Cron expression used to
+control the frequency of how often the device takes measurements.
+
+|      Name  |     Type  | Description|
+|------------|-----------|------------|
+|MeasureCron|string|Expression defining how often the device executes a measurement. This parameter is set using a cron expression. Please refer to chapter Cron expressions for an introduction.|
+
+###Cron expressions
+Cron expressions are used to define specific points in time and regular repetitions of them.
+The schedule for data collecting phases is defined using the [CRON](../../background/cron-expressions.md){: target="_blank"} format which is very
+powerful format to define repeatedly occurring events.
+
+!!! info
+    Standard Lobaro devices typically do not need to know the real time for proper operation.
+    All times are relative to the initial time when batteries are inserted.
+
+If needed by the target application Lobaro can deliver on request special hardware support for keeping
+data acquisition intervals based on a real time clock which stays in sync with the real time.
+Please contact Lobaro directly if you need such a custom product variant.
+
+A cron expression consists of 6 values separated by spaces:
+
+* Seconds (0-59)
+* Minutes (0-59)
+* Hours (0-23)
+* Days (1-31)
+* Month (1-12)
+* Day of Week (SUN-SAT b= [0,6])
+
+Examples of CRON definitions: <br>
+
+|       ||
+|------------|-----------|
+|0 5 ****    |hourly at minute 5, second 0 (at 00:05:00, 01:05:00, ...)|
+|0 1/10 * * * *  |every 10 minutes from minute 1, second 0 (minutes 1, 11, 21, ...)|
+|0 0 6 * * *     |daily at 6:00:00|
+|0 0 13 1,15 * * |1st and 15th day of every month at 13:00:00|
+|0 0 9 1-5 * *   |every month daily from day 1 till 5 at 9:00:00|
+
+###Configuration and battery life
+
+The time the LoRaWAN Humidity Sensor can operate on one set of batteries depends on
+the configuration of the device. Most of the time, the sensor remains in a sleep state, during
+which a very small amount of power is consumed (a current of about 20μA). Most power is
+used for sending messages via LoRa. One set of batteries lasts for about 30000 messages
+(depending on details like spreading factor and transmission power), so you can estimate the
+battery life for your configuration using the formula in equation 1. For example, if the device
+is set to send hourly updates, it will send 25 messages per day (including the status message).
+As illustrated in equation 2, the device should have a battery life of slightly over 3 years.
+
+![lorawanhumiditysensor](files/formel.png){: style="width:30%; display: block; margin: 0 auto;"}
+
+##LoRaWAN Data Upload Formats
+
+After reading from the sensor probe, the device starts uploading data via LoRaWAN. There
+exist two data formats that are transmitted over different LoRaWAN ports.
+As LoRaWAN can only transmit very short messages, the message formats contain only data
+bytes. The meaning of a byte is determined by its position within a message. The following
+describes the package formats used by the Humidity Sensor.
+Multi byte integers are transmitted as big endian. Values that would require decimal places are
+transmitted in smaller units (e.g. mV instead of V). Since data packets sent over LoRa can be
+lost, a timestamp is added to every data packet. Timestamps are encoded as signed 40 bit big
+endian integers and express the number of seconds passed since 00:00:00 January 1st, 1970
+(UNIX timestamp). Timestamps are according to the devices internal clock, which might be
+set to an incorrect value. The timestamp always indicates the begin of the corresponding
+measurement phase.
+We provide a JavaScript reference implementation of a decoder for this status packet on
+[**GitHub**](https://github.com/lobaro/ttn-data-formats/blob/master/wmbus-bridge/decoder.js){: target="_blank"}, which can be used directly for decoding in [**The Things Network**](https://www.thethingsnetwork.org/){: target="_blank"}.
+
+### Status Packet
+
+Port 1 - In order to provide some information about the health of the device itself, the
+Modbus Bridge sends a status update at a daily basis. The status packet is sent on the first
+upload phase after activation of the device (after reboot) and then repeatedly in every upload
+phase that takes place a day or longer after the previous status packet. It has a fixed length
+of 14 bytes.
+
+|name|type|bytes|description|example|
+|-|-|-|-|-|
+|version|uint8[3]|0-2|Version of the firmware running on the device|1, 5, 1 ≡ v1.5.1|
+|fl|uint8|3|Status flags, for internal use|0|
+|temp|int16|4-5|Temperature measured inside the device in 1/10 °C|246 ≡ 24.6°C|
+|v_bat|uint16|6-7|Battery voltage in mV|2947 ≡ 2:947V|
+|timestamp|int40|8-12|Internal date/time at creation of the packet|1533055905|
+|mod|uint8|13|Operation mode the device runs|1|
+
+
+
+
+
+
+
+
+
 
 
 

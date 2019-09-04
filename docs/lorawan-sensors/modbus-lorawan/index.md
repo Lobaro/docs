@@ -64,7 +64,7 @@ Test Reading
 ## Configuration
 The configuration is done using [Lobaro Maintenance Tool](../../tools/lobaro-tool.md) and the Lobaro USB PC adapter.
 
-### loRaWAN Parameters
+### LoRaWAN Parameters
 
 {!lorawan-sensors/config-lorawan.md!}
 
