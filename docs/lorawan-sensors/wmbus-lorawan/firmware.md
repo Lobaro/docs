@@ -4,9 +4,17 @@
 
 **Downloads:** 
 
-* [app-wmbus-bridge-2.1.3+LoRa.hex](firmware/app-wmbus-bridge-2.1.3+LoRa.hex)
-* [app-wMbusLoraBridge-1.6.0.hex](firmware/app-wMbusLoraBridge-1.6.0.hex)
-
+!!! info "Stable Release V1.6"
+    Current stable release for production environments:
+    
+    Download: [app-wMbusLoraBridge-1.6.0.hex](firmware/app-wMbusLoraBridge-1.6.0.hex)
+    
+!!! warning "Experimental Release V2.x"
+    Experimental firmware which adds new features like a "Learning Mode" and uses a different LoRaWAN upload format.
+    For production environments consider using the stable release V1.6 instead!
+    
+    Download: [app-wmbus-bridge-2.1.3+LoRa.hex](firmware/app-wmbus-bridge-2.1.3+LoRa.hex)
+    
 ## Changelog
 
 ### v2.1.3 (11.03.2019)
