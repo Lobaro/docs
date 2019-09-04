@@ -1609,7 +1609,7 @@ parameters used for this.</p>
 <tr>
 <td>ActiveCron</td>
 <td>string</td>
-<td>Cron expression defining how often the device will take a measurement and send its position over LoRaWAN while the Tracker is in Active Mode. This expression should trigger much more frequent than the one for Alive Mode. The standard is 0 0/15 * <em> * </em>, which will trigger every 15 minutes. See chapter "Cron expressions" for an introduction to cron expressions.</td>
+<td>Cron expression defining how often the device will take a measurement and send its position over LoRaWAN while the Tracker is in Active Mode. This expression should trigger much more frequent than the one for Alive Mode. The standard is 0 0/15 * * * *, which will trigger every 15 minutes. See chapter "Cron expressions" for an introduction to cron expressions.</td>
 </tr>
 <tr>
 <td>AliveCron</td>
@@ -1673,7 +1673,7 @@ Please contact Lobaro directly if you need such a custom product variant.</p>
 <td>hourly at minute 5, second 0 (at 00:05:00, 01:05:00, ...)</td>
 </tr>
 <tr>
-<td>0 1/10 * <em> * </em></td>
+<td>0 1/10 * * * *</td>
 <td>every 10 minutes from minute 1, second 0 (minutes 1, 11, 21, ...)</td>
 </tr>
 <tr>
