@@ -243,20 +243,29 @@ of 14 bytes.
 
 |name|type|bytes|description|example|
 |-|-|-|-|-|
-|version|uint8[3]|0-2|Version of the firmware running on the device|1, 5, 1 ≡ v1.5.1|
+|version|uint8[3]|0-2|Version of the firmware running on the device|1, 0, 4 ≡ v1.0.4|
 |fl|uint8|3|Status flags, for internal use|0|
 |temp|int16|4-5|Temperature measured inside the device in 1/10 °C|246 ≡ 24.6°C|
-|v_bat|uint16|6-7|Battery voltage in mV|2947 ≡ 2:947V|
+|v_bat|uint16|6-7|Battery voltage in mV|3547 ≡ 3.547V|
 |timestamp|int40|8-12|Internal date/time at creation of the packet|1533055905|
 |mod|uint8|13|Operation mode the device runs|1|
 
+##Data Packet
 
+Port 2 - The data packet is used to transmit the measured environmental values. It includes
+a timestamp and the information if the measurement was successful. The data packet has
+a fixed length of 10 bytes. Please remember that the timestamp is always in reference to
+the devices internal clock, which normally does not know the real time it is still usable to put
+data points into real time context if you take one reference and calculate the offset of the
+devices clock to real time. Figure 6 explains the bytes in inside the data package, table 4
+explains the fields.
 
-
-
-
-
-
+|name|type|bytes|description|example|
+|-|-|-|-|-|
+|timestamp|int40|0-4|UNIX timestamp for measurement|1533055905|
+|err|uint8|5|Error indicator. 0=success, 1=error|0 ≡ success|
+|humidity|uint16|6-7|Rel. humidity 1/10 %|318 ≡ 31.8 %|
+|temperature|int16|8-9|Temperature in 1/10 °C|-105 ≡ -10.5 °C|
 
 
 
