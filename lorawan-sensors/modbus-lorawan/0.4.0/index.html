@@ -1450,6 +1450,7 @@ what the generated Uplinks for that could look like.</p>
 </pre></div></p>
 <p><strong>Example A2: Read coils 1000-1019 of device 32</strong>
 <div class="codehilite"><pre><span></span><span class="n">ModbusCommands</span> <span class="o">=</span> <span class="s1">&#39;200103e80014&#39;</span>
+
 <span class="o">#</span> <span class="n">Example</span> <span class="n">resulting</span> <span class="n">Uplink</span>
 <span class="n">Up</span><span class="p">,</span> <span class="n">Port</span> <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;005d1698fd09200103e80014f1041a&#39;</span>
  <span class="s1">&#39;005d1698fd&#39;</span> <span class="o">-&gt;</span> <span class="k">timestamp</span> <span class="o">=</span> <span class="mi">1561762045</span> <span class="o">-&gt;</span> <span class="mi">2019</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="mi">28</span><span class="n">T22</span><span class="p">:</span><span class="mi">47</span><span class="p">:</span><span class="mi">25</span> <span class="n">UTC</span>
@@ -1463,6 +1464,7 @@ what the generated Uplinks for that could look like.</p>
 </pre></div></p>
 <p><strong>Example A3: Read two devices</strong>
 <div class="codehilite"><pre><span></span><span class="n">ModbusCommands</span> <span class="o">=</span> <span class="s1">&#39;0a0300010005,3001ea600020&#39;</span>
+
 <span class="o">#</span> <span class="n">Example</span> <span class="n">resulting</span> <span class="n">Uplink</span>
 <span class="n">Up</span><span class="p">,</span> <span class="n">Port</span> <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;005d1698fd100a0300010005111122223333444455550a3001ea60002012345678&#39;</span>
  <span class="s1">&#39;005d1698fd&#39;</span> <span class="o">-&gt;</span> <span class="k">timestamp</span> <span class="o">=</span> <span class="mi">1561762045</span> <span class="o">-&gt;</span> <span class="mi">2019</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="mi">28</span><span class="n">T22</span><span class="p">:</span><span class="mi">47</span><span class="p">:</span><span class="mi">25</span> <span class="n">UTC</span>
