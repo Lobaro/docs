@@ -291,6 +291,7 @@ Up, Port 3: '005d1698fd0301830b'
 **Example A2: Read coils 1000-1019 of device 32**
 ```
 ModbusCommands = '200103e80014'
+
 # Example resulting Uplink
 Up, Port 3: '005d1698fd09200103e80014f1041a'
  '005d1698fd' -> timestamp = 1561762045 -> 2019-06-28T22:47:25 UTC
@@ -306,6 +307,7 @@ Up, Port 3: '005d1698fd09200103e80014f1041a'
 **Example A3: Read two devices**
 ```
 ModbusCommands = '0a0300010005,3001ea600020'
+
 # Example resulting Uplink
 Up, Port 3: '005d1698fd100a0300010005111122223333444455550a3001ea60002012345678'
  '005d1698fd' -> timestamp = 1561762045 -> 2019-06-28T22:47:25 UTC
