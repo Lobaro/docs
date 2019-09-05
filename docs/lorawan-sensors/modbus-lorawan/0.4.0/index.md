@@ -262,9 +262,11 @@ scope of this manual. You can find a short explanation on Modbus on Wikipedia:
 ### Uplinks triggered by configuration
 The following shows some examples of configuration for the automated reading and 
 what the generated Uplinks for that could look like.
+
+**Example A1: Read Holding Registers 0, 1, and 2 of device with address 1**
 ```
-# Example A1: Read Holding Registers 0, 1, and 2 of device with address 1
 ModbusCommands = '010300000003'
+
 # Example resulting Uplink after successful readout
 Up, Port 3: '005d1698fd0c0103000000031234567890ab'
  '005d1698fd' -> timestamp = 1561762045 -> 2019-06-28T22:47:25 UTC
@@ -275,6 +277,7 @@ Up, Port 3: '005d1698fd0c0103000000031234567890ab'
    '0000' -> start reading at register 0
    '0003' -> read 3 consecutive registers
    '1234567890ab' -> 6 bytes of data
+   
 # Example resulting Uplink after failing readout
 Up, Port 3: '005d1698fd0301830b'
  '005d1698fd' -> timestamp = 1561762045 -> 2019-06-28T22:47:25 UTC
@@ -283,9 +286,10 @@ Up, Port 3: '005d1698fd0301830b'
    '01' -> slave device with address 1
    '83' -> function 3 with error indicator 80 = read Holding Register, failed
    '0b' -> error code 11: "Gateway Target Device Failed to Respond"
+```
 
-
-# Example A2: Read coils 1000-1019 of device 32
+**Example A2: Read coils 1000-1019 of device 32**
+```
 ModbusCommands = '200103e80014'
 # Example resulting Uplink
 Up, Port 3: '005d1698fd09200103e80014f1041a'
@@ -297,8 +301,10 @@ Up, Port 3: '005d1698fd09200103e80014f1041a'
    '03e8' -> start reading at coil 1000
    '0014' -> read 20 consecutive coils
    'f1041a' -> 20 bits of data packed into 3 bytes
+```
 
-# Example A3: Read two devices
+**Example A3: Read two devices**
+```
 ModbusCommands = '0a0300010005,3001ea600020'
 # Example resulting Uplink
 Up, Port 3: '005d1698fd100a0300010005111122223333444455550a3001ea60002012345678'
@@ -319,8 +325,8 @@ Up, Port 3: '005d1698fd100a0300010005111122223333444455550a3001ea60002012345678'
 ```
 
 ### Uplinks triggered by Downlinks
+**Example B1: Read single Input Register by Downlink**
 ```
-# Example B1: Read single Input Register by Downlink
 Down, Port 4: '06180401000001'
   '06' -> first Command is 6 bytes long
   '180401000001' 6 bytes of Modbus Command
@@ -328,6 +334,7 @@ Down, Port 4: '06180401000001'
     '04' -> function 4, read Input Register
     '0100' -> start at register 256
     '0001' -> read 1 register
+    
 # Example resulting Uplink
 Up, Port4: '004b3dd67508180401000001abcd'
   '004b3dd675' -> timestamp = 1262343797 -> 2010-01-01T11:03:17 UTC
@@ -338,9 +345,10 @@ Up, Port4: '004b3dd67508180401000001abcd'
     '0100' -> start at register 256
     '0001' -> read 1 register
     'abcd' -> 2 bytes of data
+```
 
-
-# Example B2: Writing holding registers on multiple devices
+**Example B2: Writing holding registers on multiple devices**
+```
 Down, Port 4: '06a106aabb12340fa210a0010004081122334455667788'
   '06' -> first Command is 6 bytes long
   'a106aabb1234' 6 bytes of Modbus Command
@@ -356,6 +364,7 @@ Down, Port 4: '06a106aabb12340fa210a0010004081122334455667788'
     '0004' -> 4 registers to write
     '08' -> 8 bytes of data follow
     '1122334455667788' -> 8 bytes of data
+    
 # Example resulting Uplink
 Up, Port 4: '004b3dd67503a1860206a210a0010004'
   '004b3dd675' -> timestamp = 1262343797 -> 2010-01-01T11:03:17 UTC
