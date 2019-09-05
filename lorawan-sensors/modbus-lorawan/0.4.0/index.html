@@ -1424,9 +1424,10 @@ scope of this manual. You can find a short explanation on Modbus on Wikipedia:
 <a href="https://en.wikipedia.org/wiki/Modbus">https://en.wikipedia.org/wiki/Modbus</a>.</p>
 <h3 id="uplinks-triggered-by-configuration">Uplinks triggered by configuration</h3>
 <p>The following shows some examples of configuration for the automated reading and 
-what the generated Uplinks for that could look like.
-<div class="codehilite"><pre><span></span><span class="o">#</span> <span class="n">Example</span> <span class="n">A1</span><span class="p">:</span> <span class="k">Read</span> <span class="n">Holding</span> <span class="n">Registers</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="k">and</span> <span class="mi">2</span> <span class="k">of</span> <span class="n">device</span> <span class="k">with</span> <span class="n">address</span> <span class="mi">1</span>
-<span class="n">ModbusCommands</span> <span class="o">=</span> <span class="s1">&#39;010300000003&#39;</span>
+what the generated Uplinks for that could look like.</p>
+<p><strong>Example A1: Read Holding Registers 0, 1, and 2 of device with address 1</strong>
+<div class="codehilite"><pre><span></span><span class="n">ModbusCommands</span> <span class="o">=</span> <span class="s1">&#39;010300000003&#39;</span>
+
 <span class="o">#</span> <span class="n">Example</span> <span class="n">resulting</span> <span class="n">Uplink</span> <span class="k">after</span> <span class="n">successful</span> <span class="n">readout</span>
 <span class="n">Up</span><span class="p">,</span> <span class="n">Port</span> <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;005d1698fd0c0103000000031234567890ab&#39;</span>
  <span class="s1">&#39;005d1698fd&#39;</span> <span class="o">-&gt;</span> <span class="k">timestamp</span> <span class="o">=</span> <span class="mi">1561762045</span> <span class="o">-&gt;</span> <span class="mi">2019</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="mi">28</span><span class="n">T22</span><span class="p">:</span><span class="mi">47</span><span class="p">:</span><span class="mi">25</span> <span class="n">UTC</span>
@@ -1437,6 +1438,7 @@ what the generated Uplinks for that could look like.
    <span class="s1">&#39;0000&#39;</span> <span class="o">-&gt;</span> <span class="k">start</span> <span class="n">reading</span> <span class="k">at</span> <span class="n">register</span> <span class="mi">0</span>
    <span class="s1">&#39;0003&#39;</span> <span class="o">-&gt;</span> <span class="k">read</span> <span class="mi">3</span> <span class="n">consecutive</span> <span class="n">registers</span>
    <span class="s1">&#39;1234567890ab&#39;</span> <span class="o">-&gt;</span> <span class="mi">6</span> <span class="n">bytes</span> <span class="k">of</span> <span class="k">data</span>
+
 <span class="o">#</span> <span class="n">Example</span> <span class="n">resulting</span> <span class="n">Uplink</span> <span class="k">after</span> <span class="n">failing</span> <span class="n">readout</span>
 <span class="n">Up</span><span class="p">,</span> <span class="n">Port</span> <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;005d1698fd0301830b&#39;</span>
  <span class="s1">&#39;005d1698fd&#39;</span> <span class="o">-&gt;</span> <span class="k">timestamp</span> <span class="o">=</span> <span class="mi">1561762045</span> <span class="o">-&gt;</span> <span class="mi">2019</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="mi">28</span><span class="n">T22</span><span class="p">:</span><span class="mi">47</span><span class="p">:</span><span class="mi">25</span> <span class="n">UTC</span>
@@ -1445,10 +1447,9 @@ what the generated Uplinks for that could look like.
    <span class="s1">&#39;01&#39;</span> <span class="o">-&gt;</span> <span class="n">slave</span> <span class="n">device</span> <span class="k">with</span> <span class="n">address</span> <span class="mi">1</span>
    <span class="s1">&#39;83&#39;</span> <span class="o">-&gt;</span> <span class="k">function</span> <span class="mi">3</span> <span class="k">with</span> <span class="n">error</span> <span class="n">indicator</span> <span class="mi">80</span> <span class="o">=</span> <span class="k">read</span> <span class="n">Holding</span> <span class="n">Register</span><span class="p">,</span> <span class="n">failed</span>
    <span class="s1">&#39;0b&#39;</span> <span class="o">-&gt;</span> <span class="n">error</span> <span class="n">code</span> <span class="mi">11</span><span class="p">:</span> <span class="ss">&quot;Gateway Target Device Failed to Respond&quot;</span>
-
-
-<span class="o">#</span> <span class="n">Example</span> <span class="n">A2</span><span class="p">:</span> <span class="k">Read</span> <span class="n">coils</span> <span class="mi">1000</span><span class="o">-</span><span class="mi">1019</span> <span class="k">of</span> <span class="n">device</span> <span class="mi">32</span>
-<span class="n">ModbusCommands</span> <span class="o">=</span> <span class="s1">&#39;200103e80014&#39;</span>
+</pre></div></p>
+<p><strong>Example A2: Read coils 1000-1019 of device 32</strong>
+<div class="codehilite"><pre><span></span><span class="n">ModbusCommands</span> <span class="o">=</span> <span class="s1">&#39;200103e80014&#39;</span>
 <span class="o">#</span> <span class="n">Example</span> <span class="n">resulting</span> <span class="n">Uplink</span>
 <span class="n">Up</span><span class="p">,</span> <span class="n">Port</span> <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;005d1698fd09200103e80014f1041a&#39;</span>
  <span class="s1">&#39;005d1698fd&#39;</span> <span class="o">-&gt;</span> <span class="k">timestamp</span> <span class="o">=</span> <span class="mi">1561762045</span> <span class="o">-&gt;</span> <span class="mi">2019</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="mi">28</span><span class="n">T22</span><span class="p">:</span><span class="mi">47</span><span class="p">:</span><span class="mi">25</span> <span class="n">UTC</span>
@@ -1459,9 +1460,9 @@ what the generated Uplinks for that could look like.
    <span class="s1">&#39;03e8&#39;</span> <span class="o">-&gt;</span> <span class="k">start</span> <span class="n">reading</span> <span class="k">at</span> <span class="n">coil</span> <span class="mi">1000</span>
    <span class="s1">&#39;0014&#39;</span> <span class="o">-&gt;</span> <span class="k">read</span> <span class="mi">20</span> <span class="n">consecutive</span> <span class="n">coils</span>
    <span class="s1">&#39;f1041a&#39;</span> <span class="o">-&gt;</span> <span class="mi">20</span> <span class="n">bits</span> <span class="k">of</span> <span class="k">data</span> <span class="n">packed</span> <span class="k">into</span> <span class="mi">3</span> <span class="n">bytes</span>
-
-<span class="o">#</span> <span class="n">Example</span> <span class="n">A3</span><span class="p">:</span> <span class="k">Read</span> <span class="n">two</span> <span class="n">devices</span>
-<span class="n">ModbusCommands</span> <span class="o">=</span> <span class="s1">&#39;0a0300010005,3001ea600020&#39;</span>
+</pre></div></p>
+<p><strong>Example A3: Read two devices</strong>
+<div class="codehilite"><pre><span></span><span class="n">ModbusCommands</span> <span class="o">=</span> <span class="s1">&#39;0a0300010005,3001ea600020&#39;</span>
 <span class="o">#</span> <span class="n">Example</span> <span class="n">resulting</span> <span class="n">Uplink</span>
 <span class="n">Up</span><span class="p">,</span> <span class="n">Port</span> <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;005d1698fd100a0300010005111122223333444455550a3001ea60002012345678&#39;</span>
  <span class="s1">&#39;005d1698fd&#39;</span> <span class="o">-&gt;</span> <span class="k">timestamp</span> <span class="o">=</span> <span class="mi">1561762045</span> <span class="o">-&gt;</span> <span class="mi">2019</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="mi">28</span><span class="n">T22</span><span class="p">:</span><span class="mi">47</span><span class="p">:</span><span class="mi">25</span> <span class="n">UTC</span>
@@ -1480,14 +1481,15 @@ what the generated Uplinks for that could look like.
    <span class="s1">&#39;12345678&#39;</span> <span class="o">-&gt;</span> <span class="mi">32</span> <span class="n">bits</span> <span class="k">of</span> <span class="k">data</span> <span class="n">packed</span> <span class="k">in</span> <span class="mi">4</span> <span class="n">bytes</span>
 </pre></div></p>
 <h3 id="uplinks-triggered-by-downlinks">Uplinks triggered by Downlinks</h3>
-<div class="codehilite"><pre><span></span><span class="o">#</span> <span class="n">Example</span> <span class="n">B1</span><span class="p">:</span> <span class="k">Read</span> <span class="n">single</span> <span class="k">Input</span> <span class="n">Register</span> <span class="k">by</span> <span class="n">Downlink</span>
-<span class="n">Down</span><span class="p">,</span> <span class="n">Port</span> <span class="mi">4</span><span class="p">:</span> <span class="s1">&#39;06180401000001&#39;</span>
+<p><strong>Example B1: Read single Input Register by Downlink</strong>
+<div class="codehilite"><pre><span></span><span class="n">Down</span><span class="p">,</span> <span class="n">Port</span> <span class="mi">4</span><span class="p">:</span> <span class="s1">&#39;06180401000001&#39;</span>
   <span class="s1">&#39;06&#39;</span> <span class="o">-&gt;</span> <span class="k">first</span> <span class="n">Command</span> <span class="k">is</span> <span class="mi">6</span> <span class="n">bytes</span> <span class="n">long</span>
   <span class="s1">&#39;180401000001&#39;</span> <span class="mi">6</span> <span class="n">bytes</span> <span class="k">of</span> <span class="n">Modbus</span> <span class="n">Command</span>
     <span class="s1">&#39;18&#39;</span> <span class="o">-&gt;</span> <span class="n">slave</span> <span class="n">device</span> <span class="k">with</span> <span class="n">address</span> <span class="mi">24</span>
     <span class="s1">&#39;04&#39;</span> <span class="o">-&gt;</span> <span class="k">function</span> <span class="mi">4</span><span class="p">,</span> <span class="k">read</span> <span class="k">Input</span> <span class="n">Register</span>
     <span class="s1">&#39;0100&#39;</span> <span class="o">-&gt;</span> <span class="k">start</span> <span class="k">at</span> <span class="n">register</span> <span class="mi">256</span>
     <span class="s1">&#39;0001&#39;</span> <span class="o">-&gt;</span> <span class="k">read</span> <span class="mi">1</span> <span class="n">register</span>
+
 <span class="o">#</span> <span class="n">Example</span> <span class="n">resulting</span> <span class="n">Uplink</span>
 <span class="n">Up</span><span class="p">,</span> <span class="n">Port4</span><span class="p">:</span> <span class="s1">&#39;004b3dd67508180401000001abcd&#39;</span>
   <span class="s1">&#39;004b3dd675&#39;</span> <span class="o">-&gt;</span> <span class="k">timestamp</span> <span class="o">=</span> <span class="mi">1262343797</span> <span class="o">-&gt;</span> <span class="mi">2010</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="n">T11</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mi">17</span> <span class="n">UTC</span>
@@ -1498,10 +1500,9 @@ what the generated Uplinks for that could look like.
     <span class="s1">&#39;0100&#39;</span> <span class="o">-&gt;</span> <span class="k">start</span> <span class="k">at</span> <span class="n">register</span> <span class="mi">256</span>
     <span class="s1">&#39;0001&#39;</span> <span class="o">-&gt;</span> <span class="k">read</span> <span class="mi">1</span> <span class="n">register</span>
     <span class="s1">&#39;abcd&#39;</span> <span class="o">-&gt;</span> <span class="mi">2</span> <span class="n">bytes</span> <span class="k">of</span> <span class="k">data</span>
-
-
-<span class="o">#</span> <span class="n">Example</span> <span class="n">B2</span><span class="p">:</span> <span class="n">Writing</span> <span class="n">holding</span> <span class="n">registers</span> <span class="k">on</span> <span class="n">multiple</span> <span class="n">devices</span>
-<span class="n">Down</span><span class="p">,</span> <span class="n">Port</span> <span class="mi">4</span><span class="p">:</span> <span class="s1">&#39;06a106aabb12340fa210a0010004081122334455667788&#39;</span>
+</pre></div></p>
+<p><strong>Example B2: Writing holding registers on multiple devices</strong>
+<div class="codehilite"><pre><span></span><span class="n">Down</span><span class="p">,</span> <span class="n">Port</span> <span class="mi">4</span><span class="p">:</span> <span class="s1">&#39;06a106aabb12340fa210a0010004081122334455667788&#39;</span>
   <span class="s1">&#39;06&#39;</span> <span class="o">-&gt;</span> <span class="k">first</span> <span class="n">Command</span> <span class="k">is</span> <span class="mi">6</span> <span class="n">bytes</span> <span class="n">long</span>
   <span class="s1">&#39;a106aabb1234&#39;</span> <span class="mi">6</span> <span class="n">bytes</span> <span class="k">of</span> <span class="n">Modbus</span> <span class="n">Command</span>
     <span class="s1">&#39;a1&#39;</span> <span class="o">-&gt;</span> <span class="n">slave</span> <span class="n">device</span> <span class="k">with</span> <span class="n">address</span> <span class="mi">161</span>
@@ -1516,6 +1517,7 @@ what the generated Uplinks for that could look like.
     <span class="s1">&#39;0004&#39;</span> <span class="o">-&gt;</span> <span class="mi">4</span> <span class="n">registers</span> <span class="k">to</span> <span class="k">write</span>
     <span class="s1">&#39;08&#39;</span> <span class="o">-&gt;</span> <span class="mi">8</span> <span class="n">bytes</span> <span class="k">of</span> <span class="k">data</span> <span class="n">follow</span>
     <span class="s1">&#39;1122334455667788&#39;</span> <span class="o">-&gt;</span> <span class="mi">8</span> <span class="n">bytes</span> <span class="k">of</span> <span class="k">data</span>
+
 <span class="o">#</span> <span class="n">Example</span> <span class="n">resulting</span> <span class="n">Uplink</span>
 <span class="n">Up</span><span class="p">,</span> <span class="n">Port</span> <span class="mi">4</span><span class="p">:</span> <span class="s1">&#39;004b3dd67503a1860206a210a0010004&#39;</span>
   <span class="s1">&#39;004b3dd675&#39;</span> <span class="o">-&gt;</span> <span class="k">timestamp</span> <span class="o">=</span> <span class="mi">1262343797</span> <span class="o">-&gt;</span> <span class="mi">2010</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="n">T11</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mi">17</span> <span class="n">UTC</span>
@@ -1530,8 +1532,7 @@ what the generated Uplinks for that could look like.
     <span class="s1">&#39;10&#39;</span> <span class="o">-&gt;</span> <span class="k">read</span> <span class="n">multiple</span> <span class="n">Holding</span> <span class="n">Registers</span><span class="p">,</span> <span class="n">success</span>
     <span class="s1">&#39;a001&#39;</span> <span class="o">-&gt;</span> <span class="k">start</span> <span class="k">at</span> <span class="n">register</span> <span class="mi">40961</span>
     <span class="s1">&#39;0004&#39;</span> <span class="o">-&gt;</span> <span class="mi">4</span> <span class="n">registers</span> <span class="k">to</span> <span class="k">write</span>
-</pre></div>
-
+</pre></div></p>
 <h2 id="complex-setups">Complex setups</h2>
 <p>The Modbus Bridge as described in this manual can be individually configured to read out any
 registers and coils. For some setups, this is not enough. There can be situations in which you want
