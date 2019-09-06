@@ -267,7 +267,47 @@ explains the fields.
 |humidity|uint16|6-7|Rel. humidity 1/10 %|318 ≡ 31.8 %|
 |temperature|int16|8-9|Temperature in 1/10 °C|-105 ≡ -10.5 °C|
 
+## Sensor Specification
 
+![Sensor Specification Data](files/am2305_spezificationdata.png)
+
+## Technical characteristics
+|||
+|-|-|
+|**Product**||
+|Type name|AM2305-LoRaWAN|
+|Description|LoRaWAN Humidity Sensor|
+|**RF transceiver**||
+|Chipset|Semtech SX1272|
+|Frequency Range|863 to 870 MHz|
+|TX Power|≤ 14 dBm|
+|Typically RF range|≤ 2km|
+|Ideal RF range|≤ 10km (free line of sight)|
+|**LoRa communication**||
+|LoRaWAN Protocol|LoRaWAN 1.0.1, Class A, EU868|
+|Activation method|Over-the-air activation (OTAA) <br> Activation by personalization (ABP)|
+|Encryption|AES128|
+|**Power**||
+|Power supply|2xAA sized battery, 1.5 V, LR6/FR6|
+|Supply voltage|UNom = 3.0V, UMin = 2.2V, UMax = 3.7V|
+|Capacity|∼ 30000 LoRaWAN messages @SF11|
+|**Humidity Sensor (Probe)**||
+|Range|0%rH to 100%rH|
+|Accuracy|±2%rH (max ±5%rH)|
+|Resolution|0.1%rH|
+|**Temperature Sensor (Probe)**||
+|Range|-40°C to 80°C|
+|Accuracy|±0.3°C|
+|Resolution|0.1°C|
+|**Mechanical dimensions**||
+|Size (Box)|114.3 mm x 59.3 mm x 26.8 mm|
+|Size (Probe)|100mm x 16mm|
+|Housing Material|ABS plastic|
+|**Environmental Requirements**||
+|Operating temperature range|-20°C to +55°C|
+|Max. Installation height|2m|
+|**Conformity**||
+|<img title="CE" alt="CE logo" src="/img/symbol-ce.svg" height="60"> <img title="weee" title="weee logo" src="/img/symbol-weee.svg" height="60">||
 
 
 !!! info "Consider using the latest firmware on your hardware"
@@ -282,9 +322,6 @@ Temperature and relative humidity measurements with external probe and LoRaWAN.
 * [CE Conformity](files/scan-ce-conformity-am2305-lorawan.pdf){: target="_blank"}
 
 
-## Sensor Specification
-
-![Sensor Specification Data](files/am2305_spezificationdata.png)
 
 
 ## Parser
