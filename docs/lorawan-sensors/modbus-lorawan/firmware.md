@@ -8,16 +8,17 @@
 
 ## Changelog
 
-### [Unreleased]
+### [1.0.0]
 **Added**
 
 - LoRaWAN 1.1 support
-- Remote configuration via LoRaWAN.
+- Remote configuration via LoRaWAN on port 128.
 - Clock synchronisation via LoRaWAN.
 
 **Changed**
 
 - Random delay before Uplink (to prevent persistent collisions when using multiple devices).
+- Modbus responses longer than payload now get split up (additional parts on port 5).
 
 ### [0.4.1]
 **Fixed**

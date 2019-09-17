@@ -5,7 +5,11 @@ version: 1.0.0
 Version v1.0.0 *(since 2019-09-16)* <br>
 This is the latest version. For older revisions please refer to the [version overview](versions.md).
 
-!!! info "This version has a different upload format than older versions!"
+!!! warning "This version has a different upload format than older versions!"
+    If you are using 0.3.x firmware, please see the [0.3.x Manual](0.3.0). <br>
+    If you are updating to this firmware, be aware that you will have to update your 
+    configuration and the parser in your backend.
+
 <!--Version v1.0.0 *(since 2019-09-16)* <br>
 This the manual for an unreleased version of the firmware. For older revisions please refer to the [version overview](../versions.md).
 -->
@@ -682,6 +686,6 @@ function decode_status(bytes) {
     };
 }
 
-// TODO:
+// TODO: deconding of Data messages
 ```
 [Copyright Modbus Logo]( http://www.modbus.org){: target="_blank"}
