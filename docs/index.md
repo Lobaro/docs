@@ -11,13 +11,13 @@ of [Lobaro GmbH](https://www.lobaro.de){: target="_blank"}.
 
 | Sensor Name         | RF-Technology     | Target Measurement / Purpose |
 | :-------------  |:----------------|:----------------|
-| [Modbus LoRaWAN Bridge](lorawan-sensors/modbus-lorawan)       | LoRaWAN | RS485 ModBus readout |
-| [Usonic LoRaWAN Sensor](lorawan-sensors/usonic-lorawan)  | LoRaWAN | Ultrasonic object / distance detection |
-| [1-Wire LoRaWAN Bridge](lorawan-sensors/1-wire-lorawan)       | LoRaWAN | Read multiple temperature sensors |
-| [EDL21 Electricity meter LoRaWAN Bridge](lorawan-sensors/edl21-opto-lorawan) | LoRaWAN | Electricity meter readout |
 | [wMBUS LoRaWAN Bridge](lorawan-sensors/wmbus-lorawan) | LoRaWAN | wMBUS enabled meter reading |
-| [Humidity & Temperature LoRaWAN Sensor](lorawan-sensors/humidity-temp-lorawan) | LoRaWAN | Humidity and Temperature probe |
+| [Modbus LoRaWAN Bridge](lorawan-sensors/modbus-lorawan)       | LoRaWAN | RS485 ModBus readout |
+| [EDL21 Electricity meter LoRaWAN Bridge](lorawan-sensors/edl21-opto-lorawan) | LoRaWAN | Electricity meter readout |
+| [1-Wire LoRaWAN Bridge](lorawan-sensors/1-wire-lorawan)       | LoRaWAN | Read multiple temperature sensors |
 | [GPS Tracker LoRaWAN](lorawan-sensors/gps-lorawan) | LoRaWAN | GPS Tracker with motion detection |
+| [Usonic LoRaWAN Sensor](lorawan-sensors/usonic-lorawan)  | LoRaWAN | Ultrasonic object / distance detection |
+| [Humidity & Temperature LoRaWAN Sensor](lorawan-sensors/humidity-temp-lorawan) | LoRaWAN | Humidity and Temperature probe |
 | [Pressure LoRaWAN Sensor](lorawan-sensors/pressure-lorawan) | LoRaWAN | Measurement of liquid / water level |
 
 ## Tools

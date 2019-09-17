@@ -11,6 +11,7 @@
 ### [Unreleased]
 **Added**
 
+- LoRaWAN 1.1 support
 - Remote configuration via LoRaWAN.
 - Clock synchronisation via LoRaWAN.
 
