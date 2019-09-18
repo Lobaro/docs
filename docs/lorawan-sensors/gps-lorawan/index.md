@@ -147,7 +147,9 @@ day in this mode (frequency can be configured with a cron expression, see "GPS c
 When physical movement is detected by the internal motion sensor during this phase, the
 GPS Tracker immediately wakes up and switches to Active Mode.
 
-## Configuration, The Lobaro Maintenance Tool
+## Configuration
+
+###The Lobaro Maintenance Tool
 
 ![Modbus LoRaWAN Bridge](files/maintenancetool.png){: style="width:60%; display: block; margin: 0 auto;"}
 
@@ -199,6 +201,7 @@ you can revert using the 'Restore default' button in case anything got miss conf
 All LoRaWAN & other firmware parameters are explained in the following.
 
 ### LoRaWAN network parameters
+
 A large part of the configuration parameters are used to control the device's usage of Lo-
 RaWAN. The table lists all of them. There are two different ways to use LoRaWAN: over-the-air
 activation (OTAA) and activation by personalization (ABP). Some configuration parameters
