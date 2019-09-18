@@ -32,7 +32,7 @@ All DIN-Rail housings that fit our hardware are possible. The DIN-Rail mount can
 
 We offer to deliver our hardware in the following housings:
 
-![DIN-Rail Housing](img/housing-spelsberg-din-rail-130x130.jpg){: style="width:45%"}
+![DIN-Rail Housing](img/housing-spelsberg-din-rail-130x130.jpg){: style="width:70%"}
 
 **130x130 (RK 4/12-L)**
 
