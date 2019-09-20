@@ -80,7 +80,7 @@ by configuration. Class B is not supported by Lobaro devices at the moment.
 Lobaro's LoRaWAN devices use a LoRaWAN stack we develop ourselves. It supports a 
 wide spectrum of features:
 
-* LoRaWAN version 1.0 or 1.1 selectable
+* LoRaWAN version 1.1 and 1.0 supported
 * Over The Air Activation (OTAA) and Activation By Personalisation (ABP)
 * Adaptive Data Rate (ADR)
 * Device integrated DevEUI (alternatively DevEUI can be freely configured)
@@ -94,6 +94,25 @@ wide spectrum of features:
 
 Some devices implement only a subset of those features.
 
+### LoRaWAN versions
+The most recent version of LoRaWAN is 1.1. Some Network Servers support only
+version 1.0. The configuration for the two versions is slightly different: 
+Version 1.1 has two Keys:
+The *Network Key* `NwkKey` and the *Application Key* `AppKey`. Version 1.0 
+only uses the Application Key.
+
+Lobaro's LoRaWAN devices support both versions. If both keys, `NwkKey` and `AppKey`
+are set, the device uses version 1.1. If `NwkKey` is set to all zeros, the 
+device uses version 1.0 instead. If both keys are set to the same value, the 
+device tries to use version 1.1 but falls back to 1.0 if the Network Server 
+does not support 1.1.
+
+The initial configuration for Lobaro's LoRaWAN devices has both keys set to 
+the same value, so that they can be used with both LoRaWAN versions out of the box. 
+Each device has an individual key, but the value is known to Lobaro. For 
+security reasons the keys should be changed to a random value generated from 
+a strong random source. 
+
 ### LoRaWAN Configuration
 The configuration of the LoRaWAN parameters is basically the same for all LoRaWAN 
 devices (some of our products might differ in some details, especially devices using 
@@ -105,14 +124,12 @@ Several values are a number of bytes, that need to be entered as hexstrings (wit
 
 | Name       | Description | Type | Values |
 |------------|-------------|------|-------|
-|`LwVer`     |LoRaWAN Version                      |`string`  | `1.0` or `1.1` |
 |`OTAA`      |Activation: OTAA or ABP              |`bool`    | `true`= use OTAA, `false`= use ABP |
 |`DevEUI`    |DevEUI used to identify the Device   |`byte[8]` | e.g. `0123456789abcdef` | 
 |`JoinEUI`   |Used for OTAA (called AppEUI in v1.0)|`byte[8]` | e.g. `0123456789abcdef` | 
 |`AppKey`    |Key used for OTAA (v1.0 and v1.1)    |`byte[16]`| |
 |`NwkKey`    |Key used for OTAA (v1.1 only)        |`byte[16]`| |
 |`SF`        |Initial / maximum Spreading Factor   |`int`     | `7` - `12` |
-|`TxPower`   |Initial / maximum TX Power in dBm    |`int`     | `2` - `14` |
 |`ADR`       |Use Adaptive Data Rate               |`bool`    | `true`= use ADR, `false`= don't |
 |`OpMode`    |Operation Mode                       |`string`  | `A`= Class A, `C`= Class C |
 |`TimeSync`  |Days after which to sync time        |`int`     | days, `0`=don't sync time | 
@@ -120,15 +137,6 @@ Several values are a number of bytes, that need to be entered as hexstrings (wit
 |`RemoteConf`|Support Remote Configuration         |`bool`    | `true`=allow, `false`=deactivate |
 |`LostReboot`|Days without downlink before reboot  |`int`     | days, `0`=don't reboot |
 
-`LwVer`
-:   LoRaWAN is still a developing technology. Version 1.1 introduced some severe changes
-    to the standard, so that it is necessary to specify which version the device 
-    should use. The only allowed values here are `1.0` and `1.1`. The version selected 
-    here has impact on how some of the other config values are being used.
-    <br>
-    Currently many network servers do not yet support LoRaWAN 1.1. A device configured 
-    to use LoRaWAN 1.1 can always fall back to use 1.0 if the network server does not 
-    support 1.1.
 `OTAA`
 :   A LoRaWAN device needs to be activated to communicate with a network. The activation 
     generates a session that is used by the device and most importantly sets the 
@@ -161,7 +169,10 @@ Several values are a number of bytes, that need to be entered as hexstrings (wit
 :   The Application Key and the Network Key are used as shared secrets during 
     OTAA to generate the session keys. They need to be synchronised between 
     the device and the Network Server. LoRaWAN 1.0 only uses the AppKey and not
-    the NwkKey.
+    the NwkKey. Setting the NwkKey to `00000000000000000000000000000000` will set 
+    the device to use LoRaWAN 1.0. If you set NwkKey and AppKey to the same 
+    value, the device will try to run LoRaWAN 1.1 but fall back to 1.0 if the 
+    Network Server does not support 1.1.
 `SF`
 :   The Spreading Factor is a LoRa parameter that defines how much time is used 
     to transmit a single byte. A higher Spreading Factor results in a better 
@@ -172,11 +183,6 @@ Several values are a number of bytes, that need to be entered as hexstrings (wit
     This Parameter sets the Spreading Factor the device starts with after 
     Activation. If the device uses ADR, the Spreading Factor can change over 
     time, but it will never be higher than the value configured here.
-`TxPower`
-:   This parameter configures the power used to transmit messages. A higher
-    TxPower can lead to better reception of the device, but it also reduces
-    battery life. This specifies the value used after Activation, if the 
-    device uses ADR it might change over time.
 `ADR`
 :   Adaptive Data Rate (ADR) allows the Network Server to adjust the Spreading Factor 
     and TxPower of this device. This feature helps the Network to organise itself 
@@ -282,7 +288,7 @@ your Network Server's configuration. The device address is generated using the l
 4 bytes of the DevEUI, so if you want to change the Address you will have to change 
 the DevEUI in the configuration. The Session Keys are derived from the OTAA keys in 
 the configuration, so if you want to generate different session keys, you should set 
-the AppKey (for v1.0) or the AppKey and NwkKey (vor v1.1) to a randomly generated value.
+the AppKey (for v1.0) or the AppKey and NwkKey (for v1.1) to a randomly generated value.
 
 ## Duty Cycle
 Because LoRaWAN uses public frequencies, there are some regulations LoRaWAN device
@@ -383,8 +389,7 @@ commands and their responses are all encoded in ASCII, to make it easier for hum
 The first byte of a Downlink message on port 128 contains a single character that identifies 
 the command you want to send. Some commands take a parameter following the command char.
 
-The responses to a command are also starting with a single char describing the nature of the 
-response followed by an optional parameter.
+The responses to a command start with the same character as the command followed by an optional parameter.
 If a command is unknown or it fails for some reason, an error response is sent via Uplink that 
 contains with a `!` followed by a readable error message.
 
@@ -405,55 +410,53 @@ failed attempts it will restore the previous configuration. This can take up to 
 |`a` |Append to config parameter value|`<name>=<value>`|
 |`b` |Reboot device without saving    |None|
 |`w` |Save config and reboot device   |None|
-|`W` |Force save config and reboot device.<br>WARNING! This can leave your device inoperable!|None|
 
 `?`
 :   Request firmware and version. This command triggers the device to send what firmware it is running and in which version.
     This can be used to test if the remote configuration is working.
 
-`g`
-:   Get config parameter value. This command makes the device sent a response starting with a `c` 
-    followed by `<name>=<value>` giving you the current value of a configuration parameter.
+`g<name>`
+:   Get the value of the config parameter `<name>`. This command makes the device sent a response containing
+    `<name>=<value>` as parameter giving you the current value of a configuration parameter.
 
-`r`
-:   Reset config parameter value. This command resets a config parameter to its default value.
-    As a confirmation it sends the same response as the `g` command, reporting the new value of 
+`r<name>` / `r*`
+:   Reset config parameter `<name>` to its default value. 
+    As a confirmation the device sends a response containing `<name>=<value>`, reporting the new value of 
+    the parameter.
+    <br>
+    Sending the special value `*` will reset all config parameters.
+
+`s<name>=<value>`
+:   Set config parameter `<name>` to `<value>`. Sets the parameter to the value given in the parameter.
+    As a confirmation it sends a response containing `<name>=<value>`, reporting the new value of 
     the parameter.
 
-`s`
-:   Set config parameter value. Sets the parameter to the value given in the parameter.
-    As a confirmation it sends the same response as the `g` command, reporting the new value of 
-    the parameter.
-
-`a`
-:   Append to config parameter value. This command appends the value given to the 
+`a<name>=<value>`
+:   Append `<value>` to the config parameter `<name>`. This command appends the value given to the 
     current value of the parameter. This is intended to allow setting values that are too long 
     for a single Downlink message.
-    As a confirmation it sends the same response as the `g` command, reporting the new value of 
-    the parameter.
+    As a confirmation it sends the length of the config parameter's value after the appending.
     
 `b`
 :   Reboot device without saving. This command restarts the device. Any changes too the config 
     that have been committed before will be lost!
     This command does not send a Response.
 
-`w`
-:   (Lower case `w`) Save config and reboot device. This command saves all configuration changes to a temporarily
-    to the device and restarts it. Only if the device boots successfully and reaches normal 
+`w` / `wFORCE`
+:   Save config and reboot device. This command saves all configuration changes to a temporarily
+    configuration and restarts the device. Only if the device boots successfully and reaches normal 
     operation mode is the new configuration made permanent. If any fatal configuration error 
-    occurs or if the LoRaWAN OTAA Join does not succeed, the previous configuration is 
+    occurs or if the LoRaWAN OTAA Join does not succeed, the previous configuration will be 
     restored and the device restarted again. 
     This command does not send a Response. <br>
-    Use this command to write your changes to the device unless you have a very good reason to use `W`!
+    If you add the special argument `FORCE` to the command, the configuration will be made 
+    permanent without testing the configuration.
 
-`W`
-:   
-    !!! danger "This can break your configuration and leave your device unreachable!"
-    (Upper case `W`) Force save config and reboot device. In contrast to `w` this command does not have 
-    a recover mechanism. If you write a broken config with this, your device will stop working
-    and remain in a permanent reboot cycle quickly draining its battery. In this case you will 
-    need to get physical access to your device in order to restore it. USE WITH CARE! 
-    Always use `w` if possible.
+!!! danger "Using `wFORCE` can leave your device useless and unreachable!"
+    Do not use `wFORCE` unless you have a very good reason. If the device is set to an 
+    invalid configuration it will no longer be reachable by the Network Server. From such 
+    a state it can only be recovered with physical access and a config adapter. It will 
+    also most likely drain the battery quickly.
 
 ## Parser
 
