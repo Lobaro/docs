@@ -211,7 +211,7 @@ Modbus Devices's manual to find out the correct configuration.
 |`MbPar`     | UART parity            | `NONE`, `EVEN`, `ODD` |
 |`MbCron`    | Cron expression<sup>&dagger;</sup> defining when to read. | `0 0/15 * * * *` for every 15 minutes |
 |`MbCmd`     | List of Modbus Commands (see below). | `010300010003` |
-|`UlFmt`     | Uplink Format          | `1`, `2`, or `3`, see [Alternative Payload Formats](#alternative-payload-formats) |
+|`PlFmt`     | Uplink Format          | `1`, `2`, or `3`, see [Alternative Payload Formats](#alternative-payload-formats) |
 |`EnDL`      | Enable Downlinks       | `true`= enable sending [Modbus Commands via Downlink](#downlink) | 
 |`DialogMode `| Enable Dialog Mode    | `true`= set the Bridge to [Dialog Mode](#dialog-mode) |
 
@@ -288,30 +288,92 @@ Status messages are transmitted on port 1 and have a fixed length of 14 bytes.
 |opMode      |  13 |   1 |`char`    | LoRaWAN Operation mode the device runs | `A` or `C` |
 
 #### Data messages
-Data messages contain responses to Modbus Commands received by the Bridge. 
-They are sent as Uplinks on two different ports, depending on how the command 
-was triggered. The format of the messages is identical for both cases.
+Data messages contain responses to Modbus Commands received by the Bridge.
+The Bridge supports multiple Payload formats for different use cases. The format is selected 
+by the configuration parameter `PlFmt`:
 
-Data messages on port 3 contain responses to the commands set in the 
-configuration parameter `MbCmd` that are executed automatically 
-every time the cron expression in `MbCron` activates. Data messages on 
-port 4 contain responses to Modbus Commands that have been sent to the Bridge
-as Downlinks via LoRaWAN.
+* `1`: Verbose payload format (port 3)
+* `2`: Compact payload format with time (port 6)
+* `3`: Compact payload format without time (port 7)
 
-Every Data message starts with 5 bytes containing an `int40` timestamp.
-This is followed by zero or more Modbus Responses. Each Modbus Response is 
-prefixed with a single byte indicating the length of the Response (as `uint8`).
+##### Verbose payload format
+The verbose payload format (`PlFmt`=`1`) is the standard setting of the Bridge. It is designed to be very 
+versatile (it uploads the complete Response sent by the Slave Devices, so reading registers as well as 
+writing registers are both supported). It contains all information you need to know the register and the 
+slave device your data is coming from. You do not need to know the exact configuration of your devices in your 
+backend to be able to parse the data. This is convenient when you have man Modbus Bridges with different 
+configuration in the field. This payload format is also good in communicating error conditions in case 
+the executed Modbus Commands fail.
+The trade off is overhead in the transmission. If you need to get a lot of data uploaded often, this could 
+be a problem for you with the limited LoRaWAN bandwidth. If this is a problem for your use case, you should 
+take a look at the compact data formats.
 
-The timestamp indicates when the command that triggered the Responses were 
-executed. For Messages on port 3 this is the time at which the Bridge was 
-activated by the cron expression. For Messages on port 4 this is the time at 
-which the received Downlink was executed. Please note our information on 
-[timestamps in our LoRaWAN devices](/background/lorawan.html#timestamps).
+Data messages using the verbose payload format are uploaded on port 3. Every message starts with a 5 byte 
+timestamp (UNIX timestamp as big endian `int40`, 
+see [timestamps in our LoRaWAN devices](/background/lorawan.html#timestamps)) 
+for more information). The timestamp is followed by one or more responses of varying length.
 
-The Bridge tries to put as many Responses into a single message as possible,
-so depending on the current spreading factor, the number of Responses per 
-message may vary. For a short introduction to Modbus Commands and Responses
-and some examples of configuration and payload refer to [Examples](#examples).
+Each of the responses starts with a single byte (`uint8`) indicating the length of its payload (`len`) followed 
+by that many bytes of payload. The payload consists of the raw Modbus response as sent by the Slave Device
+followed by 3 additional bytes: the first register/coil as `uint16` (big endian) and the number of 
+registers/coils as `uint8` taken from the executed command. The following tables visualise the 
+message structure. See the [Examples](#examples) Section for some sample data messages explained down to 
+the individual bytes. We also provide a [Reference Decoder](#reference-decoder) in JavaScript that can read
+the format.
+
+The timestamp in the message is the wakeup time when the device was activated by the cron expression in `MbCron`
+(using the devices internal clock). The Modbus Response in the message in addition with the start register/coil and 
+the register/coil count makes it possible to know which registers/coils where exactly read/written, what kind 
+they were, and the address of the device. For Modbus Commands that do not have a register/coil count (like 
+function 5, forcing a single coil), or for those that do not contain a start register/coil (e.g. funtion 7, 
+reading exception status), the contents of the additional fields `start register` and/or `count` are undefined. 
+The payload format used only a single byte for the count value, so if you are reading/writing more than 
+255 coils, the higher byte will be cut off.
+
+The Bridge puts as many responses as in one message as possible (without changing the order of responses and
+respecting the maximal message size of the current [Spreading Factor](../../background/lorawan.md#spreading-factor)).
+If the responses do not fit into a single message it will upload as many messages as needed. When a single response 
+is too long to fit in a message, the response will be split up over multiple messages and will need to be 
+reassembled in the backend. See [Split Messages](#split-messages) for instructions on how to do that and how 
+to prevent splitting.
+
+Structure of a message on port 3:
+```` text
+Bytes  | 0 . 1 . 2 . 3 . 4 | 5 ...      | ...        | ... | ...        |
+       +-------------------+------------+------------+-----+------------+
+Part   | timestamp         | response 1 | response 2 | ... | response n |
+````
+
+Structure of a response part on port 3:
+```` text
+Bytes  | 0   | 1 .. len-3      | len-2 . len-1  | len   |
+       +-----+-----------------+----------------+-------+
+Field  | len | Modbus response | start register | count |
+````
+
+##### Compact payload format
+The compact payload format transmits only the payload bytes of the received responses. This format requires 
+less bytes to upload the information than the verbose payload format, allowing more data to be read out 
+per hour, but it requires a customised backend that knows the exact configuration of the Bridge. This format 
+only makes sense for reading registers/coils. Error conditions can not be communicated very well using this 
+format.
+
+For `PlFmt`=`2` the data messages are uploaded on port 6. The messages start with a 5 byte timestamp
+(same as in verbose payload format). The timestamp is followed by only the payload bytes of the 
+Modbus Responses triggerd by the configuration parameter `MbCmd`. The bytes are just appended to the 
+message after another, in the order of the Commands in `MbCmd`. You will need to know the exact 
+value of `MbCmd` of each of your Bridges to make sense of the data. When using this payload format the 
+[Remote Configuration](#remote-configuration) is very helpful: it can be used to read the value of
+configuration parameters over LoRaWAN without physical access to the device (it can also change those values).
+If a Modbus command fails to execute (for example if the Slave device has a power outage or if the bus is 
+disconnected), the data bytes of that command are all set to `0xff`. This could also be a valid 
+value (depending on the nature of your data), but there is no other channel to communicate failure.
+`0xff` is easy to spot and `0xffff` is relative unlikely to be a real value for Modbus registers. 
+
+When using the Bridge with `PlFmt`=`3` data messages are uploaded on port 7. The payload format is 
+identical to the payload format for `PlFmt`=`3` only without the timestamp (to save another 5 bytes in case 
+you do not care about the time of your readings).
+
 
 #### Split messages
 LoRaWAN has a very limited message size. For high spreading factors this goes 
@@ -339,38 +401,6 @@ Modbus Responses that are split up will never be packed together with other
 Responses. The [Examples](#examples) section contains an illustration of 
 a split up Response.
 
-#### Alternative Payload Formats
-The Modbus Bridge normally sends complete Modbus Responses as Uplinks. This makes 
-the Bridge very versatile and easy to configure. When you have a changing 
-configuration or multiple devices this makes it easy to make sense of your 
-Uplinks: your backend does not need to know about the configuration of the 
-Bridge, all information is contained in the Uplinks. It also allows to send any 
-Command over the Bus, not only reading of registers/coils, but also writing of 
-values, diagnostic messages, or even non-standard custom extensions to Modbus.
-
-The downside of this format is, that it has a lot of overhead that uses up 
-quite a bit of limited LoRaWAN payload. If your use case requires a lot of 
-data per time, this might be a problem. The Modbus Bridge has alternative 
-upload formats for this case that use less overhead. The payload format is 
-configured with the parameter `UlFmt`; it can hold the values `1`, `2`, or `3`.
-
-The default value of `UlFmt`=`1` leads to the verbose format described above.
-
-`UlFmt`=`2` will send a 5 byte timestamp followed by only the payload of 
-all Modbus Responses connected in a bunch of bytes. To make sense of this, 
-you will need know the exact configuration of `MbCmd`. This format only makes 
-sense for reading values of Modbus registers/coils. It cannot really indicate 
-failure conditions either. If the reading of a register/coil fails, the values 
-for that part will be filled with `0xff`. The data will be uploaded as it 
-comes from the Slave device, without any interpretation.
-
-`UlFmt`=`3` is using the same technique as `UlFmt`=`2`, but it does not 
-prefix the date with a timestamp.
-
-Uplinks triggered by Downlinks on port 4 (see below) will not be affected 
-by this setting. Those will always contain the full Modbus Response.
-
-
 ### Downlink
 Please be aware that Downlinks in LoRaWAN can only be received when the device 
 sends an Uplink, or when the device operates in Class C mode.
@@ -381,20 +411,27 @@ our LoRaWAN page for more information.
 #### Modbus Commands
 Downlinks on port 4 contain one or more Modbus Commands that the Bridge should 
 forward to the RS-485 bus. Every Command must be prefixed by a single byte 
-defining the Command's length. The Responses to the Commands are sent as 
-Uplink messages on port 4.
+defining the Command's length as `uint8`. The Modbus Commands must be sent as
+raw bytes and without any check digits.
+
+The Responses to the Commands are sent as 
+Uplink messages on port 4. The payload format on port 4 is the same as on port 3 
+(see [Data messages](#data-messages)), only that the timestamp indicates the 
+time the downlink was received by the Bridge.
 
 Any byte sequence can transmitted this way and will be forwarded to the bus. 
-If the Bridge does not receive a Response by the addressed Slave Device, create an 
+If the Bridge does not receive a Response by the addressed Slave Device, it creates an 
 error Response with the exception code `11` "Gateway Target Device Failed to Respond". 
-This only makes sense if the Downlink did contain a Modbus Command.
+This only makes sense if the Downlink did contain a Modbus Command, but it will be 
+performed for any sequence of bytes you send. Commands must have a length of at least 
+3 bytes.
 
 Please be advised that not all Modbus Slave devices send Responses in all cases. If 
 you receive the exception code `11` it is possible that the Slave device was reached 
 but was not addressed correctly. It might even be possible, that a Command was 
 executed successfully, but that the device does not send confirmations. When in doubt, 
 refer to the documentation of your connected devices or try communicating with it 
-directly, without the Bridge, to reduce possible error sources.
+directly from your computer or using the [Dialog Mode](#dialog-mode), to reduce possible error sources.
 
 Refer to [Examples](#examples) to see some Downlinks and their answers.
 
@@ -405,7 +442,8 @@ in our LoRaWAN page for instructions on how to use it.
 
 ## Examples
 This chapter illustrates with some examples, how working with the Modbus Bridge 
-looks like. The bytes that are sent via LoRaWAN are presented here as hex strings. 
+looks like. The bytes that are sent via LoRaWAN are presented here as hex strings,
+while on the air they are sent as raw bytes.
 Modbus Commands and Responses are broken down to their parts in the 
 explanations, but explaining the format used by Modbus in detail is beyond the 
 scope of this manual. You can find a short explanation on Modbus on Wikipedia: 
@@ -420,24 +458,27 @@ what the generated Uplinks for that could look like.
 MbCmd = '010300000003'
 
 # Example resulting Uplink after successful readout
-Up, Port 3: '005d1698fd0c0103000000031234567890ab'
+Up, Port 3: '005d1698fd0c0103061234567890ab000003'
  '005d1698fd' -> timestamp = 1561762045 -> 2019-06-28T22:47:25 UTC
  '0c'       -> first Response is 12 bytes long
- '0103000000031234567890ab' 12 bytes modbus response:
+ '0103061234567890ab000003' 12 bytes modbus response:
    '01' -> slave device with address 1
    '03' -> function 3 = read Holding Register, success
-   '0000' -> start reading at register 0
-   '0003' -> read 3 consecutive registers
+   '06' -> 6 bytes of data in Response following
    '1234567890ab' -> 6 bytes of data
+   '0000' -> start reading at register 0
+   '03' -> read 3 consecutive registers
    
 # Example resulting Uplink after failing readout
-Up, Port 3: '005d1698fd0301830b'
+Up, Port 3: '005d1698fd0601830b000003'
  '005d1698fd' -> timestamp = 1561762045 -> 2019-06-28T22:47:25 UTC
- '03'       -> first Response is 3 bytes long
- '01830b' 3 bytes modbus response:
+ '06'       -> first Response is 6 bytes long
+ '01830b000003' 3 bytes modbus response:
    '01' -> slave device with address 1
    '83' -> function 3 with error indicator 80 = read Holding Register, failed
    '0b' -> error code 11: "Gateway Target Device Failed to Respond"
+   '0000' -> start reading at register 0
+   '03' -> read 3 consecutive registers
 ```
 
 **Example A2: Read coils 1000-1019 of device 32**
@@ -445,15 +486,16 @@ Up, Port 3: '005d1698fd0301830b'
 MbCmd = '200103e80014'
 
 # Example resulting Uplink
-Up, Port 3: '005d1698fd09200103e80014f1041a'
+Up, Port 3: '005d1698fd 09 200103f1041a03e814'
  '005d1698fd' -> timestamp = 1561762045 -> 2019-06-28T22:47:25 UTC
  '09'       -> first Response is 9 bytes long
- '200103e80014f1041a' 9 bytes of modbus response:
+ '200103f1041a03e814' 9 bytes of response:
    '20' -> slave device with address 32
    '01' -> read coils, success
-   '03e8' -> start reading at coil 1000
-   '0014' -> read 20 consecutive coils
+   '03' -> 3 bytes of data
    'f1041a' -> 20 bits of data packed into 3 bytes
+   '03e8' -> start reading at coil 1000
+   '14' -> read 20 consecutive coils
 ```
 
 **Example A3: Read two devices**
@@ -461,38 +503,44 @@ Up, Port 3: '005d1698fd09200103e80014f1041a'
 MbCmd = '0a0300010005,3001ea600020'
 
 # Example resulting Uplink
-Up, Port 3: '005d1698fd100a0300010005111122223333444455550a3001ea60002012345678'
+Up, Port 3: '005d1698fd100a030a111122223333444455550001050a30010412345678ea6020'
  '005d1698fd' -> timestamp = 1561762045 -> 2019-06-28T22:47:25 UTC
  '10' -> first Response is 16 bytes long
- '0a030001000511112222333344445555' 16 bytes of Modbus Response
+ '0a030a11112222333344445555000105' 16 bytes of Response
    '0a' -> slave device with address 10
    '03' -> read Holding Registers, success
-   '0001' -> start reading at register 1
-   '0005' -> read 5 registers
+   '0a' -> 10 bytes of data following
    '11112222333344445555' 10 bytes of data
+   '0001' -> start reading at register 1
+   '05' -> read 5 registers
  '0a' -> second Response is 10 bytes long
+ '30010412345678ea6020' 10 bytes of Response
    '30' -> slave device with address 48
    '01' -> read Coils, success
-   'ea60' -> start at coil 60000
-   '0020' -> read 32 coils
+   '04' -> 4 bytes of data following
    '12345678' -> 32 bits of data packed in 4 bytes
+   'ea60' -> start at coil 60000
+   '20' -> read 32 coils
 ```
 
 **Example A4: Split up messages**
-```` text
+```
 MbCmd = '010300010020'
 # Command reads 32 consecutive registers resulting in 64 bytes payload
 
 # Example resulting Uplinks for a Spreading Factor of 12 with 51 bytes of payload per message
-Up 1, Port 3: '005d1698fd46010300010020000100020003000400050006000700080009000a000b000c000d000e000f001000110012001300'
+Up 1, Port 3: '005d1698fd46010340000100020003000400050006000700080009000a000b000c000d000e000f001000110012001300140015'
   '005d1698fd' -> timestamp = 1561762045 -> 2019-06-28T22:47:25 UTC
   '46' -> first Response is 70 bytes long
   since the remainder of the message does not contain 70 bytes, you know there must be an additional part comming 
-Up 2, Port 5: '1400150016001700180019001a001b001c001d001e001f0020'
+Up 2, Port 5: '0016001700180019001a001b001c001d001e001f00200120'
   This contains the rest of the message. Appended to the privious message, it adds up to the correct number of bytes.
-````
+```
 
-### Uplinks triggered by Downlinks
+!!! info "TODO: examples for compact payload format"
+    All this examples use the verbose payload format. We need to add examples using the compact format.
+
+### Uplinks triggered by Downlink Commands
 **Example B1: Read single Input Register by Downlink**
 ```
 Down, Port 4: '06180401000001'
@@ -504,15 +552,16 @@ Down, Port 4: '06180401000001'
     '0001' -> read 1 register
     
 # Example resulting Uplink
-Up, Port4: '004b3dd67508180401000001abcd'
+Up, Port4: '004b3dd67508180402abcd010001'
   '004b3dd675' -> timestamp = 1262343797 -> 2010-01-01T11:03:17 UTC
   '08' -> first Response is 8 bytes long
-  '180401000001abcd' 8 bytes of Response
+  '180404abcd010001' 8 bytes of Response
     '18' -> slave device with address 24
     '04' -> read Input Register, success
-    '0100' -> start at register 256
-    '0001' -> read 1 register
+    '02' -> 2 bytes of data following
     'abcd' -> 2 bytes of data
+    '0100' -> start at register 256
+    '01' -> read 1 register
 ```
 
 **Example B2: Writing holding registers on multiple devices**
@@ -534,13 +583,15 @@ Down, Port 4: '06a106aabb12340fa210a0010004081122334455667788'
     '1122334455667788' -> 8 bytes of data
     
 # Example resulting Uplink
-Up, Port 4: '004b3dd67503a1860206a210a0010004'
+Up, Port 4: '004b3dd67506a1860200000006a210a0010004'
   '004b3dd675' -> timestamp = 1262343797 -> 2010-01-01T11:03:17 UTC
-  '03' -> first Response is 3 bytes long
-  'a18602' 3 bytes of Modbus Response
+  '06' -> first Response is 3 bytes long
+  'a18602000000' 3 bytes of Modbus Response
     'a1' -> slave device address 161
     '86' -> write single Holding Regsiter, failed
     '02' -> error code 2: "Illegal Data Address"
+    '0000' -> start register not used (undefined)
+    '00' -> count not used (undefined)
   '06' - second Response is 6 byts long
   'a210a0010004' 6 bytes od Modbus Response
     'a2' -> slave device address 162
@@ -548,6 +599,7 @@ Up, Port 4: '004b3dd67503a1860206a210a0010004'
     'a001' -> start at register 40961
     '0004' -> 4 registers to write
 ```
+
 
 ## Dialog Mode
 The Modbus Bridge has an additional interactive Operation Mode that can help 

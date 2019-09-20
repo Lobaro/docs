@@ -26,13 +26,13 @@ Most of our products are compatible with the following variations, for details a
 
 * Size: 122mm (w) x 82mm (l) x 55mm (h)
 
-### DIN-Rail
+### DIN-Rail Housing
 
 All DIN-Rail housings that fit our hardware are possible. The DIN-Rail mount can also be used without any housing.
 
 We offer to deliver our hardware in the following housings:
 
-![DIN-Rail Housing](img/housing-spelsberg-din-rail-130x130.jpg){: style="width:45%"}
+![DIN-Rail Housing](img/housing-spelsberg-din-rail-130x130.jpg){: style="width:70%"}
 
 **130x130 (RK 4/12-L)**
 
@@ -50,7 +50,7 @@ We offer to deliver our hardware in the following housings:
 
 ### AA-Batteries (3Ah)
 
-![DIN-Rail Housing](img/battery-energizer_ultimate_lithium_cell_aa.png){: style="height:100px"}
+![Energizer Iltimate Lithium](img/battery-energizer_ultimate_lithium_cell_aa.png){: style="height:100px"}
 
 !!! note "Only for LoRaWAN products"
     Only our LoRaWAN hardware supports AA-Batteries inside the Lobaro Box Housing.
@@ -66,7 +66,7 @@ We recommend to use [Energizer Ultimate Lithium](https://www.energizer.eu/de/pro
 
 
 
-![DIN-Rail Housing](img/battery-D-Cell.jpg)
+![EVE D-Cell Battery](img/battery-D-Cell.jpg)
 
 
 * Size: D-Cell (34mm x 61.5mm)
@@ -75,7 +75,16 @@ We recommend to use [Energizer Ultimate Lithium](https://www.energizer.eu/de/pro
 * Operating temperature: -55°C...+60°C
 * Li-SOCl2 (not rechargeable)
 
+### 5-30V External Supply
+
+![DIN-Rail Power Supply](img/mean-well-netzteil.jpg){: style="width:30%"}
+
+Can be used standalone on an existing DIN-Rail or inside the DIN-Rail Housing [(see above)](#din-rail-housing)
 
 ## Antennas
 
 By default all our products are shipped with an internal antenna. An external Antenna can be mounted on request.
+
+External antennas are connected with a standard SMA connector:
+
+![SMA Connector](img/sma-connector.jpg){: style="width:30%"}
