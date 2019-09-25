@@ -166,6 +166,7 @@ function Decoder(bytes, port) {
     };
 }
 
+// Wrapper for Digimondo niota platform
 module.exports = function (payload, meta) {
     const port = meta.lora.fport;
     const buf = Buffer.from(payload, 'hex');
