@@ -165,6 +165,13 @@ function Decoder(bytes, port) {
         "port": port
     };
 }
+
+module.exports = function (payload, meta) {
+    const port = meta.lora.fport;
+    const buf = Buffer.from(payload, 'hex');
+
+    return Decoder(buf, port);
+}
 ```
 
 
