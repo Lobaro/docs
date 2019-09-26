@@ -39,9 +39,11 @@ the device.**
 ##The Device 
 
 ###Variant without Power Addon
+`Order number: 8000003` <br>
 ![Modbus LoRaWAN Bridge](files/wmbusbridge.png){: style="width:60%; display: block; margin: 0 auto;"}
 
 ###Variant with Power Addon
+`Order number: 8000063` <br>
 ![Modbus LoRaWAN Bridge](files/wmbusbridgePOWERADDON.png){: style="width:50%; display: block; margin: 0 auto;"}
 
 ###Device installation
