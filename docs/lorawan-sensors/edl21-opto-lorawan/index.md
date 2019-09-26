@@ -1,6 +1,6 @@
 # EDL21 Electricity meter LoRaWAN Bridge
 
-![Lobaro EDL21 LoRaWAN Bridge](files/edl21_small.jpg){: style="height:350px;border:1px black solid;"}
+![Lobaro EDL21 LoRaWAN Bridge](files/fertig1.png){: style="height:370px"}
 
 !!! info "Consider using the latest firmware on your hardware"
     * [**See available firmware downloads**](firmware.md){: target="_blank"}
