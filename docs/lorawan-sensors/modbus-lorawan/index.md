@@ -3,14 +3,26 @@ version: 0.3.0
 ---
 # Modbus (ASCII / RTU) over LoRaWAN Bridge
 
-Version v0.3.0
+
 
 <!-- *This manual is for an older version of the Modbus Bridge!* <br>
 [latest version](../) &ndash; [version overview](../versions) --> 
 
-This is the latest version. For older revisions please refer to the [version overview](versions.md).
+## Modbus Bridge variant AA-Cells
+`Order number:8000043`
+![Modbus ](files/modbus1.jpg){: style="width:60%;"}
 
-![Modbus LoRaWAN Bridge on head rail](files/modbus-lorawan-hatrail.jpg){: style="width:40%;border:1px black solid;"}
+## Modbus Bridge variant D-Cell
+`Order number:8000041`
+![Modbus ](files/modbus.jpg){: style="width:60%;"}
+
+## Modbus Bridge variant with power adapter
+`Order number (Modbus Bridge variant AA-Cells):8000043`<br>
+`Order number (power adapter):3000006`<br>
+`Order number (housing):8000007`
+
+![Modbus ](files/modbushutschiene.jpg){: style="width:60%;"}
+
 
 !!! info "Consider using the latest firmware on your hardware"
     * [**See available firmware downloads**](firmware.md){: target="_blank"}

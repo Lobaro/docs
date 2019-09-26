@@ -38,10 +38,10 @@ the device.**
 
 ##The Device 
 
-###Example without Power Addon
+###Variant without Power Addon
 ![Modbus LoRaWAN Bridge](files/wmbusbridge.png){: style="width:60%; display: block; margin: 0 auto;"}
 
-###Example with Power Addon
+###Variant with Power Addon
 ![Modbus LoRaWAN Bridge](files/wmbusbridgePOWERADDON.png){: style="width:50%; display: block; margin: 0 auto;"}
 
 ###Device installation
