@@ -9,11 +9,11 @@ version: 0.3.0
 [latest version](../) &ndash; [version overview](../versions) --> 
 
 ## Modbus Bridge variant AA-Cells
-`Order number:8000043`
+`Order number:8000043` <br>
 ![Modbus ](files/modbus1.jpg){: style="width:60%;"}
 
 ## Modbus Bridge variant D-Cell
-`Order number:8000041`
+`Order number:8000041` <br>
 ![Modbus ](files/modbus.jpg){: style="width:60%;"}
 
 ## Modbus Bridge variant with power adapter
