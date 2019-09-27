@@ -1,7 +1,13 @@
 # GPS / GLONASS LoRaWAN Tracker
 
+###Variant without Power Addon
 
+`Order number: 8000014` <br>
 ![Product Image](files/gpslorawan.png){: style="height:400px;display: block; margin: 0 auto;"}
+
+###Variant with Power Addon
+`Order number: 8000082` <br>
+![Product Image](files/neu.jpg){: style="height:300px;display: block; margin: 0 auto;"}
 
 !!! info "Hardware Revisions"
     The picture above shows the tracker in **hardware revision 2** with GPS and additional GLONASS support for best positioning.

@@ -1,6 +1,6 @@
 # 1-Wire LoRaWAN Bridge
-
-![1-wire-lorawan](files/1-wire-lorawan.png){: style="height:350px;border:1px black solid;"}
+`Order number: 8000001` <br>
+![1-wire-lorawan](files/1.jpg){: style="height:350px;"}
 
 !!! info "Consider using the latest firmware on your hardware"
     * [**See available firmware downloads**](firmware.md){: target="_blank"}
@@ -164,6 +164,14 @@ function Decoder(bytes, port) {
         "error": "Invalid port",
         "port": port
     };
+}
+
+// Wrapper for Digimondo niota platform
+module.exports = function (payload, meta) {
+    const port = meta.lora.fport;
+    const buf = Buffer.from(payload, 'hex');
+
+    return Decoder(buf, port);
 }
 ```
 

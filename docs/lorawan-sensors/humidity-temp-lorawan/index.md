@@ -1,8 +1,8 @@
 # Humidity & Temperature LoRaWAN Sensor
 ##Overview
+`Order number: 8000004` <br>
 
-
-![Humidity & Temperature LoRaWAN Sensor](files/LoRaWAN-HumiditySensor.jpg){: style="height:300px; display: block; margin: 0 auto; border:1px black solid"}
+![Humidity & Temperature LoRaWAN Sensor](files/humiditysensor11.png){: style="height:300px; display: block; margin: 0 auto;"}
 
 The Lobaro LoRaWAN Humidity Sensor AM2305-LoRaWAN is a battery powered radio transmitting sensor device that takes measurements at configurable intervals. Because of its low
 power consumption it can operate for multiple years with standard AA batteries. The LoRa

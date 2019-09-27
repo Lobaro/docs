@@ -14,7 +14,24 @@ This is the latest version. For older revisions please refer to the [version ove
 This the manual for an unreleased version of the firmware. For older revisions please refer to the [version overview](../versions.md).
 -->
 
-![Modbus LoRaWAN Bridge on head rail](files/modbus-lorawan-hatrail.jpg){: style="width:40%;border:1px black solid;"}
+<!-- *This manual is for an older version of the Modbus Bridge!* <br>
+[latest version](../) &ndash; [version overview](../versions) --> 
+
+## Modbus Bridge variant AA-Cells
+`Order number: 8000043` <br>
+![Modbus ](files/modbus1.jpg){: style="width:50%;"}
+
+## Modbus Bridge variant D-Cell
+`Order number: 8000041` <br>
+![Modbus ](files/modbus.jpg){: style="width:60%;"}
+
+## Modbus Bridge variant with power adapter
+`Order number (Modbus Bridge variant AA-Cells): 8000043`<br>
+`Order number (power adapter): 3000006`<br>
+`Order number (housing): 8000007`
+
+![Modbus ](files/modbushutschiene.jpg){: style="width:60%;"}
+
 
 ## Target Measurement / Purpose
 The Lobaro Modbus LoRaWAN Bridge is a low power device that can be used to communicate with 
