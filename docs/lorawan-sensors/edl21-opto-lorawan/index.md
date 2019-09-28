@@ -1,6 +1,6 @@
 # EDL21 Electricity meter LoRaWAN Bridge
 `Order number: 8000057` <br>
-![Lobaro EDL21 LoRaWAN Bridge](files/fertig1.png){: style="height:370px"}
+![Lobaro EDL21 LoRaWAN Bridge](files/fertig1.png){: style="width:85%;"}
 
 !!! info "Consider using the latest firmware on your hardware"
     * [**See available firmware downloads**](firmware.md){: target="_blank"}

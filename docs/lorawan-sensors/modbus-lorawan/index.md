@@ -2,7 +2,7 @@
 version: 1.0.0
 ---
 # Modbus (ASCII / RTU) over LoRaWAN Bridge
-Version v1.0.0 *(since 2019-09-16)* <br>
+Version **v1.0.0** *(since 2019-09-16)* <br>
 This is the latest version. For older revisions please refer to the [version overview](versions.md).
 
 !!! warning "This version has a different upload format than older versions!"
@@ -17,29 +17,13 @@ This the manual for an unreleased version of the firmware. For older revisions p
 <!-- *This manual is for an older version of the Modbus Bridge!* <br>
 [latest version](../) &ndash; [version overview](../versions) --> 
 
-## Modbus Bridge variant AA-Cells
-`Order number: 8000043` <br>
-![Modbus ](files/modbus1.jpg){: style="width:50%;"}
-
-## Modbus Bridge variant D-Cell
-`Order number: 8000041` <br>
-![Modbus ](files/modbus.jpg){: style="width:60%;"}
-
-## Modbus Bridge variant with power adapter
-`Order number (Modbus Bridge variant AA-Cells): 8000043`<br>
-`Order number (power adapter): 3000006`<br>
-`Order number (housing): 8000007`
-
-![Modbus ](files/modbushutschiene.jpg){: style="width:60%;"}
-
-
 ## Target Measurement / Purpose
 The Lobaro Modbus LoRaWAN Bridge is a low power device that can be used to communicate with 
-Modbus Slave devices (ASCII/RTU) on a RS-485 bus over a LoRaWAN network. 
+Modbus Slave devices (ASCII/RTU) on a RS-485 bus over a LoRaWAN network.
 Modbus commands can be transmitted via Downlink message to the Bridge and are forwarded by 
 the Bridge to the connected Slave Devices. Received responses are forwarded via LoRaWAN 
 Uplink messages. The Modbus Bridge can also be configured to execute Modbus commands 
-regularly and report the responses via Uplink.
+regularly and report the responses via LoRaWAN uplinks.
 
 The Bridge supports LoRaWAN Operation Mode *Class A* for power efficient operation
 (for long operation periods powered by battery), as well as *Class C* to enable short 
@@ -59,11 +43,26 @@ retrieving data from environmental sensors like temperature and humidity.
 Industrial machines as well as solar panel installations often include a Modbus 
 connection to supply supervision and automated operation.
 
-**PDF Download**
+## Product variants
+The LoRaWAN Modbus bridge can be ordered in two standard variants. For even more customizations options see
+[Hardware Variants](/hardware.html) overview.
 
-* [Data Sheet with dimensions](files/Modbus-LoRaWAN-Specs.pdf)
+### Variant battery powered
+`LoRaWAN Modbus Bridge (XH battery connector, IP67 housing), Order number: 8000041` <br>
+`ER34615 (3.6V Battery, XH Connector, 0.2A), Order number: 3000169`
+![Modbus ](files/modbus.jpg){: style="width:55%;"}
 
-## Modbus
+### Variant external powered
+`LoRaWAN Modbus Bridge (ext. Power, Din-Rail, no housing), Order number: 8000043`<br>
+`DR-15-5 DIN-Rail power supply 5V, Order number: 3000006`<br>
+`RK 4/12-L DIN-Rail Housing, Order number: 3000005`
+
+![Modbus ](files/modbushutschiene.jpg){: style="width:55%;"}
+
+
+[Data Sheet with dimensions (PDF)](files/Modbus-LoRaWAN-Specs.pdf)
+
+## Modbus Introduction
 Modbus defines four different object types form which values can be read:
 Coils, Discrete Inputs, Input Registers, and Holding Registers.
 Of those four, Coils and Holding Registers can also be written to. 
