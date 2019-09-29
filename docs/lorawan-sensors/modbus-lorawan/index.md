@@ -17,6 +17,15 @@ This the manual for an unreleased version of the firmware. For older revisions p
 <!-- *This manual is for an older version of the Modbus Bridge!* <br>
 [latest version](../) &ndash; [version overview](../versions) --> 
 
+## Top Features
+- [X] LoRaWAN 1.0.x and 1.1 network servers supported
+- [X] LoRaWAN Class A and Class C operation
+- [X] LoRaWAN 1.1 time synchronisation
+- [X] Configuration via USB or remotely via LoRaWAN downlink
+- [X] ModBus ASCII and RTU modes supported
+- [X] Readout of ModBus Coils, Discrete Inputs, Input Registers and Holding Registers
+- [X] ModBus dialog mode via USB for easy configuration testing
+
 ## Target Measurement / Purpose
 The Lobaro Modbus LoRaWAN Bridge is a low power device that can be used to communicate with 
 Modbus Slave devices (ASCII/RTU) on a RS-485 bus over a LoRaWAN network.
