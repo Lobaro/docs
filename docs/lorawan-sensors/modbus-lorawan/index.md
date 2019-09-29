@@ -19,7 +19,7 @@ This the manual for an unreleased version of the firmware. For older revisions p
 
 ## Top Features
 - [X] LoRaWAN 1.0.x and 1.1 network servers supported
-- [X] LoRaWAN Class A and Class C operation
+- [X] LoRaWAN Class A or Class C operation
 - [X] LoRaWAN 1.1 time synchronisation
 - [X] Configuration via USB or remotely via LoRaWAN downlink
 - [X] ModBus ASCII and RTU modes supported
