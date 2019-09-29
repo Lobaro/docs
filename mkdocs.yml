@@ -17,6 +17,10 @@ theme:
   feature:
     tabs: false
 
+google_analytics:
+  - 'UA-69919312-3'
+  - 'auto'
+
 repo_url: "https://github.com/lobaro/docs"
 copyright: 'Lobaro GmbH'
 use_directory_urls: false
