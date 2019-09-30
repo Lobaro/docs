@@ -527,6 +527,20 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#payload-format-old-port-2-without-exponent" class="md-nav__link">
+    Payload Format (old, Port 2, without exponent)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#payload-format-new-port-3-with-exponent" class="md-nav__link">
+    Payload Format (new, Port 3, with exponent)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#reference-decoder" class="md-nav__link">
     Reference decoder
   </a>
@@ -1083,6 +1097,20 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#payload-format-old-port-2-without-exponent" class="md-nav__link">
+    Payload Format (old, Port 2, without exponent)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#payload-format-new-port-3-with-exponent" class="md-nav__link">
+    Payload Format (new, Port 3, with exponent)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#reference-decoder" class="md-nav__link">
     Reference decoder
   </a>
@@ -1376,6 +1404,154 @@ Depending on which method you are using you will have to set different values.</
 </table>
 <h3 id="disposal-weee-entsorgung">Disposal / WEEE / Entsorgung</h3>
 <p><a href="/background/weee-disposal">Information about the disposal of the Device</a>.</p>
+<h2 id="payload-format-old-port-2-without-exponent">Payload Format (old, Port 2, without exponent)</h2>
+<p>The payload consists of multiple entries, one entry per OBIS code given in the configuration.
+Each entry follows the following structure:</p>
+<table>
+<thead>
+<tr>
+<th>OBISCode (hex)</th>
+<th>lenght of value (n)</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>6 bytes</td>
+<td>1 byte</td>
+<td>n bytes, LSB first</td>
+</tr>
+</tbody>
+</table>
+<p>Example packet: 01 00 01 08 00 FE 08 FF 01 00 00 00 00 00 00 01 00 01 08 00 FE 08 FF 02 00 00 00 00 00 00</p>
+<p>Entry 1: </p>
+<table>
+<thead>
+<tr>
+<th>OBISCode (hex)</th>
+<th>lenght of value (n)</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>01 00 01 08 00 FE</td>
+<td>08</td>
+<td>FF 01 00 00 00 00 00 00</td>
+</tr>
+<tr>
+<td>1-0:1.8.0*254</td>
+<td>8</td>
+<td>511</td>
+</tr>
+</tbody>
+</table>
+<p>Entry 2: </p>
+<table>
+<thead>
+<tr>
+<th>OBISCode (hex)</th>
+<th>lenght of value (n)</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>01 00 01 08 00 FE</td>
+<td>08</td>
+<td>FF 01 00 00 00 00 00 00</td>
+</tr>
+<tr>
+<td>1-0:1.8.0*254</td>
+<td>8</td>
+<td>767</td>
+</tr>
+</tbody>
+</table>
+<h2 id="payload-format-new-port-3-with-exponent">Payload Format (new, Port 3, with exponent)</h2>
+<p>The payload consists of multiple entries, one entry per OBIS code given in the configuration.
+Each entry follows the following structure:</p>
+<table>
+<thead>
+<tr>
+<th>OBISCode (hex)</th>
+<th>lenght of value (n)</th>
+<th>value</th>
+<th>exponent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>6 bytes</td>
+<td>1 byte</td>
+<td>n bytes, LSB first</td>
+<td>1 byte (signed)</td>
+</tr>
+</tbody>
+</table>
+<p>Example packet: 01 00 01 08 00 FE 08 FF 01 00 00 00 00 00 00 ff 01 00 01 08 00 FE 08 FF 02 00 00 00 00 00 00 02</p>
+<p>Entry 1: </p>
+<table>
+<thead>
+<tr>
+<th>OBISCode (hex)</th>
+<th>lenght of value (n)</th>
+<th>value</th>
+<th>exponent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>01 00 01 08 00 FE</td>
+<td>08</td>
+<td>FF 01 00 00 00 00 00 00</td>
+<td>ff</td>
+</tr>
+<tr>
+<td>1-0:1.8.0*254</td>
+<td>8</td>
+<td>511</td>
+<td>-1</td>
+</tr>
+<tr>
+<td>Value = 511 * 10^-1 = 51.1</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Entry 2: </p>
+<table>
+<thead>
+<tr>
+<th>OBISCode (hex)</th>
+<th>lenght of value (n)</th>
+<th>value</th>
+<th>exponent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>01 00 01 08 00 FE</td>
+<td>08</td>
+<td>FF 01 00 00 00 00 00 00</td>
+<td>02</td>
+</tr>
+<tr>
+<td>1-0:1.8.0*254</td>
+<td>8</td>
+<td>767</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Value = 767 * 10^2 = 76700</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h2 id="reference-decoder">Reference decoder</h2>
 <p>This is a decoder written in JavaScript that can be used to parse the device's 
 LoRaWAN messages. It can be used as is in 
@@ -1544,14 +1720,14 @@ LoRaWAN messages. It can be used as is in
 </pre></div>
 
 <h3 id="example-parser-result">Example parser result</h3>
-<p>Test input: 01 00 01 08 00 FE 08 7B 7D 23 00 00 00 00 00 FF</p>
+<p>Test input (Port 3): 01 00 01 08 00 FE 08 FF 01 00 00 00 00 00 00 FF </p>
 <div class="codehilite"><pre><span></span><span class="p">{</span>
-   <span class="nt">&quot;values&quot;</span><span class="p">:</span> <span class="p">[</span>
+  <span class="nt">&quot;values&quot;</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
       <span class="nt">&quot;len&quot;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
       <span class="nt">&quot;nameHex&quot;</span><span class="p">:</span> <span class="s2">&quot;0100010800fe&quot;</span><span class="p">,</span>
-      <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="mf">232588.30000000002</span><span class="p">,</span>
-      <span class="nt">&quot;valueHex&quot;</span><span class="p">:</span> <span class="s2">&quot;7b7d230000000000&quot;</span>
+      <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="mf">51.1</span><span class="p">,</span>
+      <span class="nt">&quot;valueHex&quot;</span><span class="p">:</span> <span class="s2">&quot;ff01000000000000&quot;</span>
     <span class="p">}</span>
   <span class="p">]</span>
 <span class="p">}</span>
