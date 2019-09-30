@@ -100,6 +100,60 @@ As you can see by this the device will start the LoRaWAN join only after receivi
 
 [Information about the disposal of the Device](/background/weee-disposal).
 
+
+## Payload Format (old, Port 2, without exponent)
+
+The payload consists of multiple entries, one entry per OBIS code given in the configuration.
+Each entry follows the following structure:
+ 
+| OBISCode (hex) | lenght of value (n)| value |
+|------|------|------|
+|6 bytes|1 byte|n bytes, LSB first|
+
+Example packet: 01 00 01 08 00 FE 08 FF 01 00 00 00 00 00 00 01 00 01 08 00 FE 08 FF 02 00 00 00 00 00 00
+
+Entry 1: 
+
+| OBISCode (hex) | lenght of value (n)| value |
+|------|------|------|
+|01 00 01 08 00 FE|08|FF 01 00 00 00 00 00 00| 
+|1-0:1.8.0*254|8|511|  
+
+Entry 2: 
+
+| OBISCode (hex) | lenght of value (n)| value |
+|------|------|------|
+|01 00 01 08 00 FE|08|FF 01 00 00 00 00 00 00| 
+|1-0:1.8.0*254|8|767|  
+
+## Payload Format (new, Port 3, with exponent)
+
+The payload consists of multiple entries, one entry per OBIS code given in the configuration.
+Each entry follows the following structure:
+  
+| OBISCode (hex) | lenght of value (n)| value | exponent |
+|------|------|------|-----|
+|6 bytes|1 byte|n bytes, LSB first| 1 byte (signed) |
+
+Example packet: 01 00 01 08 00 FE 08 FF 01 00 00 00 00 00 00 ff 01 00 01 08 00 FE 08 FF 02 00 00 00 00 00 00 02
+
+Entry 1: 
+
+| OBISCode (hex) | lenght of value (n)| value | exponent |
+|------|------|------|------|
+|01 00 01 08 00 FE|08|FF 01 00 00 00 00 00 00| ff |
+|1-0:1.8.0*254|8|511| -1 |  
+Value = 511 * 10^-1 = 51.1
+
+Entry 2: 
+
+| OBISCode (hex) | lenght of value (n)| value | exponent |
+|------|------|------|------|
+|01 00 01 08 00 FE|08|FF 01 00 00 00 00 00 00| 02 |
+|1-0:1.8.0*254|8|767| 2 | 
+Value = 767 * 10^2 = 76700
+
+
 ## Reference decoder
 
 This is a decoder written in JavaScript that can be used to parse the device's 
@@ -271,16 +325,16 @@ function Decoder(bytes, port) {
 ```
 
 ### Example parser result
-Test input: 01 00 01 08 00 FE 08 7B 7D 23 00 00 00 00 00 FF
+Test input (Port 3): 01 00 01 08 00 FE 08 FF 01 00 00 00 00 00 00 FF 
 
 ```json
 {
-   "values": [
+  "values": [
     {
       "len": 8,
       "nameHex": "0100010800fe",
-      "value": 232588.30000000002,
-      "valueHex": "7b7d230000000000"
+      "value": 51.1,
+      "valueHex": "ff01000000000000"
     }
   ]
 }
