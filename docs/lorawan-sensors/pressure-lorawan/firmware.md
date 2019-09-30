@@ -4,7 +4,7 @@
 
 **Downloads**:
 
-* [app-lobaro-pressure-0.0.3.hex](firmware/app-lobaro-pressure-0.0.3+LoRa.hex)
+* [app-lobaro-pressure-0.0.3.hex](firmware/app-lobaro-pressure-0.0.3+LoRa.hex) [current release]
 
 ## Changelog
 
@@ -13,7 +13,7 @@
 
 ??? note "Legacy variant using a KELLER sensor"
     
-    * [app-keller-pressure-0.2.0.hex](firmware/app-keller-pressure-0.2.0.hex)
+    * [app-keller-pressure-0.2.0.hex](firmware/app-keller-pressure-0.2.0.hex) [current release]
     * [app-keller-pressure-0.0.3.hex](firmware/app-keller-pressure-0.0.3.hex)
     
     ## Changelog
