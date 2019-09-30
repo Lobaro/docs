@@ -10,7 +10,7 @@
 
 Supports the PC based configuration of all Lobaro IoT sensors. 
 
-It is intend to be used in conjunction with our [**USB configuration adapter**](./usb-config-adapter.md). 
+It is intended to be used in conjunction with our [**USB configuration adapter**](./usb-config-adapter.md). 
 
 ## Features
 
