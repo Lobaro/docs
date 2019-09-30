@@ -804,6 +804,20 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#149-17092019" class="md-nav__link">
+    1.4.9 - 17.09.2019
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#144-11092019" class="md-nav__link">
+    1.4.4 - 11.09.2019
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#143-30072019" class="md-nav__link">
     1.4.3 - 30.07.2019
   </a>
@@ -1112,6 +1126,20 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#149-17092019" class="md-nav__link">
+    1.4.9 - 17.09.2019
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#144-11092019" class="md-nav__link">
+    1.4.4 - 11.09.2019
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#143-30072019" class="md-nav__link">
     1.4.3 - 30.07.2019
   </a>
@@ -1238,9 +1266,9 @@
 <div class="admonition info">
 <p class="admonition-title">Downloads</p>
 <ul>
-<li><a href="files/tool-1-4-3/lobaro-tool-windows/lobaro-tool.exe" target="_blank"><strong>Lobaro Maintenance Tool Download (v1.4.3 Windows)</strong></a></li>
-<li><a href="files/tool-1-4-3/lobaro-tool-linux/lobaro-tool" target="_blank"><strong>Lobaro Maintenance Tool Download (v1.4.3 Linux)</strong></a></li>
-<li><a href="files/tool-1-4-3/lobaro-tool-mac/lobaro-tool" target="_blank"><strong>Lobaro Maintenance Tool Download (v1.4.3 Mac)</strong></a></li>
+<li><a href="https://github.com/lobaro/flash-tool-release/releases/download/1.4.9/lobaro-tool.exe" target="_blank"><strong>Lobaro Maintenance Tool Download (v1.4.9 Windows)</strong></a></li>
+<li><a href="https://github.com/lobaro/flash-tool-release/releases/download/1.4.9/lobaro-tool-linux" target="_blank"><strong>Lobaro Maintenance Tool Download (v1.4.9 Linux)</strong></a></li>
+<li><a href="https://github.com/lobaro/flash-tool-release/releases/download/1.4.9/lobaro-tool-mac" target="_blank"><strong>Lobaro Maintenance Tool Download (v1.4.9 Mac)</strong></a></li>
 <li><a href="https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers" target="_blank"><strong>CP2102 Driver Download</strong></a>  </li>
 </ul>
 </div>
@@ -1292,6 +1320,16 @@ chmod +x lobaro-tool
 <p>Windows might show up a security warning and ask you to proceed anyway. This is behavior is normal.</p>
 </div>
 <h2 id="changelog">Changelog</h2>
+<h3 id="149-17092019">1.4.9 - 17.09.2019</h3>
+<ul>
+<li>Fix a bug where flashing firmware fails due to UART buffer issues</li>
+</ul>
+<h3 id="144-11092019">1.4.4 - 11.09.2019</h3>
+<ul>
+<li>Fix a bug that failed to flash very big firmware files.</li>
+<li>Add delays when communicating with Bootloader to avoid timing issues.</li>
+<li>Flash command now support --verbose flag</li>
+</ul>
 <h3 id="143-30072019">1.4.3 - 30.07.2019</h3>
 <ul>
 <li>Fix a bug where writing the config does not work.</li>
