@@ -3,9 +3,9 @@
 ![Screenshot Lobaro-Tool](./img/Lobaro_Tool_ConfigFeature.png)
 
 !!! info "Downloads"
-    * [**Lobaro Maintenance Tool Download (v1.4.3 Windows)**](files/tool-1-4-3/lobaro-tool-windows/lobaro-tool.exe){: target="_blank"}
-    * [**Lobaro Maintenance Tool Download (v1.4.3 Linux)**](files/tool-1-4-3/lobaro-tool-linux/lobaro-tool){: target="_blank"}
-    * [**Lobaro Maintenance Tool Download (v1.4.3 Mac)**](files/tool-1-4-3/lobaro-tool-mac/lobaro-tool){: target="_blank"}
+    * [**Lobaro Maintenance Tool Download (v1.4.9 Windows)**](https://github.com/lobaro/flash-tool-release/releases/download/1.4.9/lobaro-tool.exe){: target="_blank"}
+    * [**Lobaro Maintenance Tool Download (v1.4.9 Linux)**](https://github.com/lobaro/flash-tool-release/releases/download/1.4.9/lobaro-tool-linux){: target="_blank"}
+    * [**Lobaro Maintenance Tool Download (v1.4.9 Mac)**](https://github.com/lobaro/flash-tool-release/releases/download/1.4.9/lobaro-tool-mac){: target="_blank"}
     * [**CP2102 Driver Download**](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers){: target="_blank"}  
 
 Supports the PC based configuration of all Lobaro IoT sensors. 
@@ -56,6 +56,14 @@ Alternativly download the windows installer and start this.
 
 
 ## Changelog
+
+### 1.4.9 - 17.09.2019
+- Fix a bug where flashing firmware fails due to UART buffer issues
+
+### 1.4.4 - 11.09.2019
+- Fix a bug that failed to flash very big firmware files.
+- Add delays when communicating with Bootloader to avoid timing issues.
+- Flash command now support --verbose flag
 
 ### 1.4.3 - 30.07.2019
 - Fix a bug where writing the config does not work.
