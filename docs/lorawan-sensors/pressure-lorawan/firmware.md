@@ -16,7 +16,7 @@
     * [app-keller-pressure-0.2.0.hex](firmware/app-keller-pressure-0.2.0.hex) [current release]
     * [app-keller-pressure-0.0.3.hex](firmware/app-keller-pressure-0.0.3.hex)
     
-    ## Changelog
+    ## Changelog (legacy)
     
     ### v0.2.0 (22.07.2019)
     - Added Battery Voltage to payload
