@@ -9,13 +9,15 @@ and pricing please contact us at [sales@lobaro.de](mailto:sales@lobaro.de)
 ### Compact Lobaro Box Housing
 ![Housing Lobaro Box](img/housing-lobaro-box.png){: style="width:45%"}
 
+![Housing Lobaro Box1](img/1.png){: style="width:85%"}
+
+
 * Size: 114,30mm (w) x 59,30mm (l) x 26,80mm (h)
 * Waterproof: IP65 
 
 ### Spelsberg TG PC 1208-6-o
 
 ![Housing Lobaro Box](img/housing-spelsberg-closed.jpg){: style="width:40%"}
-![Housing Lobaro Box](img/housing-spelsberg-open.jpg){: style="width:40%"}
 
 * [Product Specifications (external link)](https://www.spelsberg.com/nc/product/an/20040401//){: target="_blank"}
 
