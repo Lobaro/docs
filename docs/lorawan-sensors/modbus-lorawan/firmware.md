@@ -4,6 +4,7 @@
 
 **Downloads:**
 
+* [app-modbus-lora-bridge-1.0.0.hex](firmware/app-modbus-lora-bridge-1.0.0.hex).
 * [app-modbus-lora-bridge-0.3.1.hex](firmware/app-modbus-lora-bridge-0.3.1.hex).
 
 ## Changelog
