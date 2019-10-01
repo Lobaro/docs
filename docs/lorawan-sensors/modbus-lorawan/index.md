@@ -59,14 +59,14 @@ The LoRaWAN Modbus bridge can be ordered in two standard variants. For even more
 ### Variant battery powered
 `LoRaWAN Modbus Bridge (XH battery connector, IP67 housing), Order number: 8000041` <br>
 `ER34615 (3.6V Battery, XH Connector, 0.2A), Order number: 3000169`
-![Modbus ](files/modbus.jpg){: style="width:55%;"}
+![Modbus ](files/ModbusLoRaWAN-Bridge-D-Zelle-Batterie.jpg){: style="width:55%;"}
 
 ### Variant external powered
 `LoRaWAN Modbus Bridge (ext. Power, Din-Rail, no housing), Order number: 8000043`<br>
 `DR-15-5 DIN-Rail power supply 5V, Order number: 3000006`<br>
 `RK 4/12-L DIN-Rail Housing, Order number: 3000005`
 
-![Modbus ](files/modbushutschiene.jpg){: style="width:55%;"}
+![Modbus ](files/ModbusLoRaWAN-Bridge.jpg){: style="width:55%;"}
 
 
 [Data Sheet with dimensions (PDF)](files/Modbus-LoRaWAN-Specs.pdf)
