@@ -83,7 +83,7 @@ nav:
       - Temp. + rH. Sensor:
           - Manual: lorawan-sensors/humidity-temp-lorawan/index.md
           - Firmware & Changelog: lorawan-sensors/humidity-temp-lorawan/firmware.md
-      - Liquid Level Sensor:
+      - Pressure Sensor:
           - Manual: lorawan-sensors/pressure-lorawan/index.md
           - Firmware & Changelog: lorawan-sensors/pressure-lorawan/firmware.md
   - Lobaro Dashboard: dashboard/index.md
