@@ -234,7 +234,7 @@ Modbus Devices's manual to find out the correct configuration.
 |`MbPar`     | UART parity            | `NONE`, `EVEN`, `ODD` |
 |`MbCron`    | Cron expression<sup>&dagger;</sup> defining when to read. | `0 0/15 * * * *` for every 15 minutes |
 |`MbCmd`     | List of Modbus Commands (see below). | `010300010003` |
-|`PlFmt`     | Uplink Format          | `1`, `2`, or `3`, see [Alternative Payload Formats](#alternative-payload-formats) |
+|`PlFmt`     | Uplink Format          | `1`, `2`, or `3`, see [Payload Formats](#payload-formats) |
 |`EnDL`      | Enable Downlinks       | `true`= enable sending [Modbus Commands via Downlink](#downlink) | 
 |`DialogMode `| Enable Dialog Mode    | `true`= set the Bridge to [Dialog Mode](#dialog-mode) |
 
