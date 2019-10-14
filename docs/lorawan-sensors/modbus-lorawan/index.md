@@ -207,7 +207,6 @@ in our LoRaWAN background article.
 
 | Name       | Description | Type | Values |
 |------------|-------------|------|-------|
-|`LwVer`     |LoRaWAN Version                      |`string`  | `1.0` or `1.1` |
 |`OTAA`      |Activation: OTAA or ABP              |`bool`    | `true`= use OTAA, `false`= use ABP |
 |`DevEUI`    |DevEUI used to identify the Device   |`byte[8]` | e.g. `0123456789abcdef` | 
 |`JoinEUI`   |Used for OTAA (called AppEUI in v1.0)|`byte[8]` | e.g. `0123456789abcdef` | 
