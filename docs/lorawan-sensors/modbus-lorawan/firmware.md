@@ -13,6 +13,15 @@
 
 ## Changelog
 
+### [1.0.1]
+**Changed**
+
+- Using FRAM for storing results before uploading, allowing for multiple kB of data to be sent (size depending on hardware).
+
+**Fixed**
+
+- Removed memory corruption error that could be triggered by configurations with lots of Modbus commands.
+
 ### [1.0.0]
 **Added**
 
