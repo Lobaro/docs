@@ -419,6 +419,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#101" class="md-nav__link">
+    [1.0.1]
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#100" class="md-nav__link">
     [1.0.0]
   </a>
@@ -990,6 +997,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#101" class="md-nav__link">
+    [1.0.1]
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#100" class="md-nav__link">
     [1.0.0]
   </a>
@@ -1064,10 +1078,19 @@ installing this firmware.</p>
 </div>
 <p><strong>Downloads:</strong></p>
 <ul>
-<li><a href="firmware/app-modbus-lora-bridge-1.0.0.hex">app-modbus-lora-bridge-1.0.0.hex</a>.</li>
+<li><a href="firmware/app-modbus-lora-bridge-1.0.1.hex">app-modbus-lora-bridge-1.0.1.hex</a>.</li>
 <li><a href="firmware/app-modbus-lora-bridge-0.3.1.hex">app-modbus-lora-bridge-0.3.1.hex</a>.</li>
 </ul>
 <h2 id="changelog">Changelog</h2>
+<h3 id="101">[1.0.1]</h3>
+<p><strong>Changed</strong></p>
+<ul>
+<li>Using FRAM for storing results before uploading, allowing for multiple kB of data to be sent (size depending on hardware).</li>
+</ul>
+<p><strong>Fixed</strong></p>
+<ul>
+<li>Removed memory corruption error that could be triggered by configurations with lots of Modbus commands.</li>
+</ul>
 <h3 id="100">[1.0.0]</h3>
 <p><strong>Added</strong></p>
 <ul>
