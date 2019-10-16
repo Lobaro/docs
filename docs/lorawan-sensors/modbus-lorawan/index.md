@@ -1,8 +1,8 @@
 ---
-version: 1.0.0
+version: 1.0.1
 ---
 # Modbus (ASCII / RTU) over LoRaWAN Bridge
-Version **v1.0.0** *(since 2019-09-16)* <br>
+Version **v1.0.1** *(since 2019-10-16)* <br>
 This is the latest version. For older revisions please refer to the [version overview](versions.md).
 
 !!! warning "This version has a different upload format than older versions!"
