@@ -36,11 +36,13 @@ We offer to deliver our hardware in the following housings:
 
 * [Product Specifications (external link)](https://www.spelsberg.de/produkt/p/rk-412-l-leergehaeuse/an/61390601/cHash/faa47391816be2ba3b9c866cfd17a000/){: target="_blank"}
 * Size: 130mm (w) x 130mm (l) x 75mm (h)
+* Artikelnummer: `3000005`
 
 **110x110 (RK 4/07-L)**
 
 * [Product Specifications (external link)](https://www.spelsberg.de/nc/produkt/an/61990701/){: target="_blank"}
 * Size: 110mm (w) x 110mm (l) x 90mm (h)
+* Artikelnummer: `3000092`
 
 ## Power Supply Options
 
