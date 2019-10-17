@@ -580,4 +580,13 @@ function Decoder(bytes, port) {
 
     return decoded;
 }
+
+// Wrapper for niota.io
+module.exports = function (payload, meta) {
+    const port = meta.lora.fport;
+    const buf = Buffer.from(payload, 'hex');
+
+    return Decoder(buf, port);
+}
+
 ```
