@@ -22,6 +22,8 @@ The PGA enables tuning of the Ultrasonic Sensor for all kind of environments. Th
 
 Lobaro offers customized tuning and consulting for environments where the default configuration does not match.
 
+The sensor can detect multiple "objects" the LoRaWAN Payload only contains the first one!
+
 ### Open Top vs. Closed Top
 
 As for now the sensor is shipped with an open top membran. This has advantages in sensibility and range, but is more prone to environmental impacts.
@@ -105,6 +107,10 @@ function Decoder(bytes, port) {
 ```
 
 **Example parser result**
+
+!!!note
+    Currently only the first detected object is uploaded via LoRaWAN!
+
 ```json
 {
   "numResults": 1,
