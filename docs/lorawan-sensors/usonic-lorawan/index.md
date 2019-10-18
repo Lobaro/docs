@@ -41,7 +41,7 @@ Parameters specific to the sensor.
 | name |  type | description |
 |------|-------|-------------|
 | ReadDistCron | String      | Cron to start the Distrance readout, blank=DISABLE (See: [CRON Expressions](../../background/cron-expressions.md)) |
-| UsonicPreset | Int         | Preset for Ultrasonic |
+| UsonicPreset | Int         | Preset for Ultrasonic for custom Firmwares (keep the default!) |
 | UsonicTest | Bool          | Enables Test-Mode, Measurement is executed and logged permanently |
 | LogDump | Bool             | Also log the Raw Data Dump of the Ultrasonic sensor | 
 
