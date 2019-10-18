@@ -1115,6 +1115,7 @@
 </ul>
 <p>The PGA enables tuning of the Ultrasonic Sensor for all kind of environments. The default firmware supports parameters tested in underground waste bins.</p>
 <p>Lobaro offers customized tuning and consulting for environments where the default configuration does not match.</p>
+<p>The sensor can detect multiple "objects" the LoRaWAN Payload only contains the first one!</p>
 <h3 id="open-top-vs-closed-top">Open Top vs. Closed Top</h3>
 <p>As for now the sensor is shipped with an open top membran. This has advantages in sensibility and range, but is more prone to environmental impacts.</p>
 <p>Closed-Top Sensors (e.g. as used in Automotive) need more energy to send out a clear signal but are resistant against environmental impacts. </p>
@@ -1283,7 +1284,11 @@ LoRaWAN messages. It can be used as is in
 <span class="p">}</span>
 </pre></div>
 
-<p><strong>Example parser result</strong>
+<p><strong>Example parser result</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Currently only the first detected object is uploaded via LoRaWAN!</p>
+</div>
 <div class="codehilite"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;numResults&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
   <span class="nt">&quot;results&quot;</span><span class="p">:</span> <span class="p">[</span>
@@ -1298,7 +1303,8 @@ LoRaWAN messages. It can be used as is in
   <span class="nt">&quot;temp&quot;</span><span class="p">:</span> <span class="mf">21.8</span><span class="p">,</span>
   <span class="nt">&quot;vBat&quot;</span><span class="p">:</span> <span class="mf">2.779</span>
 <span class="p">}</span>
-</pre></div></p>
+</pre></div>
+
 <p>You can think of the usonic signal as a <em>strength of signal</em> or <em>volume</em> over time</p>
 <ul>
 <li><strong>Amplitude</strong> ranges from 0&ndash;255 and has no unit. It is highly influenced by 
