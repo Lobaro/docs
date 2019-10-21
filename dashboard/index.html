@@ -1089,6 +1089,9 @@ In addition the parser can access an API to set device level properties and addi
 <p>Parsers are written in JavaScript.</p>
 <p><strong>Example</strong></p>
 <div class="codehilite"><pre><span></span><span class="kd">function</span> <span class="nx">Parse</span><span class="p">(</span><span class="nx">input</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">dataStr</span> <span class="o">=</span> <span class="nx">atob</span><span class="p">(</span><span class="nx">input</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">bytes</span><span class="p">(</span><span class="nx">dataStr</span><span class="p">);</span>
+
   <span class="c1">// Decode an incoming message to an object of fields.</span>
   <span class="kd">var</span> <span class="nx">decoded</span> <span class="o">=</span> <span class="p">{</span><span class="nx">input</span><span class="o">:</span> <span class="nx">input</span><span class="p">};</span>
 
