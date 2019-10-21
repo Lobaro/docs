@@ -16,6 +16,7 @@
 
 ### [1.0.2]
 **Added**
+
 - Waitcycles for optional capacitors to load and stabilize on startup
 
 ### [1.0.1]
