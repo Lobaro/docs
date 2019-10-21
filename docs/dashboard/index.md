@@ -66,6 +66,9 @@ Parsers are written in JavaScript.
 
 ```javascript
 function Parse(input) {
+  var dataStr = atob(input.data);
+  var data = bytes(dataStr);
+
   // Decode an incoming message to an object of fields.
   var decoded = {input: input};
 
