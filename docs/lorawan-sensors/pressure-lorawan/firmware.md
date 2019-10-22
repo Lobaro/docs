@@ -4,11 +4,19 @@
 
 **Downloads**:
 
-* [app-lobaro-pressure-0.0.3.hex](firmware/app-lobaro-pressure-0.0.3+LoRa.hex) [current release]
+* [app-lobaro-pressure-0.1.0.hex](firmware/app-lobaro-pressure-0.1.0+LoRa.hex) [current release]
+* [app-lobaro-pressure-0.0.3.hex](firmware/app-lobaro-pressure-0.0.3+LoRa.hex) 
 
 ## Changelog
 
-### v0.0.3 (30.09.2019)
+### [0.1.0] (22.10.2019) [current release]
+
+**Added**
+
+ - configuration parameters for sensor limits
+
+### [0.0.3] (30.09.2019)
+
 - initial release
 
 ??? note "Legacy variant using a KELLER sensor"

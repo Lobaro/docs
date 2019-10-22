@@ -15,6 +15,52 @@ Precise liquid level measurement, e.g. for tanks, via LoRaWAN.
 * Waterproof IP66 Housing
 * Multi-year Battery life, ultra low power (~ 20µA)
 
+## Configuration
+The (initial) configuration is normally done using our free [Lobaro Maintenance Tool](/tools/lobaro-tool.html) 
+and the [USB PC configuation adapter](/tools/usb-config-adapter.html).
+
+Beside this the configuration can also be changed or read remotely in the field 
+using LoRaWAN **downlink messages**, see [Downlinks](#downlink) description.
+
+### LoRaWAN
+The connection to the LoRaWAN network is defined by multiple configuration parameters.
+This need to be set according to your LoRaWAN network and the way your device is 
+supposed to be attached to it, or the device will not be able to send any data.
+
+For a detailed introduction into how this values need to be configured, please 
+refer to the chapter [LoRaWAN configuration](/background/lorawan.html#lorawan-configuration) 
+in our LoRaWAN background article.
+
+| Name       | Description | Type | Values |
+|------------|-------------|------|-------|
+|`OTAA`      |Activation: OTAA or ABP              |`bool`    | `true`= use OTAA, `false`= use ABP |
+|`DevEUI`    |DevEUI used to identify the Device   |`byte[8]` | e.g. `0123456789abcdef` | 
+|`JoinEUI`   |Used for OTAA (called AppEUI in v1.0)|`byte[8]` | e.g. `0123456789abcdef` | 
+|`AppKey`    |Key used for OTAA (v1.0 and v1.1)    |`byte[16]`| |
+|`NwkKey`    |Key used for OTAA (v1.1 only)        |`byte[16]`| |
+|`SF`        |Initial / maximum Spreading Factor   |`int`     | `7` - `12` |
+|`ADR`       |Use Adaptive Data Rate               |`bool`    | `true`= use ADR, `false`= don't |
+|`OpMode`    |Operation Mode                       |`string`  | `A`= Class A, `C`= Class C |
+|`TimeSync`  |Days after which to sync time        |`int`     | days, `0`=don't sync time | 
+|`RndDelay`  |Random delay before sending          |`int`     | max seconds |
+|`RemoteConf`|Support Remote Configuration         |`bool`    | `true`=allow, `false`=deactivate |
+|`LostReboot`|Days without downlink before reboot  |`int`     | days, `0`=don't reboot |
+
+### Operation
+Configuration values defining the behaviour of the device. 
+The Min and Max values will be preconfigured when receiving the device. In case of using "Restore Default" they will be reset to standard values and have
+to be set again using the values printed on the sensor or given separately.
+
+| name | description | example value |
+|------|-------------|----------------|
+| `sendCron` | Cron expression defining when to read and send| `0 0/15 * * * *` for every 15 minutes |
+| `rangeMin` | min range in mh2o | in most cases 0 |
+| `rangeMax` | max range in mh2o | in most cases 15 |
+| `outputMin` | min digital output value of the sensor | in most cases 819 |
+| `outputMax` | max digital output value of the sensor | in most cases 11664 |
+
+See also our [Introduction to Cron expressions](/background/cron-expressions) and our [Introduction to Obis Codes](/background/obis-codes).
+
 ## Payload Format
 
 Port: 1
