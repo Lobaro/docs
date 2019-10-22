@@ -699,6 +699,33 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    Configuration
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lorawan" class="md-nav__link">
+    LoRaWAN
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operation" class="md-nav__link">
+    Operation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#payload-format" class="md-nav__link">
     Payload Format
   </a>
@@ -947,6 +974,33 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    Configuration
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lorawan" class="md-nav__link">
+    LoRaWAN
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operation" class="md-nav__link">
+    Operation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#payload-format" class="md-nav__link">
     Payload Format
   </a>
@@ -1003,6 +1057,143 @@
 <li>Waterproof IP66 Housing</li>
 <li>Multi-year Battery life, ultra low power (~ 20µA)</li>
 </ul>
+<h2 id="configuration">Configuration</h2>
+<p>The (initial) configuration is normally done using our free <a href="/tools/lobaro-tool.html">Lobaro Maintenance Tool</a> 
+and the <a href="/tools/usb-config-adapter.html">USB PC configuation adapter</a>.</p>
+<p>Beside this the configuration can also be changed or read remotely in the field 
+using LoRaWAN <strong>downlink messages</strong>, see <a href="#downlink">Downlinks</a> description.</p>
+<h3 id="lorawan">LoRaWAN</h3>
+<p>The connection to the LoRaWAN network is defined by multiple configuration parameters.
+This need to be set according to your LoRaWAN network and the way your device is 
+supposed to be attached to it, or the device will not be able to send any data.</p>
+<p>For a detailed introduction into how this values need to be configured, please 
+refer to the chapter <a href="/background/lorawan.html#lorawan-configuration">LoRaWAN configuration</a> 
+in our LoRaWAN background article.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+<th>Values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>OTAA</code></td>
+<td>Activation: OTAA or ABP</td>
+<td><code>bool</code></td>
+<td><code>true</code>= use OTAA, <code>false</code>= use ABP</td>
+</tr>
+<tr>
+<td><code>DevEUI</code></td>
+<td>DevEUI used to identify the Device</td>
+<td><code>byte[8]</code></td>
+<td>e.g. <code>0123456789abcdef</code></td>
+</tr>
+<tr>
+<td><code>JoinEUI</code></td>
+<td>Used for OTAA (called AppEUI in v1.0)</td>
+<td><code>byte[8]</code></td>
+<td>e.g. <code>0123456789abcdef</code></td>
+</tr>
+<tr>
+<td><code>AppKey</code></td>
+<td>Key used for OTAA (v1.0 and v1.1)</td>
+<td><code>byte[16]</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>NwkKey</code></td>
+<td>Key used for OTAA (v1.1 only)</td>
+<td><code>byte[16]</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>SF</code></td>
+<td>Initial / maximum Spreading Factor</td>
+<td><code>int</code></td>
+<td><code>7</code> - <code>12</code></td>
+</tr>
+<tr>
+<td><code>ADR</code></td>
+<td>Use Adaptive Data Rate</td>
+<td><code>bool</code></td>
+<td><code>true</code>= use ADR, <code>false</code>= don't</td>
+</tr>
+<tr>
+<td><code>OpMode</code></td>
+<td>Operation Mode</td>
+<td><code>string</code></td>
+<td><code>A</code>= Class A, <code>C</code>= Class C</td>
+</tr>
+<tr>
+<td><code>TimeSync</code></td>
+<td>Days after which to sync time</td>
+<td><code>int</code></td>
+<td>days, <code>0</code>=don't sync time</td>
+</tr>
+<tr>
+<td><code>RndDelay</code></td>
+<td>Random delay before sending</td>
+<td><code>int</code></td>
+<td>max seconds</td>
+</tr>
+<tr>
+<td><code>RemoteConf</code></td>
+<td>Support Remote Configuration</td>
+<td><code>bool</code></td>
+<td><code>true</code>=allow, <code>false</code>=deactivate</td>
+</tr>
+<tr>
+<td><code>LostReboot</code></td>
+<td>Days without downlink before reboot</td>
+<td><code>int</code></td>
+<td>days, <code>0</code>=don't reboot</td>
+</tr>
+</tbody>
+</table>
+<h3 id="operation">Operation</h3>
+<p>Configuration values defining the behaviour of the device. 
+The Min and Max values will be preconfigured when receiving the device. In case of using "Restore Default" they will be reset to standard values and have
+to be set again using the values printed on the sensor or given separately.</p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>description</th>
+<th>example value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sendCron</code></td>
+<td>Cron expression defining when to read and send</td>
+<td><code>0 0/15 * * * *</code> for every 15 minutes</td>
+</tr>
+<tr>
+<td><code>rangeMin</code></td>
+<td>min range in mh2o</td>
+<td>in most cases 0</td>
+</tr>
+<tr>
+<td><code>rangeMax</code></td>
+<td>max range in mh2o</td>
+<td>in most cases 15</td>
+</tr>
+<tr>
+<td><code>outputMin</code></td>
+<td>min digital output value of the sensor</td>
+<td>in most cases 819</td>
+</tr>
+<tr>
+<td><code>outputMax</code></td>
+<td>max digital output value of the sensor</td>
+<td>in most cases 11664</td>
+</tr>
+</tbody>
+</table>
+<p>See also our <a href="/background/cron-expressions">Introduction to Cron expressions</a> and our <a href="/background/obis-codes">Introduction to Obis Codes</a>.</p>
 <h2 id="payload-format">Payload Format</h2>
 <p>Port: 1
 Payload: 8 Bytes</p>
