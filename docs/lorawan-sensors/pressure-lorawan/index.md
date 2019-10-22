@@ -59,7 +59,7 @@ to be set again using the values printed on the sensor or given separately.
 | `outputMin` | min digital output value of the sensor | in most cases 819 |
 | `outputMax` | max digital output value of the sensor | in most cases 11664 |
 
-See also our [Introduction to Cron expressions](/background/cron-expressions) and our [Introduction to Obis Codes](/background/obis-codes).
+See also our [Introduction to Cron expressions](/background/cron-expressions).
 
 ## Payload Format
 
