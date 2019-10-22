@@ -194,7 +194,11 @@ Sleep
     back to *Data Collection*. 
 
 ## Configuration
-The configuration is done using [Lobaro Maintenance Tool](/tools/lobaro-tool/) and the Lobaro USB PC adapter.
+The (initial) configuration is normally done using our free [Lobaro Maintenance Tool](/tools/lobaro-tool.html) 
+and the [USB PC configuation adapter](/tools/usb-config-adapter.html).
+
+Beside this the configuration can also be changed or read remotely in the field 
+using LoRaWAN **downlink messages**, see [Downlinks](#downlink) description.
 
 ### LoRaWAN
 The connection to the LoRaWAN network is defined by multiple configuration parameters.
