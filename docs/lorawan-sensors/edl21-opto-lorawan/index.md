@@ -1,12 +1,23 @@
 # EDL21 Electricity meter LoRaWAN Bridge
-`Order number: 8000057` <br>
-![Lobaro EDL21 LoRaWAN Bridge](files/fertig1.png){: style="width:85%;"}
 
-!!! info "Consider using the latest firmware on your hardware"
+![Lobaro EDL21 LoRaWAN Bridge](files/edl21_small.jpg){: style="width:45%; vertical-align: top;"}
+
+
+Remote readout of EDL21 electricity meter with optical infrared "INFO" interface and "[Smart Meter Language Protocol 1.04](https://de.wikipedia.org/wiki/Smart_Message_Language)" (SML) using
+ LoRaWAN networks.
+ 
+!!! info  "Consider using the latest firmware on your hardware"
     * [**See available firmware downloads**](firmware.md){: target="_blank"}
-
-## Target Measurement / Purpose
-Readout of EDL21 electricity meter with optical infrared "INFO" interface and "[Smart Meter Language Protocol 1.04](https://de.wikipedia.org/wiki/Smart_Message_Language)" (SML).
+    
+## Top Features
+- [X] LoRaWAN 1.0.x and 1.1 network servers supported
+- [X] LoRaWAN Class A or Class C operation
+- [X] LoRaWAN 1.1 time synchronisation
+- [X] Configuration via USB or remotely via LoRaWAN downlink
+- [X] Compatible with many electrical utility meters
+- [X] RGB Status LED
+- [X] Variants with external power-supply and D-cell batteries available on request
+- [X] Separation of infrared readout head and LoRaWAN antenna possible
 
 ## Compatible utility meters
 
@@ -23,7 +34,23 @@ Readout of EDL21 electricity meter with optical infrared "INFO" interface and "[
 | eBZD series  | EMH             | [External Link](https://www.emh-metering.de/produkte/smart-meter/ebzd-g){: target="_blank"}  |
 | ITZ series  | EMH             | [External Link](https://www.emh-metering.de/produkte/smart-meter/itz){: target="_blank"}  |
 | E320  | Landis+Gyr      | [External Link](https://www.landisgyr.de/product/landisgyr-e320/){: target="_blank"} |
+     
+ 
+## Product variants
+`EDL21-LoRaWAN Bridge (universal head, AA, int. Ant.), Order number: 8000057` <br>
+![Lobaro EDL21 LoRaWAN Bridge](files/Lastenheft-EDL21-LoRaWAN-bridge.jpg){: style="width:100%;"}
 
+!!! note "Customization Options"
+    The product variant shown above is the *standard* variant in our compact housing and powered by two AA batteries.
+     
+    [**Other power supply options & housing are available on request**](../../hardware.md){: target="_blank"}
+    
+    * External antenna
+    * D-cell batteries
+    * External power-supply
+    * NB-IoT instead of LoRaWAN
+    
+    Contact us via [support@lobaro.de](mailto:support@lobaro.de) if you need our offer for a special variant.
 
 ## Quickstart 
 1. Connect to the device with the [Lobaro Tool](https://www.lobaro.com/lobaro-maintenance-tool/) using the [Lobaro Config Adapter](https://www.lobaro-shop.com/product_info.php?info=p7_lobaro-usb-konfigurations-adapter.html) 
