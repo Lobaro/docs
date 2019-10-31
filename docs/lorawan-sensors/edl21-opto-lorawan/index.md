@@ -58,6 +58,7 @@ interested in further processing this data.
     * D-cell batteries
     * External power-supply
     * NB-IoT instead of LoRaWAN
+    * Different infrared data formats other than SML
     
     Contact us via [support@lobaro.de](mailto:support@lobaro.de) if you need our offer for a special variant.
 
