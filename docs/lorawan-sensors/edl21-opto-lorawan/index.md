@@ -2,9 +2,18 @@
 
 ![Lobaro EDL21 LoRaWAN Bridge](files/edl21_small.jpg){: style="width:45%; vertical-align: top;"}
 
+The EDL21 over LoRaWAN bridge is a device that can be used to readout modern utility meters with standardized infrared "INFO" interface. 
 
-Remote readout of EDL21 electricity meter with optical infrared "INFO" interface and "[Smart Meter Language Protocol 1.04](https://de.wikipedia.org/wiki/Smart_Message_Language)" (SML) using
- LoRaWAN networks.
+These type of meters are called in Germany to be "EDL21"-compatible - hence the name.
+The meter outputs over its infrared "INFO" interface a serial protocol conforming to the [Smart Meter Language Protocol 1.04](https://de.wikipedia.org/wiki/Smart_Message_Language) (SML). This interface
+is intended to be used by end-users and **not** for billing purposes of the electricity supplier.
+The read information normally contains the current consumption values of the meter and gets interpreted and forwarded by the EDL21 bridge via a LoRaWAN network to web based applications 
+interested in further processing this data.
+
+!!! warning
+    Older meters with "infrared pulse" output are **not** compatible to the Lobaro EDL21 bridge. Please check our list of [compatible meters](#compatible-utility-meters) to make sure it is equipped with
+    the correct interface.
+
  
 !!! info  "Consider using the latest firmware on your hardware"
     * [**See available firmware downloads**](firmware.md){: target="_blank"}
