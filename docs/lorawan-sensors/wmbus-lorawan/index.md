@@ -456,7 +456,7 @@ email to info@lobaro.com - either English or German is fine.
 |Frequency Range|863 to 870 MHz|
 |TX Power|≤ 14 dBm|
 |**LoRa communication**||
-|LoRaWAN Protocol|LoRaWAN 1.0.1, Class A, EU868|
+|LoRaWAN Protocol|Class A / Class C LoRaWAN 1.1 EU868|
 |Activation method|Over-the-air activation (OTAA) <br> Activation by personalization (ABP)|
 |Encryption|AES128|
 |Typically RF range|≤ 2km|
