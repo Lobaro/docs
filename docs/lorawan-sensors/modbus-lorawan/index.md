@@ -71,6 +71,19 @@ The LoRaWAN Modbus bridge can be ordered in two standard variants. For even more
 
 [Data Sheet with dimensions (PDF)](files/Modbus-LoRaWAN-Specs.pdf)
 
+---
+
+!!! note "Further customization Options"
+    The product variants shown above are the *standard* variants.
+     
+    [**Other power supply options & housing are available on request**](../../hardware.md){: target="_blank"}
+    
+    * External antenna
+    * AA batteries
+    * NB-IoT instead of LoRaWAN
+    
+    Contact us via [support@lobaro.de](mailto:support@lobaro.de) if you need our offer for a special variant.
+
 ## Modbus Introduction
 Modbus defines four different object types form which values can be read:
 Coils, Discrete Inputs, Input Registers, and Holding Registers.

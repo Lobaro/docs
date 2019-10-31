@@ -36,15 +36,29 @@ the device.**
 !!! info "Consider using the latest firmware on your hardware"
     * [**See available firmware downloads**](firmware.md){: target="_blank"}
 
-##The Device 
+## The Device 
 
-###Variant without Power Addon
-`Order number: 8000003` <br>
+### Variant with compact housing (2xAA batteries)
+`wMBUS LoRaWAN Bridge (AA-cells, compact IP65 housing), Order number: 8000003` <br>
 ![Modbus LoRaWAN Bridge](files/wmbusbridge.png){: style="width:60%; display: block; margin: 0 auto;"}
 
-###Variant with Power Addon
-`Order number: 8000063` <br>
+### Variant with D-cell battery
+`wMBUS LoRaWAN Bridge (XH battery-connector, IP67 housing), Order number: 8000063` <br>
 ![Modbus LoRaWAN Bridge](files/wmbusbridgePOWERADDON.png){: style="width:50%; display: block; margin: 0 auto;"}
+
+---
+
+!!! note "Further customization Options"
+    The product variants shown above are the *standard* variants.
+     
+    [**Other power supply options & housing are available on request**](../../hardware.md){: target="_blank"}
+    
+    * External antenna
+    * External power supply
+    * DIN-Rail mounting
+    * NB-IoT instead of LoRaWAN
+    
+    Contact us via [support@lobaro.de](mailto:support@lobaro.de) if you need our offer for a special variant.
 
 ###Device installation
 The device must be fixed on a flat surface using the lateral mounting holes of the case, see
