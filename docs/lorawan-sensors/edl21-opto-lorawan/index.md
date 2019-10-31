@@ -6,7 +6,24 @@
     * [**See available firmware downloads**](firmware.md){: target="_blank"}
 
 ## Target Measurement / Purpose
-Readout of EDL21 electricity meter with optical infrared "INFO" interface.
+Readout of EDL21 electricity meter with optical infrared "INFO" interface and "[Smart Meter Language Protocol 1.04](https://de.wikipedia.org/wiki/Smart_Message_Language)" (SML).
+
+## Compatible utility meters
+
+| Electricity meter  | Manufacturer    | More information |
+| :-------------     |:----------------|:----------------|
+| DTZ541-ZEBA        | Holley          | [External Link](https://www.holleytech.de/holleytech/produkte/moderne-messeinrichtung-mme/drehstromzaehler-dtz541/){: target="_blank"}  |
+| LK13 series               | Logarex         | [External Link](http://www.logarex.cz/en/products){: target="_blank"}  |
+| OpenWay® 3.HZ      | iTron           | [External Link](https://www.itron.com/de/solutions/product-catalog/openway-3hz){: target="_blank"} |
+| SGM-C4 series             | efr             | [External Link](https://www.efr.de/?id=17#/SGM-C4-Kompaktzaehler){: target="_blank"}  |
+| SGM-D series             | efr             | [External Link](https://www.efr.de/?id=17#/FNN-Basiszaehler){: target="_blank"} |
+| eHZ-K series | EMH             | [External Link](https://www.emh-metering.de/produkte/smart-meter/ehz-k){: target="_blank"}  |
+| mMe4.0 series | EMH             | [External Link](https://www.emh-metering.de/produkte/smart-meter/mme4-0){: target="_blank"}  |
+| ED300 series  | EMH             | [External Link](https://www.emh-metering.de/produkte/smart-meter/ed300l){: target="_blank"}  |
+| eBZD series  | EMH             | [External Link](https://www.emh-metering.de/produkte/smart-meter/ebzd-g){: target="_blank"}  |
+| ITZ series  | EMH             | [External Link](https://www.emh-metering.de/produkte/smart-meter/itz){: target="_blank"}  |
+| E320  | Landis+Gyr      | [External Link](https://www.landisgyr.de/product/landisgyr-e320/){: target="_blank"} |
+
 
 ## Quickstart 
 1. Connect to the device with the [Lobaro Tool](https://www.lobaro.com/lobaro-maintenance-tool/) using the [Lobaro Config Adapter](https://www.lobaro-shop.com/product_info.php?info=p7_lobaro-usb-konfigurations-adapter.html) 
