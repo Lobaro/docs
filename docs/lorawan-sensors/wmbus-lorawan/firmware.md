@@ -21,7 +21,7 @@
     * LoRaWAN Class C support
     * Optional alternative payload format with better LoRaWAN SF adoption
     
-    The usage of most new features (beside the learning mode) is described in our [Introduction to LoRaWAN article](https://docs.lobaro.com/background/lorawan.html#lorawan-configuration).
+    The usage of most new features (beside the learning mode) is described in our [Introduction to LoRaWAN article](https://docs.lobaro.com/background/lorawan.html#lorawan-configuration){: target="_blank"}.
     An updated manual for the wireless MBUS bridge will follow soon. The current wireless MBUS bridge documentation is only valid for firmware up to v1.6!
     
     **For production environments consider using the stable & well documented release V1.6 above instead!**
