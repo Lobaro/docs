@@ -18,6 +18,7 @@
     * Downlink configuration
     * wMBUS learning mode for meter tx intervals
     * LoRaWAN Class C support
+    * Optional alternative payload format with better LoRaWAN SF adoption
     
     The usage of most new features (beside the learning mode) is described in our [Introduction to LoRaWAN article](https://docs.lobaro.com/background/lorawan.html#lorawan-configuration).
     An updated manual for the wireless MBUS bridge will follow soon. The current wireless MBUS bridge documentation is only valid for firmware up to v1.6!
