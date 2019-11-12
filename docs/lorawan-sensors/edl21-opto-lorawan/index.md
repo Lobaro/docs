@@ -118,7 +118,8 @@ The following pattery are explained in the order in which they appear after init
 | color | duration | description
 |------|-------------|----------------|
 | `red/green/blue` | 300ms each | initial pattern after reset |
-| `red` | short, blinking | trying to receive meter optical data for the first time after reset |
+| `red/green` | 1s | NEW in 0.3.2: single readout success/failure before OTAA join |
+| `red` | short, blinking | trying to receive meter optical data for the first time after OTAA join |
 | `green` | 5 seconds | successfully received meter optical data |
 | `blue` | 5 seconds | LoRaWAN network join |
 | `blue` | short | sending LoRaWAN data uplink |
