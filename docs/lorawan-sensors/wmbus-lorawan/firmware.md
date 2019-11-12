@@ -14,8 +14,9 @@
 !!! warning "Experimental Release V2.3.x"
     Experimental firmware which adds new features like
     
-    * Updated Lobaro LoRaWAN v1.1 stack with timesync
-    * Downlink configuration
+    * Optional LoRaWAN v1.1 support 
+    * LoRaWAN time synchronisation
+    * LoRaWAN Downlink configuration
     * wMBUS learning mode for meter tx intervals
     * LoRaWAN Class C support
     * Optional alternative payload format with better LoRaWAN SF adoption

@@ -1,5 +1,19 @@
 # Wireless mBUS over LoRaWAN Bridge
 
+!!! note "Scope of this manual"
+    This manual is currently only valid for the stable firmware version **V1.6.0**!
+    
+    It will be soon updated to reflect the new V2.3.x firmware branch with these additional new features:
+    
+    * Optional LoRaWAN v1.1 support 
+    * LoRaWAN time synchronisation
+    * LoRaWAN Downlink configuration
+    * wMBUS learning mode for meter tx intervals
+    * LoRaWAN Class C support
+    * Optional alternative payload format with better LoRaWAN SF adoption
+    
+    You can try these new features today by using the experimental firmware available [**on this page**](firmware.md){: target="_blank"}.
+
 ##Overview
 
 The Lobaro wireless M-Bus (wMBUS) to LoRaWAN Bridge is a cost-effective & energye
