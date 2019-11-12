@@ -9,13 +9,32 @@
     
     Download: [app-wMbusLoraBridge-1.6.0.hex](firmware/app-wMbusLoraBridge-1.6.0.hex)
     
-!!! warning "Experimental Release V2.x"
-    Experimental firmware which adds new features like a "Learning Mode" and uses a different LoRaWAN upload format.
-    For production environments consider using the stable release V1.6 instead!
+---------------
     
-    Download: [app-wmbus-bridge-2.1.3+LoRa.hex](firmware/app-wmbus-bridge-2.1.3+LoRa.hex)
+!!! warning "Experimental Release V2.3.x"
+    Experimental firmware which adds new features like
+    
+    * Updated Lobaro LoRaWAN v1.1 stack with timesync
+    * Downlink configuration
+    * wMBUS learning mode for meter tx intervals
+    * LoRaWAN Class C support
+    
+    The usage of most new features (beside the learning mode) is described in our [Introduction to LoRaWAN article](https://docs.lobaro.com/background/lorawan.html#lorawan-configuration).
+    An updated manual for the wireless MBUS bridge will follow soon. The current wireless MBUS bridge documentation is only valid for firmware up to v1.6!
+    
+    **For production environments consider using the stable & well documented release V1.6 above instead!**
+    
+    Download: [app-wMbusLoraBridge-TZ0-2.3.0+LoRa.hex](firmware/app-wMbusLoraBridge-TZ0-2.3.0+LoRa.hex)
     
 ## Changelogs
+
+### v2.3.0 (12.11.2019)
+- Migrate to alternative dedicated board
+- Fix Deep Sleep settings on dedicated board
+- Fix rx/handling of S1-mode CRCs of unencrypted telegrams in wMBUS driver
+
+### v2.2.0 (unreleased)
+- Integrated with new LoRaWAN stack, now supporting v1.1, Class C, downlinks, ...
 
 ### v2.1.3 (11.03.2019)
 - New Parameter: learnedListenSec to define how long to listen when meters was learned
