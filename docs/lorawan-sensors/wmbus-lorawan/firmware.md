@@ -26,9 +26,12 @@
     
     **For production environments consider using the stable & well documented release V1.6 above instead!**
     
-    Download: [app-wMbusLoraBridge-TZ0-2.3.0+LoRa.hex](firmware/app-wMbusLoraBridge-TZ0-2.3.0+LoRa.hex)
+    Download: [app-wMbusLoraBridge-TZ0-2.3.0+LoRa.hex](firmware/app-wMbusLoraBridge-TZ0-2.3.1+LoRa.hex)
     
 ## Changelogs
+
+### v2.3.1 (13.11.2019)
+- Improve Filtering of non-standard wMBus-telegrams
 
 ### v2.3.0 (12.11.2019)
 - Migrate to alternative dedicated board
