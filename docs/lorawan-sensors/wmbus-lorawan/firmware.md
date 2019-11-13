@@ -26,7 +26,7 @@
     
     **For production environments consider using the stable & well documented release V1.6 above instead!**
     
-    Download: [app-wMbusLoraBridge-TZ0-2.3.0+LoRa.hex](firmware/app-wMbusLoraBridge-TZ0-2.3.1+LoRa.hex)
+    Download: [app-wMbusLoraBridge-TZ0-2.3.1+LoRa.hex](firmware/app-wMbusLoraBridge-TZ0-2.3.1+LoRa.hex)
     
 ## Changelogs
 
