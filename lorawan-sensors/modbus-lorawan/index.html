@@ -2443,7 +2443,12 @@ LoRaWAN messages. It can be used as is in
     <span class="k">return</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span> <span class="o">|</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kd">function</span> <span class="nx">decode_status</span><span class="p">(</span><span class="nx">bytes</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">function</span> <span class="nx">uint16_BE</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">idx</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">bytes</span> <span class="o">=</span> <span class="nx">bytes</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="nx">idx</span> <span class="o">||</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span> <span class="o">|</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">port1</span><span class="p">(</span><span class="nx">bytes</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="p">{</span>
         <span class="s2">&quot;port&quot;</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span>
         <span class="s2">&quot;version&quot;</span><span class="o">:</span><span class="nx">readVersion</span><span class="p">(</span><span class="nx">bytes</span><span class="p">),</span>
@@ -2451,11 +2456,193 @@ LoRaWAN messages. It can be used as is in
         <span class="s2">&quot;temp&quot;</span><span class="o">:</span> <span class="nx">int16_BE</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="o">/</span> <span class="mi">10</span><span class="p">,</span>
         <span class="s2">&quot;vBat&quot;</span><span class="o">:</span> <span class="nx">int16_BE</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">,</span>
         <span class="s2">&quot;timestamp&quot;</span><span class="o">:</span> <span class="nx">int40_BE</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>
-        <span class="s2">&quot;operationMode&quot;</span><span class="o">:</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">13</span><span class="p">]</span>
+        <span class="s2">&quot;operationMode&quot;</span><span class="o">:</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">13</span><span class="p">],</span>
+        <span class="s2">&quot;noData&quot;</span><span class="o">:</span> <span class="o">!!</span><span class="p">(</span><span class="nx">bytes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">&amp;</span> <span class="mh">0x01</span><span class="p">)</span>
     <span class="p">};</span>
 <span class="p">}</span>
 
-<span class="c1">// TODO: deconding of Data messages</span>
+<span class="kd">function</span> <span class="nx">port2</span><span class="p">(</span><span class="nx">bytes</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">regs</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">bytes</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// loop through data packs</span>
+        <span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">bytes</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+        <span class="k">while</span> <span class="p">(</span><span class="nx">b</span><span class="p">.</span><span class="nx">length</span><span class="o">&gt;=</span><span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;device&quot;</span><span class="o">:</span><span class="nx">b</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                <span class="s2">&quot;register&quot;</span><span class="o">:</span><span class="nx">int16_BE</span><span class="p">(</span><span class="nx">b</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+                <span class="s2">&quot;count&quot;</span><span class="o">:</span><span class="nx">b</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">&amp;</span> <span class="mh">0x3f</span><span class="p">,</span>
+                <span class="s2">&quot;error&quot;</span><span class="o">:!!</span><span class="p">(</span><span class="nx">b</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">&gt;&gt;</span><span class="mi">7</span><span class="p">),</span>
+                <span class="s2">&quot;data&quot;</span><span class="o">:</span><span class="kc">null</span>
+            <span class="p">};</span>
+            <span class="kd">var</span> <span class="nx">dataLen</span> <span class="o">=</span> <span class="nx">r</span><span class="p">[</span><span class="s2">&quot;count&quot;</span><span class="p">]</span><span class="o">*</span><span class="mi">2</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">b</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;=</span> <span class="nx">dataLen</span><span class="o">+</span><span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">r</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nx">b</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span> <span class="o">+</span> <span class="nx">dataLen</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="nx">regs</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">r</span><span class="p">);</span>
+            <span class="nx">b</span> <span class="o">=</span> <span class="nx">b</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">4</span><span class="o">+</span><span class="nx">dataLen</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;port&quot;</span><span class="o">:</span><span class="mi">2</span><span class="p">,</span>
+        <span class="s2">&quot;timestamp&quot;</span><span class="o">:</span> <span class="nx">int40_BE</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="s2">&quot;registers&quot;</span><span class="o">:</span> <span class="nx">regs</span>
+    <span class="p">};</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">modbusErrorString</span><span class="p">(</span><span class="nx">code</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Modbus exception codes</span>
+    <span class="c1">// see https://en.wikipedia.org/wiki/Modbus#Exception_responses</span>
+    <span class="k">switch</span> <span class="p">(</span><span class="nx">code</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="mi">1</span><span class="o">:</span>
+            <span class="k">return</span> <span class="s2">&quot;Illegal Function&quot;</span><span class="p">;</span>
+        <span class="k">case</span> <span class="mi">2</span><span class="o">:</span>
+            <span class="k">return</span> <span class="s2">&quot;Illegal Data Address&quot;</span><span class="p">;</span>
+        <span class="k">case</span> <span class="mi">3</span><span class="o">:</span>
+            <span class="k">return</span> <span class="s2">&quot;Illegal Data Value&quot;</span><span class="p">;</span>
+        <span class="k">case</span> <span class="mi">4</span><span class="o">:</span>
+            <span class="k">return</span> <span class="s2">&quot;Slave Device Failure&quot;</span><span class="p">;</span>
+        <span class="k">case</span> <span class="mi">5</span><span class="o">:</span>
+            <span class="k">return</span> <span class="s2">&quot;Acknowledge&quot;</span><span class="p">;</span>
+        <span class="k">case</span> <span class="mi">6</span><span class="o">:</span>
+            <span class="k">return</span> <span class="s2">&quot;Slave Device Busy&quot;</span><span class="p">;</span>
+        <span class="k">case</span> <span class="mi">7</span><span class="o">:</span>
+            <span class="k">return</span> <span class="s2">&quot;Negative Acknowledge&quot;</span><span class="p">;</span>
+        <span class="k">case</span> <span class="mi">8</span><span class="o">:</span>
+            <span class="k">return</span> <span class="s2">&quot;Memory Parity Error&quot;</span><span class="p">;</span>
+        <span class="k">case</span> <span class="mi">10</span><span class="o">:</span>
+            <span class="k">return</span> <span class="s2">&quot;Gateway Path Unavailable&quot;</span><span class="p">;</span>
+        <span class="k">case</span> <span class="mi">11</span><span class="o">:</span>
+            <span class="k">return</span> <span class="s2">&quot;Gateway Target Device Failed to Respond&quot;</span><span class="p">;</span>
+        <span class="k">default</span><span class="o">:</span>
+            <span class="k">return</span> <span class="s2">&quot;Unknown error code&quot;</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">parseModbusPayloadRegisters</span><span class="p">(</span><span class="nx">payload</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">payload</span><span class="p">.</span><span class="nx">length</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kd">var</span> <span class="nx">byteCnt</span> <span class="o">=</span> <span class="nx">payload</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">payload</span><span class="p">.</span><span class="nx">length</span> <span class="o">!==</span> <span class="nx">byteCnt</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kd">var</span> <span class="nx">vals</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">byteCnt</span><span class="p">;</span> <span class="nx">i</span><span class="o">+=</span><span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">vals</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="o">+</span><span class="nx">payload</span><span class="p">[</span><span class="nx">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="o">+</span><span class="nx">payload</span><span class="p">[</span><span class="nx">i</span><span class="o">+</span><span class="mi">2</span><span class="p">]])</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">vals</span><span class="p">;</span>
+
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">parseModbusResponse</span><span class="p">(</span><span class="nx">raw</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">resp</span> <span class="o">=</span> <span class="p">{};</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">raw</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;=</span> <span class="mi">6</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">fun</span> <span class="o">=</span> <span class="nx">raw</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&amp;</span> <span class="mh">0xf</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">error</span> <span class="o">=</span> <span class="o">!!</span><span class="p">(</span><span class="nx">raw</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&amp;</span> <span class="mh">0x80</span><span class="p">);</span>
+        <span class="kd">var</span> <span class="nx">rawResp</span> <span class="o">=</span> <span class="nx">raw</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">raw</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">3</span><span class="p">);</span>
+        <span class="nx">resp</span><span class="p">[</span><span class="s2">&quot;slave&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nx">raw</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+        <span class="nx">resp</span><span class="p">[</span><span class="s2">&quot;function&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nx">fun</span><span class="p">;</span>
+        <span class="nx">resp</span><span class="p">[</span><span class="s2">&quot;error&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nx">error</span><span class="p">;</span>
+        <span class="nx">resp</span><span class="p">[</span><span class="s2">&quot;start&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nx">uint16_BE</span><span class="p">(</span><span class="nx">raw</span><span class="p">,</span> <span class="nx">raw</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">3</span><span class="p">);</span>
+        <span class="nx">resp</span><span class="p">[</span><span class="s2">&quot;cnt&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nx">raw</span><span class="p">[</span><span class="nx">raw</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+        <span class="nx">resp</span><span class="p">[</span><span class="s2">&quot;raw&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nx">rawResp</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">resp</span><span class="p">[</span><span class="s2">&quot;errorCode&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nx">raw</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+            <span class="nx">resp</span><span class="p">[</span><span class="s2">&quot;errorText&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nx">modbusErrorString</span><span class="p">(</span><span class="nx">raw</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">resp</span><span class="p">[</span><span class="s2">&quot;values&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nx">parseModbusPayloadRegisters</span><span class="p">(</span><span class="nx">rawResp</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+            <span class="c1">// TODO: coils</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">resp</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">FullResponses</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">port</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">timestamp</span> <span class="o">=</span> <span class="nx">int40_BE</span><span class="p">(</span><span class="nx">bytes</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">pos</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">resps</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="k">while</span> <span class="p">(</span><span class="nx">pos</span> <span class="o">&lt;</span> <span class="nx">bytes</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">respLen</span> <span class="o">=</span> <span class="nx">bytes</span><span class="p">[</span><span class="nx">pos</span><span class="o">++</span><span class="p">];</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">bytes</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;=</span> <span class="nx">pos</span> <span class="o">+</span> <span class="nx">respLen</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">rawResponse</span> <span class="o">=</span> <span class="nx">bytes</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="nx">pos</span><span class="p">,</span> <span class="nx">pos</span> <span class="o">+</span> <span class="nx">respLen</span><span class="p">);</span>
+            <span class="nx">resps</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">parseModbusResponse</span><span class="p">(</span><span class="nx">rawResponse</span><span class="p">));</span>
+            <span class="nx">pos</span> <span class="o">+=</span> <span class="nx">respLen</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;port&quot;</span><span class="o">:</span> <span class="nx">port</span><span class="p">,</span>
+        <span class="s2">&quot;timestamp&quot;</span> <span class="o">:</span> <span class="nx">timestamp</span><span class="p">,</span>
+        <span class="s2">&quot;responses&quot;</span><span class="o">:</span> <span class="nx">resps</span>
+    <span class="p">};</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">bin2String</span><span class="p">(</span><span class="nx">array</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">array</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">result</span> <span class="o">+=</span> <span class="nb">String</span><span class="p">.</span><span class="nx">fromCharCode</span><span class="p">(</span><span class="nx">array</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">ConfigResponse</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">t</span> <span class="o">=</span> <span class="nx">bin2String</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;response&quot;</span> <span class="o">:</span> <span class="nx">t</span><span class="p">,</span>
+        <span class="s2">&quot;error&quot;</span> <span class="o">:</span> <span class="p">(</span><span class="nx">t</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="nx">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">===</span> <span class="s1">&#39;!&#39;</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * TTN decoder function.</span>
+<span class="cm"> */</span>
+<span class="kd">function</span> <span class="nx">Decoder</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">port</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">switch</span> <span class="p">(</span><span class="nx">port</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="mi">1</span><span class="o">:</span>
+            <span class="c1">// Status message:</span>
+            <span class="k">return</span> <span class="nx">port1</span><span class="p">(</span><span class="nx">bytes</span><span class="p">);</span>
+        <span class="k">case</span> <span class="mi">2</span><span class="o">:</span>
+            <span class="c1">// not legacy format:</span>
+            <span class="k">return</span> <span class="nx">port2</span><span class="p">(</span><span class="nx">bytes</span><span class="p">);</span>
+        <span class="k">case</span> <span class="mi">3</span><span class="o">:</span>
+        <span class="k">case</span> <span class="mi">4</span><span class="o">:</span>
+            <span class="c1">// v1.0.0 format, full modbus responses:</span>
+            <span class="k">return</span> <span class="nx">FullResponses</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">port</span><span class="p">);</span>
+        <span class="k">case</span> <span class="mi">5</span><span class="o">:</span>
+            <span class="c1">// continuation of previous response:</span>
+            <span class="k">return</span> <span class="p">{};</span>
+        <span class="k">case</span> <span class="mi">6</span><span class="o">:</span>
+            <span class="c1">// dense format with prefixed timestamp:</span>
+            <span class="k">return</span> <span class="p">{};</span>
+        <span class="k">case</span> <span class="mi">7</span><span class="o">:</span>
+            <span class="c1">// dense format without timestamp:</span>
+            <span class="k">return</span> <span class="p">{};</span>
+        <span class="k">case</span> <span class="mi">128</span><span class="o">:</span>
+            <span class="k">return</span> <span class="nx">ConfigResponse</span><span class="p">(</span><span class="nx">bytes</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;error&quot;</span><span class="o">:</span><span class="s2">&quot;invalid port&quot;</span><span class="p">,</span> <span class="s2">&quot;port&quot;</span><span class="o">:</span><span class="nx">port</span><span class="p">};</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * LoRaServer decoder function.</span>
+<span class="cm"> */</span>
+<span class="kd">function</span> <span class="nx">Decode</span><span class="p">(</span><span class="nx">fPort</span><span class="p">,</span> <span class="nx">bytes</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// wrap TTN Decoder:</span>
+    <span class="k">return</span> <span class="nx">Decoder</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">fPort</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">Parse</span><span class="p">(</span><span class="nx">input</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">bytes</span><span class="p">(</span><span class="nx">atob</span><span class="p">(</span><span class="nx">input</span><span class="p">.</span><span class="nx">data</span><span class="p">));</span>
+    <span class="kd">var</span> <span class="nx">port</span> <span class="o">=</span> <span class="nx">input</span><span class="p">.</span><span class="nx">fPort</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">fcnt</span> <span class="o">=</span> <span class="nx">input</span><span class="p">.</span><span class="nx">fCnt</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">vals</span> <span class="o">=</span>  <span class="nx">Decoder</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">port</span><span class="p">);</span>
+    <span class="nx">vals</span><span class="p">[</span><span class="s2">&quot;port&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nx">port</span><span class="p">;</span>
+    <span class="nx">vals</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nx">data</span><span class="p">;</span>
+    <span class="nx">vals</span><span class="p">[</span><span class="s2">&quot;fnct&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nx">fcnt</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">lastFcnt</span> <span class="o">=</span> <span class="nx">Device</span><span class="p">.</span><span class="nx">getProperty</span><span class="p">(</span><span class="s2">&quot;lastFcnt&quot;</span><span class="p">);</span>
+    <span class="nx">vals</span><span class="p">[</span><span class="s2">&quot;reset&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nx">fcnt</span> <span class="o">&lt;=</span> <span class="nx">lastFcnt</span><span class="p">;</span>
+    <span class="nx">Device</span><span class="p">.</span><span class="nx">setProperty</span><span class="p">(</span><span class="s2">&quot;lastFcnt&quot;</span><span class="p">,</span> <span class="nx">fcnt</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">vals</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 <a href="http://www.modbus.org" target="_blank">Copyright Modbus Logo</a></p>
                 
