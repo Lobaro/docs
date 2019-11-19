@@ -579,6 +579,7 @@ button1State: 0
 button2State: 1
 alarmAgeSec: 6
  */
+// Decoder function for TTN
 function Decoder(bytes, port) {
     // Decode an uplink message from a buffer
     // (array) of bytes to an object of fields.
@@ -601,7 +602,21 @@ function Decoder(bytes, port) {
     return decoded;
 }
 
-// Wrapper for niota.io
+// Wrapper for Lobaro Platform
+function Parse(input) {
+    // Decode an incoming message to an object of fields.
+    var b = bytes(atob(input.data));
+    var decoded = Decoder(b, input.fPort);
+
+    return decoded;
+}
+
+// Wrapper for Loraserver / ChirpStack
+function Decode(fPort, bytes) {
+    return Decoder(bytes, fPort);
+}
+
+// Wrapper for Digimondo niota.io
 module.exports = function (payload, meta) {
     const port = meta.lora.fport;
     const buf = Buffer.from(payload, 'hex');
