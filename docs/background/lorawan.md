@@ -476,6 +476,7 @@ on most devices (find details under
 device, e.g. Modbus configuration or wMBus configuration, with this feature.
 
 We will need to send three commands:
+
 1. `sTimeSync=10` &ndash; set time synchronisation to 10 day interval
 2. `sADR=false` &ndash; disable adaptive data rate
 3. `w` &ndash; write changes to device configuration and reboot
