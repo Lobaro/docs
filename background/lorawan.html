@@ -1752,10 +1752,12 @@ want to deactivate Adaptive Date Rate (ADR). These are both LoRaWAN configuratio
 on most devices (find details under 
 <a href="#lorawan-configuration">LoRaWAN Configuration</a>), but you can of course also change parameters specific to your 
 device, e.g. Modbus configuration or wMBus configuration, with this feature.</p>
-<p>We will need to send three commands:
-1. <code>sTimeSync=10</code> &ndash; set time synchronisation to 10 day interval
-2. <code>sADR=false</code> &ndash; disable adaptive data rate
-3. <code>w</code> &ndash; write changes to device configuration and reboot</p>
+<p>We will need to send three commands:</p>
+<ol>
+<li><code>sTimeSync=10</code> &ndash; set time synchronisation to 10 day interval</li>
+<li><code>sADR=false</code> &ndash; disable adaptive data rate</li>
+<li><code>w</code> &ndash; write changes to device configuration and reboot</li>
+</ol>
 <p>The <code>s</code>-commands will of course differ for your case, but the <code>w</code> command at the end will be the same.</p>
 <p>After sending the final command, the device will reboot and try the new configuration. If the boot process and 
 the connection to the network are successful, the device will make the changes permanent. If there is a problem 
