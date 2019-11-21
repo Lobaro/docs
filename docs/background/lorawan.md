@@ -458,6 +458,49 @@ failed attempts it will restore the previous configuration. This can take up to 
     a state it can only be recovered with physical access and a config adapter. It will 
     also most likely drain the battery quickly.
 
+### Example: changing configuration
+The following is a short example of how you can update two configuration values remotely (that 
+includes rebooting the device). 
+
+Most LoRaWAN devices (all that are running in Class A, which are by fast 
+the most) can only be reached when they contact the network. Network Servers (like The Things Network) provide 
+a mechanism to enqueue messages for a specific device. The messages will be sent as downlink the next time 
+that device contacts the network. Normally, multiple messages can be enqueued and will all be transmitted as soon 
+as possible. Please be advised that the gateways communicating with your device must respect their duty cycle, so 
+there is a very limited amount of downlinks that can be sent for a given time (downlinks are expensive).
+
+For this example we want to set Time Synchronisation to sync the internal clock every 10 days, and we 
+want to deactivate Adaptive Date Rate (ADR). These are both LoRaWAN configuration parameters that are present 
+on most devices (find details under 
+[LoRaWAN Configuration](#lorawan-configuration)), but you can of course also change parameters specific to your 
+device, e.g. Modbus configuration or wMBus configuration, with this feature.
+
+We will need to send three commands:
+1. `sTimeSync=10` &ndash; set time synchronisation to 10 day interval
+2. `sADR=false` &ndash; disable adaptive data rate
+3. `w` &ndash; write changes to device configuration and reboot
+
+The `s`-commands will of course differ for your case, but the `w` command at the end will be the same.
+
+After sending the final command, the device will reboot and try the new configuration. If the boot process and 
+the connection to the network are successful, the device will make the changes permanent. If there is a problem 
+(if you accidentally set an invalid value, e.g. `sADR=flase` or if you changed your `AppKey` to wrong value and your 
+OTAA fails), the device will revert to the previous configuration.
+
+#### Downlinks on TTN
+How you sent your downlinks depends on the LoRaWAN Network Server you use to connect your devices. You will 
+most likely need to convert the commands (that are all ASCII) to some different representation, e.g. Hex or Base64. 
+
+In The Things Network you find the downlink panel on the "Device Overview" page for each device, directly below 
+the panel that shows you OTAA/ABP information (DevEUI, AppKey, ...). It is shown in the following screenshot:
+
+![Sending remote configuration using TTN](files/ttn-downlink.png)
+
+You will have to encode the commands in hex. In the screenshot you see `73 54 69 6d 65 53 79 6e 63 3d 31 30` as
+the message to send; that is the hex representation of `sTimeSync=10`. The Port used for remote configuration for 
+our devices is 128. When you enter multiple messages to send, be sure to set the correct scheduling (`last`). 
+The preselected `replace` will overwrite your previously enqueued messages.
+
 ## Parser
 
 LoRaWAN Application Servers need to decode sensor payloads. This is done with custom parser code.
