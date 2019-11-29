@@ -44,7 +44,10 @@ interested in further processing this data.
 | ITZ series  | EMH             | [External Link](https://www.emh-metering.de/produkte/smart-meter/itz){: target="_blank"}  |
 | E320  | Landis+Gyr      | [External Link](https://www.landisgyr.de/product/landisgyr-e320/){: target="_blank"} |
      
- 
+!!! note "Alternative IEC 62056-21 protocol"     
+On request we offer also the integration of electricity meters using the D0 interface conforming to **IEC 62056-21**. This interface is not compatible to the SML protocol.
+Please contact us if you need an offer for a custom firmware supporting your meter of interest.
+
 ## Product variants
 `EDL21-LoRaWAN Bridge (universal head, AA, int. Ant.), Order number: 8000057` <br>
 ![Lobaro EDL21 LoRaWAN Bridge](files/Lastenheft-EDL21-LoRaWAN-bridge.jpg){: style="width:100%;"}
