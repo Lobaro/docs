@@ -109,7 +109,8 @@ Parser.parseWmbus(bytes);
 // To start a new message, pass a new cacheKey
 var joined = Parser.joinPartial(bytes, cacheKey);
 
-// Clears all data behin a cache key and returns the joined parts that were added before
+// Clears all data with the given cacheKey 
+// returns the joined parts that were added by joinPartial before
 var joined = Parser.clearPartial(cacheKey);
 ```
 
