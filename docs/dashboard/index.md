@@ -88,6 +88,9 @@ var bytes = bytes(atob("aGFsbG8gYmFzZTY0"));
 // Convert Base64 to byte array, shortcut for bytes(atob(...))
 var bytes = parseBase64("aGFsbG8gYmFzZTY0");
 
+// Convert bytes to string
+var str = string(bytes);
+
 // byte parsing helper
 uint16BE(bytes, idx);
 uint16LE(bytes, idx);
