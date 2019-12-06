@@ -78,6 +78,25 @@ function Parse(input) {
 
 ### JS Parser API
 
+Helper functions
+
+```
+// Bytes can convert binary data to byte array
+// atob converts Base64 string to byte string
+var bytes = bytes(atob("aGFsbG8gYmFzZTY0"));
+
+// Convert Base64 to byte array, shortcut for bytes(atob(...))
+var bytes = parseBase64("aGFsbG8gYmFzZTY0");
+
+// byte parsing helper
+uint16BE(bytes, idx);
+uint16LE(bytes, idx);
+uint32BE(bytes, idx);
+uint32LE(bytes, idx);
+float32LE(bytes, idx);
+float32BEv
+```
+
 All functions are optional. Not calling them will not change any data.
 
 Update the physical location of the sensor
