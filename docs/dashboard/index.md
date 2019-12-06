@@ -80,7 +80,7 @@ function Parse(input) {
 
 Helper functions
 
-```
+```javascript
 // Bytes can convert binary data to byte array
 // atob converts Base64 string to byte string
 var bytes = bytes(atob("aGFsbG8gYmFzZTY0"));
@@ -94,8 +94,25 @@ uint16LE(bytes, idx);
 uint32BE(bytes, idx);
 uint32LE(bytes, idx);
 float32LE(bytes, idx);
-float32BEv
+float32BE(bytes, idx);
 ```
+
+Special parser functions
+
+```javascript
+// Parse wMbus message
+Parser.parseWmbus(bytes);
+
+// Takes bytes of a partial message and a cacheKey
+// In context of the receiving device all data with the same cacheKey 
+// is concatinated and the restult returned
+// To start a new message, pass a new cacheKey
+var joined = Parser.joinPartial(bytes, cacheKey);
+
+// Clears all data behin a cache key and returns the joined parts that were added before
+var joined = Parser.clearPartial(cacheKey);
+```
+
 
 All functions are optional. Not calling them will not change any data.
 
@@ -118,4 +135,5 @@ Set the Sensor time of the current data record. Used for display, filter, sortin
 ```javascript
 Record.setTime(new Date());
 ```
+
 
