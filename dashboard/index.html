@@ -1108,6 +1108,9 @@ In addition the parser can access an API to set device level properties and addi
 <span class="c1">// Convert Base64 to byte array, shortcut for bytes(atob(...))</span>
 <span class="kd">var</span> <span class="nx">bytes</span> <span class="o">=</span> <span class="nx">parseBase64</span><span class="p">(</span><span class="s2">&quot;aGFsbG8gYmFzZTY0&quot;</span><span class="p">);</span>
 
+<span class="c1">// Convert bytes to string</span>
+<span class="kd">var</span> <span class="nx">str</span> <span class="o">=</span> <span class="nx">string</span><span class="p">(</span><span class="nx">bytes</span><span class="p">);</span>
+
 <span class="c1">// byte parsing helper</span>
 <span class="nx">uint16BE</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">idx</span><span class="p">);</span>
 <span class="nx">uint16LE</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">idx</span><span class="p">);</span>
