@@ -1101,20 +1101,34 @@ In addition the parser can access an API to set device level properties and addi
 
 <h3 id="js-parser-api">JS Parser API</h3>
 <p>Helper functions</p>
-<div class="codehilite"><pre><span></span><span class="o">//</span> <span class="n">Bytes</span> <span class="n">can</span> <span class="k">convert</span> <span class="nb">binary</span> <span class="k">data</span> <span class="k">to</span> <span class="n">byte</span> <span class="nb">array</span>
-<span class="o">//</span> <span class="n">atob</span> <span class="n">converts</span> <span class="n">Base64</span> <span class="n">string</span> <span class="k">to</span> <span class="n">byte</span> <span class="n">string</span>
-<span class="n">var</span> <span class="n">bytes</span> <span class="o">=</span> <span class="n">bytes</span><span class="p">(</span><span class="n">atob</span><span class="p">(</span><span class="ss">&quot;aGFsbG8gYmFzZTY0&quot;</span><span class="p">));</span>
+<div class="codehilite"><pre><span></span><span class="c1">// Bytes can convert binary data to byte array</span>
+<span class="c1">// atob converts Base64 string to byte string</span>
+<span class="kd">var</span> <span class="nx">bytes</span> <span class="o">=</span> <span class="nx">bytes</span><span class="p">(</span><span class="nx">atob</span><span class="p">(</span><span class="s2">&quot;aGFsbG8gYmFzZTY0&quot;</span><span class="p">));</span>
 
-<span class="o">//</span> <span class="k">Convert</span> <span class="n">Base64</span> <span class="k">to</span> <span class="n">byte</span> <span class="nb">array</span><span class="p">,</span> <span class="n">shortcut</span> <span class="k">for</span> <span class="n">bytes</span><span class="p">(</span><span class="n">atob</span><span class="p">(...))</span>
-<span class="n">var</span> <span class="n">bytes</span> <span class="o">=</span> <span class="n">parseBase64</span><span class="p">(</span><span class="ss">&quot;aGFsbG8gYmFzZTY0&quot;</span><span class="p">);</span>
+<span class="c1">// Convert Base64 to byte array, shortcut for bytes(atob(...))</span>
+<span class="kd">var</span> <span class="nx">bytes</span> <span class="o">=</span> <span class="nx">parseBase64</span><span class="p">(</span><span class="s2">&quot;aGFsbG8gYmFzZTY0&quot;</span><span class="p">);</span>
 
-<span class="o">//</span> <span class="n">byte</span> <span class="n">parsing</span> <span class="n">helper</span>
-<span class="n">uint16BE</span><span class="p">(</span><span class="n">bytes</span><span class="p">,</span> <span class="n">idx</span><span class="p">);</span>
-<span class="n">uint16LE</span><span class="p">(</span><span class="n">bytes</span><span class="p">,</span> <span class="n">idx</span><span class="p">);</span>
-<span class="n">uint32BE</span><span class="p">(</span><span class="n">bytes</span><span class="p">,</span> <span class="n">idx</span><span class="p">);</span>
-<span class="n">uint32LE</span><span class="p">(</span><span class="n">bytes</span><span class="p">,</span> <span class="n">idx</span><span class="p">);</span>
-<span class="n">float32LE</span><span class="p">(</span><span class="n">bytes</span><span class="p">,</span> <span class="n">idx</span><span class="p">);</span>
-<span class="n">float32BEv</span>
+<span class="c1">// byte parsing helper</span>
+<span class="nx">uint16BE</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">idx</span><span class="p">);</span>
+<span class="nx">uint16LE</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">idx</span><span class="p">);</span>
+<span class="nx">uint32BE</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">idx</span><span class="p">);</span>
+<span class="nx">uint32LE</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">idx</span><span class="p">);</span>
+<span class="nx">float32LE</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">idx</span><span class="p">);</span>
+<span class="nx">float32BE</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">idx</span><span class="p">);</span>
+</pre></div>
+
+<p>Special parser functions</p>
+<div class="codehilite"><pre><span></span><span class="c1">// Parse wMbus message</span>
+<span class="nx">Parser</span><span class="p">.</span><span class="nx">parseWmbus</span><span class="p">(</span><span class="nx">bytes</span><span class="p">);</span>
+
+<span class="c1">// Takes bytes of a partial message and a cacheKey</span>
+<span class="c1">// In context of the receiving device all data with the same cacheKey </span>
+<span class="c1">// is concatinated and the restult returned</span>
+<span class="c1">// To start a new message, pass a new cacheKey</span>
+<span class="kd">var</span> <span class="nx">joined</span> <span class="o">=</span> <span class="nx">Parser</span><span class="p">.</span><span class="nx">joinPartial</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">cacheKey</span><span class="p">);</span>
+
+<span class="c1">// Clears all data behin a cache key and returns the joined parts that were added before</span>
+<span class="kd">var</span> <span class="nx">joined</span> <span class="o">=</span> <span class="nx">Parser</span><span class="p">.</span><span class="nx">clearPartial</span><span class="p">(</span><span class="nx">cacheKey</span><span class="p">);</span>
 </pre></div>
 
 <p>All functions are optional. Not calling them will not change any data.</p>
