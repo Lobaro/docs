@@ -406,3 +406,7 @@ Test input (Port 3): 01 00 01 08 00 FE 08 FF 01 00 00 00�
   ]
 }
 ```
+
+## CE Declaration of Conformity
+
+[CE Declaration of Conformity](files/ce-edl21-lorawan.pdf) (pdf).

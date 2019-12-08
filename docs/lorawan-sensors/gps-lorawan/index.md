@@ -407,11 +407,6 @@ The table underneath explains the message format used.
 |<img title="CE" alt="CE logo" src="/img/symbol-ce.svg" height="60"> <img title="weee" title="weee logo" src="/img/symbol-weee.svg" height="60">||
 
 
-
-## PDF Documentation
-* [User Manual (en)](files/lorawan-gps-tracker_en.pdf)
-* [CE Conformity](files/scan-ce-conformity-gps-lorawan.pdf)
-
 ## Parser
 
 ### The Things Network
@@ -510,3 +505,7 @@ function Decoder(bytes, port) {
     }
 }
 ```
+
+## PDF Documentation
+* [User Manual (en)](files/lorawan-gps-tracker_en.pdf)
+* [CE Declaration of Conformity](files/ce-GPS-LoRaWAN.pdf)

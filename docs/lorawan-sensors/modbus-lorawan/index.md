@@ -735,7 +735,7 @@ example NarrowBand-IoT.
 
 ### CE Declaration of Conformity
 
-[CE Declaration of Conformity](files/modbus-lorawan-ce-conformity.pdf) (pdf).
+[CE Declaration of Conformity](files/ce-Modbus485-lorawan.pdf) (pdf).
 
 ### Disposal / WEEE / Entsorgung
 

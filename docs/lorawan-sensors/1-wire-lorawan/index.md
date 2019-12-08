@@ -174,5 +174,7 @@ module.exports = function (payload, meta) {
     return Decoder(buf, port);
 }
 ```
+## CE Declaration of Conformity
 
+[CE Declaration of Conformity](files/ce-OneWire-lorawan.pdf) (pdf).
 

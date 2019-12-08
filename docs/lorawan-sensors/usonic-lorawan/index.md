@@ -158,3 +158,7 @@ function Encoder(object, port) {
     return bytes;
 }
 ```
+
+## CE Declaration of Conformity
+
+[CE Declaration of Conformity](files/ce_usonic-LoRaWAN.pdf) (pdf).

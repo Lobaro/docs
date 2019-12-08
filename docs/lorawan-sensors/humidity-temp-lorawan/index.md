@@ -326,7 +326,7 @@ Temperature and relative humidity measurements with external probe and LoRaWAN.
 ## PDF Documentation
 
 * [User Manual (en)](files/lorawan-humidity-sensor_en.pdf){: target="_blank"}
-* [CE Conformity](files/scan-ce-conformity-am2305-lorawan.pdf){: target="_blank"}
+* [CE Conformity](files/ce-AM2305-lorawan.pdf){: target="_blank"}
 
 
 

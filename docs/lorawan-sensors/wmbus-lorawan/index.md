@@ -512,14 +512,6 @@ Forwarding of wireless M-BUS messages via LoRaWAN.
 * wMBUS C1/T1 and S1 modes
 * 868 MHz only (433 MHz on request)
 
-
-## PDF Documentation
-
-* [PDF Manual (en) for firmware V1.5.1](files/lorawan-wmbus-bridge_en.pdf){: target="_blank"}
-* [Product Flyer](files/W-MBus Lora Bridge Flyer.pdf){: target="_blank"}
-* [Declaration of Conformity](files/scan-ce-conformity-wmbus-lorawan.pdf){: target="_blank"}
-
-
 ## Parser
 ### TTN
 
@@ -568,3 +560,9 @@ function Decoder(bytes, port) {
 Heater Icon made by Nikita Golubev from www.flaticon.com is licensed by CC 3.0 BY
 Map Icon Icons made by Darius Dan from www.flaticon.com is licensed by CC 3.0 BY
 LoRaWAN Logo © LoRa Alliance, NB-IoT Logo © GSM Association, wM-Bus Logo © www.m-bus.com
+
+## CE Declaration of Conformity / PDF Manual
+
+* [PDF Manual (en) up to firmware V1.6.0](files/lorawan-wmbus-bridge_en.pdf){: target="_blank"}
+* [Product Flyer](files/W-MBus Lora Bridge Flyer.pdf){: target="_blank"}
+* [CE Declaration of Conformity](files/ce-wmbus-lorawan.pdf){: target="_blank"}
