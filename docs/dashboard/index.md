@@ -115,6 +115,9 @@ var joined = Parser.joinPartial(bytes, cacheKey);
 // Clears all data with the given cacheKey 
 // returns the joined parts that were added by joinPartial before
 var joined = Parser.clearPartial(cacheKey);
+
+// Equivalent to clearPartial followed by joinPartial
+var joined = Parser.newPartial(cacheKey);
 ```
 
 
