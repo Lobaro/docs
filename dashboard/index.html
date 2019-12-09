@@ -1133,6 +1133,9 @@ In addition the parser can access an API to set device level properties and addi
 <span class="c1">// Clears all data with the given cacheKey </span>
 <span class="c1">// returns the joined parts that were added by joinPartial before</span>
 <span class="kd">var</span> <span class="nx">joined</span> <span class="o">=</span> <span class="nx">Parser</span><span class="p">.</span><span class="nx">clearPartial</span><span class="p">(</span><span class="nx">cacheKey</span><span class="p">);</span>
+
+<span class="c1">// Equivalent to clearPartial followed by joinPartial</span>
+<span class="kd">var</span> <span class="nx">joined</span> <span class="o">=</span> <span class="nx">Parser</span><span class="p">.</span><span class="nx">newPartial</span><span class="p">(</span><span class="nx">cacheKey</span><span class="p">);</span>
 </pre></div>
 
 <p>All functions are optional. Not calling them will not change any data.</p>
