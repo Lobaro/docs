@@ -21,7 +21,7 @@ and forward them over LoRaWAN, so that they can be accessed from an attached sys
 Typical applications include reading out electric and water meters or retrieving
 data from environmental sensors like temperature and humidity.
 
-![Modbus LoRaWAN Bridge](files/modbus-lorawan.png){: style="width:50%; vertical-align: top;"}
+![Modbus LoRaWAN Bridge](../files/modbus-lorawan.png){: style="width:50%; vertical-align: top;"}
 
 The Modbus Bridge supports reading of all four object types that can be provided by 
 Modbus slave devices: Coil, Discrete Input, Input Register, and Holding Register. 
@@ -31,7 +31,7 @@ flexibly to suit individual requirements.
 
 **PDF Download**
 
-* [Data Sheet with dimensions](files/Modbus-LoRaWAN-Specs.pdf)
+* [Data Sheet with dimensions](../files/Modbus-LoRaWAN-Specs.pdf)
 
 ## Work Cycle
 
@@ -61,7 +61,7 @@ Test Reading
 :   
 
 ## Configuration
-The configuration is done using [Lobaro Maintenance Tool](../../tools/lobaro-tool.md) and the Lobaro USB PC adapter.
+The configuration is done using [Lobaro Maintenance Tool](../../../tools/lobaro-tool.md) and the Lobaro USB PC adapter.
 
 ### loRaWAN Parameters
 
@@ -87,7 +87,7 @@ Configuration values defining the behaviour of the device.
 |------|-------------|----------------|
 | `ModbusCron` | Cron expression defining when to read | `0 0/15 * * * *` for every 15 minutes |
 
-See also our [Introduction to Cron expressions](/background/cron-expressions).
+See also our [Introduction to Cron expressions](../../../background/cron-expressions.md).
 
 ### Register/Coil definition
 Modbus defines four different object types form which values can be read:
@@ -250,11 +250,11 @@ example NarrowBand-IoT.
 
 ### CE Declaration of Conformity
 
-[CE Declaration of Conformity](files/modbus-lorawan-ce-conformity.pdf) (pdf).
+[CE Declaration of Conformity](../files/modbus-lorawan-ce-conformity.pdf) (pdf).
 
 ### Disposal / WEEE / Entsorgung
 
-[Information about the disposal of the Device](/background/weee-disposal).
+[Information about the disposal of the Device](../../../background/weee-disposal.md).
 
 ### Reference decoder
 
