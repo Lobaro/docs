@@ -680,8 +680,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#lorawan-network-parameters" class="md-nav__link">
-    LoRaWAN network parameters
+  <a href="#lorawan" class="md-nav__link">
+    LoRaWAN
   </a>
   
 </li>
@@ -1298,8 +1298,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#lorawan-network-parameters" class="md-nav__link">
-    LoRaWAN network parameters
+  <a href="#lorawan" class="md-nav__link">
+    LoRaWAN
   </a>
   
 </li>
@@ -1607,86 +1607,94 @@ can press 'Reload Config' in the 'Configuration' tab to read the current configu
 device. For every parameter a default value is stored non volatile inside the hardware to which
 you can revert using the 'Restore default' button in case anything got miss configured.
 All LoRaWAN &amp; other firmware parameters are explained in the following.</p>
-<h3 id="lorawan-network-parameters">LoRaWAN network parameters</h3>
-<p>A large part of the configuration parameters are used to control the device's usage of Lo-
-RaWAN. The table lists all of them. There are two different ways to use LoRaWAN: over-the-air
-activation (OTAA) and activation by personalization (ABP). Some configuration parameters
-are only used with one of those methods, others are used for both.</p>
+<h3 id="lorawan">LoRaWAN</h3>
+<p>The connection to the LoRaWAN network is defined by multiple configuration parameters.
+This need to be set according to your LoRaWAN network and the way your device is 
+supposed to be attached to it, or the device will not be able to send any data.</p>
+<p>For a detailed introduction into how this values need to be configured, please 
+refer to the chapter <a href="/background/lorawan.html#lorawan-configuration">LoRaWAN configuration</a> 
+in our LoRaWAN background article.</p>
 <table>
 <thead>
 <tr>
 <th>Name</th>
-<th>Type</th>
-<th>Used</th>
 <th>Description</th>
+<th>Type</th>
+<th>Values</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>OTAA</td>
-<td>bool</td>
-<td>both</td>
-<td>true: use over-the-air activation (OTAA) <br> false: use activation by personalization (ABP)</td>
+<td><code>OTAA</code></td>
+<td>Activation: OTAA or ABP</td>
+<td><code>bool</code></td>
+<td><code>true</code>= use OTAA, <code>false</code>= use ABP</td>
 </tr>
 <tr>
-<td>DevEUI</td>
-<td>bytes[8]</td>
-<td>OTAA</td>
-<td>the 8 byte long DevEUI is used with OTAA to identify the device on join. The default is predefined in the hardware and guarantees an ID that is unique world wide. Should not be changed unless required by the network provider. Hex format without 0x prefix.</td>
+<td><code>DevEUI</code></td>
+<td>DevEUI used to identify the Device</td>
+<td><code>byte[8]</code></td>
+<td>e.g. <code>0123456789abcdef</code></td>
 </tr>
 <tr>
-<td>AppEUI</td>
-<td>bytes[8]</td>
-<td>OTAA</td>
-<td>ID defining the application used in the LoRaWAN network. Hex format without 0x prefix.</td>
+<td><code>JoinEUI</code></td>
+<td>Used for OTAA (called AppEUI in v1.0)</td>
+<td><code>byte[8]</code></td>
+<td>e.g. <code>0123456789abcdef</code></td>
 </tr>
 <tr>
-<td>AppKey</td>
-<td>bytes[16]</td>
-<td>OTAA</td>
-<td>Application Key as defined by the LoRaWAN network operator. This is used to encrypt communication, so keep it secret. Hex format without 0x prefix.</td>
+<td><code>AppKey</code></td>
+<td>Key used for OTAA (v1.0 and v1.1)</td>
+<td><code>byte[16]</code></td>
+<td></td>
 </tr>
 <tr>
-<td>OTAADelay</td>
-<td>int</td>
-<td>OTAA</td>
-<td>Seconds to wait for a new attempt after an unsuccessful OTAA join. The actual waiting time will be randomly increased by up to a third of that amount, in order to avoid devices repeatedly interfering with each other through bad timing. The default value is 300, which means the timeout between attempts is 300-400 seconds.</td>
+<td><code>NwkKey</code></td>
+<td>Key used for OTAA (v1.1 only)</td>
+<td><code>byte[16]</code></td>
+<td></td>
 </tr>
 <tr>
-<td>AppSKey</td>
-<td>bytes[16]</td>
-<td>ABP</td>
-<td>App Session Key as defined by the LoRaWAN network operator. Hex format without 0x prefix.</td>
+<td><code>SF</code></td>
+<td>Initial / maximum Spreading Factor</td>
+<td><code>int</code></td>
+<td><code>7</code> - <code>12</code></td>
 </tr>
 <tr>
-<td>NetSKey</td>
-<td>bytes[16]</td>
-<td>ABP</td>
-<td>Network Session Key ad defined by the LoRaWAN network operator. Hex format without 0x prefix.</td>
+<td><code>ADR</code></td>
+<td>Use Adaptive Data Rate</td>
+<td><code>bool</code></td>
+<td><code>true</code>= use ADR, <code>false</code>= don't</td>
 </tr>
 <tr>
-<td>DevAdr</td>
-<td>bytes[4]</td>
-<td>ABP</td>
-<td>Device Address as defined by the LoRaWAN network operator. Hex format without 0x prefix.</td>
+<td><code>OpMode</code></td>
+<td>Operation Mode</td>
+<td><code>string</code></td>
+<td><code>A</code>= Class A, <code>C</code>= Class C</td>
 </tr>
 <tr>
-<td>SF</td>
-<td>int</td>
-<td>both</td>
-<td>Initial LoRa spreading factor used for transmissions. Valid range is 7-12. The actual spreading factor used might change during operation of the device if Adaptive Data Rate (ADR) is used.</td>
+<td><code>TimeSync</code></td>
+<td>Days after which to sync time</td>
+<td><code>int</code></td>
+<td>days, <code>0</code>=don't sync time</td>
 </tr>
 <tr>
-<td>TxPower</td>
-<td>int</td>
-<td>both</td>
-<td>Initial transmission output power in dBm. The Lo-RaWAN protocol allows only specific values: 2, 5, 8, 11, 14. The actual power used might change during operation if Adaptive Data Rate (ADR) is used.</td>
+<td><code>RndDelay</code></td>
+<td>Random delay before sending</td>
+<td><code>int</code></td>
+<td>max seconds</td>
 </tr>
 <tr>
-<td>ADR</td>
-<td>bool</td>
-<td>both</td>
-<td>true: use adaptive data rate (ADR) <br> false: don't use adaptive data rate (ADR)</td>
+<td><code>RemoteConf</code></td>
+<td>Not supported by this firmware</td>
+<td><code>bool</code></td>
+<td><code>false</code>=deactivate</td>
+</tr>
+<tr>
+<td><code>LostReboot</code></td>
+<td>Days without downlink before reboot</td>
+<td><code>int</code></td>
+<td>days, <code>0</code>=don't reboot</td>
 </tr>
 </tbody>
 </table>
@@ -1700,6 +1708,7 @@ parameters used for this.</p>
 <th>Name</th>
 <th>Type</th>
 <th>Description</th>
+<th>default value</th>
 </tr>
 </thead>
 <tbody>
@@ -1707,31 +1716,49 @@ parameters used for this.</p>
 <td>ActiveCron</td>
 <td>string</td>
 <td>Cron expression defining how often the device will take a measurement and send its position over LoRaWAN while the Tracker is in Active Mode. This expression should trigger much more frequent than the one for Alive Mode. The standard is 0 0/15 * * * *, which will trigger every 15 minutes. See chapter "Cron expressions" for an introduction to cron expressions.</td>
+<td>0 0/15 * * * *</td>
 </tr>
 <tr>
 <td>AliveCron</td>
 <td>string</td>
 <td>Cron expression defining how often the device will wake up when in Alive Mode. This should be less frequent than in Active Mode. The standard is 0 0 0/12 * * *, which translates to twice each day. See chapter "Cron expressions" for an introduction to cron expressions.</td>
+<td>0 0 0/12 * * *</td>
 </tr>
 <tr>
 <td>gpsTO</td>
 <td>int</td>
-<td>Time in seconds to wait for GPS to get a fix before timing out. The standard value is 180 seconds.</td>
+<td>Time in seconds to wait for GPS to get a fix before timing out.</td>
+<td>180 seconds</td>
 </tr>
 <tr>
 <td>actTO</td>
 <td>int</td>
-<td>Time in minutes without movement after which the Tracker switches to Alive Mode. The standard value is 65 minutes.</td>
+<td>Time in minutes without movement after which the Tracker switches to Alive Mode.</td>
+<td>65 minutes</td>
 </tr>
 <tr>
 <td>memsTh</td>
 <td>int</td>
 <td>Threshold for the internal motion detector to register movement. Values range from 2 to 255. A higher value makes the device less sensitive.<br>2 Environment (wind or steps) may trigger.<br>5 Standard, picking up the device will activate it. <br> 20 Carefully picking it up will not trigger the device.<br>50 When carried, running will trigger, walking won't.<br>100+ Shaking will activate, dropping the device might not.</td>
+<td>5</td>
 </tr>
 <tr>
 <td>CayenneLPP</td>
 <td>bool</td>
 <td>Use alternative Cayenne LPP upload format. Standard: false, e.g. use Lobaro Format. See chapter "myDevices Cayenne format" for an introduction to this format.</td>
+<td>false</td>
+</tr>
+<tr>
+<td>maxHDOP</td>
+<td>int</td>
+<td>Maximum acceptable Horizontal Dilution Of Precision,  between 1 and 50, smaller is better</td>
+<td>2</td>
+</tr>
+<tr>
+<td>maxDataAfterFix</td>
+<td>int</td>
+<td>If the HDOP target cannot be matched this value determines after how many datapackets with fix the position will be accepted</td>
+<td>20</td>
 </tr>
 </tbody>
 </table>
