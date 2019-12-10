@@ -1327,75 +1327,90 @@ Please contact us if you need an offer for a custom firmware supporting your met
 <p>The connection to the LoRaWAN network is defined by multiple configuration parameters.
 This need to be set according to your LoRaWAN network and the way your device is 
 supposed to be attached to it, or the device will not be able to send any data.</p>
-<p>There are two different methods to attach a device to a LoRaWAN network: 
-Over-the-air-activation (OTAA) and Activation-by-personalisation (ABP). 
-Depending on which method you are using you will have to set different values.</p>
-<p>Several values are a number of bytes, that need to be entered as hexstrings (without 
-<code>0x</code>-prefix). So e.g. the DevEUI is a value of 8 bytes encoded in hex will be 
-16 hexdigits long. A sample value would be <code>0123456789abcdef</code>.</p>
+<p>For a detailed introduction into how this values need to be configured, please 
+refer to the chapter <a href="/background/lorawan.html#lorawan-configuration">LoRaWAN configuration</a> 
+in our LoRaWAN background article.</p>
 <table>
 <thead>
 <tr>
-<th>name</th>
-<th>used</th>
-<th>type</th>
-<th>description</th>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+<th>Values</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>OTAA</code></td>
-<td>both</td>
-<td>bool</td>
-<td><code>true</code> &equiv; use OTAA, <code>false</code> &equiv; use ABP</td>
+<td>Activation: OTAA or ABP</td>
+<td><code>bool</code></td>
+<td><code>true</code>= use OTAA, <code>false</code>= use ABP</td>
 </tr>
 <tr>
 <td><code>DevEUI</code></td>
-<td>OTAA</td>
-<td>hexbyte[8]</td>
-<td>the 8 byte DevEUI identifies the hardware on the join operation. The default value is a world wide unique value predefined in the hardware. Should not be changed unless required by the network provider.</td>
+<td>DevEUI used to identify the Device</td>
+<td><code>byte[8]</code></td>
+<td>e.g. <code>0123456789abcdef</code></td>
 </tr>
 <tr>
-<td><code>AppEUI</code></td>
-<td>OTAA</td>
-<td>hexbyte[8]</td>
-<td>ID defining the application used in the LoRaWAN network.</td>
+<td><code>JoinEUI</code></td>
+<td>Used for OTAA (called AppEUI in v1.0)</td>
+<td><code>byte[8]</code></td>
+<td>e.g. <code>0123456789abcdef</code></td>
 </tr>
 <tr>
 <td><code>AppKey</code></td>
-<td>OTAA</td>
-<td>hexbyte[16]</td>
-<td>Key used to encrypt communication with the LoRaWAN network.</td>
+<td>Key used for OTAA (v1.0 and v1.1)</td>
+<td><code>byte[16]</code></td>
+<td></td>
 </tr>
 <tr>
-<td><code>AppSKey</code></td>
-<td>ABP</td>
-<td>hexbyte[16]</td>
-<td>Application Session Key to be synced with the LoRaWAN network.</td>
-</tr>
-<tr>
-<td><code>NetSKey</code></td>
-<td>ABP</td>
-<td>hexbyte[16]</td>
-<td>Network Session Key to be synced with the LoRaWAN network.</td>
-</tr>
-<tr>
-<td><code>DevAdr</code></td>
-<td>ABP</td>
-<td>hexbyte[4]</td>
-<td>Device Address used to identify device in the LoRaWAN network.</td>
+<td><code>NwkKey</code></td>
+<td>Key used for OTAA (v1.1 only)</td>
+<td><code>byte[16]</code></td>
+<td></td>
 </tr>
 <tr>
 <td><code>SF</code></td>
-<td>both</td>
-<td>int</td>
-<td>Initial LoRa spreading factor used for transmissions. Valid range is 7-12. The actual spreading factor used by change during operation if ADR is used.</td>
+<td>Initial / maximum Spreading Factor</td>
+<td><code>int</code></td>
+<td><code>7</code> - <code>12</code></td>
 </tr>
 <tr>
 <td><code>ADR</code></td>
-<td>both</td>
-<td>bool</td>
-<td>Should adaptive data rate be used? <code>true</code> &equiv; use ADR, <code>false</code> &equiv; don't</td>
+<td>Use Adaptive Data Rate</td>
+<td><code>bool</code></td>
+<td><code>true</code>= use ADR, <code>false</code>= don't</td>
+</tr>
+<tr>
+<td><code>OpMode</code></td>
+<td>Operation Mode</td>
+<td><code>string</code></td>
+<td><code>A</code>= Class A, <code>C</code>= Class C</td>
+</tr>
+<tr>
+<td><code>TimeSync</code></td>
+<td>Days after which to sync time</td>
+<td><code>int</code></td>
+<td>days, <code>0</code>=don't sync time</td>
+</tr>
+<tr>
+<td><code>RndDelay</code></td>
+<td>Random delay before sending</td>
+<td><code>int</code></td>
+<td>max seconds</td>
+</tr>
+<tr>
+<td><code>RemoteConf</code></td>
+<td>Not supported by this firmware</td>
+<td><code>bool</code></td>
+<td><code>false</code>=deactivate</td>
+</tr>
+<tr>
+<td><code>LostReboot</code></td>
+<td>Days without downlink before reboot</td>
+<td><code>int</code></td>
+<td>days, <code>0</code>=don't reboot</td>
 </tr>
 </tbody>
 </table>
