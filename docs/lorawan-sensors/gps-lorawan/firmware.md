@@ -7,7 +7,9 @@
 
 ![Product GPS Tracker HW2](files/gpslorawan.png){: style="height:250px;display: block; margin: 0 auto;"}
 
-**Downloads**:
+**Downloads**: 
+
+* [app-lorawan-gps-button-6.1.0.hex](firmware/app-lorawan-gps-button-6.1.0.hex) (hardware v2.x) [current release]
 
 * [app-lorawan-gps-button-6.0.3.hex](firmware/app-lorawan-gps-button-6.0.3.hex) (hardware v2.x)
 
@@ -28,6 +30,9 @@
 
 ## Changelog
 --------------------
+### v6.1.0 - 09.12.2019
+* added new parameters to increase accuracy: maxHDOP & maxDataAfterFix
+
 ### v6.0.3 - 02.08.2019
 * fixed temperature sensor readout
 

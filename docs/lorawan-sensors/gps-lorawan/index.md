@@ -206,40 +206,45 @@ device. For every parameter a default value is stored non volatile inside the ha
 you can revert using the 'Restore default' button in case anything got miss configured.
 All LoRaWAN & other firmware parameters are explained in the following.
 
-### LoRaWAN network parameters
+### LoRaWAN
+The connection to the LoRaWAN network is defined by multiple configuration parameters.
+This need to be set according to your LoRaWAN network and the way your device is 
+supposed to be attached to it, or the device will not be able to send any data.
 
-A large part of the configuration parameters are used to control the device's usage of Lo-
-RaWAN. The table lists all of them. There are two different ways to use LoRaWAN: over-the-air
-activation (OTAA) and activation by personalization (ABP). Some configuration parameters
-are only used with one of those methods, others are used for both.
+For a detailed introduction into how this values need to be configured, please 
+refer to the chapter [LoRaWAN configuration](/background/lorawan.html#lorawan-configuration) 
+in our LoRaWAN background article.
 
-|      Name  |     Type  |     Used     | Description|
-|------------|-----------|--------------|------------|
-|        OTAA|    bool   |      both    | true: use over-the-air activation (OTAA) <br> false: use activation by personalization (ABP)|
-|         DevEUI|    bytes[8]       |   OTAA           |the 8 byte long DevEUI is used with OTAA to identify the device on join. The default is predefined in the hardware and guarantees an ID that is unique world wide. Should not be changed unless required by the network provider. Hex format without 0x prefix.           |
-|    AppEUI        |      bytes[8]     |     OTAA         |   ID defining the application used in the LoRaWAN network. Hex format without 0x prefix.         |
-|         AppKey   |   bytes[16]        |     OTAA          |     Application Key as defined by the LoRaWAN network operator. This is used to encrypt communication, so keep it secret. Hex format without 0x prefix.      |
-|     OTAADelay       |      int     |      OTAA        |      Seconds to wait for a new attempt after an unsuccessful OTAA join. The actual waiting time will be randomly increased by up to a third of that amount, in order to avoid devices repeatedly interfering with each other through bad timing. The default value is 300, which means the timeout between attempts is 300-400 seconds.      |
-|   AppSKey         |    bytes[16]       |    ABP          |     App Session Key as defined by the LoRaWAN network operator. Hex format without 0x prefix.       |
-|       NetSKey     |     bytes[16]      |        ABP      |     Network Session Key ad defined by the LoRaWAN network operator. Hex format without 0x prefix.       |
-|        DevAdr    |      bytes[4]     |    ABP          |    Device Address as defined by the LoRaWAN network operator. Hex format without 0x prefix.        |
-|       SF     |        int   |     both         |  Initial LoRa spreading factor used for transmissions. Valid range is 7-12. The actual spreading factor used might change during operation of the device if Adaptive Data Rate (ADR) is used.          |
-|          TxPower  |      int     |      both        |        Initial transmission output power in dBm. The Lo-RaWAN protocol allows only specific values: 2, 5, 8, 11, 14. The actual power used might change during operation if Adaptive Data Rate (ADR) is used.    |
-|        ADR    |      bool     |         both     |       true: use adaptive data rate (ADR) <br> false: don't use adaptive data rate (ADR)     |
+| Name       | Description | Type | Values |
+|------------|-------------|------|-------|
+|`OTAA`      |Activation: OTAA or ABP              |`bool`    | `true`= use OTAA, `false`= use ABP |
+|`DevEUI`    |DevEUI used to identify the Device   |`byte[8]` | e.g. `0123456789abcdef` | 
+|`JoinEUI`   |Used for OTAA (called AppEUI in v1.0)|`byte[8]` | e.g. `0123456789abcdef` | 
+|`AppKey`    |Key used for OTAA (v1.0 and v1.1)    |`byte[16]`| |
+|`NwkKey`    |Key used for OTAA (v1.1 only)        |`byte[16]`| |
+|`SF`        |Initial / maximum Spreading Factor   |`int`     | `7` - `12` |
+|`ADR`       |Use Adaptive Data Rate               |`bool`    | `true`= use ADR, `false`= don't |
+|`OpMode`    |Operation Mode                       |`string`  | `A`= Class A, `C`= Class C |
+|`TimeSync`  |Days after which to sync time        |`int`     | days, `0`=don't sync time | 
+|`RndDelay`  |Random delay before sending          |`int`     | max seconds |
+|`RemoteConf`|Not supported by this firmware       |`bool`    | `false`=deactivate |
+|`LostReboot`|Days without downlink before reboot  |`int`     | days, `0`=don't reboot |
 
 ###GPS configuration parameters
 The behaviour of the GPS Tracker and how it switches between its two operation modes
 ('Active' and 'Alive') can be adjusted to your needs. The table explains the configuration
 parameters used for this.
 
-|      Name  |     Type  | Description|
-|------------|-----------|------------|
-|      ActiveCron      |   string        |     Cron expression defining how often the device will take a measurement and send its position over LoRaWAN while the Tracker is in Active Mode. This expression should trigger much more frequent than the one for Alive Mode. The standard is 0 0/15 * * * *, which will trigger every 15 minutes. See chapter "Cron expressions" for an introduction to cron expressions.       |
-|        AliveCron    |   string        | Cron expression defining how often the device will wake up when in Alive Mode. This should be less frequent than in Active Mode. The standard is 0 0 0/12 * * *, which translates to twice each day. See chapter "Cron expressions" for an introduction to cron expressions.           |
-|      gpsTO      |      int     |  Time in seconds to wait for GPS to get a fix before timing out. The standard value is 180 seconds.          |
-|      actTO      |      int     |      Time in minutes without movement after which the Tracker switches to Alive Mode. The standard value is 65 minutes.      |
-|        memsTh    |       int    |  Threshold for the internal motion detector to register movement. Values range from 2 to 255. A higher value makes the device less sensitive.<br>2 Environment (wind or steps) may trigger.<br>5 Standard, picking up the device will activate it. <br> 20 Carefully picking it up will not trigger the device.<br>50 When carried, running will trigger, walking won't.<br>100+ Shaking will activate, dropping the device might not.          |
-|      CayenneLPP      |   bool        |      Use alternative Cayenne LPP upload format. Standard: false, e.g. use Lobaro Format. See chapter "myDevices Cayenne format" for an introduction to this format.      |
+|      Name     |     Type  | Description| default value |
+|---------------|-----------|------------|---------------|
+|ActiveCron     |string |   Cron expression defining how often the device will take a measurement and send its position over LoRaWAN while the Tracker is in Active Mode. This expression should trigger much more frequent than the one for Alive Mode. The standard is 0 0/15 * * * *, which will trigger every 15 minutes. See chapter "Cron expressions" for an introduction to cron expressions.       | 0 0/15 * * * *|
+|AliveCron      |string |   Cron expression defining how often the device will wake up when in Alive Mode. This should be less frequent than in Active Mode. The standard is 0 0 0/12 * * *, which translates to twice each day. See chapter "Cron expressions" for an introduction to cron expressions.           |0 0 0/12 * * *|
+|gpsTO          |int    |   Time in seconds to wait for GPS to get a fix before timing out. |180 seconds |
+|actTO          |int    |   Time in minutes without movement after which the Tracker switches to Alive Mode. | 65 minutes|
+|memsTh         |int    |   Threshold for the internal motion detector to register movement. Values range from 2 to 255. A higher value makes the device less sensitive.<br>2 Environment (wind or steps) may trigger.<br>5 Standard, picking up the device will activate it. <br> 20 Carefully picking it up will not trigger the device.<br>50 When carried, running will trigger, walking won't.<br>100+ Shaking will activate, dropping the device might not.          | 5 |
+|CayenneLPP     |bool   |   Use alternative Cayenne LPP upload format. Standard: false, e.g. use Lobaro Format. See chapter "myDevices Cayenne format" for an introduction to this format.      | false|
+|maxHDOP        |int    |   Maximum acceptable Horizontal Dilution Of Precision,  between 1 and 50, smaller is better |2|
+|maxDataAfterFix|int    |   If the HDOP target cannot be matched this value determines after how many datapackets with fix the position will be accepted | 20| 
 
 ###Cron expressions
 Cron expressions are used to define specific points in time and regular repetitions of them.  
