@@ -14,7 +14,7 @@
 !!! warning "Experimental Release V2.3.x"
     Experimental firmware which adds new features like
     
-    * Optional LoRaWAN v1.1 support 
+    * Optional LoRaWAN v1.1 support (!! v1.1 issues are currently investigated !!)
     * LoRaWAN time synchronisation
     * LoRaWAN Downlink configuration
     * wMBUS learning mode for meter tx intervals
@@ -26,9 +26,16 @@
     
     **For production environments consider using the stable & well documented release V1.6 above instead!**
     
-    Download: [app-wMbusLoraBridge-TZ0-2.3.2+LoRa.hex](firmware/app-wMbusLoraBridge-TZ0-2.3.2+LoRa.hex)
+    Download: [app-wMbusLoraBridge-TZ0-2.3.2+LoRa.hex](firmware/app-wMbusLoraBridge-TZ0-2.3.4+LoRa.hex)
     
 ## Changelogs
+
+### v2.3.4 (13.12.2019)
+- Improve reset line usage (dedicated only)
+- Fix issue with bad measurement timing for status message battery voltage 
+
+### v2.3.3 (10.12.2019)
+- Optimize LoRaWAN RX1/RX2 window timing + add more precise downlink logs
 
 ### v2.3.2 (18.11.2019)
 - Fix crash on receiving certain long non-standard telegrams.
