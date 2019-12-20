@@ -8,11 +8,18 @@
 
 **Downloads:**
 
-* [app-modbus-lora-bridge-1.0.2.hex](firmware/app-modbus-lora-bridge-1.0.2.hex). [current release]
+* [app-modbus-lora-bridge-TZ0-1.0.3.hex](firmware/app-modbus-lora-bridge-TZ0-1.0.3.hex). [current release]
+* [app-modbus-lora-bridge-1.0.2.hex](firmware/app-modbus-lora-bridge-1.0.2.hex).
 * [app-modbus-lora-bridge-1.0.1.hex](firmware/app-modbus-lora-bridge-1.0.1.hex). 
 * [app-modbus-lora-bridge-0.3.1.hex](firmware/app-modbus-lora-bridge-0.3.1.hex). [latest release with old stack version]
 
 ## Changelog
+
+### [1.0.3]
+**Changed**
+
+- Dialog Mode now logs activity on RS485 Bus while not communicating (to detect other Modbus Masters).
+- Log Frequencies for LoRaWAN.
 
 ### [1.0.2] [current release]
 **Added**
