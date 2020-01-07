@@ -255,7 +255,7 @@ Modbus Devices's manual to find out the correct configuration.
 |`EnDL`      | Enable Downlinks       | `true`= enable sending [Modbus Commands via Downlink](#downlink) | 
 |`DialogMode `| Enable Dialog Mode    | `true`= set the Bridge to [Dialog Mode](#dialog-mode) |
 
-<sup>&dagger;</sup> See also our [Introduction to Cron expressions](/background/cron-expressions).
+<sup>&dagger;</sup> See also our [Introduction to Cron expressions](/background/cron-expressions.html).
 
 
 ### Modbus Commands

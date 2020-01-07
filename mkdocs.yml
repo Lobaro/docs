@@ -86,6 +86,9 @@ nav:
       - Pressure Sensor:
           - Manual: lorawan-sensors/pressure-lorawan/index.md
           - Firmware & Changelog: lorawan-sensors/pressure-lorawan/firmware.md
+      - Environment Sensor:
+          - Manual: lorawan-sensors/environment-lorawan/index.md
+          - Firmware & Changelog: lorawan-sensors/environment-lorawan/firmware.md
   - Lobaro Dashboard: dashboard/index.md
   - Lobaro Tools:
       - Lobaro Maintenance Tool: tools/lobaro-tool.md
