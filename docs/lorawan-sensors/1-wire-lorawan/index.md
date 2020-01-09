@@ -166,6 +166,20 @@ function Decoder(bytes, port) {
     };
 }
 
+// Wrapper for Lobaro Platform
+function Parse(input) {
+    // Decode an incoming message to an object of fields.
+    var b = bytes(atob(input.data));
+    var decoded = Decoder(b, input.fPort);
+
+    return decoded;
+}
+
+// Wrapper for Loraserver / ChirpStack
+function Decode(fPort, bytes) {
+    return Decoder(bytes, fPort);
+}
+
 // Wrapper for Digimondo niota platform
 module.exports = function (payload, meta) {
     const port = meta.lora.fport;
