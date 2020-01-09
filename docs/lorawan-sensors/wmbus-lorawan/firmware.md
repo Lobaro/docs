@@ -26,9 +26,15 @@
     
     **For production environments consider using the stable & well documented release V1.6 above instead!**
     
-    Download: [app-wMbusLoraBridge-TZ0-2.3.6+LoRa.hex](firmware/app-wMbusLoraBridge-TZ0-2.3.6+LoRa.hex)
+    Download: [app-wMbusLoraBridge-TZ0-2.3.8+LoRa.hex](firmware/app-wMbusLoraBridge-TZ0-2.3.8+LoRa.hex)
     
 ## Changelogs
+
+### v2.3.8 (09.01.2020)
+- Fix issue in mbus store which triggered raw system resets
+
+### v2.3.7 (08.01.2020)
+- Internal use only
 
 ### v2.3.6 (07.01.2020)
 - Increase wireless MBUS C1/T1 mode receive bandwidth
