@@ -789,8 +789,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#thethingsnetwork-ttn" class="md-nav__link">
-    TheThingsNetwork (TTN)
+  <a href="#javascript-parser" class="md-nav__link">
+    Javascript Parser
   </a>
   
 </li>
@@ -1071,8 +1071,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#thethingsnetwork-ttn" class="md-nav__link">
-    TheThingsNetwork (TTN)
+  <a href="#javascript-parser" class="md-nav__link">
+    Javascript Parser
   </a>
   
 </li>
@@ -1204,8 +1204,107 @@ in our LoRaWAN background article.</p>
 <span class="p">}</span>
 </pre></div></p>
 <h2 id="parser">Parser</h2>
-<h3 id="thethingsnetwork-ttn">TheThingsNetwork (TTN)</h3>
-<div class="codehilite"><pre><span></span><span class="c1">// TODO</span>
+<h3 id="javascript-parser">Javascript Parser</h3>
+<div class="codehilite"><pre><span></span><span class="kd">function</span> <span class="nx">readVersion</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">bytes</span><span class="p">.</span><span class="nx">length</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="s2">&quot;v&quot;</span> <span class="o">+</span> <span class="nx">bytes</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="nx">bytes</span><span class="p">[</span><span class="nx">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="nx">bytes</span><span class="p">[</span><span class="nx">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">signed</span><span class="p">(</span><span class="nx">val</span><span class="p">,</span> <span class="nx">bits</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">((</span><span class="nx">val</span> <span class="o">&amp;</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="nx">bits</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// value is negative (16bit 2&#39;s complement)</span>
+        <span class="kd">var</span> <span class="nx">mask</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nx">bits</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="nx">val</span> <span class="o">=</span> <span class="p">(</span><span class="o">~</span><span class="nx">val</span> <span class="o">&amp;</span> <span class="nx">mask</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// invert all bits &amp; add 1 =&gt; now positive value</span>
+        <span class="nx">val</span> <span class="o">=</span> <span class="nx">val</span> <span class="o">*</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">val</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">uint40_BE</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">idx</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">bytes</span> <span class="o">=</span> <span class="nx">bytes</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="nx">idx</span> <span class="o">||</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">32</span> <span class="o">|</span>
+        <span class="nx">bytes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">24</span> <span class="o">|</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">16</span> <span class="o">|</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span> <span class="o">|</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">uint16_BE</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">idx</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">bytes</span> <span class="o">=</span> <span class="nx">bytes</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="nx">idx</span> <span class="o">||</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span> <span class="o">|</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">int40_BE</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">idx</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">signed</span><span class="p">(</span><span class="nx">uint40_BE</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">idx</span><span class="p">),</span> <span class="mi">40</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">int16_BE</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">idx</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">signed</span><span class="p">(</span><span class="nx">uint16_BE</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">idx</span><span class="p">),</span> <span class="mi">16</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">ParseStatusMessage</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">decoded</span> <span class="o">=</span> <span class="p">{};</span>
+    <span class="nx">decoded</span><span class="p">.</span><span class="nx">FirmwareVersion</span> <span class="o">=</span> <span class="nx">readVersion</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="nx">decoded</span><span class="p">.</span><span class="nx">Vbat</span> <span class="o">=</span> <span class="nx">uint16_BE</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="o">/</span> <span class="mf">1000.0</span><span class="p">;</span>
+    <span class="nx">decoded</span><span class="p">.</span><span class="nx">Temp</span> <span class="o">=</span> <span class="nx">int16_BE</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">;</span> <span class="c1">// byte 8-9 (originally in 10th degree C)</span>
+    <span class="nx">decoded</span><span class="p">.</span><span class="nx">msg</span> <span class="o">=</span> <span class="s2">&quot;Firmware Version: &quot;</span> <span class="o">+</span> <span class="nx">decoded</span><span class="p">.</span><span class="nx">FirmwareVersion</span> <span class="o">+</span> <span class="s2">&quot; Battery: &quot;</span> <span class="o">+</span> <span class="nx">decoded</span><span class="p">.</span><span class="nx">Vbat</span> <span class="o">+</span> <span class="s2">&quot;V Temperature: &quot;</span> <span class="o">+</span> <span class="nx">decoded</span><span class="p">.</span><span class="nx">Temp</span> <span class="o">+</span> <span class="s2">&quot;°C&quot;</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">decoded</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">ParseDataMessage</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;time&quot;</span><span class="o">:</span> <span class="nx">int40_BE</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">,</span>
+        <span class="s2">&quot;error&quot;</span><span class="o">:</span> <span class="o">!!</span><span class="nx">data</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span>
+        <span class="s2">&quot;humidity&quot;</span><span class="o">:</span> <span class="nx">uint16_BE</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">,</span>
+        <span class="s2">&quot;temperature&quot;</span><span class="o">:</span> <span class="nx">int16_BE</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">,</span>
+        <span class="s2">&quot;pressure&quot;</span><span class="o">:</span> <span class="nx">uint16_BE</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="o">/</span> <span class="mi">10</span>
+    <span class="p">};</span>
+<span class="p">}</span>
+
+<span class="c1">// Decoder function for TTN</span>
+<span class="kd">function</span> <span class="nx">Decoder</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">port</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Decode an incoming message to an object of fields.</span>
+    <span class="kd">var</span> <span class="nx">decoded</span><span class="p">;</span>
+
+    <span class="k">switch</span> <span class="p">(</span><span class="nx">port</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="mi">1</span><span class="o">:</span>
+            <span class="nx">decoded</span> <span class="o">=</span> <span class="nx">ParseStatusMessage</span><span class="p">(</span><span class="nx">bytes</span><span class="p">);</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="k">case</span> <span class="mi">2</span><span class="o">:</span>
+            <span class="nx">decoded</span> <span class="o">=</span> <span class="nx">ParseDataMessage</span><span class="p">(</span><span class="nx">bytes</span><span class="p">);</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="k">default</span><span class="o">:</span>
+            <span class="nx">decoded</span> <span class="o">=</span> <span class="p">{};</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="nx">decoded</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Wrapper for Lobaro Platform</span>
+<span class="kd">function</span> <span class="nx">Parse</span><span class="p">(</span><span class="nx">input</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Decode an incoming message to an object of fields.</span>
+    <span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">bytes</span><span class="p">(</span><span class="nx">atob</span><span class="p">(</span><span class="nx">input</span><span class="p">.</span><span class="nx">data</span><span class="p">));</span>
+    <span class="kd">var</span> <span class="nx">decoded</span> <span class="o">=</span> <span class="nx">Decoder</span><span class="p">(</span><span class="nx">b</span><span class="p">,</span> <span class="nx">input</span><span class="p">.</span><span class="nx">fPort</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">input</span><span class="p">.</span><span class="nx">fPort</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">Device</span><span class="p">.</span><span class="nx">setProperty</span><span class="p">(</span><span class="s2">&quot;status.firmware&quot;</span><span class="p">,</span> <span class="nx">decoded</span><span class="p">.</span><span class="nx">FirmwareVersion</span><span class="p">);</span>
+        <span class="nx">Device</span><span class="p">.</span><span class="nx">setProperty</span><span class="p">(</span><span class="s2">&quot;status.voltage&quot;</span><span class="p">,</span> <span class="nx">decoded</span><span class="p">.</span><span class="nx">Vbat</span><span class="p">);</span>
+        <span class="nx">Device</span><span class="p">.</span><span class="nx">setProperty</span><span class="p">(</span><span class="s2">&quot;status.temperature&quot;</span><span class="p">,</span> <span class="nx">decoded</span><span class="p">.</span><span class="nx">Temp</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="nx">decoded</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Wrapper for Loraserver / ChirpStack</span>
+<span class="kd">function</span> <span class="nx">Decode</span><span class="p">(</span><span class="nx">fPort</span><span class="p">,</span> <span class="nx">bytes</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">Decoder</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">fPort</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Wrapper for Digimondo niota.io</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">payload</span><span class="p">,</span> <span class="nx">meta</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">port</span> <span class="o">=</span> <span class="nx">meta</span><span class="p">.</span><span class="nx">lora</span><span class="p">.</span><span class="nx">fport</span><span class="p">;</span>
+    <span class="kr">const</span> <span class="nx">buf</span> <span class="o">=</span> <span class="nx">Buffer</span><span class="p">.</span><span class="nx">from</span><span class="p">(</span><span class="nx">payload</span><span class="p">,</span> <span class="s1">&#39;hex&#39;</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="nx">Decoder</span><span class="p">(</span><span class="nx">buf</span><span class="p">,</span> <span class="nx">port</span><span class="p">);</span>
+<span class="p">};</span>
 </pre></div>
                 
                   
