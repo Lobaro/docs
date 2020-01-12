@@ -105,9 +105,9 @@ function int16_BE(bytes, idx) {
 
 function ParseStatusMessage(data) {
     var decoded = {};
-    decoded.FirmwareVersion = readVersion(data, 0);
-    decoded.Vbat = uint16_BE(data, 5) / 1000.0;
-    decoded.Temp = int16_BE(data, 3) / 10.0; // byte 8-9 (originally in 10th degree C)
+    decoded.version = readVersion(data, 0);
+    decoded.vBat = uint16_BE(data, 5) / 1000.0;
+    decoded.temp = int16_BE(data, 3) / 10.0; // byte 8-9 (originally in 10th degree C)
     decoded.msg = "Firmware Version: " + decoded.FirmwareVersion + " Battery: " + decoded.Vbat + "V Temperature: " + decoded.Temp + "°C";
     return decoded;
 }
@@ -160,6 +160,7 @@ function Parse(input) {
 function Decode(fPort, bytes) {
     return Decoder(bytes, fPort);
 }
+
 
 // Wrapper for Digimondo niota.io
 module.exports = function (payload, meta) {
