@@ -401,15 +401,15 @@ and reboot. If the device uses OTAA (which we recommend) the device will only ad
 only after a join request is accepted, to make sure the LoRaWAN parameters are correct. After a few 
 failed attempts it will restore the previous configuration. This can take up to about 10 minutes.
 
-|Char| Command                        | Parameter |
-|----|--------------------------------|-----------|
-|`?` |Request firmware and version    |None|
-|`g` |Get config parameter value      |Name of parameter|
-|`r` |Reset config parameter value    |Name of parameter|
-|`s` |Set config parameter value      |`<name>=<value>` |
-|`a` |Append to config parameter value|`<name>=<value>`|
-|`b` |Reboot device without saving    |None|
-|`w` |Save config and reboot device   |None|
+|Char| Command                        | Parameter       | Hex   |     
+|----|--------------------------------|-----------------|-------|
+|`?` |Request firmware and version    |None             | 3F    |
+|`g` |Get config parameter value      |Name of parameter| 67    |
+|`r` |Reset config parameter value    |Name of parameter| 72    |
+|`s` |Set config parameter value      |`<name>=<value>` | 73    |
+|`a` |Append to config parameter value|`<name>=<value>` | 61    |
+|`b` |Reboot device without saving    |None             | 62    |
+|`w` |Save config and reboot device   |None             | 77    |
 
 `?`
 :   Request firmware and version. This command triggers the device to send what firmware it is running and in which version.

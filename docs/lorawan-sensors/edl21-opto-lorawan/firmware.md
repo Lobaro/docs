@@ -4,6 +4,8 @@
 
 **Downloads:** 
 
+* [app-edl21-opto-0.4.0+LoRa.hex](firmware/app-edl21-opto-0.4.0+LoRa.hex) New Opto-Head Version (round) [current release] 
+
 * [app-edl21-opto-0.3.2+LoRa.hex](firmware/app-edl21-opto-0.3.2+LoRa.hex) New Opto-Head Version (round) 
 
 * [app-edl21-opto-0.3.1+LoRa.hex](firmware/app-edl21-opto-0.3.1+LoRa.hex) New Opto-Head Version (round) 
@@ -14,6 +16,9 @@
 ## Changelog
 
 **Firmware:** app-edl21-opto
+
+### v0.4.0 [current release]
+* Added remote config via downlink
 
 ### v0.3.2
 
