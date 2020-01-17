@@ -41,12 +41,14 @@ It is intended to be used in conjunction with our [**USB configuration adapter**
 
 ### macOS / Linux 
 After downloading the "lobaro-tool" file, e.g. to a directory "lobaro" in your home path. Then make the tool file executable:
+
 ```Bash
 cd ~/lobaro
 chmod +x lobaro-tool
 ./lobaro-tool
 ```
-!!! note
+
+!!! info
     If MacOS shows up a security warning and refuses to start the tool: 
     You can solve this by right-clicking the lobaro-tool file, selecting open and overrule the warning.
 
