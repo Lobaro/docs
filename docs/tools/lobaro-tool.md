@@ -46,6 +46,10 @@ cd ~/lobaro
 chmod +x lobaro-tool
 ./lobaro-tool
 ```
+!!! note
+    If MacOS shows up a security warning and refuses to start the tool: 
+    You can solve this by right-clicking the lobaro-tool file, selecting open and overrule the warning.
+
 ### Windows
 After downloading simply start the "lobaro-tool.exe" with double click. 
 
