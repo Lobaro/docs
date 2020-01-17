@@ -1703,6 +1703,7 @@ failed attempts it will restore the previous configuration. This can take up to 
 <th>Char</th>
 <th>Command</th>
 <th>Parameter</th>
+<th>Hex</th>
 </tr>
 </thead>
 <tbody>
@@ -1710,36 +1711,43 @@ failed attempts it will restore the previous configuration. This can take up to 
 <td><code>?</code></td>
 <td>Request firmware and version</td>
 <td>None</td>
+<td>3F</td>
 </tr>
 <tr>
 <td><code>g</code></td>
 <td>Get config parameter value</td>
 <td>Name of parameter</td>
+<td>67</td>
 </tr>
 <tr>
 <td><code>r</code></td>
 <td>Reset config parameter value</td>
 <td>Name of parameter</td>
+<td>72</td>
 </tr>
 <tr>
 <td><code>s</code></td>
 <td>Set config parameter value</td>
 <td><code>&lt;name&gt;=&lt;value&gt;</code></td>
+<td>73</td>
 </tr>
 <tr>
 <td><code>a</code></td>
 <td>Append to config parameter value</td>
 <td><code>&lt;name&gt;=&lt;value&gt;</code></td>
+<td>61</td>
 </tr>
 <tr>
 <td><code>b</code></td>
 <td>Reboot device without saving</td>
 <td>None</td>
+<td>62</td>
 </tr>
 <tr>
 <td><code>w</code></td>
 <td>Save config and reboot device</td>
 <td>None</td>
+<td>77</td>
 </tr>
 </tbody>
 </table>
