@@ -128,6 +128,11 @@ Update the physical location of the sensor
 Device.setLocation(lon, lat)
 ```
 
+Set an device config value, displayed on the "Config" tab of the device
+```javascript
+Device.setConfig("key", "value");
+```
+
 Set an arbitary device property, displayed on the "Overview" tab of the device
 ```javascript
 Device.setProperty("key", "value");
