@@ -31,7 +31,7 @@
 ## Changelogs
 
 ### v2.3.9 (21.01.2020)
-- Fix minor memory Leak in wMBus parser
+- Fix minor memory Leak in wMBus parser 
 
 ### v2.3.8 (09.01.2020)
 - Fix issue in mbus store which triggered raw system resets
