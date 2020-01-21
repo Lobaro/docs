@@ -26,9 +26,12 @@
     
     **For production environments consider using the stable & well documented release V1.6 above instead!**
     
-    Download: [app-wMbusLoraBridge-TZ0-2.3.8+LoRa.hex](firmware/app-wMbusLoraBridge-TZ0-2.3.8+LoRa.hex)
+    Download: [app-wMbusLoraBridge-TZ0-2.3.9+LoRa.hex](firmware/app-wMbusLoraBridge-TZ0-2.3.9+LoRa.hex)
     
 ## Changelogs
+
+### v2.3.9 (21.01.2020)
+- Fix minor memory Leak in wMBus parser
 
 ### v2.3.8 (09.01.2020)
 - Fix issue in mbus store which triggered raw system resets
