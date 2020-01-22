@@ -26,5 +26,5 @@ __A-B:C.D.E*F__
 ## Examples 
 |    |   |
 | ------- |---------- |
-| `1.0:1.8.0*255` |  Positive active energy (A+) total [kWh]  |
-| `1.0:3.8.1*255` |  Positive reactive energy (Q+) in tariff T1 [kvarh] |
+| `1-0:1.8.0*255` |  Positive active energy (A+) total [kWh]  |
+| `1-0:3.8.1*255` |  Positive reactive energy (Q+) in tariff T1 [kvarh] |
