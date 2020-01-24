@@ -419,6 +419,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#110-current-release" class="md-nav__link">
+    [1.1.0] [current release]
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#103" class="md-nav__link">
     [1.0.3]
   </a>
@@ -426,8 +433,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#102-current-release" class="md-nav__link">
-    [1.0.2] [current release]
+  <a href="#102" class="md-nav__link">
+    [1.0.2]
   </a>
   
 </li>
@@ -1059,6 +1066,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#110-current-release" class="md-nav__link">
+    [1.1.0] [current release]
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#103" class="md-nav__link">
     [1.0.3]
   </a>
@@ -1066,8 +1080,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#102-current-release" class="md-nav__link">
-    [1.0.2] [current release]
+  <a href="#102" class="md-nav__link">
+    [1.0.2]
   </a>
   
 </li>
@@ -1154,19 +1168,29 @@ installing this firmware.</p>
 </div>
 <p><strong>Downloads:</strong></p>
 <ul>
-<li><a href="firmware/app-modbus-lora-bridge-TZ0-1.0.3.hex">app-modbus-lora-bridge-TZ0-1.0.3.hex</a>. [current release]</li>
+<li><a href="firmware/app-modbus-lora-bridge-TZ0-1.1.0.hex">app-modbus-lora-bridge-TZ0-1.1.0.hex</a>. [current release]</li>
+<li><a href="firmware/app-modbus-lora-bridge-TZ0-1.0.3.hex">app-modbus-lora-bridge-TZ0-1.0.3.hex</a>.</li>
 <li><a href="firmware/app-modbus-lora-bridge-1.0.2.hex">app-modbus-lora-bridge-1.0.2.hex</a>.</li>
 <li><a href="firmware/app-modbus-lora-bridge-1.0.1.hex">app-modbus-lora-bridge-1.0.1.hex</a>. </li>
 <li><a href="firmware/app-modbus-lora-bridge-0.3.1.hex">app-modbus-lora-bridge-0.3.1.hex</a>. [latest release with old stack version]</li>
 </ul>
 <h2 id="changelog">Changelog</h2>
+<h3 id="110-current-release">[1.1.0] [current release]</h3>
+<p><strong>Added</strong></p>
+<ul>
+<li>New optional Listen-Before-Talk Modbus communication, so device can coordinate with another master on bus.</li>
+</ul>
+<p><strong>Fixed</strong></p>
+<ul>
+<li>Fix issue that could cut of long Modbus responses.</li>
+</ul>
 <h3 id="103">[1.0.3]</h3>
 <p><strong>Changed</strong></p>
 <ul>
 <li>Dialog Mode now logs activity on RS485 Bus while not communicating (to detect other Modbus Masters).</li>
 <li>Log Frequencies for LoRaWAN.</li>
 </ul>
-<h3 id="102-current-release">[1.0.2] [current release]</h3>
+<h3 id="102">[1.0.2]</h3>
 <p><strong>Added</strong></p>
 <ul>
 <li>Waitcycles for optional capacitors to load and stabilize on startup</li>
