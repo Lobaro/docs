@@ -242,18 +242,20 @@ There are several values that define the configuration via Modbus. These
 values depend on the Slave devices that you want to read out. Please refer to your 
 Modbus Devices's manual to find out the correct configuration.
 
-| name       | description            | values |
-|------------|------------------------|--------|
-|`MbProt`    | Modbus-Protocol to use | `RTU`. `ASCII` |
-|`MbBaud`    | UART Baud rate         | `9600`, `19200`, `38400`, ... |
-|`MbDataLen` | UART data length       | `7`, `8`, `9` |
-|`MbStopBits`| UART stop bits         | `0.5`, `1`, `1.5`, `2` (written exactly like this) |
-|`MbPar`     | UART parity            | `NONE`, `EVEN`, `ODD` |
-|`MbCron`    | Cron expression<sup>&dagger;</sup> defining when to read. | `0 0/15 * * * *` for every 15 minutes |
-|`MbCmd`     | List of Modbus Commands (see below). | `010300010003` |
-|`PlFmt`     | Uplink Format          | `1`, `2`, or `3`, see [Payload Formats](#payload-formats) |
-|`EnDL`      | Enable Downlinks       | `true`= enable sending [Modbus Commands via Downlink](#downlink) | 
+| name        | description            | values |
+|-------------|------------------------|--------|
+|`MbProt`     | Modbus-Protocol to use | `RTU`. `ASCII` |
+|`MbBaud`     | UART Baud rate         | `9600`, `19200`, `38400`, ... |
+|`MbDataLen`  | UART data length       | `7`, `8`, `9` |
+|`MbStopBits` | UART stop bits         | `0.5`, `1`, `1.5`, `2` (written exactly like this) |
+|`MbPar`      | UART parity            | `NONE`, `EVEN`, `ODD` |
+|`MbCron`     | Cron expression<sup>&dagger;</sup> defining when to read. | `0 0/15 * * * *` for every 15 minutes |
+|`MbCmd`      | List of Modbus Commands (see below). | `010300010003` |
+|`PlFmt`      | Uplink Format          | `1`, `2`, or `3`, see [Payload Formats](#payload-formats) |
+|`EnDL`       | Enable Downlinks       | `true`= enable sending [Modbus Commands via Downlink](#downlink) | 
 |`DialogMode `| Enable Dialog Mode    | `true`= set the Bridge to [Dialog Mode](#dialog-mode) |
+|`LbtDuration`| Listen-before-talk Duration | `0`= disables, `1`-`3600`= seconds of lbt duration |
+|`LbtSilence` | Listen-before-talk Silence  | `0`= disabled, `1`-`3600` seconds of silence needed |
 
 <sup>&dagger;</sup> See also our [Introduction to Cron expressions](/background/cron-expressions.html).
 
@@ -292,6 +294,36 @@ Any message that is the continuation of an earlier uplink will be sent using por
 
 For a short introduction into Modbus Commands and some examples of configurations and their 
 created responses, please take a look at the [examples](#examples).
+
+
+### Listen-Before-Talk
+If you want to use the Lobaro Modbus Bridge to read out values on an installation that 
+already has an active Modbus Master, you will run into conflicts, because the Bridge acts 
+as a Master. Normally only a single Master device is allowed on a Modbus installation.
+The Bridge supports a *Listen-Before-Talk* feature, that makes it possible to be used 
+alongside a second Master Device (under certain conditions).
+
+If your other Master Device has periods of non-communication that are long enough, you can 
+configure the Bridge to wait for those pauses before starting it's own requests: 
+When *Listen-Before-Talk* is activated, the Bridge does not immediately start sending on 
+the Bus when it normally would. Instead it starts listening on the Bus until the other Master 
+starts talking and then waits for silence to detect when the other Master just finished 
+communicating. Only then does it send it's requests.
+
+The Bridge waits for a maximum of `LbtDuration` seconds for the other Master to start 
+communicating. Then it waits for a period of silence that lasts at least `LbtSilence` 
+seconds to decide that the other master has completed its work and is now in pause.
+
+So if, for example, your other Master has a work interval of 2 minutes and is active 
+for about 30 seconds without longer pauses, you could set `LbtDuration` to `130` 
+(10 seconds added as a buffer), and `LbtSilence` to `15` (make sure the value is longer 
+than the timeout your other master has). 
+
+You will have to know exactly how your other Master acts to setup this feature.
+
+If you set either of `LbtDuration` or `LbtSilence` to `0`, you will deactivate
+*Listen-Before-Talk* completely (it is deactivated by default).
+
 
 ## Payload formats
 
