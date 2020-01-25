@@ -2,7 +2,7 @@
 
 ## Firmware
 
-!!! info "Make sure to use the latest version of the Lobaro Maintenance Tool!"
+!!! note "Make sure to use the latest version of the Lobaro Maintenance Tool!"
     Use at least version 1.4.9 of the [Lobaro Maintenance Tool](/tools/lobaro-tool.html) for 
     installing this firmware.
 
@@ -13,6 +13,16 @@
 * [app-modbus-lora-bridge-1.0.2.hex](firmware/app-modbus-lora-bridge-1.0.2.hex).
 * [app-modbus-lora-bridge-1.0.1.hex](firmware/app-modbus-lora-bridge-1.0.1.hex). 
 * [app-modbus-lora-bridge-0.3.1.hex](firmware/app-modbus-lora-bridge-0.3.1.hex). [latest release with old stack version]
+
+!!! hint "Firmware Release Notifications"
+    We normally send e-mail notifications upon release of new firmware versions. To receive this mails you can sign up
+    to the Lobaro newsletter here.
+    
+    [**Subscribe to our email newsletter here**](http://eepurl.com/gQYRbH){: target="_blank"} 
+    
+    Make sure to select the **"Firmware Updates"** checkbox!
+    
+
 
 ## Changelog
 

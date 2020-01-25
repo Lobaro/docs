@@ -13,6 +13,13 @@
 
 * [app-lorawan-gps-button-6.0.3.hex](firmware/app-lorawan-gps-button-6.0.3.hex) (hardware v2.x)
 
+!!! hint "Firmware Release Notifications"
+    We normally send e-mail notifications upon release of new firmware versions. To receive this mails you can sign up
+    to the Lobaro newsletter here.
+    
+    [**Subscribe to our email newsletter here**](http://eepurl.com/gQYRbH){: target="_blank"} 
+    
+
 ### Hardware Revision 1.x 
 
 ![GPS Tracker HW1](files/config.png){: style="height:150px; display: block; margin: 0 auto;"}

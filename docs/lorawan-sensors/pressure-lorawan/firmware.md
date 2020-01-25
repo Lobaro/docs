@@ -7,6 +7,13 @@
 * [app-lobaro-pressure-0.1.0.hex](firmware/app-lobaro-pressure-0.1.0+LoRa.hex) [current release]
 * [app-lobaro-pressure-0.0.3.hex](firmware/app-lobaro-pressure-0.0.3+LoRa.hex) 
 
+!!! hint "Firmware Release Notifications"
+    We normally send e-mail notifications upon release of new firmware versions. To receive this mails you can sign up
+    to the Lobaro newsletter here.
+    
+    [**Subscribe to our email newsletter here**](http://eepurl.com/gQYRbH){: target="_blank"} 
+    
+
 ## Changelog
 
 ### [0.1.0] (22.10.2019) [current release]
