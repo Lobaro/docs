@@ -18,6 +18,7 @@
     
     [**Subscribe to our email newsletter here**](http://eepurl.com/gQYRbH){: target="_blank"} 
     
+    Make sure to select the **"Firmware Updates"** checkbox!    
 
 
 ## Changelog
