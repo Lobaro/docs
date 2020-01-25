@@ -25,7 +25,7 @@ This the manual for an unreleased version of the firmware. For older revisions p
 - [X] ModBus ASCII and RTU modes supported
 - [X] Readout of ModBus Coils, Discrete Inputs, Input Registers and Holding Registers
 - [X] ModBus dialog mode via USB for easy configuration testing
-- [X] Coexistence with second Modbus Master present on the Bus (Listen before Talk Feature)
+- [X] Coexistence with 2nd Modbus Master possible (bus sharing, Listen before talk)
 
 ## Target Measurement / Purpose
 The Lobaro Modbus LoRaWAN Bridge is a low power device that can be used to communicate with 
