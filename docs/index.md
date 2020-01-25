@@ -20,6 +20,14 @@ of [Lobaro GmbH](https://www.lobaro.de){: target="_blank"}.
 | [Humidity & Temperature LoRaWAN Sensor](lorawan-sensors/humidity-temp-lorawan) | LoRaWAN | Humidity and Temperature probe |
 | [Pressure LoRaWAN Sensor](lorawan-sensors/pressure-lorawan) | LoRaWAN | Measurement of liquid / water level |
 
+!!! hint "Firmware Release Notifications"
+    We normally send e-mail notifications upon release of new firmware versions. To receive this mails you can sign up
+    to the Lobaro newsletter here.
+    
+    [**Subscribe to our email newsletter here**](http://eepurl.com/gQYRbH){: target="_blank"} 
+    
+    Make sure to select the **"Firmware Updates"** checkbox!    
+
 ## Tools
 
 ### Configuration / Setup
