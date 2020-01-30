@@ -8,7 +8,7 @@
 
 **Downloads:**
 
-* [app-modbus-lora-bridge-TZ0-1.1.0.hex](firmware/app-modbus-lora-bridge-TZ0-1.1.0.hex). [current release]
+* [app-modbus-lora-bridge-TZ0-1.1.1.hex](firmware/app-modbus-lora-bridge-TZ0-1.1.1.hex). [current release]
 * [app-modbus-lora-bridge-TZ0-1.0.3.hex](firmware/app-modbus-lora-bridge-TZ0-1.0.3.hex).
 * [app-modbus-lora-bridge-1.0.2.hex](firmware/app-modbus-lora-bridge-1.0.2.hex).
 * [app-modbus-lora-bridge-1.0.1.hex](firmware/app-modbus-lora-bridge-1.0.1.hex). 
@@ -27,6 +27,11 @@
 ## Changelog
 
 ### [1.1.0] [current release]
+**Changed**
+
+- Increased size available for config.
+
+### [1.1.0]
 **Added**
 
 - New optional Listen-Before-Talk Modbus communication, so device can coordinate with another master on bus.
