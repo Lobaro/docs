@@ -3,9 +3,9 @@
 ![Screenshot Lobaro-Tool](./img/Lobaro_Tool_ConfigFeature.png)
 
 !!! info "Downloads"
-    * [**Lobaro Maintenance Tool Download (v1.5.0 Windows)**](https://github.com/lobaro/flash-tool-release/releases/download/1.5.0/lobaro-tool.exe){: target="_blank"}
-    * [**Lobaro Maintenance Tool Download (v1.5.0 Linux)**](https://github.com/lobaro/flash-tool-release/releases/download/1.5.0/lobaro-tool-linux){: target="_blank"}
-    * [**Lobaro Maintenance Tool Download (v1.5.0 Mac 64Bit)**](https://github.com/lobaro/flash-tool-release/releases/download/1.5.0/lobaro-tool-mac64){: target="_blank"}
+    * [**Lobaro Maintenance Tool Download (v1.5.1 Windows)**](https://github.com/lobaro/flash-tool-release/releases/download/1.5.1/lobaro-tool.exe){: target="_blank"}
+    * [**Lobaro Maintenance Tool Download (v1.5.1 Linux)**](https://github.com/lobaro/flash-tool-release/releases/download/1.5.1/lobaro-tool-linux){: target="_blank"}
+    * [**Lobaro Maintenance Tool Download (v1.5.1 Mac 64Bit)**](https://github.com/lobaro/flash-tool-release/releases/download/1.5.1/lobaro-tool-mac64){: target="_blank"}
     * [**CP2102 Driver Download**](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers){: target="_blank"}  
 
 Supports the PC based configuration of all Lobaro IoT sensors. 
@@ -62,6 +62,13 @@ Alternativly download the windows installer and start this.
 
 
 ## Changelog
+
+### 1.5.1 - 31.01.2020
+- Support nRF9160 Config and Firmware update on Lobaro hardware
+- Improve progress indicator and error checks during Flash
+
+### 1.4.10 - 11.10.2019
+- No relevant changes
 
 ### 1.4.9 - 17.09.2019
 - Fix a bug where flashing firmware fails due to UART buffer issues
