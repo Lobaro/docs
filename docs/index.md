@@ -11,7 +11,8 @@ of [Lobaro GmbH](https://www.lobaro.de){: target="_blank"}.
 
 | Sensor Name         | RF-Technology     | Target Measurement / Purpose |
 | :-------------  |:----------------|:----------------|
-| [wMBUS LoRaWAN Bridge](lorawan-sensors/wmbus-lorawan) | LoRaWAN | wMBUS enabled meter reading |
+| [wMBus NB-IoT Gateway](nbiot-sensors/wmbus-nbiot) | NB-IoT / LTE-M | wMBus enabled meter reading |
+| [wMBus LoRaWAN Bridge](lorawan-sensors/wmbus-lorawan) | LoRaWAN | wMBus enabled meter reading |
 | [Modbus LoRaWAN Bridge](lorawan-sensors/modbus-lorawan)       | LoRaWAN | RS485 ModBus readout |
 | [EDL21 Electricity meter LoRaWAN Bridge](lorawan-sensors/edl21-opto-lorawan) | LoRaWAN | Electricity meter readout |
 | [1-Wire LoRaWAN Bridge](lorawan-sensors/1-wire-lorawan)       | LoRaWAN | Read multiple temperature sensors |
