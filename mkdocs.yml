@@ -89,6 +89,8 @@ nav:
       - Environment Sensor:
           - Manual: lorawan-sensors/environment-lorawan/index.md
           - Firmware & Changelog: lorawan-sensors/environment-lorawan/firmware.md
+  - NB-IoT / LTE-M Sensors:
+      - wMBus Gateway: nbiot-sensors/wmbus-nbiot/index.md
   - Lobaro Dashboard: dashboard/index.md
   - Lobaro Tools:
       - Lobaro Maintenance Tool: tools/lobaro-tool.md

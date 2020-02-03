@@ -16,7 +16,7 @@
 
 ##Overview
 
-The Lobaro wireless M-Bus (wMBUS) to LoRaWAN Bridge is a cost-effective & energye
+The Lobaro wireless M-Bus (wMBUS) to LoRaWAN Bridge is a cost-effective & energy
 efficient device that receives, caches and transparently forwards wireless M-Bus metering
 data from up to 500 consumption meters via any LoRaWAN network onto the Internet.  
 Many gas, water, electricity and heat meters can be read wirelessly today using the common

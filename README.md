@@ -32,15 +32,28 @@ For a feature description and general markdown information consult:
 **Extentions**
 [attr_list](https://python-markdown.github.io/extensions/attr_list/) 
 
-Scaled images
+**Scaled images**
 
     ![Alternative Text](url/to/img.png){: style="height:40px;width:143px"}`
     
-URL open in new window
+**URL open in new window**
 
     [URL Text](http://url.example/index.html){: target="_blank"}
     
 For e.g. copyright information use: [Footnotes](https://squidfunk.github.io/mkdocs-material/extensions/footnotes/)
+
+**Info / Warning / Question / Bug / ...**
+    
+    !!! info "Heading"
+    
+    More text explaining in detail.
+    
+    Another paragraph.
+    
+Instead of `info` you can use `tip`, `success`, `question`, `warning`, `failure`, `danger`, `bug`, 
+`example`, `quote`. 
+See [Admonition](https://squidfunk.github.io/mkdocs-material/extensions/admonition/).
+
 
 ### Legacy
 For legacy online documentation see [repo wiki](https://github.com/Lobaro/docs/wiki).
