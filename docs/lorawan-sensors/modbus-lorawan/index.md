@@ -485,7 +485,7 @@ our LoRaWAN page for more information.
 Downlinks on port 4 contain one or more Modbus Commands that the Bridge should 
 forward to the RS-485 bus. Every Command must be prefixed by a single byte 
 defining the Command's length as `uint8`. The Modbus Commands must be sent as
-raw bytes and without any check digits.
+**raw bytes** and without any check digits.
 
 The Responses to the Commands are sent as 
 Uplink messages on port 4. The payload format on port 4 is the same as on port 3 
