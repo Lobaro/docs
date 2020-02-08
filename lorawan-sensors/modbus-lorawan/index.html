@@ -34,7 +34,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../../favicon.ico">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.0">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.1">
     
     
       
@@ -42,7 +42,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/application.1b62728e.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application.592ad16c.css">
       
         <link rel="stylesheet" href="../../assets/stylesheets/application-palette.a8b3c06d.css">
       
@@ -114,7 +114,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#modbus-ascii-rtu-over-lorawan-bridge" tabindex="1" class="md-skip">
+      <a href="#modbus-ascii-rtu-over-lorawan-bridge" tabindex="0" class="md-skip">
         Skip to content
       </a>
     
@@ -123,9 +123,9 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="../../index.html" title="Lobaro Documentation" class="md-header-nav__button md-logo">
+        <a href="../../index.html" title="Lobaro Documentation" aria-label="Lobaro Documentation" class="md-header-nav__button md-logo">
           
-            <img src="../../img/lobaro-rings-circle.svg" width="24" height="24">
+            <img alt="logo" src="../../img/lobaro-rings-circle.svg" width="24" height="24">
           
         </a>
       </div>
@@ -154,7 +154,7 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <input type="text" class="md-search__input" aria-label="search" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
       <label class="md-icon md-search__icon" for="__search"></label>
       <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
         &#xE5CD;
@@ -217,7 +217,7 @@
   <label class="md-nav__title md-nav__title--site" for="__drawer">
     <a href="../../index.html" title="Lobaro Documentation" class="md-nav__button md-logo">
       
-        <img src="../../img/lobaro-rings-circle.svg" width="48" height="48">
+        <img alt="logo" src="../../img/lobaro-rings-circle.svg" width="48" height="48">
       
     </a>
     Lobaro Documentation
@@ -2162,15 +2162,15 @@ is too long to fit in a message, the response will be split up over multiple mes
 reassembled in the backend. See <a href="#split-messages">Split Messages</a> for instructions on how to do that and how 
 to prevent splitting.</p>
 <p>Structure of a message on port 3:
-<div class="codehilite"><pre><span></span>Bytes  | 0 . 1 . 2 . 3 . 4 | 5 ...      | ...        | ... | ...        |
+<div class="codehilite"><pre><span></span><code>Bytes  | 0 . 1 . 2 . 3 . 4 | 5 ...      | ...        | ... | ...        |
        +-------------------+------------+------------+-----+------------+
 Part   | timestamp         | response 1 | response 2 | ... | response n |
-</pre></div></p>
+</code></pre></div></p>
 <p>Structure of a response part on port 3:
-<div class="codehilite"><pre><span></span>Bytes  | 0   | 1 .. len-3      | len-2 . len-1  | len   |
+<div class="codehilite"><pre><span></span><code>Bytes  | 0   | 1 .. len-3      | len-2 . len-1  | len   |
        +-----+-----------------+----------------+-------+
 Field  | len | Modbus response | start register | count |
-</pre></div></p>
+</code></pre></div></p>
 <h5 id="compact-payload-format">Compact payload format</h5>
 <p>The compact payload format transmits only the payload bytes of the received responses. This format requires 
 less bytes to upload the information than the verbose payload format, allowing more data to be read out 
@@ -2257,7 +2257,7 @@ scope of this manual. You can find a short explanation on Modbus on Wikipedia:
 <p>The following shows some examples of configuration for the automated reading and 
 what the generated Uplinks for that could look like.</p>
 <p><strong>Example A1: Read Holding Registers 0, 1, and 2 of device with address 1</strong>
-<div class="codehilite"><pre><span></span><span class="n">MbCmd</span> <span class="o">=</span> <span class="s1">&#39;010300000003&#39;</span>
+<div class="codehilite"><pre><span></span><code><span class="n">MbCmd</span> <span class="o">=</span> <span class="s1">&#39;010300000003&#39;</span>
 
 <span class="o">#</span> <span class="n">Example</span> <span class="n">resulting</span> <span class="n">Uplink</span> <span class="k">after</span> <span class="n">successful</span> <span class="n">readout</span>
 <span class="n">Up</span><span class="p">,</span> <span class="n">Port</span> <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;005d1698fd0c0103061234567890ab000003&#39;</span>
@@ -2281,9 +2281,9 @@ what the generated Uplinks for that could look like.</p>
    <span class="s1">&#39;0b&#39;</span> <span class="o">-&gt;</span> <span class="n">error</span> <span class="n">code</span> <span class="mi">11</span><span class="p">:</span> <span class="ss">&quot;Gateway Target Device Failed to Respond&quot;</span>
    <span class="s1">&#39;0000&#39;</span> <span class="o">-&gt;</span> <span class="k">start</span> <span class="n">reading</span> <span class="k">at</span> <span class="n">register</span> <span class="mi">0</span>
    <span class="s1">&#39;03&#39;</span> <span class="o">-&gt;</span> <span class="k">read</span> <span class="mi">3</span> <span class="n">consecutive</span> <span class="n">registers</span>
-</pre></div></p>
+</code></pre></div></p>
 <p><strong>Example A2: Read coils 1000-1019 of device 32</strong>
-<div class="codehilite"><pre><span></span><span class="n">MbCmd</span> <span class="o">=</span> <span class="s1">&#39;200103e80014&#39;</span>
+<div class="codehilite"><pre><span></span><code><span class="n">MbCmd</span> <span class="o">=</span> <span class="s1">&#39;200103e80014&#39;</span>
 
 <span class="o">#</span> <span class="n">Example</span> <span class="n">resulting</span> <span class="n">Uplink</span>
 <span class="n">Up</span><span class="p">,</span> <span class="n">Port</span> <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;005d1698fd 09 200103f1041a03e814&#39;</span>
@@ -2296,9 +2296,9 @@ what the generated Uplinks for that could look like.</p>
    <span class="s1">&#39;f1041a&#39;</span> <span class="o">-&gt;</span> <span class="mi">20</span> <span class="n">bits</span> <span class="k">of</span> <span class="k">data</span> <span class="n">packed</span> <span class="k">into</span> <span class="mi">3</span> <span class="n">bytes</span>
    <span class="s1">&#39;03e8&#39;</span> <span class="o">-&gt;</span> <span class="k">start</span> <span class="n">reading</span> <span class="k">at</span> <span class="n">coil</span> <span class="mi">1000</span>
    <span class="s1">&#39;14&#39;</span> <span class="o">-&gt;</span> <span class="k">read</span> <span class="mi">20</span> <span class="n">consecutive</span> <span class="n">coils</span>
-</pre></div></p>
+</code></pre></div></p>
 <p><strong>Example A3: Read two devices</strong>
-<div class="codehilite"><pre><span></span><span class="n">MbCmd</span> <span class="o">=</span> <span class="s1">&#39;0a0300010005,3001ea600020&#39;</span>
+<div class="codehilite"><pre><span></span><code><span class="n">MbCmd</span> <span class="o">=</span> <span class="s1">&#39;0a0300010005,3001ea600020&#39;</span>
 
 <span class="o">#</span> <span class="n">Example</span> <span class="n">resulting</span> <span class="n">Uplink</span>
 <span class="n">Up</span><span class="p">,</span> <span class="n">Port</span> <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;005d1698fd100a030a111122223333444455550001050a30010412345678ea6020&#39;</span>
@@ -2319,9 +2319,9 @@ what the generated Uplinks for that could look like.</p>
    <span class="s1">&#39;12345678&#39;</span> <span class="o">-&gt;</span> <span class="mi">32</span> <span class="n">bits</span> <span class="k">of</span> <span class="k">data</span> <span class="n">packed</span> <span class="k">in</span> <span class="mi">4</span> <span class="n">bytes</span>
    <span class="s1">&#39;ea60&#39;</span> <span class="o">-&gt;</span> <span class="k">start</span> <span class="k">at</span> <span class="n">coil</span> <span class="mi">60000</span>
    <span class="s1">&#39;20&#39;</span> <span class="o">-&gt;</span> <span class="k">read</span> <span class="mi">32</span> <span class="n">coils</span>
-</pre></div></p>
+</code></pre></div></p>
 <p><strong>Example A4: Split up messages</strong>
-<div class="codehilite"><pre><span></span><span class="n">MbCmd</span> <span class="o">=</span> <span class="s1">&#39;010300010020&#39;</span>
+<div class="codehilite"><pre><span></span><code><span class="n">MbCmd</span> <span class="o">=</span> <span class="s1">&#39;010300010020&#39;</span>
 <span class="o">#</span> <span class="n">Command</span> <span class="k">reads</span> <span class="mi">32</span> <span class="n">consecutive</span> <span class="n">registers</span> <span class="n">resulting</span> <span class="k">in</span> <span class="mi">64</span> <span class="n">bytes</span> <span class="n">payload</span>
 
 <span class="o">#</span> <span class="n">Example</span> <span class="n">resulting</span> <span class="n">Uplinks</span> <span class="k">for</span> <span class="n">a</span> <span class="n">Spreading</span> <span class="n">Factor</span> <span class="k">of</span> <span class="mi">12</span> <span class="k">with</span> <span class="mi">51</span> <span class="n">bytes</span> <span class="k">of</span> <span class="n">payload</span> <span class="n">per</span> <span class="n">message</span>
@@ -2331,14 +2331,14 @@ what the generated Uplinks for that could look like.</p>
   <span class="n">since</span> <span class="n">the</span> <span class="n">remainder</span> <span class="k">of</span> <span class="n">the</span> <span class="n">message</span> <span class="n">does</span> <span class="k">not</span> <span class="n">contain</span> <span class="mi">70</span> <span class="n">bytes</span><span class="p">,</span> <span class="n">you</span> <span class="n">know</span> <span class="n">there</span> <span class="n">must</span> <span class="n">be</span> <span class="n">an</span> <span class="n">additional</span> <span class="n">part</span> <span class="n">comming</span> 
 <span class="n">Up</span> <span class="mi">2</span><span class="p">,</span> <span class="n">Port</span> <span class="mi">5</span><span class="p">:</span> <span class="s1">&#39;0016001700180019001a001b001c001d001e001f00200120&#39;</span>
   <span class="n">This</span> <span class="k">contains</span> <span class="n">the</span> <span class="n">rest</span> <span class="k">of</span> <span class="n">the</span> <span class="n">message</span><span class="p">.</span> <span class="n">Appended</span> <span class="k">to</span> <span class="n">the</span> <span class="n">privious</span> <span class="n">message</span><span class="p">,</span> <span class="n">it</span> <span class="n">adds</span> <span class="n">up</span> <span class="k">to</span> <span class="n">the</span> <span class="n">correct</span> <span class="nb">number</span> <span class="k">of</span> <span class="n">bytes</span><span class="p">.</span>
-</pre></div></p>
+</code></pre></div></p>
 <div class="admonition info">
 <p class="admonition-title">TODO: examples for compact payload format</p>
 <p>All this examples use the verbose payload format. We need to add examples using the compact format.</p>
 </div>
 <h3 id="uplinks-triggered-by-downlink-commands">Uplinks triggered by Downlink Commands</h3>
 <p><strong>Example B1: Read single Input Register by Downlink</strong>
-<div class="codehilite"><pre><span></span><span class="n">Down</span><span class="p">,</span> <span class="n">Port</span> <span class="mi">4</span><span class="p">:</span> <span class="s1">&#39;06180401000001&#39;</span>
+<div class="codehilite"><pre><span></span><code><span class="n">Down</span><span class="p">,</span> <span class="n">Port</span> <span class="mi">4</span><span class="p">:</span> <span class="s1">&#39;06180401000001&#39;</span>
   <span class="s1">&#39;06&#39;</span> <span class="o">-&gt;</span> <span class="k">first</span> <span class="n">Command</span> <span class="k">is</span> <span class="mi">6</span> <span class="n">bytes</span> <span class="n">long</span>
   <span class="s1">&#39;180401000001&#39;</span> <span class="mi">6</span> <span class="n">bytes</span> <span class="k">of</span> <span class="n">Modbus</span> <span class="n">Command</span>
     <span class="s1">&#39;18&#39;</span> <span class="o">-&gt;</span> <span class="n">slave</span> <span class="n">device</span> <span class="k">with</span> <span class="n">address</span> <span class="mi">24</span>
@@ -2357,9 +2357,9 @@ what the generated Uplinks for that could look like.</p>
     <span class="s1">&#39;abcd&#39;</span> <span class="o">-&gt;</span> <span class="mi">2</span> <span class="n">bytes</span> <span class="k">of</span> <span class="k">data</span>
     <span class="s1">&#39;0100&#39;</span> <span class="o">-&gt;</span> <span class="k">start</span> <span class="k">at</span> <span class="n">register</span> <span class="mi">256</span>
     <span class="s1">&#39;01&#39;</span> <span class="o">-&gt;</span> <span class="k">read</span> <span class="mi">1</span> <span class="n">register</span>
-</pre></div></p>
+</code></pre></div></p>
 <p><strong>Example B2: Writing holding registers on multiple devices</strong>
-<div class="codehilite"><pre><span></span><span class="n">Down</span><span class="p">,</span> <span class="n">Port</span> <span class="mi">4</span><span class="p">:</span> <span class="s1">&#39;06a106aabb12340fa210a0010004081122334455667788&#39;</span>
+<div class="codehilite"><pre><span></span><code><span class="n">Down</span><span class="p">,</span> <span class="n">Port</span> <span class="mi">4</span><span class="p">:</span> <span class="s1">&#39;06a106aabb12340fa210a0010004081122334455667788&#39;</span>
   <span class="s1">&#39;06&#39;</span> <span class="o">-&gt;</span> <span class="k">first</span> <span class="n">Command</span> <span class="k">is</span> <span class="mi">6</span> <span class="n">bytes</span> <span class="n">long</span>
   <span class="s1">&#39;a106aabb1234&#39;</span> <span class="mi">6</span> <span class="n">bytes</span> <span class="k">of</span> <span class="n">Modbus</span> <span class="n">Command</span>
     <span class="s1">&#39;a1&#39;</span> <span class="o">-&gt;</span> <span class="n">slave</span> <span class="n">device</span> <span class="k">with</span> <span class="n">address</span> <span class="mi">161</span>
@@ -2391,7 +2391,7 @@ what the generated Uplinks for that could look like.</p>
     <span class="s1">&#39;10&#39;</span> <span class="o">-&gt;</span> <span class="k">write</span> <span class="n">multiple</span> <span class="n">Holding</span> <span class="n">Registers</span><span class="p">,</span> <span class="n">success</span>
     <span class="s1">&#39;a001&#39;</span> <span class="o">-&gt;</span> <span class="k">start</span> <span class="k">at</span> <span class="n">register</span> <span class="mi">40961</span>
     <span class="s1">&#39;0004&#39;</span> <span class="o">-&gt;</span> <span class="mi">4</span> <span class="n">registers</span> <span class="k">to</span> <span class="k">write</span>
-</pre></div></p>
+</code></pre></div></p>
 <h2 id="dialog-mode">Dialog Mode</h2>
 <p>The Modbus Bridge has an additional interactive Operation Mode that can help 
 finding the correct Modbus Commands for normal operations. You enter it by 
@@ -2418,7 +2418,7 @@ or executing a few commands on a device that has no permanent Modbus connection.
 it will quickly drain the battery and run out of power.</p>
 </div>
 <h3 id="dialog-mode-example">Dialog Mode Example</h3>
-<div class="codehilite"><pre><span></span><span class="n">Command</span> <span class="n">sent</span> <span class="n">via</span> <span class="n">UART</span><span class="p">:</span>
+<div class="codehilite"><pre><span></span><code><span class="n">Command</span> <span class="n">sent</span> <span class="n">via</span> <span class="n">UART</span><span class="p">:</span>
 <span class="s1">&#39;010300100002&#39;</span>
 <span class="k">Read</span> <span class="n">Holding</span> <span class="n">Registers</span> <span class="o">#</span><span class="mi">16</span> <span class="k">and</span> <span class="o">#</span><span class="mi">17</span> <span class="k">from</span> <span class="n">slave</span> <span class="n">device</span> <span class="k">with</span> <span class="n">address</span> <span class="mi">1</span><span class="p">.</span>
 
@@ -2435,7 +2435,7 @@ it will quickly drain the battery and run out of power.</p>
     <span class="n">Successful</span> <span class="n">readout</span> <span class="k">of</span> <span class="n">registers</span><span class="p">:</span>
     <span class="n">register</span> <span class="o">#</span><span class="mi">16</span><span class="p">:</span> <span class="s1">&#39;abcd&#39;</span>
     <span class="n">register</span> <span class="o">#</span><span class="mi">17</span><span class="p">:</span> <span class="s1">&#39;1234&#39;</span>
-</pre></div>
+</code></pre></div>
 
 <h2 id="complex-setups">Complex setups</h2>
 <p>The Modbus Bridge as described in this manual can be individually configured to read out any
@@ -2556,7 +2556,7 @@ example NarrowBand-IoT.</p>
 <p>This is a decoder written in JavaScript that can be used to parse the device's 
 LoRaWAN messages. It can be used as is in 
 <a href="https://thethingsnetwork.org">The Things Network</a>.</p>
-<p><div class="codehilite"><pre><span></span><span class="kd">function</span> <span class="nx">readVersion</span><span class="p">(</span><span class="nx">bytes</span><span class="p">)</span> <span class="p">{</span>
+<p><div class="codehilite"><pre><span></span><code><span class="kd">function</span> <span class="nx">readVersion</span><span class="p">(</span><span class="nx">bytes</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">bytes</span><span class="p">.</span><span class="nx">length</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
     <span class="p">}</span>
@@ -2774,7 +2774,7 @@ LoRaWAN messages. It can be used as is in
     <span class="nx">Device</span><span class="p">.</span><span class="nx">setProperty</span><span class="p">(</span><span class="s2">&quot;lastFcnt&quot;</span><span class="p">,</span> <span class="nx">fcnt</span><span class="p">);</span>
     <span class="k">return</span> <span class="nx">vals</span><span class="p">;</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 <a href="http://www.modbus.org" target="_blank">Copyright Modbus Logo</a></p>
                 
                   
@@ -2838,9 +2838,9 @@ LoRaWAN messages. It can be used as is in
           </div>
         
         powered by
-        <a href="https://www.mkdocs.org">MkDocs</a>
+        <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
         and
-        <a href="https://squidfunk.github.io/mkdocs-material/">
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
           Material for MkDocs</a>
       </div>
       
@@ -2850,7 +2850,7 @@ LoRaWAN messages. It can be used as is in
       
     </div>
     
-      <script src="../../assets/javascripts/application.808e90bb.js"></script>
+      <script src="../../assets/javascripts/application.98c7b6b1.js"></script>
       
       <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
       
