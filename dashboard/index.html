@@ -720,6 +720,42 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-10" type="checkbox" id="nav-2-10">
+    
+    <label class="md-nav__link" for="nav-2-10">
+      LoRaWAN Modbus Gateway
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-10">
+        LoRaWAN Modbus Gateway
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../lorawan-sensors/lorawan-modbus-gateway/index.html" title="Manual" class="md-nav__link">
+      Manual
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -933,8 +969,16 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#rest-api" class="md-nav__link">
-    REST API
+  <a href="#integrations" class="md-nav__link">
+    Integrations
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rest" class="md-nav__link">
+    REST
   </a>
   
     <nav class="md-nav">
@@ -943,6 +987,18 @@
           <li class="md-nav__item">
   <a href="#filter-query-parameters" class="md-nav__link">
     Filter query parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http" class="md-nav__link">
+    HTTP
   </a>
   
 </li>
@@ -1035,8 +1091,16 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#rest-api" class="md-nav__link">
-    REST API
+  <a href="#integrations" class="md-nav__link">
+    Integrations
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rest" class="md-nav__link">
+    REST
   </a>
   
     <nav class="md-nav">
@@ -1045,6 +1109,18 @@
           <li class="md-nav__item">
   <a href="#filter-query-parameters" class="md-nav__link">
     Filter query parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http" class="md-nav__link">
+    HTTP
   </a>
   
 </li>
@@ -1108,10 +1184,13 @@ used for visualization inside the dashboard.</p>
     device--&gt;raw[Raw Data]
     parser--&gt;parsed[Device Data]</div>
 
-<h2 id="rest-api">REST API</h2>
+<h2 id="integrations">Integrations</h2>
+<p>Integrations allow to get data from the Lobaro platform into other applications.</p>
+<h3 id="rest">REST</h3>
+<p>Navigate to: <a href="https://platform.lobaro.com/#/organisation/integrations/rest/" target="_blank">Integrations -&gt; REST</a></p>
 <p>The API is located and documented at:<br />
 <a href="https://backend.lobaro.com/api" target="_blank">https://backend.lobaro.com/api</a></p>
-<h3 id="filter-query-parameters">Filter query parameters</h3>
+<h4 id="filter-query-parameters">Filter query parameters</h4>
 <p>Filters parameters can be appended to some requests in the form of <code>f:&lt;parameter&gt;=&lt;op&gt;:&lt;value&gt;</code> 
 e.g. <code>f:createdAt=gt:&lt;timestamp&gt;</code> to filter by createdAt date. </p>
 <p>The Value must be URL encoded e.g. a timestamp might look like <code>gt:2000-01-01T02:37:00%2B01:00</code></p>
@@ -1148,6 +1227,15 @@ e.g. <code>f:createdAt=gt:&lt;timestamp&gt;</code> to filter by createdAt date. 
 </tbody>
 </table>
 <p>If no operator is given the default <code>eq</code> operator will be used.</p>
+<h3 id="http">HTTP</h3>
+<p>Navigate to: <a href="https://platform.lobaro.com/#/organisation/integrations/http/" target="_blank">Integrations -&gt; HTTP</a></p>
+<p><strong>Integrate data from network server:</strong><br />
+Data needs to be send to the correct endpoint using an access token with role <code>network-server</code></p>
+<ul>
+<li><a href="https://backend.lobaro.com/api/loraserver/uplink">https://backend.lobaro.com/api/loraserver/uplink</a></li>
+<li><a href="https://backend.lobaro.com/api/everynet/data">https://backend.lobaro.com/api/everynet/data</a></li>
+</ul>
+<p>We will also support other network servers on request, e.g. TTN, Element-IoT, Firefly, Actility, Loriot, ...</p>
 <h2 id="parser">Parser</h2>
 <p>A Parser takes raw input from the Sensor API and converts the data into a unified format used by the Dashboard.
 In addition the parser can access an API to set device level properties and additional meta information outside of the actual data record.</p>
