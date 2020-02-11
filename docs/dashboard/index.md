@@ -1,10 +1,10 @@
-# Lobaro Dashboard
+# Lobaro IoT Platform
 
-The Lobaro Dashboard can be found at [dashboard.lobaro.com](https://dashboard.lobaro.com){: target="_blank"}
+The Lobaro IoT Platform can be found at [platform.lobaro.com](https://platform.lobaro.com){: target="_blank"}
 
 ## Overview
 
-The Dashboard shows device data received via various data sources like LoRaWAN, NB.IoT, GSM, etc..
+The platform shows device data received via various data sources like LoRaWAN, NB.IoT, GSM, etc..
 
 Incoming data from a connected Sensor received by a `Datasource` and mapped to a single `Device` 
 where the `Raw Data` is saved and a `Parser` gets executed. The result of the parser is saved as `Device Data`

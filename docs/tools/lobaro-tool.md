@@ -7,6 +7,10 @@
     * [**Lobaro Maintenance Tool Download (v1.5.3 Linux)**](https://github.com/lobaro/flash-tool-release/releases/download/1.5.3/lobaro-tool-linux){: target="_blank"}
     * [**Lobaro Maintenance Tool Download (v1.5.3 Mac 64Bit)**](https://github.com/lobaro/flash-tool-release/releases/download/1.5.3/lobaro-tool-mac64){: target="_blank"}
     * [**CP2102 Driver Download**](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers){: target="_blank"}  
+    
+!!! danger "Device config not saved?"
+    When upgrading the Lobaro Tool from version v1.4.x or earlier you have to hit "F5" or "Site full reload" in your browser once the Lobaro Tool started! 
+    **Otherwise your device config can not be saved!** This is because your browser caches the incompatible frontend from earlier versions.
 
 Supports the PC based configuration of all Lobaro IoT sensors. 
 

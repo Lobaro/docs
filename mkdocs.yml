@@ -58,8 +58,7 @@ extra_css:
 extra_javascript:
   - "js/mermaid.min.js"
 nav:
-  - Home: index.md
-  - Hardware Variations: hardware.md
+  - Documentation Start: index.md
   - LoRaWAN Sensors:
       - wMBUS Bridge:
           - Manual: lorawan-sensors/wmbus-lorawan/index.md
@@ -91,18 +90,17 @@ nav:
           - Firmware & Changelog: lorawan-sensors/environment-lorawan/firmware.md
   - NB-IoT / LTE-M Sensors:
       - wMBus Gateway: nbiot-sensors/wmbus-nbiot/index.md
-  - Lobaro Dashboard: dashboard/index.md
   - Lobaro Tools:
       - Lobaro Maintenance Tool: tools/lobaro-tool.md
       - USB Config Adapter: tools/usb-config-adapter.md
   - Knowledge base:
+      - Hardware Variations: hardware.md
       - CRON Expressions: background/cron-expressions.md
       - LoRaWAN: background/lorawan.md
       - OBIS Codes: background/obis-codes.md
       - WEEE Disposal: background/weee-disposal.md
   #    - Company Home: https://www.lobaro.com/lobaro-iot-produkte-dienste/
-
-  - Online Shop: https://www.lobaro-shop.com/
-  - Company Home (DE): https://www.lobaro.com/
+  - Lobaro IoT Platform: dashboard/index.md
+  - Lobaro Shop: https://www.lobaro-shop.com/
   - Contact / Impressum: https://www.lobaro.com/contact/
 
