@@ -75,7 +75,11 @@ Temperature is transmitted in 1/100&deg;C, battery voltage in Millivolt and pres
 
 ![Payload Format](files/payload-format.png)
 
-### Parser: The Things Network
+### Parser
+
+**Element-IoT**: https://github.com/ZennerIoT/element-parsers/blob/master/lib/lobaro_pressure26d.ex
+
+**The Things Network**
 
 ```javascript
 function decodeFloat32(bytes) {
