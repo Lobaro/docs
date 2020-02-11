@@ -20,12 +20,18 @@ graph LR;
     parser-->parsed[Device Data]
 ```
 
-## REST API
+## Integrations
+
+Integrations allow to get data from the Lobaro platform into other applications.
+
+### REST
+
+Navigate to: [Integrations -> REST](https://platform.lobaro.com/#/organisation/integrations/rest/){: target="_blank"}
 
 The API is located and documented at:  
  [https://backend.lobaro.com/api](https://backend.lobaro.com/api){: target="_blank"}
 
-### Filter query parameters
+#### Filter query parameters
 
 Filters parameters can be appended to some requests in the form of `f:<parameter>=<op>:<value>` 
 e.g. `f:createdAt=gt:<timestamp>` to filter by createdAt date. 
@@ -46,6 +52,18 @@ The allowed `<parameter>` is specified for each endpoint separately.
 | `gt` | `>` |
 
 If no operator is given the default `eq` operator will be used.
+
+### HTTP
+
+Navigate to: [Integrations -> HTTP](https://platform.lobaro.com/#/organisation/integrations/http/){: target="_blank"}
+
+**Integrate data from network server:**  
+Data needs to be send to the correct endpoint using an access token with role `network-server`
+
+* https://backend.lobaro.com/api/loraserver/uplink
+* https://backend.lobaro.com/api/everynet/data
+
+We will also support other network servers on request, e.g. TTN, Element-IoT, Firefly, Actility, Loriot, ...
 
 ## Parser
 

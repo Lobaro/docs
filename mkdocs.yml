@@ -88,6 +88,8 @@ nav:
       - Environment Sensor:
           - Manual: lorawan-sensors/environment-lorawan/index.md
           - Firmware & Changelog: lorawan-sensors/environment-lorawan/firmware.md
+      - LoRaWAN Modbus Gateway:
+          - Manual: lorawan-sensors/lorawan-modbus-gateway/index.md
   - NB-IoT / LTE-M Sensors:
       - wMBus Gateway: nbiot-sensors/wmbus-nbiot/index.md
   - Background Articles:
