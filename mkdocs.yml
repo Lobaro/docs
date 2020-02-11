@@ -90,16 +90,16 @@ nav:
           - Firmware & Changelog: lorawan-sensors/environment-lorawan/firmware.md
   - NB-IoT / LTE-M Sensors:
       - wMBus Gateway: nbiot-sensors/wmbus-nbiot/index.md
-  - Lobaro Tools:
-      - Lobaro Maintenance Tool: tools/lobaro-tool.md
-      - USB Config Adapter: tools/usb-config-adapter.md
-  - Knowledge base:
+  - Background Articles:
       - Hardware Variations: hardware.md
       - CRON Expressions: background/cron-expressions.md
       - LoRaWAN: background/lorawan.md
       - OBIS Codes: background/obis-codes.md
       - WEEE Disposal: background/weee-disposal.md
   #    - Company Home: https://www.lobaro.com/lobaro-iot-produkte-dienste/
+  - Lobaro Tools:
+      - Lobaro Maintenance Tool: tools/lobaro-tool.md
+      - USB Config Adapter: tools/usb-config-adapter.md
   - Lobaro IoT Platform: dashboard/index.md
   - Lobaro Shop: https://www.lobaro-shop.com/
   - Contact / Impressum: https://www.lobaro.com/contact/
