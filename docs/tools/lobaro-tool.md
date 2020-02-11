@@ -3,9 +3,9 @@
 ![Screenshot Lobaro-Tool](./img/Lobaro_Tool_ConfigFeature.png)
 
 !!! info "Downloads"
-    * [**Lobaro Maintenance Tool Download (v1.5.3 Windows)**](https://github.com/lobaro/flash-tool-release/releases/download/1.5.3/lobaro-tool.exe){: target="_blank"}
-    * [**Lobaro Maintenance Tool Download (v1.5.3 Linux)**](https://github.com/lobaro/flash-tool-release/releases/download/1.5.3/lobaro-tool-linux){: target="_blank"}
-    * [**Lobaro Maintenance Tool Download (v1.5.3 Mac 64Bit)**](https://github.com/lobaro/flash-tool-release/releases/download/1.5.3/lobaro-tool-mac64){: target="_blank"}
+    * [**Lobaro Maintenance Tool Download (v1.5.4 Windows)**](https://github.com/lobaro/flash-tool-release/releases/download/1.5.4/lobaro-tool.exe){: target="_blank"}
+    * [**Lobaro Maintenance Tool Download (v1.5.4 Linux)**](https://github.com/lobaro/flash-tool-release/releases/download/1.5.4/lobaro-tool-linux){: target="_blank"}
+    * [**Lobaro Maintenance Tool Download (v1.5.4 Mac 64Bit)**](https://github.com/lobaro/flash-tool-release/releases/download/1.5.4/lobaro-tool-mac64){: target="_blank"}
     * [**CP2102 Driver Download**](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers){: target="_blank"}  
     
 !!! danger "Device config not saved?"
@@ -66,6 +66,8 @@ Alternativly download the windows installer and start this.
 
 
 ## Changelog
+### 1.5.4 - 11.02.2020
+- Fix a bug where the configuration can not be changed
 
 ### 1.5.3 - 07.02.2020
 - Minor: Add "...flash -t" command line argument to speedup manual flash startup time
