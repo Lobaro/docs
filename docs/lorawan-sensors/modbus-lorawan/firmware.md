@@ -8,7 +8,8 @@
 
 **Downloads:**
 
-* [app-modbus-lora-bridge-TZ0-1.1.1.hex](firmware/app-modbus-lora-bridge-TZ0-1.1.1.hex). [current release]
+* [app-modbus-lora-bridge-TZ0-1.2.0.hex](firmware/app-modbus-lora-bridge-TZ0-1.2.0.hex). [current release]
+* [app-modbus-lora-bridge-TZ0-1.1.1.hex](firmware/app-modbus-lora-bridge-TZ0-1.1.1.hex).
 * [app-modbus-lora-bridge-TZ0-1.0.3.hex](firmware/app-modbus-lora-bridge-TZ0-1.0.3.hex).
 * [app-modbus-lora-bridge-1.0.2.hex](firmware/app-modbus-lora-bridge-1.0.2.hex).
 * [app-modbus-lora-bridge-1.0.1.hex](firmware/app-modbus-lora-bridge-1.0.1.hex). 
@@ -26,7 +27,12 @@
 
 ## Changelog
 
-### [1.1.0] [current release]
+### [1.2.0] [current release]
+**Added**
+
+- New config parameter `MbAttempts` to control how often Modbus Commands will be repeated in case of timeouts.
+
+### [1.1.1]
 **Changed**
 
 - Increased size available for config.
