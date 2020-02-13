@@ -985,6 +985,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#receive-data-from-a-lorawan-network-server" class="md-nav__link">
+    Receive data from a LoRaWAN network server
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#filter-query-parameters" class="md-nav__link">
     Filter query parameters
   </a>
@@ -997,8 +1004,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#http" class="md-nav__link">
-    HTTP
+  <a href="#http-forwarding" class="md-nav__link">
+    HTTP (forwarding)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mqtt-forwarding" class="md-nav__link">
+    MQTT (forwarding)
   </a>
   
 </li>
@@ -1107,6 +1121,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#receive-data-from-a-lorawan-network-server" class="md-nav__link">
+    Receive data from a LoRaWAN network server
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#filter-query-parameters" class="md-nav__link">
     Filter query parameters
   </a>
@@ -1119,8 +1140,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#http" class="md-nav__link">
-    HTTP
+  <a href="#http-forwarding" class="md-nav__link">
+    HTTP (forwarding)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mqtt-forwarding" class="md-nav__link">
+    MQTT (forwarding)
   </a>
   
 </li>
@@ -1190,6 +1218,20 @@ used for visualization inside the dashboard.</p>
 <p>Navigate to: <a href="https://platform.lobaro.com/#/organisation/integrations/rest/" target="_blank">Integrations -&gt; REST</a></p>
 <p>The API is located and documented at:<br />
 <a href="https://backend.lobaro.com/api" target="_blank">https://backend.lobaro.com/api</a></p>
+<h4 id="receive-data-from-a-lorawan-network-server">Receive data from a LoRaWAN network server</h4>
+<ol>
+<li>Create an Access Token in the Lobaro Platform with the role <code>network-server</code> to allow write access for device data.</li>
+<li>
+<p>Configure your network server to send data to the corresponding endpoint (see list below)
+using the token (e.g. <code>Bearer eyJhbGciOiJ...</code>) in the <code>Authorization</code> header field.<br />
+Please consult the documentation of your network server for further instructions.</p>
+</li>
+<li>
+<p>Chirpstack: <a href="https://backend.lobaro.com/api/loraserver/uplink">https://backend.lobaro.com/api/loraserver/uplink</a></p>
+</li>
+<li>Everynet: <a href="https://backend.lobaro.com/api/everynet/data">https://backend.lobaro.com/api/everynet/data</a></li>
+</ol>
+<p>We also support other network servers on request, e.g. TTN, Element-IoT, Firefly, Actility, Loriot, ... Just ask!</p>
 <h4 id="filter-query-parameters">Filter query parameters</h4>
 <p>Filters parameters can be appended to some requests in the form of <code>f:&lt;parameter&gt;=&lt;op&gt;:&lt;value&gt;</code> 
 e.g. <code>f:createdAt=gt:&lt;timestamp&gt;</code> to filter by createdAt date. </p>
@@ -1227,15 +1269,29 @@ e.g. <code>f:createdAt=gt:&lt;timestamp&gt;</code> to filter by createdAt date. 
 </tbody>
 </table>
 <p>If no operator is given the default <code>eq</code> operator will be used.</p>
-<h3 id="http">HTTP</h3>
+<h3 id="http-forwarding">HTTP (forwarding)</h3>
 <p>Navigate to: <a href="https://platform.lobaro.com/#/organisation/integrations/http/" target="_blank">Integrations -&gt; HTTP</a></p>
-<p><strong>Integrate data from network server:</strong><br />
-Data needs to be send to the correct endpoint using an access token with role <code>network-server</code></p>
+<p>Forward data from the Lobaro Platform to any HTTP(s) endpoint.</p>
+<p><strong>HTTP Method</strong>: The HTTP method to use for the request.</p>
+<p><strong>Target URL</strong>: Any reachable HTTP server endpoint.</p>
+<p><strong>Headers</strong>: List of headers to be set on HTTP request in the format: <code>&lt;FieldName&gt;: &lt;Value&gt;</code> (e.g. <code>Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==</code>)</p>
+<h3 id="mqtt-forwarding">MQTT (forwarding)</h3>
+<p>Navigate to: <a href="https://platform.lobaro.com/#/organisation/integrations/mqtt/" target="_blank">Integrations -&gt; MQTT</a></p>
+<p>Forward data from the Lobaro Platform via MQTT Publish to any MQTT broker.</p>
+<p><strong>Broker URL</strong>: must be in one of the following formats:</p>
 <ul>
-<li><a href="https://backend.lobaro.com/api/loraserver/uplink">https://backend.lobaro.com/api/loraserver/uplink</a></li>
-<li><a href="https://backend.lobaro.com/api/everynet/data">https://backend.lobaro.com/api/everynet/data</a></li>
+<li><code>mqtt[s]://host.domain[:port]</code></li>
+<li><code>tcp[s]://host.domain[:port]</code></li>
 </ul>
-<p>We will also support other network servers on request, e.g. TTN, Element-IoT, Firefly, Actility, Loriot, ...</p>
+<p>Default port for mqtt/tcp is <code>1883</code>. Default port for mqtts/tcps is <code>8883</code>. </p>
+<p><strong>ClientId</strong>: Used on MQTT connect. Default is: <code>lobaro-{RND}</code>.
+<code>{RND}</code> will be replaced by a unique random string. </p>
+<p><strong>Username / Password</strong>: Used to authenticate with the MQTT broker.</p>
+<p><strong>Topic</strong>: The MQTT topic to publish sensor data.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Currently we only support username/password authentication for MQTT yet.</p>
+</div>
 <h2 id="parser">Parser</h2>
 <p>A Parser takes raw input from the Sensor API and converts the data into a unified format used by the Dashboard.
 In addition the parser can access an API to set device level properties and additional meta information outside of the actual data record.</p>
