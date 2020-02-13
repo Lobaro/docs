@@ -1,6 +1,6 @@
 # Lobaro USB configuration adapter
 
-![Picture USB Config Adapter](./img/lobaro-config-adapter.jpg)
+![Picture USB Config Adapter](./img/Lobaro-KonfigAdapter-Anot.jpg)
 
 The Lobaro USB configuration adapter connects the configuration serial uart of our hardware to a PC. It is useful for:
 
@@ -23,8 +23,10 @@ using our free [Lobaro Maintenance Tool](./lobaro-tool.md) PC software.
 
 ## Hardware Connection (LoRaWAN Sensors)
 
-The adapter uses a six-wire [JST-ZH series](http://www.jst-mfg.com/product/detail_e.php?series=287){: target="_blank"} 
-connector for attaching Lobaro hardware.
+![Picture USB Config Adapter](./img/adapter1low.jpg){: style="width:60%; display: block; margin: 0 auto;"}
+
+The USB adapter uses a six-wire [JST-ZH series](http://www.jst-mfg.com/product/detail_e.php?series=287){: target="_blank"} 
+connector for attaching to Lobaro hardware at the config connector.
 
 * `Boot0` of Lobaro sensors is connected to `DTR` line of the PC uart
 * `Reset` (active low) of Lobaro sensors is connected to `RTS` line of the PC uart
