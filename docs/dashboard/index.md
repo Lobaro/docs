@@ -31,6 +31,18 @@ Navigate to: [Integrations -> REST](https://platform.lobaro.com/#/organisation/i
 The API is located and documented at:  
  [https://backend.lobaro.com/api](https://backend.lobaro.com/api){: target="_blank"}
 
+#### Receive data from a LoRaWAN network server
+
+1. Create an Access Token in the Lobaro Platform with the role `network-server` to allow write access for device data.
+2. Configure your network server to send data to the corresponding endpoint (see list below)
+using the token (e.g. `Bearer eyJhbGciOiJ...`) in the `Authorization` header field.  
+Please consult the documentation of your network server for further instructions.
+
+* Chirpstack: https://backend.lobaro.com/api/loraserver/uplink
+* Everynet: https://backend.lobaro.com/api/everynet/data
+
+We also support other network servers on request, e.g. TTN, Element-IoT, Firefly, Actility, Loriot, ... Just ask!
+
 #### Filter query parameters
 
 Filters parameters can be appended to some requests in the form of `f:<parameter>=<op>:<value>` 
@@ -53,17 +65,41 @@ The allowed `<parameter>` is specified for each endpoint separately.
 
 If no operator is given the default `eq` operator will be used.
 
-### HTTP
+### HTTP (forwarding)
 
 Navigate to: [Integrations -> HTTP](https://platform.lobaro.com/#/organisation/integrations/http/){: target="_blank"}
 
-**Integrate data from network server:**  
-Data needs to be send to the correct endpoint using an access token with role `network-server`
+Forward data from the Lobaro Platform to any HTTP(s) endpoint.
 
-* https://backend.lobaro.com/api/loraserver/uplink
-* https://backend.lobaro.com/api/everynet/data
+**HTTP Method**: The HTTP method to use for the request.
 
-We will also support other network servers on request, e.g. TTN, Element-IoT, Firefly, Actility, Loriot, ...
+**Target URL**: Any reachable HTTP server endpoint.
+
+**Headers**: List of headers to be set on HTTP request in the format: `<FieldName>: <Value>` (e.g. `Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==`)
+
+### MQTT (forwarding)
+
+Navigate to: [Integrations -> MQTT](https://platform.lobaro.com/#/organisation/integrations/mqtt/){: target="_blank"}
+
+Forward data from the Lobaro Platform via MQTT Publish to any MQTT broker.
+
+**Broker URL**: must be in one of the following formats:
+
+* `mqtt[s]://host.domain[:port]`
+* `tcp[s]://host.domain[:port]`
+
+Default port for mqtt/tcp is `1883`. Default port for mqtts/tcps is `8883 `. 
+
+**ClientId**: Used on MQTT connect. Default is: `lobaro-{RND}`.
+`{RND}` will be replaced by a unique random string. 
+
+**Username / Password**: Used to authenticate with the MQTT broker.
+
+**Topic**: The MQTT topic to publish sensor data.
+
+
+!!! note
+    Currently we only support username/password authentication for MQTT yet.
 
 ## Parser
 
