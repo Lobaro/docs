@@ -8,7 +8,7 @@
 
 **Downloads:**
 
-* [app-modbus-lora-bridge-TZ0-1.2.0.hex](firmware/app-modbus-lora-bridge-TZ0-1.2.0.hex). [current release]
+* [app-modbus-lora-bridge-TZ0-1.2.1.hex](firmware/app-modbus-lora-bridge-TZ0-1.2.1.hex). [current release]
 * [app-modbus-lora-bridge-TZ0-1.1.1.hex](firmware/app-modbus-lora-bridge-TZ0-1.1.1.hex).
 * [app-modbus-lora-bridge-TZ0-1.0.3.hex](firmware/app-modbus-lora-bridge-TZ0-1.0.3.hex).
 * [app-modbus-lora-bridge-1.0.2.hex](firmware/app-modbus-lora-bridge-1.0.2.hex).
@@ -27,7 +27,16 @@
 
 ## Changelog
 
-### [1.2.0] [current release]
+### [1.2.1] - 2020-02-17 - [current release]
+**Added**
+
+- Display Version of Lobaro LoRaWAN Stack on boot.
+
+**Fixed**
+
+- Fix a crash when using remote command `append`.
+
+### [1.2.0]
 **Added**
 
 - New config parameter `MbAttempts` to control how often Modbus Commands will be repeated in case of timeouts.
