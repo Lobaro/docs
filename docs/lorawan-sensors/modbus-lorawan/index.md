@@ -17,7 +17,7 @@ This the manual for an unreleased version of the firmware. For older revisions p
 <!-- *This manual is for an older version of the Modbus Bridge!* <br>
 [latest version](../) &ndash; [version overview](../versions) --> 
 
-## Top Features
+## Key Features
 - [X] LoRaWAN 1.0.x and 1.1 network servers supported
 - [X] LoRaWAN Class A or Class C operation
 - [X] LoRaWAN 1.1 time synchronisation

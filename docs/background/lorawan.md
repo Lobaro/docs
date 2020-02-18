@@ -13,6 +13,12 @@ very little power, so you can achieve long lifetimes for battery powered devices
 The trade off is a very limited data rate which makes it unusable for some use cases.
 For many IoT applications this is not really a limitation.
 
+LoRaWAN based LPWANs (Low Power wide area networks) allow connections to the Internet
+from small battery powered devices with wireless ranges of up to 5 kilometers between
+the transmitter and receiving gateway antenna - without the usual cellular network costs in
+classical M2M or smart metering solutions. Also - unlike with cellular networks - it's possible
+to setup own gateways if needed. 
+
 To operate LoRaWAN Sensors you need a **LoRaWAN Network Server**. A free to use, 
 open source network server is 
 [The Things Network](https://www.thethingsnetwork.org/){: target="_blank"}.

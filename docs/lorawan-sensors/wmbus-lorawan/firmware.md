@@ -1,42 +1,56 @@
 # Wireless mBUS over LoRaWAN Bridge
 
-## Firmware
+The latest firmware version is **v2.3.9** *(since 2020-02-21)*
 
-**Downloads:** 
+!!! faq "Which firmware version am I using right now?"
+    You can see the firmware version of your device by inspecting the USB log output in our PC maintenance tool. Or use the information
+    send in the daily status uplink message send on LoRaWAN port 1.
+    
+!!! faq "How do I update the firmware?"
+    Please use the [Lobaro Maintenance Tool](../../tools/lobaro-tool.md){: target="_blank"} and the [Lobaro PC usb adapter](../../tools/usb-config-adapter.md).
 
-!!! info "Stable Release V1.6"
-    Current stable release for production environments:
+## Firmware Downloads
+
+!!! caution "Select correct Hardware revisions"
+    Due to permanent development there exist two main hardware revisions of the Lobaro wMBUS over LoRaWAN bridge hardware.
+    **Please use the images below to select the right firmware file for your given hardware.**
     
-    Download: [app-wMbusLoraBridge-1.6.0.hex](firmware/app-wMbusLoraBridge-1.6.0.hex)
+    The (dedicated) revision 2.x has a simpler production process which helped us to optimize bigger deployments. 
+
+ 
+### Hardware Revision 2.x (active since 2020)
+
+![wMBUS LoRaWAN bride HW Rev2](files/Lobaro-wMBus-LoRaWAN-v2-Housing-open.jpg){: style="height:150px;display: block; margin: 0 auto;"}
+
+Download: 
+
+* [app-wMbusLoraBridge-TZ0-2.3.9+dedicated.hex](firmware/app-wMbusLoraBridge-TZ0-2.3.9+dedicated.hex) (hardware v2.x) [current release]
+
+
+### Hardware Revision 1.x (active since 2017)
+
+![wMBUS LoRaWAN bride HW Rev1](files/Lobaro-wMBus-LoRaWAN-v1-Housings-open.jpg){: style="height:150px; display: block; margin: 0 auto;"}
+
+Download:
+
+* [app-wMbusLoraBridge-TZ0-2.3.9+LoRa.hex](firmware/app-wMbusLoraBridge-TZ0-2.3.9+LoRa.hex) (hardware v1.x) [current release]
+
+!!! info "Please note revisions 1.x are no longer the default variant since 02/2020"
+    The v1 hardware revisions are still active but only on special sales inquiry! 
     
----------------
-    
-!!! warning "Experimental Release V2.3.x"
-    Experimental firmware which adds new features like
-    
-    * Optional LoRaWAN v1.1 support (!! v1.1 issues are currently investigated !!)
-    * LoRaWAN time synchronisation
-    * LoRaWAN Downlink configuration
-    * wMBUS learning mode for meter tx intervals
-    * LoRaWAN Class C support
-    * Optional alternative payload format with better LoRaWAN SF adoption
-    
-    The usage of most new features (beside the learning mode) is described in our [Introduction to LoRaWAN article](https://docs.lobaro.com/background/lorawan.html#lorawan-configuration){: target="_blank"}.
-    An updated manual for the wireless MBUS bridge will follow soon. The current wireless MBUS bridge documentation is only valid for firmware up to v1.6!
-    
-    **For production environments consider using the stable & well documented release V1.6 above instead!**
-    
-    Download: [app-wMbusLoraBridge-TZ0-2.3.9+LoRa.hex](firmware/app-wMbusLoraBridge-TZ0-2.3.9+LoRa.hex)
-    
+    Please [contact Lobaro](https://www.lobaro.com/contact/){: target="_blank"} if you are interested in revisions 1.x hardware.
+
+## E-Mail release notifications 
+
 !!! hint "Firmware Release Notifications"
     We normally send e-mail notifications upon release of new firmware versions. To receive this mails you can sign up
     to the Lobaro newsletter here.
     
     [**Subscribe to our email newsletter here**](http://eepurl.com/gQYRbH){: target="_blank"} 
     
-    Make sure to select the **"Firmware Updates"** checkbox!        
+    Make sure to select the **"Firmware Updates"** checkbox!    
     
-## Changelogs
+## Release changelog
 
 ### v2.3.9 (21.01.2020)
 - Fix minor memory Leak in wMBus parser 
@@ -110,74 +124,13 @@ When missing one device for whatever reason, the bridge will start the learning 
 
 While receiving learned sensors the maximum receive interval is doubled but ends as soon as all learned devices are received.
 
+## Older v1.x firmware
+
+!!! warning "Old v1.x firmware version"
+    The v1.x firmware branch is no longer recommended for use. 
+    
+    If you rely on these older version you can find it at the end of the outdated [v1 documentation](1.x/index.md).
+    
+
 ---
 
-### v1.6.0 (20.05.2019)
-- Add additional config parameter "cmodeCompatibility" to allow wideband receive as fallback
-- fix issue with crc validation of unencrypted meters
-
-### v1.5.8 (18.02.2019)
-- Reduce chance to miss wMbus packet when there is a lot of traffic
-
-### v1.5.7 (07.01.2019)
-- Fix issue with very large T1 mode telegrams
-
-### v1.5.6 (20.11.2018)
-- Support new FRAM memory type
-- Improve random generator behaviour
-
-### v1.5.5 (14.11.2018)
-- internal use only
-
-### v1.5.4 (25.10.2018)
-- Support LoRaWAN NBTrans > 1
-- Don't allow to set unsupported FSK DR during ADR
-
-### v1.5.3 (18.10.2018)
-- Fix bug with not working deduplication of same wMBUS messages during listen intervals
-
-### v1.5.2
-- Support LoRaWAN Rx1 DataRate Offset
-
-### v1.5.1
-- New parameter "resetHours" (default = 0): Hours after which the firmware will reset and rejoin the network (0 = never)
-
-### v1.5.0
-- Changed duration parameters to seconds: cmodeDur -> cmodeDurSec and smodeDur -> smodeDurSec
-- Status packet is 2 byte shorter, version is encoded with 3 bytes now
-- Upload correct battery status in DevStatusReq
-
-LoRaWAN Changes:
-- Support ADR ChMask to disable Channels
-- Restore default channels when loosing uplink connectivity
-- Support LoRaWAN NewChannelReq MAC command
-- Support LoRaWAN DlChannelReq MAC command
-- Support LoRaWAN RxParamSetupReq MAC command
-- No LoraWAN MAC Commands are dropped when unknown MAC command is received
-- Fix bug with endless loop when unknown LoRaWAN MAC command was received
-- Improve debug logs of LoRaWAN stack
-
-### v1.4.1
-- Bugfix: Allow big wMBUS raw messages > 160 Bytes in T1 mode
-- Improved cfg parameter explanation texts
-- Improved wmbus telegram terminal output
-
-### v1.4.0
-- New Parameters for ADR (OTAA = false):  AppSKey, NetSKey, DevAdr
-- New Parameter: OTAADelay to configure the delay between OTAA joins on fail + [0% ... 30%]
-- Bugfix: Support LoRaWAN Status MAC command
-- Bugfix: TxPower was not considered
-- Requires Lobaro Tool > v1.3.1 for configuration
-
-### v1.3.1
-- Fix ADR Bugs
-
-### v1.3.0
-- Allow to enable ADR (default: enabled)
-
-### v1.2.0
-- Increase config version (Config will be reset)
-- Introduce LoRaWAN default parameter
-
-### v1.1.0
-- New Filter: device id (devFilter), device type (typFilter), manufacturer (mFilter)

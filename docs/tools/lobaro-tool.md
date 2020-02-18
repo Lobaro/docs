@@ -3,10 +3,10 @@
 ![Screenshot Lobaro-Tool](./img/Lobaro_Tool_ConfigFeature.png)
 
 !!! info "Downloads"
-    * [**Lobaro Maintenance Tool All Versions**](https://github.com/lobaro/flash-tool-release/releases){: target="_blank"}
     * [**Lobaro Maintenance Tool Download (v1.5.4 Windows)**](https://github.com/lobaro/flash-tool-release/releases/download/1.5.4/lobaro-tool.exe){: target="_blank"}
     * [**Lobaro Maintenance Tool Download (v1.5.4 Linux)**](https://github.com/lobaro/flash-tool-release/releases/download/1.5.4/lobaro-tool-linux){: target="_blank"}
     * [**Lobaro Maintenance Tool Download (v1.5.4 Mac 64Bit)**](https://github.com/lobaro/flash-tool-release/releases/download/1.5.4/lobaro-tool-mac64){: target="_blank"}
+    * [**Lobaro Maintenance Tool previous versions**](https://github.com/lobaro/flash-tool-release/releases){: target="_blank"}
     * [**CP2102 Driver Download**](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers){: target="_blank"}  
     
 !!! danger "Device config not saved?"

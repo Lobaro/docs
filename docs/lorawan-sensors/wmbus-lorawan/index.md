@@ -1,197 +1,70 @@
-# Wireless mBUS over LoRaWAN Bridge
+---
+version: 2.x
+---
+# Wireless mBUS over LoRaWAN Bridge V2
 
-!!! note "Scope of this manual"
-    This manual is currently only valid for the stable firmware version **V1.6.0**!
-    
-    It will be soon updated to reflect the new V2.3.x firmware branch with these additional new features:
-    
-    * Optional LoRaWAN v1.1 support 
-    * LoRaWAN time synchronisation
-    * LoRaWAN Downlink configuration
-    * wMBUS learning mode for meter tx intervals
-    * LoRaWAN Class C support
-    * Optional alternative payload format with better LoRaWAN SF adoption
-    
-    You can try these new features today by using the experimental firmware available [**on this page**](firmware.md){: target="_blank"}.
+Version **v2.x** *(since 2020-02-18)* <br>
+This is the latest version. The previous v1.x documentation can be found here: [doc v1.x](1.x/index.md).
+
+![Lobaro wmbus LoRaWAN Bridge V2](files/wmbus-lorawan-bridge-V2-IP67.jpg){: style="height:250px"}
+
+## Key Features
+- [X] LoRaWAN 1.0.x and 1.1 network servers supported
+- [X] LoRaWAN Class A or Class C operation
+- [X] LoRaWAN 1.1 time synchronisation
+- [X] Wireless MBus S1, C1 and T1 modes (868 MHz) compatible 
+- [X] Learning mode of meter tx intervals for optimal battery lifetime
+- [X] Configuration via USB or remotely via LoRaWAN downlink
+- [X] Big 19Ah size "D" battery for 10 years+ possible battery lifetime
+- [X] IP67 outdoor housing with pressure compensating element
+- [X] Quick closing screws with cover retainer on housing
+- [X] Optional: Lobaro wireless MBUS parsing REST API (free for testing)
+- [X] Optional: complete Lobaro IoT Platform integration
+
 
 ##Overview
 
 The Lobaro wireless M-Bus (wMBUS) to LoRaWAN Bridge is a cost-effective & energy
 efficient device that receives, caches and transparently forwards wireless M-Bus metering
-data from up to 500 consumption meters via any LoRaWAN network onto the Internet.  
-Many gas, water, electricity and heat meters can be read wirelessly today using the common
-short range Wireless M-Bus standard. Because such wMBUS enabled meters use the classical
-energy saving FSK radio modulation, the wireless range is often limited to less than 50m
-and therefore requires the use of additional longer-range radio technologies to forward the
-metering data onto the Internet. The advanced LoRa radio modulation used inside the Lobaro
-wMBUS to LoRaWAN Bridge is such a key technology.
-
-![Lobaro wmbus LoRaWAN Bridge](files/Übersicht-wmbus-lora.jpg){: style="width:100%"}
-
-LoRaWAN based LPWANs (Low Power wide area networks) allow connections to the Internet
-from small battery powered devices with wireless ranges of up to 5 kilometers between
-the transmitter and receiving gateway antenna - without the usual cellular network costs in
-classical M2M or smart metering solutions. Also - unlike with cellular networks - it's possible
-to setup own gateways if needed. This often results in much lower operational costs with the
-Lobaro wMBUS bridge compared to conventional remote meter reading via LTE networks.
+data from up to 500 utility meters via any LoRaWAN network onto the Internet. 
 The metering data will not be decrypted by the LoRaWAN Bridge, instead an unchanged
-1:1 forwarding takes place via one or more LoRaWAN packets (depending on the wMBUS
-telegram byte size). Thus the end-to-end encryption of sensitive wireless MBUS consumption
-data is preserved.
-Initial configuration, firmware updates & status readouts are done user-friendly via USB on the
-PC with the Lobaro Tool (Windows, Linux, Mac). An additional possibility of configuration in the field "over the air" by means of LoRaWAN downlinks will soon also be available via
-firmware update.
+1:1 forwarding takes place via one or more LoRaWAN packets (depending on the wMBUS telegram byte size). 
+Thus the end-to-end encryption of sensitive wireless MBUS consumption data is preserved. 
 
-**Please read the manual carefully before operating the device. A safe operation of the
-device is only possible if you follow the guides provided in this manual. Using the device
-differently than intended by Lobaro may cause damage to people, the environment, or
-the device.**
+![Lobaro wmbus LoRaWAN Bridge system components](files/Lobaro-wMBus-LoRaWAN-Metering-Bridge.jpg){: style="width:100%"}
+*Note: The Lobaro IoT platform is fully optional!*
 
-!!! info "Consider using the latest firmware on your hardware"
-    * [**See available firmware downloads**](firmware.md){: target="_blank"}
+Many gas, water, electricity and heat meters can be read wirelessly using the common
+short range 868 MHz wireless M-Bus / OMS industry standard. Because such wMBUS enabled meters use the classical
+energy saving FSK radio modulation, the wireless range is designed for less than 50m
+and therefore requires the use of additional longer-range radio technologies to forward the
+metering data over larger distances onto the Internet. The advanced LoRa radio modulation used 
+inside the Lobaro wMBUS to LoRaWAN Bridge is one of such a key technologies. 
 
-## The Device 
+You can find details about LoRaWAN in our [background article](../../background/lorawan.md).
 
-### Variant with compact housing (2xAA batteries)
-`wMBUS LoRaWAN Bridge (AA-cells, compact IP65 housing), Order number: 8000003` <br>
-![Modbus LoRaWAN Bridge](files/wmbusbridge.png){: style="width:60%; display: block; margin: 0 auto;"}
-
-### Variant with D-cell battery
-`wMBUS LoRaWAN Bridge (XH battery-connector, IP67 housing), Order number: 8000063` <br>
-![Modbus LoRaWAN Bridge](files/wmbusbridgePOWERADDON.png){: style="width:50%; display: block; margin: 0 auto;"}
-
----
-
-!!! note "Further customization Options"
-    The product variants shown above are the *standard* variants.
-     
-    [**Other power supply options & housing are available on request**](../../hardware.md){: target="_blank"}
+!!! warning "Please use always the latest firmware on your lorawan wmbus bridge!"
+    * [**Check latest firmware releases available for download**](firmware.md){: target="_blank"}
     
-    * External antenna
-    * External power supply
-    * DIN-Rail mounting
-    * NB-IoT instead of LoRaWAN
+
+### Compatible meters
+
+| wMBUS meter  | Type | Manufacturer    | More information |
+| :-------------|:     |:----------------|:----------------|
+| Q caloric 5.5 | Heat cost     | Qundis          | [External Link](https://qundis.com/products/heat-cost-allocators/){: target="_blank"}  |
+| Sontex 868 | Heat cost             | Sontex        | [External Link](https://sontex.eu/product_category/heizkostenverteilern-de/){: target="_blank"}  |
+| SHARKY 775 | Heat             | Diehl Metering         | [External Link](https://www.diehl.com/metering/en/portfolio/thermal-energy-metering/){: target="_blank"}  |
+| MULTICAL® 603 | Heat          | kampstrup       | [External Link](https://www.kamstrup.com/en-en/heat-solutions/heat-meters/multical-603){: target="_blank"}  |
+| iPERL® | Water             | Diehl Metering         | [External Link](https://sensus.com/products/iperl-international/){: target="_blank"}  |
+| Hydrus | Water              | Diehl Metering         | [External Link](https://www.diehl.com/metering/us/en/hydrus/){: target="_blank"}  |
+| Q water 5.5 | Water         | Qundis       | [External Link](https://qundis.com/products/water-meters/){: target="_blank"}  |
+| Munia | Temp. & Humidity              | Weptech         | [External Link](https://www.weptech.de/en/wireless-m-bus/humidity-temperature-sensor-munia.html){: target="_blank"}  |
+
+!!! success "Further utility meter compatibility"
+    Beside the example meters in the list above the Lobaro wMBUS LoRaWAN bridge works with **every meter** using standard 868 MHz wireless MBus:
     
-    Contact us via [support@lobaro.de](mailto:support@lobaro.de) if you need our offer for a special variant.
-
-###Device installation
-The device must be fixed on a flat surface using the lateral mounting holes of the case, see
-chapter "Housing Dimensions" for a detailed description of all housing dimensions. Alternatively we offer as
-accessory a mounting clip for a standard 35mm DIN rail. The device can then easily snapped
-on a such rails. It can therefore be added to a variety of racks alongside other devices.
-
-!!! warning "Under any circumstances the device must not be mounted higher than 2 meters above ground to avoid any risks in case of falling down!"
-
-For optimal RF performance (e.g. LoRa range) any metal obstacles near the internal antenna
-should be avoided. In this case 'near' is defined as keep-out distance of about 3-5 centimeters
-around the antenna. The internal helix antenna can be identified by the winding pcb traces
-near the white printed encircled 'connectivity' symbol. In any case a device mounting directly
-on top of a metal surface is not advisable since it will degrade the possible RF range. Stone
-walls, wood or plastic standos are perfectly ok.
-In case of challenging installation locations (e.g. in basements) or unavoidable long distances
-to the next LoRaWAN gateway, Lobaro offers on request custom product variant equipped
-with a 'SMA' connector to support a external antenna connection.
-
-###Power Supply
-The wMBUS over LoRaWAN Bridge default power supply consists of two series connected
-off-the-shelf 1.5V 'AA' sized batteries. Be sure to get the polarity right, see the '+'-Symbol on
-the board. In general only AA cells of the types Alkali-Manganese (1.5V, LR6) and Lithium-
-Iron-Sulphide (1.5V, FR6) are allowed to be inserted in the device. Lobaro recommends the
-use of FR6 batteries like the Energizer Ultimate Lithium over LR6 types because of the higher
-capacity and better discharge properties.
-
-!!! warning "Other Batteries or accumulators with a nominal voltage of more than 1.5V must not inserted into the device under any circumstances. In particular, lithium based cells with a nominal voltage of 3.6V or 3.7V must not be used on the AA battery slots!"
-
-On request we can supply custom product variants with special housings powered by even
-bigger batteries. For example a 3.6V C sized mono cell typically has a capacity of 9Ah with
-leads to a 3x increased battery life compared to the standard AA-cells. With D sized cells of
-typically 19Ah capacity this value can be doubled once again (6x). Also available on request
-are options with permanent external power supply (230V, 9-24V, 5V USB).
-
-###Battery life time
-The battery life time of the wireless M-Bus to LoRaWAN Bridge can not be specifed trustworthy
-without knowledge of the detailed installation scenario. At least estimations for the
-following custom project based parameters have to be known:
-
-+ Meter count per single wMBUS bridge, e.g. 10 different meters.
-
-+ Needed LoRaWAN transmission interval, e.g. daily uploads.
-
-+ Average wireless M-Bus telegram size in bytes, e.g. 35 byte.
-
-+ Wireless M-Bus telegram transmission interval of the meter, e.g. every 10 seconds.
-
-+ Typically used LoRa Spreading Factor / LoRa link quality, e.g. SF10.
-
-Depending on these parameters battery life times from a few months to over 15 years can
-be achieved. You may send us your use-case details as described above to info@lobaro.com
-and we will return to you a custom battery lifetime calculation, a recommendation for the
-best power supply scheme and the needed minimal battery capacity.
-
-#### Example calculation
-In this battery lifetime calculation scenario the target meters send a 35 byte long ('L-Field')
-wireless M-Bus telegram constantly every 10 seconds. This behavior is for example very
-similar to a 'Hydrus' ultrasonic water meter of [**Diehl Metering**](https://www.diehl.com/metering/){: target="_blank"}. The Diehl meter itself has a
-specified battery life time of 12 years.
-Because of the mentioned 10 second send interval it is sufficient to configure the bridge for
-a wireless M-Bus listen period of 20 seconds by setting the bridge configuration parameter
-cmodeDurSec to a value of 20 (refer to section "wMBUS bridge parameters"). This will ensure that all meters of
-interest sent their consumption telegrams at least onces during the configured listen period
-of the bridge.
-For a worst-case battery-lifetime calculation the weakest possible LoRaWAN connectivity has
-been selected. That means to reach a LoRaWAN Gateway the Lobaro hardware has to send
-out its Uplink data very slowly (&ge; 2 seconds) and redundant by using a LoRa spreading factor
-of 12. Beside this the actual usable battery capacity has been set to 80% of the nominal
-value. The resulting worst-case minimal battery-life times are presented below.
-
-**Battery life for daily LoRaWAN uploads with SF12**
-
-|Collected meters|Battery Life (years) AA cell (3Ah)|Battery Life (years) Baby cell(9Ah)|
-|-|-|-|
-|1|10.7|32.0|
-|5|7.0|21.1|
-|10|4.9|14.8|
-|20|3.1|9.3|
-|40|1.8|5.3|
-|80|1.0|2.9|
-
-Estimations for the opposite situation with a excellent LoRa link quality and thus the possible
-usage of SF7 are presented below.
-In real world installations the possible spreading factor may be optimized anytime by setting
-up additional LoRaWAN Gateways near the meters of interest.
-
-**Battery life for daily LoRaWAN uploads with SF7**
-
-|Collected meters|Battery Life (years) AA cell (3Ah)|Battery Life (years) Baby cell(9Ah)|
-|-|-|-|
-|1|12.1|36.4|
-|5|11.8|35.4|
-|10|11.4|34.4|
-|20|10.6|31.9|
-|40|9.4|28.3|
-|80|7.7|23.0|
-
-
-
-#### Usage scenario recommendations
-As a simple rule of thumb using the Lobaro wireless M-Bus over LoRaWAN bridge is a good
-fit in applications that require daily (or less often) consumption values of 1 to 40 installed
-wireless M-Bus meters. For installations with a higher meter count simply more Lobaro
-bridges may be used.
-Another key factor for high battery lifetime is to select or configure your wireless M-Bus
-meters in a way that they send short telegrams very frequently, proven good values are
-periods smaller than 30 seconds and telegram sizes smaller 50 bytes. This helps to minimize
-the needed wMBus listening time period and avoids the need for multiple LoRaWAN packets
-per single telegram (data splitting). Beside this the bridge is naturally most economical when multiple meters per single bridge
-can be collected and forwarded via LoRWAN. Although for some applications a 1:1 setup,
-e.g. one bridge per meter, may deliver enough benefits to justify the invest.
-For hourly or even more frequent meter data uploads, as requested by some of our customers,
-LoRaWAN isn't the perfect match from a technology point of view. The same holds
-for scenarios where hundreds of meters are expected to be transfered by a single bridge,
-e.g. in 'sub-metering' applications with tons of installed heat cost allocators. For such more
-demanding cases Lobaro can offer better solutions using higher bandwidth transmission techniques
-like NB-IoT (Narrowband IoT) or classical 4G/LTE. Contact us if you need such a alternative solution
-by sending your request to info@lobaro.com - either English or German is fine.
+    * wireless MBUS S1 & C1/T1 modes (following DIN EN 13757-4)
+    * [Open metering specification](https://oms-group.org/en/){: target="_blank"} v3 & v4
 
 ##Work Cycle
 
@@ -245,120 +118,203 @@ inactive to avoid wasting power. It remains sleeping until one of the cron expre
 given in the configuration triggers. When that happens, it enters the Data Collection Phase
 again.
 
-##Configuration
+##The wMBUS LoRaWAN Bridge 
 
-###The Lobaro Maintenance Tool
+###Hardware revision 2.x (active since 2020)
+`wMBUS LoRaWAN Bridge V2.0 (XH battery-connector, IP67 housing, DAE), PN: 8000095`
 
-![Modbus LoRaWAN Bridge](files/main.png){: style="width:60%; display: block; margin: 0 auto;"}
+![wMBUS LoRaWAN bride HW Rev2](files/Lobaro-wMBus-LoRaWAN-v2-Housing-open-2.jpg){: style="height:200px;display: block; margin: 0 auto;"}
 
-The initial device configuration can be done very comfortably from your PC via the serial
-configuration interface. Beside the needed Lobaro USB to UART adapter the [**Lobaro Maintenance Tool**](../../tools/lobaro-tool.md){: target="_blank"} needs to be installed. This tool is freely available for various operating systems
-including Windows, Linux, Mac and Linux-ARM (e.g. Raspberry-PI) on and works with all
-Lobaro sensors.
-Technically this software opens a webserver on port 8585 that runs in a background console
-window. The actual user interface can be accessed normally using a standard web browser
-at address http://localhost:8585 (picture above). Normally your default browser should be
-opened with this URL automatically after tool startup . Even remote configuration and logobservation
-over the Internet is possible, e.g. having a Raspberry PI via USB connected to
-the Lobaro device and accessing the maintenance tool from a remote machines browser over
-the Internet.
-Additionally to the device setup the tool can also be used for firmware updates ('Firmware
-Tab') , watching real-time device diagnostic output ('Logs Tab') and initiating device restarts.
+###Hardware revision 1.x (active since 2017)
 
-!!! info "Please note that the device is automatically restarted each time the configuration has been changed!"
+![wMBUS LoRaWAN bride HW Rev1](files/Lobaro-wMBus-LoRaWAN-v1-Housings-open.jpg){: style="height:150px; display: block; margin: 0 auto;"}
 
-###Connecting the USB config adapter
+!!! info "Please note revisions 1.x are no longer the default variant since 02/2020"
+    The v1 hardware revisions are still active but only on special sales inquiry! 
+    
+    Please [contact Lobaro](https://www.lobaro.com/contact/){: target="_blank"} if you are interested in revisions 1.x hardware.
 
-For configuration and firmware updates we provide a special serial-USB adapter that can be
-connected as shown in the picture below. The corresponding connector on the PCB is marked with
-the word 'Config'.
-The USB-adapter will add a virtual serial 'COM' Port to your system. Your operating system
-needs the [CP210x USB to UART Bridge](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers){: target="_blank"} driver installed. A download link is provided next
-to the 'Connect' button when you start the Maintenance Tool.
-While the config adapter is connected, the device will be powered from the USB port with
-a regulated voltage of 3.3V. It is not necessary - although it would be no problem - having
-batteries inserted or a different supply connected while using the config adapter. All
-configuration parameters will be kept non-volatile regardless of the power supply.
+###Hardware differences
+The main differences between hardware revision 1.x and revision 2.x are:
 
-![Modbus LoRaWAN Bridge](files/config.png){: style="width:60%; display: block; margin: 0 auto;"}
+* HW1.x has an additional on board temperature sensor (seldom used)
+* HW1.x is available in a 2x AA cell (1.5V) variant with compact housing (rarely requested)
+* HW1.x may be combined with external power supply addon (5V...30V)
 
-###System parameters
+So the main reason to request revision 1.x is the smaller housing with two AA batteries or the need for an external power supply. The same firmware will always provided for both hardware revisions.
 
-After being successfully connected to the hardware using the Lobaro Maintenance Tool you
-can press 'Reload Config' in the 'Configuration' tab to read the current configuration from the
-device. For every parameter a default value is stored non volatile inside the hardware to which
-you can revert using the 'Restore default' button in case anything got miss configured.
-All LoRaWAN & other firmware parameters are explained in the following.
+###Device installation
 
-#### LoRaWAN network parameters
-A large part of the configuration parameters are used to control the device's usage of LoRaWAN.
-There are two different ways to use LoRaWAN: over-the-air
-activation (OTAA) and activation by personalization (ABP). Some configuration parameters
-are only used with one of those methods, others are used for both.
+![wMBUS LoRaWAN bridge mounting](files/wmbus-lorawan-housing-bottom.jpg){: style="width:75%;display: block; margin: 0 auto;"}
 
-|Name|Type|Used|Description|
-|-|-|-|-|
-|OTAA|bool|both|true: use over-the-air activation (OTAA) <br> false: use activation by personalization (ABP)|
-|DevEUI|bytes[8]|OTAA|the 8 byte long DevEUI is used with OTAA to identify the device on join. The default is predefined in the hardware and guarantees an ID that is unique world wide. Should not be changed unless required by the network provider. Hex format without 0x prefix.|
-|AppEUI|bytes[8]|OTAA|ID defining the application used in the LoRaWAN network. Hex format without 0x prefix.|
-|AppKey|bytes[16]|OTAA|Application Key as defined by the LoRaWAN network operator. This is used to encrypt communication, so keep it secret. Hex format without 0x prefix.|
-|OTAADelay|int|OTAA|Seconds to wait for a new attempt after an unsuccessful OTAA join. The actual waiting time will be randomly increased by up to a third of that amount, in order to avoid devices repeatedly interfering with each other through bad timing. The default value is 300, which means the timeout between attempts is 300-400 seconds.|
-|AppSKey|bytes[16]|ABP|App Session Key as defined by the LoRaWAN network operator. Hex format without 0x prefix.|
-|NetSKey|bytes[16]|ABP|Network Session Key ad defined by the LoRaWAN network operator. Hex format without 0x prefix.|
-|DevAdr|bytes[4]|ABP|Device Address as defined by the LoRaWAN network operator. Hex format without 0x prefix.|
-|SF|int|both|Initial LoRa spreading factor used for transmissions. Valid range is 7-12. The actual spreading factor used might change during operation of the device if Adaptive Data Rate (ADR) is used.|
-|TxPower|int|both|Initial transmission output power in dBm. The LoRaWAN protocol allows only specific values: 2, 5, 8, 11, 14. The actual power used might change during operation if Adaptive Data Rate (ADR) is used.|
-|ADR|bool|both|true: use adaptive data rate (ADR) <br> false: don't use adaptive data rate (ADR)|
+The device must be fixed on a flat surface using the lateral mounting holes of the case, see
+chapter "Housing Dimensions" for a detailed description of all housing dimensions. Alternatively we offer as
+accessory a mounting clips.
 
-#### wMBUS bridge parameters
+!!! warning "Mounting height"
+    Under any circumstances the device must not be mounted higher than 2 meters above ground to avoid any risks in case of falling down!
 
-|Name|Type|Description|
+For optimal RF performance (e.g. LoRa range) any metal obstacles near the internal antenna
+should be avoided. In this case 'near' is defined as keep-out distance of about 3-5 centimeters
+around the antenna. The internal quarter wave monopole antenna can be identified by the pcb trace
+near the white printed encircled 'connectivity' symbol. In any case a device mounting directly
+on top of a metal surface is not advisable since it will degrade the possible RF range. Stone
+walls, wood or plastic standoffs are perfectly ok.
+
+In case of challenging installation locations (e.g. in basements) or unavoidable long distances
+to the next LoRaWAN gateway, Lobaro offers on request custom product variant equipped
+with a 'SMA' connector to support a external antenna connection.
+
+###Power Supply
+![D-Cell Battery](../../img/er34615-xh.png){: style="width:35%"}
+
+The wMBUS over LoRaWAN Bridge default power supply consists of one connected 3.6V 'D' sized battery equipped with a JST XH 2pin connector. 
+
+* Size: D-Cell (34mm x 61.5mm)
+* Connector: JST XH series
+* Voltage: 3.6V
+* Operating temperature: -55°C...+60°C
+* Li-SOCl2 (not rechargeable)
+
+!!! warning "Battery warning"
+    Other Batteries or accumulators with a nominal voltage of more or less than 3.6V must not used with
+    the device under any circumstances. In particular, lithium based cells with a nominal voltage of 3.7V must not be used!
+
+On request we can supply custom product variants with with permanent external power supply (230V, 9-24V, 5V USB) or smaller AA batteries.
+
+###Battery life time
+The battery life time of the wireless M-Bus to LoRaWAN Bridge can not be specifed trustworthy
+without knowledge of the detailed installation scenario. At least estimations for the
+following custom project based parameters have to be known:
+
++ Meter count per single wMBUS bridge, e.g. 10 different meters.
+
++ Needed LoRaWAN transmission interval, e.g. daily uploads.
+
++ Average wireless M-Bus telegram size in bytes, e.g. 35 byte.
+
++ Wireless M-Bus telegram transmission interval of the meter, e.g. every 10 seconds.
+
++ Typically used LoRa Spreading Factor / LoRa link quality, e.g. SF10.
+
+Depending on these parameters battery life times from a few months to over 15 years can
+be achieved. You may send us your use-case details as described above to support@lobaro.com
+and we will return to you a custom battery lifetime calculation, a recommendation for the
+best power supply scheme and the needed minimal battery capacity.
+
+#### Example calculation
+In this battery lifetime calculation scenario the target meters send a 35 byte long ('L-Field')
+wireless M-Bus telegram constantly every 10 seconds. A real world image of a 4:1 (4 meters, 1 bridge) configuration can be found at the top of this documentation. 
+The meter transmission interval is for example very similar to a 'Hydrus' ultrasonic water meter of [**Diehl Metering**](https://www.diehl.com/metering/){: target="_blank"}. 
+The Diehl meter itself has a specified battery life time of 12 years.
+
+Because of the mentioned 10 second send interval it is sufficient to configure the bridge for
+a wireless M-Bus listen period of 20 seconds by setting the bridge configuration parameter
+cmodeDurSec to a value of 20 (refer to section "Configuration"). This will ensure that all four meters of
+interest send their consumption telegrams at least once during the configured listen period
+of the bridge.
+
+For this example battery-lifetime calculation the weakest and best possible LoRaWAN connectivity will be compared. 
+Weak means to reach a LoRaWAN Gateway the Lobaro bridge has to send its LoRaWAN uplinks very slowly (&ge; 2 seconds) and redundant 
+by using LoRa spreading factor 12 (SF12). Estimations for the opposite situation with a excellent LoRa link quality and thus the possible usage of SF7 
+have been calculated too. In both coverage scenarios covered the actual usable battery capacity has been set to 80% of the nominal
+value of 19Ah for the "D" sized mono 3.6V cell. The resulting worst-case minimal battery-life times in years for both coverage situations are presented below:
+
+Worst-Case Battery life with **daily uploads** of x meters using LoRa SF12 and SF7:
+
+|Collected meters|Battery life @ SF12|Battery life @SF7|
 |-|-|-|
-|loraMaxMsgSize|int|Received wireless M-Bus telegrams might have a byte size bigger than a single LoRaWAN message can hold. This parameter defines the bytes per LoRaWAN message before a partition over multiple LoRaWAN Uplink msg appears. (Range 10-50 bytes)|
-|resetHours|int|Hours after which the firmware will reset and rejoin the network. Can support the change of LoRaWAN network providers with already deployed devices. (0 = never)|
-|cmodeCron|string|Cron Expression defining when the device starts wMBUS T1/C1 mode receive phases. Please refer to chapter "Cron expression" for an introduction. (blank = no T1/C1 receive)|
-|cmodeDurSec|int|Duration in seconds for each C1/T1-mode wMBUS receive phase, if cmodeCron != blank. Should be chosen in relation the wMBUS sendout interval of the target meter.|
-|smodeCron|string|Cron Expression defining when the device starts wMBUS S1 mode receive phases. Please refer to chapter "Cron expression" for an introduction. (blank = no S1 receive)|
-|smodeDurSec|int|Duration in seconds for each S1-mode wMBUS receive phase, if smodeCron != blank. Should be chosen in relation the wMBUS sendout interval of the target meter.|
-|devFilter|string|wMBUS device id white-list filter using 8 digits with leading zeros list separated by ','. Example '88009035,06198833'. (blank = filter inactive)|
-|mFilter|string|wMBUS manufacturer white-list filter separated by ',' . Example: 'DME,QDS' for receiving just telegrams from Diehl Metering GmbH and Qundis GmbH meters. Telegrams with different 3 character wMBUS manufacturer id will not be uploaded via LoRaWAN. (blank = filter inactive)|
-|typFilter|string|wMBUS device type white-list filter list separated by ','. Example: '08,07' for Heat-Cost and Water meters. Please refer to appendix B.1 for a list of possible values. (blank = filter inactive)|
+|1|24.3|40.0|
+|5|15.0|38.1|
+|10|9.1|35.2|
+|20|5.1|30.6|
+|40|2.7|24.3|
+|80|1.4|17.2|
+*All battery life numbers denote years*
 
-#### Cron expressions
-Cron expressions are used to define specific points in time and regular repetitions of them.
-The schedule for data collecting phases is defined using the [**CRON**](../../background/cron-expressions.md){: target="_blank"} format which is very
-powerful format to define repeatedly occurring events.
+#### Usage scenario recommendations
+As a simple rule of thumb using the Lobaro wireless M-Bus over LoRaWAN bridge is a good
+fit in applications that require daily (or less often) consumption values of 1 to 40 installed
+wireless M-Bus meters. For installations with a higher meter count simply more Lobaro
+bridges may be used.
 
-!!! info "Standard Lobaro devices typically do not need to know the real time for proper operation. All times are relative to the random time when batteries are inserted."
+Another key factor for high battery lifetime is to select or configure your wireless M-Bus
+meters in a way that they send short telegrams very frequently, proven good values are
+periods smaller than 30 seconds and telegram sizes smaller 50 bytes. This helps to minimize
+the needed wMBus listening time period and avoids the need for multiple LoRaWAN packets
+per single telegram (data splitting). 
 
-If needed by the target application Lobaro can deliver on request special hardware support for keeping
-data acquisition intervals based on a real time clock which stays in sync with the real time.
-Please contact Lobaro directly if you need such a custom product variant.
-A cron expression consists of 6 values separated by spaces:
+Beside this the bridge is naturally most economical when multiple meters per single bridge
+can be collected and forwarded via LoRWAN. Although for some applications a 1:1 setup,
+e.g. one bridge per meter, may deliver enough benefits to justify the invest.
 
-+ Seconds (0-59)
+For hourly or even more frequent meter data uploads, as requested by some of our customers,
+LoRaWAN isn't the perfect match from a technology point of view. The same holds
+for scenarios where hundreds of meters are expected to be transferred by a single bridge,
+e.g. in 'sub-metering' applications with tons of installed heat cost allocators. For such more
+demanding cases Lobaro can offer better solutions using higher bandwidth transmission techniques
+like NB-IoT (Narrowband IoT). 
 
-+ Minutes (0-59)
+##Configuration
+The (initial) configuration is normally done using our free [Lobaro Maintenance Tool](/tools/lobaro-tool.html) 
+and the [USB PC configuation adapter](/tools/usb-config-adapter.html) to be connected to the "config" connector on the hardware.
 
-+ Hours (0-23)
+Beside this the configuration can also be changed or read remotely in the field 
+using [LoRaWAN downlink messages](/background/lorawan.html#remote-configuration). 
 
-+ Days (1-31)
+### LoRaWAN
+The connection to the LoRaWAN network is defined by multiple configuration parameters.
+This need to be set according to your LoRaWAN network and the way your device is 
+supposed to be attached to it, or the device will not be able to send any data.
 
-+ Month (1-12)
+For a detailed introduction into how this values need to be configured, please 
+refer to the chapter [LoRaWAN configuration](/background/lorawan.html#lorawan-configuration) 
+in our LoRaWAN background article.
 
-+ Day of Week (SUN-SAT b= [0,6])
+| Name       | Description | Type | Values |
+|------------|-------------|------|-------|
+|`OTAA`      |Activation: OTAA or ABP              |`bool`    | `true`= use OTAA, `false`= use ABP |
+|`DevEUI`    |DevEUI used to identify the Device   |`byte[8]` | e.g. `0123456789abcdef` | 
+|`JoinEUI`   |Used for OTAA (called AppEUI in v1.0)|`byte[8]` | e.g. `0123456789abcdef` | 
+|`AppKey`    |Key used for OTAA (v1.0 and v1.1)    |`byte[16]`| |
+|`NwkKey`    |Key used for OTAA (v1.1 only)        |`byte[16]`| |
+|`SF`        |Initial / maximum Spreading Factor   |`int`     | `7` - `12` |
+|`ADR`       |Use Adaptive Data Rate               |`bool`    | `true`= use ADR, `false`= don't |
+|`OpMode`    |Operation Mode                       |`string`  | `A`= Class A, `C`= Class C |
+|`TimeSync`  |Days after which to sync time        |`int`     | days, `0`=don't sync time | 
+|`RndDelay`  |Random delay before sending          |`int`     | max seconds |
+|`RemoteConf`|Support Remote Configuration         |`bool`    | `true`=allow, `false`=deactivate |
+|`LostReboot`|Days without downlink before reboot  |`int`     | days, `0`=don't reboot |
 
-Examples of CRON definitions:
+### wMBUS bridge
 
-|||
-|-|-|
-|0 5 * * * *    |     Hourly at minute 5, second 0 (at 00:05:00, 01:05:00, ...) |
-|0 1/10 * * * *  |    every 10 minutes from minute 1, second 0 (minutes 1, 11, 21, ...)|
-|0 0 6 * * *      |   Daily at 6:00:00 |
-|0 0 13 1,15 * *    | 1st and 15th day of every month at 13:00:00 |
-|0 0 9 1-5 * *    |   Every month daily from day 1 till 5 at 9:00:00 |
+| name             | description            | values |
+|------------------|------------------------|--------|
+|`payloadFormat`   | wMBUS Bridge LoRaWAN Payload Format| `0`= Encoding in ports, `1`= prefixed (new) |
+|`loraMaxMsgSize`  | Max. LoRa msg size before split| `10`-`50` (bytes) |
+|`listenCron `     | Cron expression<sup>&dagger;</sup> defining when to rx wMBUS| `0 0/15 * * * *`(every 15 minutes)|
+|`cmodeDurSec`     | Duration (Seconds) of C1/T1-mode receive| `0`= Do not collect C1/T1 mode |
+|`smodeDurSec`     | Duration (Seconds) of S1-mode receive| `0`= Do not collect S1 mode |
+|`mFilter`         | wMBus manufacturer filter sep. by "," e.g. "dme,itw"| `blank`= no filter | 
+|`typFilter`       | wMBus device type filter e.g. "08,07" for Heat Coast and Water | `blank`= no filter | 
+|`devFilter`       | wMBus id filter e.g. "88009035, 06198833" (8 digits)| `blank`= no filter | 
+|`learningMode`    | Enable tx interval learning mode| `false`= Do not use learning mode | 
+|`meterIntervalSec`| Expected meter tx interval | `0` (Learning mode) | 
+|`learnedListenSec`| Time to listen in seconds to learn meters.| `600` (Learning mode) | 
 
-##LoRaWAN Data Upload Formats
+<sup>&dagger;</sup> See also our [Introduction to Cron expressions](/background/cron-expressions.html).
+
+###Learning Mode
+The learning mode can learn the transmission intervals of up to 20 meters to conserve energy. 
+When learning is completed over one listening interval the device will only wakeup 10 seconds before and after receiving the learned meters in future.
+
+To enable the learning mode the parameter `learningMode` must to be set to `true`. If `meterIntervalSec` is set to `0` the algorithm will try to learn the tx intervals based on initial long
+wmbus listing. When received the first time, a specific device is added to an internal list of known devices. When received the second time its wMBUS transmission interval is calculated. 
+The second step is omitted when "meterIntervalSec" ist set to any value but 0. When missing one device for whatever reason, the bridge will start the learning mode again and stay awake for one full listening period.
+
+While receiving learned sensors the maximum receive interval is doubled but ends as soon as all learned devices are received.
+
+##Payload formats
 
 After collecting wireless M-Bus telegrams over the air, the Bridge starts uploading data
 via LoRaWAN. There exist two data formats that are transmitted over different LoRaWAN
@@ -381,6 +337,9 @@ bit integer using little endian encoding.
 |version|uint8[3]|0-2|Version of the firmware running on the device|1, 5, 1 ≡ v1.5.1|
 |v_bat|uint16|3-4|Battery voltage in mV|2947 ≡ 2:947V|
 |temp|int16|5-6|Temperature measured inside the device in 1/10 °C|246 ≡ 24.6°C|
+
+!!! warning "Temperature Sensor"
+    The temperature sensor is not present anymore on dedicated V2 hardware, instead 0xffff will be returned.
 
 We provide a JavaScript reference implementation of a decoder for this status packet on
 [**GitHub**](https://github.com/lobaro/ttn-data-formats/blob/master/wmbus-bridge/decoder.js){: target="_blank"}, which can be used directly for decoding in [**The Things Network**](https://www.thethingsnetwork.org/){: target="_blank"}.
@@ -415,31 +374,12 @@ Examples (with loraMaxMsgSize = 50):
 + A 75 byte wMBUS telegram will be send in two messages on LoRaWAN ports 12 and 22. Port 12 means this part one of a wMBUS telegram that got splitted into two LoRaWAN messages. Port 22 means that this data is the 2nd part of the original wMBUS data. Both parts have to been concatenated in the order of receive by the backend.
 + A 101 byte wMBUS telegram will be send in three messages on LoRaWAN ports 13, 23 and 33. Port 13 means this part one of a wMBUS telegram that got splitted into three LoRaWAN messages. Port 23 means that this data is the 2nd part of the original wMBUS data. Port 33 means that this data is the 3rd part of the original wMBUS data. All three parts have to been concatenated in the order of receive by the backend.
 
-####Upload Rate
-The bridge has to work in compliance with the European SRD 868 1% duty-cycle regulations.
-This implies as a rule of thumb the device can upload at most wMBUS telegrams for 36
-seconds every hour. The actual transmit time ('ToA: time on air') for each LoRaWAN
-message depends on the byte size and the used LoRa spreading factor (SF) which denes how
-redundant LoRa data is send. This means a device with good connectivity and consequently
-using LoRa SF7 (ToA ≤ 0,050s) can upload much faster more data than a node using LoRa
-SF11 (ToA ≥ 1s) due to a hard to reach LoRaWAN gateway. The bridge will upload in
-conformity with the regulations automatically as fast as possible. When it has to wait it
-enters a low power sleep mode until the next transmission is possible again.
-The next data collection phase will be started only after completion of the previous upload
-phase in respect to the configured cmodeCron or smodeCron, whichever is earlier. Because
-of this it is advisable to define the cron parameters with an estimation of the upload duration
-in mind. This will avoid unexpected 'skipping' of data collection phases.
-If you find that the data rate LoRaWAN offers is a limitation for your setup, we could also
-provide you with a wireless M-Bus solution that uses alternate data transmission technologies,
-for example GSM/LTE or NarrowBand-IoT.
-Find our contact information under https://www.lobaro.com/contact/, or simple send us
-an email to info@lobaro.com - either English or German is fine.
-
-####Decoding wireless M-Bus
+####Decoding wMBUS raw data
 After receiving the raw wireless M-Bus telegrams from your LoRaWAN network provider
 the actual metering data has to be decrypted and decoded by a backend service for further
 processing. The details of this are described in the EN 13757 norm and the newer [**OMS**](https://oms-group.org/en/download4all/oms-specification/){: target="_blank"}
 specification, which is a clarification of the original underlying norm.
+
 A universal wireless M-Bus decoder is a relatively complicated piece of software if you start
 implementing it from scratch since the norm covers many different use cases, units, meter
 types and data formats. If you know in advance the exact telegram format of the deployed
@@ -447,23 +387,65 @@ meters in your setup a hard coded data decoding may be a feasible approach. This
 wireless M-Bus devices often send the same telegram format in every transmission. Please
 contact the manufacturer of your meters for the needed telegram format details.
 
-![Modbus LoRaWAN Bridge](files/decoder.png){: style="width:60%; display: block; margin: 0 auto;"}
-
 An an alternative to support a quick evaluation of our hardware Lobaro offers a easy to use
 webservice which is designed to decode all sorts of wMBUS input data including decryption
-if the correct key has been provided (see picture above). This REST API returns a JSON object including all encapsulated fields, e.g. the actual metering values. This greatly simplifies the
-bridge integration into your web based service or application.
-A 12 months period of free access to this API is included in our 'wmbus bridge testpacket'
-offer for quick device evaluation. API Integration into production systems is also possible,
-but in this case a separate agreement about a royalty fee must be achieved up front. For
-more information on licensing our wireless M-Bus parsing API plase send us your request via
-email to info@lobaro.com - either English or German is fine.
+if the correct key has been provided (see picture above). You can access the decoder service for free during testing but not in production.
+
+!!! check "Free online wMBUS decoder (for testing)"
+    [**Lobaro wMBUS online parsing service**](https://platform.lobaro.com/#/wmbus/parser){: target="_blank"}
+    
+####Upload Speed / Duration
+The bridge has to work in compliance with the European SRD 868 1% duty-cycle regulations.
+This implies as a rule of thumb the device can upload at most wMBUS telegrams via LoRaWAN for 36
+seconds every hour. 
+
+The actual transmit time ('ToA: time on air') for each LoRaWAN
+message depends on the byte size and the used LoRa spreading factor (SF) which defines how
+redundant LoRa data is send. This means a device with good connectivity and consequently
+using LoRa SF7 (ToA ≤ 0,050s) can upload much faster more data than a node using LoRa
+SF11 (ToA ≥ 1s) due to a hard to reach LoRaWAN gateway. The bridge will upload in
+conformity with the regulations automatically as fast as possible. When it has to wait it
+enters a low power sleep mode until the next transmission is possible again.
+The next data collection phase will be started only after completion of the previous upload
+phase in respect to the configured `listenCron` parameter. Because of this it is advisable to define the cron parameter with an 
+estimation of the upload duration in mind. This will avoid unexpected 'skipping' of data collection phases.    
+
+##Optional: Lobaro IoT Platform
+![Lobaro-IoT-Platform](files/platform-logo-medium-small-120px.jpg){: style="height:80px;display: block; margin: 0 auto;"}
+
+
+![Lobaro-IoT-Platform](files/nb-iot-oms-data-platform.jpg){: style="width:100%;display: block; margin: 0 auto;"}
+
+The bridge can also be integrated in the Lobaro IoT platform with the following benefits:
+ 
+ * wMBUS data reassembling from raw (partial) LoRaWAN uplinks
+ * Wireless MBUS data decryption
+ * Device management including remote configuration
+ * Std. Web APIs to connect external services
+    - REST
+    - MQTT
+    - HTTP Push
+    - CSV Exports 
+ * LoRaWAN data import from many common LoRaWAN network servers:
+    - TheThingsNetwork (TTN)
+    - ShirpStack
+    - Element-IoT
+    - Actility
+    - Loriot
+    - Firefly
+    - Everynet
+   
+
+!!! hint "Free 12 months test account"
+    Please [contact Lobaro](https://www.lobaro.com/contact/){: target="_blank"} if you are interested in a free 12 months test account for your 1st bridge.
+
+
 
 ## Technical characteristics
 |||
 |-|-|
 |**Product**||
-|Type name|wMBUS-LoRaWAN|
+|Type name|wMBUS-LoRaWAN-R2|
 |Description|wMBUS over LoRaWAN Bridge|
 |**RF transceiver**||
 |Chipset|Semtech SX1272|
@@ -479,40 +461,46 @@ email to info@lobaro.com - either English or German is fine.
 |Supported Modes (EN13757-4)|S1, C1, T1|
 |Frequencies|868.3 MHz, 868.95 MHz|
 |RF Range|≤ 30m|
-|Telegram memory|up to 500 telegrams (on request: 1.500)|
+|Telegram memory| 32KByte (up to 500 telegrams)|
 |**Power Supply**||
-|Nominal Supply Voltage|3V|
+|Nominal Supply Voltage|3.6V|
 |Supply Voltage Range|2.2V - 3.7V|
-|Power supply|2xAA battery, 1.5V (LR6/FR6) <br> 5V USB powered over Lobaro Adapter <br> On Request: 230V mains adapter, 3.6V Battery|
-|**Current consumption @3V**||
+|Power supply| 3.6V ER34615 3.6V battery|
+|**Current consumption @3.6V**||
 |Normal|≤3 mA|
 |Wireless M-BUS RX|≤14 mA|
 |LoRa RX|≤14 mA|
 |LoRa TX|≤80 mA|
-|Sleep with RTC running|≤20 µA|
+|Sleep with RTC running|≤15 µA|
 |**Mechanical dimensions**||
-|Size|114.3 mm x 59.3 mm x 26.8 mm|
-|Housing Material|ABS plastic|
+|Size|122 mm x 82 mm x 55 mm|
+|Housing Material|Industrial polycarbonate|
+|Rating|IP67|
 |**Environmental Requirements**||
 |Operating temperature range|-20°C to +55°C|
 |Max. Installation height|2m|
 |**Conformity**||
 |<img title="CE" alt="CE logo" src="/img/symbol-ce.svg" height="60"> <img title="weee" title="weee logo" src="/img/symbol-weee.svg" height="60">||
 
-###Housing Dimensions
+Specifications of hardware revisions v1.x can be found in the [previous documentation](1.x/index.md).
+###Housing Specification & Accessories
+The Lobaro wireless Mbus bridge uses the [TG PC 1208-6-o](https://www.spelsberg.com/industrial-housing/plain-with-mounting-cams/20040401/){: target="_blank"}
+feature rich IP67 housing from Spelsberg. For this housing the following accessories are available on request:
 
-![Modbus LoRaWAN Bridge](files/housing.png){: style="width:80%; display: block; margin: 0 auto;"}
+![Spelsberg Accessories](files/spelsberg-zubehoer.jpg){: style="height:150px;display: block; margin: 0 auto;"}
 
+*[Sealing kit (TG PST1)](https://www.spelsberg.com/accessories/spelsberg-general-accessories/18200401/){: target="_blank"}:*
 
-## Target Measurement / Purpose
-Forwarding of wireless M-BUS messages via LoRaWAN.
+May be used to seal the box to complicate unauthorized access to the device. 
 
-**Features**
+*[External fixing lugs (TG ABL)](https://www.spelsberg.com/accessories/spelsberg-general-accessories/18200201/){: target="_blank"}:*
 
-* wMBUS C1/T1 and S1 modes
-* 868 MHz only (433 MHz on request)
+Allow the mounting without opening the (sealed) cover. 
 
-## Parser
+## CE Declaration of Conformity 
+* [CE Declaration of Conformity](files/ce-wmbus-lorawan.pdf){: target="_blank"}
+
+## Example Parser
 ### TTN
 
 ```javascript
@@ -556,13 +544,10 @@ function Decoder(bytes, port) {
 
 
 ```
-[^ 1]: Energy Meter, Water Meter and House Icons made by Freepik from www.flaticon.com is licensed by CC 3.0 BY
-Heater Icon made by Nikita Golubev from www.flaticon.com is licensed by CC 3.0 BY
-Map Icon Icons made by Darius Dan from www.flaticon.com is licensed by CC 3.0 BY
-LoRaWAN Logo © LoRa Alliance, NB-IoT Logo © GSM Association, wM-Bus Logo © www.m-bus.com
 
-## CE Declaration of Conformity / PDF Manual
 
-* [PDF Manual (en) up to firmware V1.6.0](files/lorawan-wmbus-bridge_en.pdf){: target="_blank"}
-* [Product Flyer](files/W-MBus Lora Bridge Flyer.pdf){: target="_blank"}
-* [CE Declaration of Conformity](files/ce-wmbus-lorawan.pdf){: target="_blank"}
+[^ 1]: LoRaWAN Logo © LoRa Alliance, NB-IoT Logo © GSM Association, wM-Bus Logo © www.m-bus.com
+
+
+
+
