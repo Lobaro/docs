@@ -4,7 +4,7 @@
 
 **Downloads:** 
 
-WARNING when upgrading from Versions <0.4.1 to 0.4.1 or higher: 
+WARNING: when upgrading from Versions <0.4.1 to 0.4.1 or higher: 
 Due to changes in the generation of the LoRaWAN parameters the default values for `JoinEUI` and `AppKey` will change if you 
 use the `Restore Default` function in the `Lobaro Maintenance Tool` in order to reset the configuration.
 
