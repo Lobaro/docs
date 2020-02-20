@@ -1837,7 +1837,8 @@ the parameter.</dd>
 <dd>Append <code>&lt;value&gt;</code> to the config parameter <code>&lt;name&gt;</code>. This command appends the value given to the 
 current value of the parameter. This is intended to allow setting values that are too long 
 for a single Downlink message.
-As a confirmation it sends the length of the config parameter's value after the appending.</dd>
+As a confirmation it sends the length of the config parameter's value after the appending. Append works for
+config paramters of type <code>string</code>.</dd>
 <dt><code>b</code></dt>
 <dd>Reboot device without saving. This command restarts the device. Any changes too the config 
 that have been committed before will be lost!
