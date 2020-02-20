@@ -32,10 +32,15 @@
 
 ## Firmware
 
-* [app-keller-pressure-0.2.0.hex](firmware/app-keller-pressure-0.2.0.hex) [current release]
+* [app-keller-pressure-TZ0-0.3.0.hex](firmware/app-keller-pressure-TZ0-0.3.0.hex) [current release]
+* [app-keller-pressure-0.2.0.hex](firmware/app-keller-pressure-0.2.0.hex)
 * [app-keller-pressure-0.0.3.hex](firmware/app-keller-pressure-0.0.3.hex)
 
 ## Changelog
+
+### v0.3.0 (20.02.2020)
+- Changed to use new Lobaro LoRaWAN stack with remote config.
+- WARNING: default value for AppKey/JoinEUI changed!
 
 ### v0.2.0 (22.07.2019)
 - Added Battery Voltage to payload
