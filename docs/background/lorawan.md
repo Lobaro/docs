@@ -441,7 +441,8 @@ failed attempts it will restore the previous configuration. This can take up to 
 :   Append `<value>` to the config parameter `<name>`. This command appends the value given to the 
     current value of the parameter. This is intended to allow setting values that are too long 
     for a single Downlink message.
-    As a confirmation it sends the length of the config parameter's value after the appending.
+    As a confirmation it sends the length of the config parameter's value after the appending. Append works for
+    config paramters of type `string`.
     
 `b`
 :   Reboot device without saving. This command restarts the device. Any changes too the config 
