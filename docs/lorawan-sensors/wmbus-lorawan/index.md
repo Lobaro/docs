@@ -396,7 +396,9 @@ if the correct key has been provided. You can access the decoder service for fre
 The API can be licensed for production usages.
 
 !!! check "Free online wMBUS decoder (for testing)"
-    [**Free online wMBUS parsing test service & API**](https://platform.lobaro.com/#/wmbus/parser){: target="_blank"}
+
+    * [**Lobaro wMBUS Online Parser**](https://platform.lobaro.com/#/wmbus/parser){: target="_blank"}
+    * [**Lobaro wMBUS REST API**](https://platform.lobaro.com/#/wmbus/api){: target="_blank"}
     
 ####Upload Speed / Duration
 The bridge has to work in compliance with the European SRD 868 1% duty-cycle regulations.
