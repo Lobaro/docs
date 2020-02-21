@@ -2,6 +2,11 @@
 `Order number: 8000089` <br>
 ![LoRaWAN Pressure Sensor](files/Pegelsonde1.png){: style="height:500px;display: block; margin: 0 auto;"}
 
+!!! info "Multiple different Variants"
+    There are different kinds of Pressure Probes that use very different kinds of communication. 
+    As a consequence there exist different Variants of our Hardware for using Pressure Probes.
+    Please take care that you only install the correct Variant of firmware on your device.
+
 !!! info "Consider using the latest firmware on your hardware"
     * [**See available firmware downloads**](firmware.md){: target="_blank"}
 
@@ -23,6 +28,16 @@ Beside this the configuration can also be changed or read remotely in the field
 using LoRaWAN **downlink messages**, see [Downlinks](#downlink) description.
 
 ### LoRaWAN
+
+!!! info "Advanced Lobaro LoRaWAN Stack"
+    The Hardware Variant *Keller Sensor* uses our advanced LoRaWAN Stack and supports Remote 
+    Configuration and LoRaWAN V1.1, starting with firmware v0.3.0. Refer to 
+    [Lobaro LoRaWAN stack](/background/lorawan.html#lobaro-lorawan-stack) for a description of 
+    those new features.
+    
+    Older Versions and the Variant *Lobaro Sensor* only support the features described here.
+   
+
 The connection to the LoRaWAN network is defined by multiple configuration parameters.
 This need to be set according to your LoRaWAN network and the way your device is 
 supposed to be attached to it, or the device will not be able to send any data.
