@@ -1,6 +1,12 @@
-# Pressure Sensor LoRaWAN [Lobaro Sensor]
+# Pressure Sensor LoRaWAN 
+There exist different Variants of our Hardware with Pressure Probes, because there exist very 
+different Pressure Probes for different situations. Please make sure to install the correct 
+firmware for your Hardware. You can see which firmware your device is running, by checking the 
+log with our config adapter, while the device is booting.
 
-## Firmware
+## Pressure Sensor [Lobaro Sensor]
+
+### Firmware
 
 **Downloads**:
 
@@ -15,42 +21,42 @@
      
     Make sure to select the **"Firmware Updates"** checkbox!   
 
-## Changelog
+### Changelog
 
-### [0.1.0] (22.10.2019) [current release]
+#### [0.1.0] (22.10.2019) [current release]
 
 **Added**
 
  - configuration parameters for sensor limits
 
-### [0.0.3] (30.09.2019)
+#### [0.0.3] (30.09.2019)
 
 - initial release
 
 ----
-#Pressure Sensor LoRaWAN [Keller Sensor]
+## Pressure Sensor LoRaWAN [Keller Sensor]
 
-## Firmware
+### Firmware
 
 * [app-keller-pressure-TZ0-0.3.0.hex](firmware/app-keller-pressure-TZ0-0.3.0.hex) [current release]
 * [app-keller-pressure-0.2.0.hex](firmware/app-keller-pressure-0.2.0.hex)
 * [app-keller-pressure-0.0.3.hex](firmware/app-keller-pressure-0.0.3.hex)
 
-## Changelog
+### Changelog
 
-### v0.3.0 (20.02.2020)
+#### v0.3.0 (20.02.2020)
 - Changed to use new Lobaro LoRaWAN stack with remote config.
 - WARNING: default value for AppKey/JoinEUI changed!
 
-### v0.2.0 (22.07.2019)
+#### v0.2.0 (22.07.2019)
 - Added Battery Voltage to payload
 
-### v0.0.3 (14.02.2019)
+#### v0.0.3 (14.02.2019)
 - Reduce I2C speed from 10kHz to 1kHz for 10m cable
 
-### v0.0.2
+#### v0.0.2
 - Update LoRaWAN Stack
 - Reduce I2C speed from 100kHz to 10kHz
 
-### v0.0.1 
+#### v0.0.1 
 - inital version
