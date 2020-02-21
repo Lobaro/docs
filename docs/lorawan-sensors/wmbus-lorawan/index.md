@@ -377,7 +377,23 @@ Examples (with loraMaxMsgSize = 50):
 + A 75 byte wMBUS telegram will be send in two messages on LoRaWAN ports 12 and 22. Port 12 means this part one of a wMBUS telegram that got splitted into two LoRaWAN messages. Port 22 means that this data is the 2nd part of the original wMBUS data. Both parts have to been concatenated in the order of receive by the backend.
 + A 101 byte wMBUS telegram will be send in three messages on LoRaWAN ports 13, 23 and 33. Port 13 means this part one of a wMBUS telegram that got splitted into three LoRaWAN messages. Port 23 means that this data is the 2nd part of the original wMBUS data. Port 33 means that this data is the 3rd part of the original wMBUS data. All three parts have to been concatenated in the order of receive by the backend.
 
-####Decoding wMBUS raw data
+###Upload Speed / Duration
+The bridge has to work in compliance with the European SRD 868 1% duty-cycle regulations.
+This implies as a rule of thumb the device can upload at most wMBUS telegrams via LoRaWAN for 36
+seconds every hour. 
+
+The actual transmit time ('ToA: time on air') for each LoRaWAN
+message depends on the byte size and the used LoRa spreading factor (SF) which defines how
+redundant LoRa data is send. This means a device with good connectivity and consequently
+using LoRa SF7 (ToA ≤ 0,050s) can upload much faster more data than a node using LoRa
+SF11 (ToA ≥ 1s) due to a hard to reach LoRaWAN gateway. The bridge will upload in
+conformity with the regulations automatically as fast as possible. When it has to wait it
+enters a low power sleep mode until the next transmission is possible again.
+The next data collection phase will be started only after completion of the previous upload
+phase in respect to the configured `listenCron` parameter. Because of this it is advisable to define the cron parameter with an 
+estimation of the upload duration in mind. This will avoid unexpected 'skipping' of data collection phases.    
+
+##Decoding wMBUS telegrams
 After receiving the raw wireless M-Bus telegrams from your LoRaWAN network provider
 the actual metering data has to be decrypted and decoded by a backend service for further
 processing. The details of this are described in the EN 13757 norm and the newer [**OMS**](https://oms-group.org/en/download4all/oms-specification/){: target="_blank"}
@@ -399,22 +415,12 @@ The API can be licensed for production usages.
 
     * [**Lobaro wMBUS Online Parser**](https://platform.lobaro.com/#/wmbus/parser){: target="_blank"}
     * [**Lobaro wMBUS REST API**](https://platform.lobaro.com/#/wmbus/api){: target="_blank"}
-    
-####Upload Speed / Duration
-The bridge has to work in compliance with the European SRD 868 1% duty-cycle regulations.
-This implies as a rule of thumb the device can upload at most wMBUS telegrams via LoRaWAN for 36
-seconds every hour. 
 
-The actual transmit time ('ToA: time on air') for each LoRaWAN
-message depends on the byte size and the used LoRa spreading factor (SF) which defines how
-redundant LoRa data is send. This means a device with good connectivity and consequently
-using LoRa SF7 (ToA ≤ 0,050s) can upload much faster more data than a node using LoRa
-SF11 (ToA ≥ 1s) due to a hard to reach LoRaWAN gateway. The bridge will upload in
-conformity with the regulations automatically as fast as possible. When it has to wait it
-enters a low power sleep mode until the next transmission is possible again.
-The next data collection phase will be started only after completion of the previous upload
-phase in respect to the configured `listenCron` parameter. Because of this it is advisable to define the cron parameter with an 
-estimation of the upload duration in mind. This will avoid unexpected 'skipping' of data collection phases.    
+!!! bug "Your meter fails to parse correctly?"
+    Since wireless MBUS is a complex and grown specification some meters may fail to decode correctly. 
+    We try to fix any decoding issues as quickly as possible if you [report us](https://www.lobaro.com/contact/){: target="_blank"} 
+    problems with your specific wMBUS device.
+   
 
 ##Optional: Lobaro IoT Platform
 ![Lobaro-IoT-Platform](files/platform-logo-medium-small-120px.jpg){: style="height:80px;display: block; margin: 0 auto;"}
