@@ -56,6 +56,7 @@ You can find details about LoRaWAN in our [background article](../../background/
 | SHARKY 775 | Heat             | Diehl Metering         | [External Link](https://www.diehl.com/metering/en/portfolio/thermal-energy-metering/){: target="_blank"}  |
 | MULTICAL® 603 | Heat          | kampstrup       | [External Link](https://www.kamstrup.com/en-en/heat-solutions/heat-meters/multical-603){: target="_blank"}  |
 | QALCOSONIC E1 | Heat          | Axioma Metering | [External Link](https://axiomametering.com/en/products/heat-metering-devices/ultrasonic/qalcosonic-e1-ultrasonic-heat-and-cooling-meter){: target="_blank"}  |
+| Sonometer 30 | Heat & Cooling| Danfoss | [External Link](https://www.danfoss.com/en/products/energy-metering/dhs/energy-metering/sonometer-30/#tab-overview){: target="_blank"}  |
 | iPERL® | Water             | Sensus        | [External Link](https://sensus.com/products/iperl-international/){: target="_blank"}  |
 | Hydrus | Water              | Diehl Metering         | [External Link](https://www.diehl.com/metering/us/en/hydrus/){: target="_blank"}  |
 | Q water 5.5 | Water         | Qundis       | [External Link](https://qundis.com/products/water-meters/){: target="_blank"}  |
