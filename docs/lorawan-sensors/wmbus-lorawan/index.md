@@ -392,10 +392,11 @@ contact the manufacturer of your meters for the needed telegram format details.
 
 An an alternative to support a quick evaluation of our hardware Lobaro offers a easy to use
 webservice which is designed to decode all sorts of wMBUS input data including decryption
-if the correct key has been provided (see picture above). You can access the decoder service for free during testing but not in production.
+if the correct key has been provided. You can access the decoder service for free during testing. 
+The API can be licensed for production usages.
 
 !!! check "Free online wMBUS decoder (for testing)"
-    [**Lobaro wMBUS online parsing service**](https://platform.lobaro.com/#/wmbus/parser){: target="_blank"}
+    [**Free online wMBUS parsing test service & API**](https://platform.lobaro.com/#/wmbus/parser){: target="_blank"}
     
 ####Upload Speed / Duration
 The bridge has to work in compliance with the European SRD 868 1% duty-cycle regulations.
