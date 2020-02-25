@@ -293,8 +293,8 @@ in our LoRaWAN background article.
 
 | name             | description            | values |
 |------------------|------------------------|--------|
-|`payloadFormat`   | wMBUS Bridge LoRaWAN Payload Format| `0`= Encoding in ports, `1`= prefixed (new) |
-|`loraMaxMsgSize`  | Max. LoRa msg size before split| `10`-`50` (bytes) |
+|`payloadFormat`   | wMBUS Bridge LoRaWAN Payload Format| `0`= Encoding in ports, `1`= prefixed with time, `2`= prefixed with time and rssi |
+|`loraMaxMsgSize`  | Max. LoRa msg size before split (Payload Format `0` only) | `10`-`50` (bytes) |
 |`listenCron `     | Cron expression<sup>&dagger;</sup> defining when to rx wMBUS| `0 0/15 * * * *`(every 15 minutes)|
 |`cmodeDurSec`     | Duration (Seconds) of C1/T1-mode receive| `0`= Do not collect C1/T1 mode |
 |`smodeDurSec`     | Duration (Seconds) of S1-mode receive| `0`= Do not collect S1 mode |
@@ -326,6 +326,15 @@ As LoRaWAN can only transmit very short messages, the message formats contain on
 bytes. The meaning of a byte is determined by its position within a message. The following
 describes the package formats used by the wireless M-Bus Bridge.
 
+M-Bus telegrams can be longer as the maximal size of a LoRaWAN-Message. For this cases, the Bridge needs 
+to split a telegram into multiple pieces and upload it using multiple LoRaWAN-Messages. There are two 
+different methods this is done, according by the Payload Format you set in the Bridge's configuration.
+
+Payload Format `0` is focused on easy reassembly of the pieces. The parts are encoded by port numbers and the 
+data can just be concatenated together. Payload Formats `1` and `2` add additional information to the telegram.
+They focus on putting as much of a telegram in a single LoRaWAN-Message as possible with respecting the 
+current Spreading Factor.
+
 ###Status Packet
 
 Port 1 - In order to provide some information about the health & connectivity state of the
@@ -347,7 +356,7 @@ bit integer using little endian encoding.
 We provide a JavaScript reference implementation of a decoder for this status packet on
 [**GitHub**](https://github.com/lobaro/ttn-data-formats/blob/master/wmbus-bridge/decoder.js){: target="_blank"}, which can be used directly for decoding in [**The Things Network**](https://www.thethingsnetwork.org/){: target="_blank"}.
 
-###Data Packet
+###Data Packet (Format 0)
 
 After each wMBUS collecting phase, all saved telegrams (up to 500 can be stored) will be
 uploaded via LoRaWAN uplink messages as fast as possible. The received wMBUS telegrams
@@ -371,11 +380,130 @@ the wMBUS telegram can't be assembled anymore as described before.
 
 ####Examples
 
-Examples (with loraMaxMsgSize = 50):
+Examples (with `loraMaxMsgSize` = 50):
 
 + A 48 Byte wMBUS telegram will be send on LoRaWAN port 11. Port 11 says it is the first message of only one message (no splitting).
 + A 75 byte wMBUS telegram will be send in two messages on LoRaWAN ports 12 and 22. Port 12 means this part one of a wMBUS telegram that got splitted into two LoRaWAN messages. Port 22 means that this data is the 2nd part of the original wMBUS data. Both parts have to been concatenated in the order of receive by the backend.
 + A 101 byte wMBUS telegram will be send in three messages on LoRaWAN ports 13, 23 and 33. Port 13 means this part one of a wMBUS telegram that got splitted into three LoRaWAN messages. Port 23 means that this data is the 2nd part of the original wMBUS data. Port 33 means that this data is the 3rd part of the original wMBUS data. All three parts have to been concatenated in the order of receive by the backend.
+
+### Data Packet (Format 1)
+When using Payload Format 1, collected telegrams are uploaded on a single Port: 101. For each telegram there 
+will be added the timestamp of reception. The first byte of messages on Port 101 encodes splitting of messages 
+as follows.
+
+#### Splitting
+Every Uplink on Port 101 is prefixed with a single byte, where the least significant Bit indicates if that 
+Uplink is the first part of a message, and the second least significant Bit indicates if that Uplink is the 
+last part or a message. So there are 4 different possible values for the first Byte of an Uplink on Port 101:
+
+| Value  | Meaning |
+|--------|---------|
+| `0x03` | This Uplink is both first and final part of a message. So the remaining Bytes in this Uplink contain the whole message. |
+| `0x02` | This Uplink is the last but not the first part of a message. There has been at least one Uplink before this one, that contained data that needs to be prepended to the current Uplink in order to get the full Message | |
+| `0x01` | This Uplink is the first but not the last part of a message. There follows at least one Uplink that contains more data to be appended to the current's data in order to get the full message.  |
+| `0x00` | This Uplink is neither first nor last part of a message. There has been at least one Uplink before this one that contains more data of the current Message, and there follows at least one more Uplink with data for this Message. |
+
+So each message sent on Port 101, whether it is contained in a single Uplink or spread over multiple ones, starts 
+with an Uplink where the least significant Bit of the first Byte is set. Each Message ends with an Uplink where 
+the second least significant Bit of the first Byte is set. In cases where the Message fits in a single Uplink, 
+that Uplink is both first and last Uplink, and therefore both Bits are set.
+
+The combination of those two Bits and the Frame Counter of the Uplinks makes it possible to upload Messages of 
+any length while allowing the receiving side to now exactly, if a Message has been transferred completely, or 
+if part of it is missing (when there are Frame Counter values missing).
+
+The Bridge puts as many Bytes in each Uplink as possible for the current Spreading Factor, even if the 
+Spreading Factor changes between Uplinks because of ADR.
+
+When the data of all Uplinks that are part of a single Message are appended in order of reception (after 
+removing the first Byte of each Uplink), you get the payload Data of a full message.
+
+#### Payload (Format 1)
+The Payload Data after reassembly of the split parts consists of a 5 Byte Timestamp, that marks the 
+point in time the Bridge did receive that telegram, followed by the Data of the Telegram. The Timestamp 
+follows the convention of all our 40bit-Timestamps; you can find the details under 
+[Timestamp in our LoRaWAN Background Information](/background/lorawan.html#timestamp).
+
+#### Examples
+For easier understanding, the wMBus-Telegram in the examples will always be `0102030405060708090a0b0c0d0e0f`.
+
+**A message sent in a single Uplink**
+```
+# An Uplink of 21 Bytes on Port 101:
+'03005e53f31a0102030405060708090a0b0c0d0e0f'
+# Analised:
+'03' -> First and Last Uplink of Message -> complete Message in this Uplink
+'005e53f31a' -> Unix Timestamp 1582560026 -> 2020-02-24T16:00:26 UTC
+'0102030405060708090a0b0c0d0e0f' -> wMBus Telegram
+```
+
+**A message split over two Uplinks**
+```
+# An Uplink of 11 Bytes on Port 101, Frame Counter 341:
+'01005e53f31a0102030405'
+'01' -> First Uplink of Message, more Uplinks follow
+'05e53f31a0102030405' -> First Part of Message Data.
+# Another Uplink of 11 Bytes on Port 101, Frame Counter 342:
+'02060708090a0b0c0d0e0f'
+'02' -> Last (but not first) Uplink of Message.
+'060708090a0b0c0d0e0f' -> Second and final Part of Message Data.
+# We Received a 'first' Part with Frame Counter 341 and a 'last' 
+# Part with Frame Counter 342, so we know we did not miss any 
+# Parts in between. We can now assembly the complete payload:
+'05e53f31a0102030405060708090a0b0c0d0e0f'
+# Payload anaylsed:
+'005e53f31a' -> Unix Timestamp 1582560026 -> 2020-02-24T16:00:26 UTC
+'0102030405060708090a0b0c0d0e0f' -> wMBus Telegram
+```
+
+**A message split over three Uplinks**
+```
+# An Uplink of 8 Bytes on Port 101, Frame Counter 519:
+'01005e53f31a0102'
+'01' -> First Uplink of Message, more Uplinks follow
+'05e53f31a0102' -> First Part of Message Data.
+# Another Uplink of 8 Bytes on Port 101, Frame Counter 520:
+'0003040506070809'
+'00' -> Middle Part of Message, there have been some Parts already, more Uplinks follow
+'03040506070809' -> Second Part of Message Data.
+# Another Uplink of 7 Bytes on Port 101, Frame Counter 521:
+'020a0b0c0d0e0f'
+'02' -> Last (but not first) Uplink of Message.
+'0a0b0c0d0e0f' -> Third and final Part of Message Data.
+# Frame Counters are consecuetive, so the complete Message is:
+'05e53f31a0102030405060708090a0b0c0d0e0f'
+```
+
+**Missing a Part**
+```
+# An Uplink of 8 Bytes on Port 101, Frame Counter 123:
+'01005e53f31a0102'
+'01' -> First Uplink of Message, more Uplinks follow
+'05e53f31a0102' -> First Part of Message Data.
+# Another Uplink of 7 Bytes on Port 101, Frame Counter 125:
+'020a0b0c0d0e0f'
+'02' -> Last (but not first) Uplink of Message.
+'0a0b0c0d0e0f' -> Third and final Part of Message Data.
+# Frame Counter indicates, that a Part in the middle is missing, 
+# so we have to drop the Message.
+```
+
+### Data Packet (Format 2)
+Upload Format 2 works like Upload Format 1, with the same logic for splitting messages, but uploads are 
+sent on Port 102. The Payload consists of a 5 Byte Timestamp marking the time of reception, followed by a 
+`uint_8` that holds the (negated) RSSI value for that reception, followed by the Data of the Telegram.
+
+#### Examples
+
+```
+# An Uplink of 22 Bytes on Port 102:
+'03005e53f31a3f0102030405060708090a0b0c0d0e0f'
+# Analised:
+'03' -> First and Last Uplink of Message -> complete Message in this Uplink
+'005e53f31a' -> Unix Timestamp 1582560026 -> 2020-02-24T16:00:26 UTC
+'3f' -> 63 -> RSSI of wMBus reception = -63
+'0102030405060708090a0b0c0d0e0f' -> wMBus Telegram
+```
 
 ###Upload Speed / Duration
 The bridge has to work in compliance with the European SRD 868 1% duty-cycle regulations.

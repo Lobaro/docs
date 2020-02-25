@@ -1,6 +1,6 @@
 # Wireless mBUS over LoRaWAN Bridge
 
-The latest firmware version is **v2.3.10** *(since 2020-02-24)*
+The latest firmware version is **v2.4.0** *(since 2020-02-25)*
 
 !!! faq "Which firmware version am I using right now?"
     You can see the firmware version of your device by inspecting the USB log output in our PC maintenance tool. Or use the information
@@ -24,7 +24,7 @@ The latest firmware version is **v2.3.10** *(since 2020-02-24)*
 
 Download: 
 
-* [app-wMbusLoraBridge-2.3.10+hw2.hex](firmware/app-wMbusLoraBridge-2.3.10+hw2.hex) (hardware v2.x) [current release]
+* [app-wMbusLoraBridge-2.4.0+hw2.hex](firmware/app-wMbusLoraBridge-2.4.0+hw2.hex) (hardware v2.x) [current release]
 
 
 ### Hardware Revision 1.x (active since 2017)
@@ -33,7 +33,7 @@ Download:
 
 Download:
 
-* [app-wMbusLoraBridge-2.3.10+hw1.hex](firmware/app-wMbusLoraBridge-2.3.10+hw1.hex) (hardware v1.x) [current release]
+* [app-wMbusLoraBridge-2.4.0+hw1.hex](firmware/app-wMbusLoraBridge-2.4.0+hw1.hex) (hardware v1.x) [current release]
 
 !!! info "Please note revisions 1.x are no longer the default variant since 02/2020"
     The v1 hardware revisions are still active but only on special sales inquiry! 
@@ -52,7 +52,10 @@ Download:
     
 ## Release changelog
 
-### v2.3.10 (24.02.2020)
+### v2.4.0 (25.02.2020)
+- Add new Payload Format 2, that includes RSSI of received wMBus telegrams.
+
+### v2.3.10 (21.02.2020)
 - Change naming of firmware-files to match naming of hardware variants (hw1/hw2).
 - Minor fixes of some edge cases in underlying library on very high values.
 - Add version number of Lobaro LoRaWAN-Stack to log.
