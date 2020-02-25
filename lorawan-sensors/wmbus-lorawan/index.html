@@ -531,8 +531,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#data-packet" class="md-nav__link">
-    Data Packet
+  <a href="#data-packet-format-0" class="md-nav__link">
+    Data Packet (Format 0)
   </a>
   
     <nav class="md-nav">
@@ -540,6 +540,60 @@
         
           <li class="md-nav__item">
   <a href="#examples" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-packet-format-1" class="md-nav__link">
+    Data Packet (Format 1)
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#splitting" class="md-nav__link">
+    Splitting
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#payload-format-1" class="md-nav__link">
+    Payload (Format 1)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples_1" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-packet-format-2" class="md-nav__link">
+    Data Packet (Format 2)
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples_2" class="md-nav__link">
     Examples
   </a>
   
@@ -1512,8 +1566,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#data-packet" class="md-nav__link">
-    Data Packet
+  <a href="#data-packet-format-0" class="md-nav__link">
+    Data Packet (Format 0)
   </a>
   
     <nav class="md-nav">
@@ -1521,6 +1575,60 @@
         
           <li class="md-nav__item">
   <a href="#examples" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-packet-format-1" class="md-nav__link">
+    Data Packet (Format 1)
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#splitting" class="md-nav__link">
+    Splitting
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#payload-format-1" class="md-nav__link">
+    Payload (Format 1)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples_1" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-packet-format-2" class="md-nav__link">
+    Data Packet (Format 2)
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples_2" class="md-nav__link">
     Examples
   </a>
   
@@ -2061,11 +2169,11 @@ in our LoRaWAN background article.</p>
 <tr>
 <td><code>payloadFormat</code></td>
 <td>wMBUS Bridge LoRaWAN Payload Format</td>
-<td><code>0</code>= Encoding in ports, <code>1</code>= prefixed (new)</td>
+<td><code>0</code>= Encoding in ports, <code>1</code>= prefixed with time, <code>2</code>= prefixed with time and rssi</td>
 </tr>
 <tr>
 <td><code>loraMaxMsgSize</code></td>
-<td>Max. LoRa msg size before split</td>
+<td>Max. LoRa msg size before split (Payload Format <code>0</code> only)</td>
 <td><code>10</code>-<code>50</code> (bytes)</td>
 </tr>
 <tr>
@@ -2130,6 +2238,13 @@ ports.
 As LoRaWAN can only transmit very short messages, the message formats contain only data
 bytes. The meaning of a byte is determined by its position within a message. The following
 describes the package formats used by the wireless M-Bus Bridge.</p>
+<p>M-Bus telegrams can be longer as the maximal size of a LoRaWAN-Message. For this cases, the Bridge needs 
+to split a telegram into multiple pieces and upload it using multiple LoRaWAN-Messages. There are two 
+different methods this is done, according by the Payload Format you set in the Bridge's configuration.</p>
+<p>Payload Format <code>0</code> is focused on easy reassembly of the pieces. The parts are encoded by port numbers and the 
+data can just be concatenated together. Payload Formats <code>1</code> and <code>2</code> add additional information to the telegram.
+They focus on putting as much of a telegram in a single LoRaWAN-Message as possible with respecting the 
+current Spreading Factor.</p>
 <h3 id="status-packet">Status Packet</h3>
 <p>Port 1 - In order to provide some information about the health &amp; connectivity state of the
 device itself, the device sends a status update at a daily basis. The status packet is sent
@@ -2177,7 +2292,7 @@ bit integer using little endian encoding.</p>
 </div>
 <p>We provide a JavaScript reference implementation of a decoder for this status packet on
 <a href="https://github.com/lobaro/ttn-data-formats/blob/master/wmbus-bridge/decoder.js" target="_blank"><strong>GitHub</strong></a>, which can be used directly for decoding in <a href="https://www.thethingsnetwork.org/" target="_blank"><strong>The Things Network</strong></a>.</p>
-<h3 id="data-packet">Data Packet</h3>
+<h3 id="data-packet-format-0">Data Packet (Format 0)</h3>
 <p>After each wMBUS collecting phase, all saved telegrams (up to 500 can be stored) will be
 uploaded via LoRaWAN uplink messages as fast as possible. The received wMBUS telegrams
 that did pass the configured white list filters will be uploaded without any modification in one
@@ -2198,12 +2313,131 @@ happen in LoRaWAN since it's a ALOHA based protocol, e.g. collisions and some pa
 losses are accepted by principle of operation. In case the backend noticed a missing packet
 the wMBUS telegram can't be assembled anymore as described before.</p>
 <h4 id="examples">Examples</h4>
-<p>Examples (with loraMaxMsgSize = 50):</p>
+<p>Examples (with <code>loraMaxMsgSize</code> = 50):</p>
 <ul>
 <li>A 48 Byte wMBUS telegram will be send on LoRaWAN port 11. Port 11 says it is the first message of only one message (no splitting).</li>
 <li>A 75 byte wMBUS telegram will be send in two messages on LoRaWAN ports 12 and 22. Port 12 means this part one of a wMBUS telegram that got splitted into two LoRaWAN messages. Port 22 means that this data is the 2<sup>nd</sup> part of the original wMBUS data. Both parts have to been concatenated in the order of receive by the backend.</li>
 <li>A 101 byte wMBUS telegram will be send in three messages on LoRaWAN ports 13, 23 and 33. Port 13 means this part one of a wMBUS telegram that got splitted into three LoRaWAN messages. Port 23 means that this data is the 2<sup>nd</sup> part of the original wMBUS data. Port 33 means that this data is the 3<sup>rd</sup> part of the original wMBUS data. All three parts have to been concatenated in the order of receive by the backend.</li>
 </ul>
+<h3 id="data-packet-format-1">Data Packet (Format 1)</h3>
+<p>When using Payload Format 1, collected telegrams are uploaded on a single Port: 101. For each telegram there 
+will be added the timestamp of reception. The first byte of messages on Port 101 encodes splitting of messages 
+as follows.</p>
+<h4 id="splitting">Splitting</h4>
+<p>Every Uplink on Port 101 is prefixed with a single byte, where the least significant Bit indicates if that 
+Uplink is the first part of a message, and the second least significant Bit indicates if that Uplink is the 
+last part or a message. So there are 4 different possible values for the first Byte of an Uplink on Port 101:</p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0x03</code></td>
+<td>This Uplink is both first and final part of a message. So the remaining Bytes in this Uplink contain the whole message.</td>
+</tr>
+<tr>
+<td><code>0x02</code></td>
+<td>This Uplink is the last but not the first part of a message. There has been at least one Uplink before this one, that contained data that needs to be prepended to the current Uplink in order to get the full Message</td>
+</tr>
+<tr>
+<td><code>0x01</code></td>
+<td>This Uplink is the first but not the last part of a message. There follows at least one Uplink that contains more data to be appended to the current's data in order to get the full message.</td>
+</tr>
+<tr>
+<td><code>0x00</code></td>
+<td>This Uplink is neither first nor last part of a message. There has been at least one Uplink before this one that contains more data of the current Message, and there follows at least one more Uplink with data for this Message.</td>
+</tr>
+</tbody>
+</table>
+<p>So each message sent on Port 101, whether it is contained in a single Uplink or spread over multiple ones, starts 
+with an Uplink where the least significant Bit of the first Byte is set. Each Message ends with an Uplink where 
+the second least significant Bit of the first Byte is set. In cases where the Message fits in a single Uplink, 
+that Uplink is both first and last Uplink, and therefore both Bits are set.</p>
+<p>The combination of those two Bits and the Frame Counter of the Uplinks makes it possible to upload Messages of 
+any length while allowing the receiving side to now exactly, if a Message has been transferred completely, or 
+if part of it is missing (when there are Frame Counter values missing).</p>
+<p>The Bridge puts as many Bytes in each Uplink as possible for the current Spreading Factor, even if the 
+Spreading Factor changes between Uplinks because of ADR.</p>
+<p>When the data of all Uplinks that are part of a single Message are appended in order of reception (after 
+removing the first Byte of each Uplink), you get the payload Data of a full message.</p>
+<h4 id="payload-format-1">Payload (Format 1)</h4>
+<p>The Payload Data after reassembly of the split parts consists of a 5 Byte Timestamp, that marks the 
+point in time the Bridge did receive that telegram, followed by the Data of the Telegram. The Timestamp 
+follows the convention of all our 40bit-Timestamps; you can find the details under 
+<a href="/background/lorawan.html#timestamp">Timestamp in our LoRaWAN Background Information</a>.</p>
+<h4 id="examples_1">Examples</h4>
+<p>For easier understanding, the wMBus-Telegram in the examples will always be <code>0102030405060708090a0b0c0d0e0f</code>.</p>
+<p><strong>A message sent in a single Uplink</strong>
+<div class="codehilite"><pre><span></span><code><span class="err"># An Uplink of 21 Bytes on Port 101:</span>
+<span class="err">&#39;03005e53f31a0102030405060708090a0b0c0d0e0f&#39;</span>
+<span class="err"># Analised:</span>
+<span class="err">&#39;03&#39; -&gt; First and Last Uplink of Message -&gt; complete Message in this Uplink</span>
+<span class="err">&#39;005e53f31a&#39; -&gt; Unix Timestamp 1582560026 -&gt; 2020-02-24T16:00:26 UTC</span>
+<span class="err">&#39;0102030405060708090a0b0c0d0e0f&#39; -&gt; wMBus Telegram</span>
+</code></pre></div></p>
+<p><strong>A message split over two Uplinks</strong>
+<div class="codehilite"><pre><span></span><code><span class="err"># An Uplink of 11 Bytes on Port 101, Frame Counter 341:</span>
+<span class="err">&#39;01005e53f31a0102030405&#39;</span>
+<span class="err">&#39;01&#39; -&gt; First Uplink of Message, more Uplinks follow</span>
+<span class="err">&#39;05e53f31a0102030405&#39; -&gt; First Part of Message Data.</span>
+<span class="err"># Another Uplink of 11 Bytes on Port 101, Frame Counter 342:</span>
+<span class="err">&#39;02060708090a0b0c0d0e0f&#39;</span>
+<span class="err">&#39;02&#39; -&gt; Last (but not first) Uplink of Message.</span>
+<span class="err">&#39;060708090a0b0c0d0e0f&#39; -&gt; Second and final Part of Message Data.</span>
+<span class="err"># We Received a &#39;first&#39; Part with Frame Counter 341 and a &#39;last&#39; </span>
+<span class="err"># Part with Frame Counter 342, so we know we did not miss any </span>
+<span class="err"># Parts in between. We can now assembly the complete payload:</span>
+<span class="err">&#39;05e53f31a0102030405060708090a0b0c0d0e0f&#39;</span>
+<span class="err"># Payload anaylsed:</span>
+<span class="err">&#39;005e53f31a&#39; -&gt; Unix Timestamp 1582560026 -&gt; 2020-02-24T16:00:26 UTC</span>
+<span class="err">&#39;0102030405060708090a0b0c0d0e0f&#39; -&gt; wMBus Telegram</span>
+</code></pre></div></p>
+<p><strong>A message split over three Uplinks</strong>
+<div class="codehilite"><pre><span></span><code><span class="err"># An Uplink of 8 Bytes on Port 101, Frame Counter 519:</span>
+<span class="err">&#39;01005e53f31a0102&#39;</span>
+<span class="err">&#39;01&#39; -&gt; First Uplink of Message, more Uplinks follow</span>
+<span class="err">&#39;05e53f31a0102&#39; -&gt; First Part of Message Data.</span>
+<span class="err"># Another Uplink of 8 Bytes on Port 101, Frame Counter 520:</span>
+<span class="err">&#39;0003040506070809&#39;</span>
+<span class="err">&#39;00&#39; -&gt; Middle Part of Message, there have been some Parts already, more Uplinks follow</span>
+<span class="err">&#39;03040506070809&#39; -&gt; Second Part of Message Data.</span>
+<span class="err"># Another Uplink of 7 Bytes on Port 101, Frame Counter 521:</span>
+<span class="err">&#39;020a0b0c0d0e0f&#39;</span>
+<span class="err">&#39;02&#39; -&gt; Last (but not first) Uplink of Message.</span>
+<span class="err">&#39;0a0b0c0d0e0f&#39; -&gt; Third and final Part of Message Data.</span>
+<span class="err"># Frame Counters are consecuetive, so the complete Message is:</span>
+<span class="err">&#39;05e53f31a0102030405060708090a0b0c0d0e0f&#39;</span>
+</code></pre></div></p>
+<p><strong>Missing a Part</strong>
+<div class="codehilite"><pre><span></span><code><span class="err"># An Uplink of 8 Bytes on Port 101, Frame Counter 123:</span>
+<span class="err">&#39;01005e53f31a0102&#39;</span>
+<span class="err">&#39;01&#39; -&gt; First Uplink of Message, more Uplinks follow</span>
+<span class="err">&#39;05e53f31a0102&#39; -&gt; First Part of Message Data.</span>
+<span class="err"># Another Uplink of 7 Bytes on Port 101, Frame Counter 125:</span>
+<span class="err">&#39;020a0b0c0d0e0f&#39;</span>
+<span class="err">&#39;02&#39; -&gt; Last (but not first) Uplink of Message.</span>
+<span class="err">&#39;0a0b0c0d0e0f&#39; -&gt; Third and final Part of Message Data.</span>
+<span class="err"># Frame Counter indicates, that a Part in the middle is missing, </span>
+<span class="err"># so we have to drop the Message.</span>
+</code></pre></div></p>
+<h3 id="data-packet-format-2">Data Packet (Format 2)</h3>
+<p>Upload Format 2 works like Upload Format 1, with the same logic for splitting messages, but uploads are 
+sent on Port 102. The Payload consists of a 5 Byte Timestamp marking the time of reception, followed by a 
+<code>uint_8</code> that holds the (negated) RSSI value for that reception, followed by the Data of the Telegram.</p>
+<h4 id="examples_2">Examples</h4>
+<div class="codehilite"><pre><span></span><code><span class="err"># An Uplink of 22 Bytes on Port 102:</span>
+<span class="err">&#39;03005e53f31a3f0102030405060708090a0b0c0d0e0f&#39;</span>
+<span class="err"># Analised:</span>
+<span class="err">&#39;03&#39; -&gt; First and Last Uplink of Message -&gt; complete Message in this Uplink</span>
+<span class="err">&#39;005e53f31a&#39; -&gt; Unix Timestamp 1582560026 -&gt; 2020-02-24T16:00:26 UTC</span>
+<span class="err">&#39;3f&#39; -&gt; 63 -&gt; RSSI of wMBus reception = -63</span>
+<span class="err">&#39;0102030405060708090a0b0c0d0e0f&#39; -&gt; wMBus Telegram</span>
+</code></pre></div>
+
 <h3 id="upload-speed-duration">Upload Speed / Duration</h3>
 <p>The bridge has to work in compliance with the European SRD 868 1% duty-cycle regulations.
 This implies as a rule of thumb the device can upload at most wMBUS telegrams via LoRaWAN for 36
