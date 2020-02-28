@@ -57,6 +57,7 @@ chmod +x lobaro-tool
     If MacOS shows up a security warning and refuses to start the tool: 
     You can solve this by right-clicking the lobaro-tool file, selecting open and overrule the warning.
 
+
 ### Windows
 After downloading simply start the "lobaro-tool.exe" with double click. 
 
@@ -65,6 +66,103 @@ Alternativly download the windows installer and start this.
 !!! note
     Windows might show up a security warning and ask you to proceed anyway. This is behavior is normal.
 
+
+## Connecting to your device
+### Physical connection
+Connect your Lobaro Device to the USB-port of your computer using the [Lobaro Config Adapter](usb-config-adapter.md). 
+The 6-pin connector must be plugged into the white rectangular socket on the device that is labeled with the 
+word **CONFIG**. The location of the socket is dependent on the specific device and hardware version you are 
+trying to attach.
+
+!!! warning "Make sure to use the port labeled **CONFIG**"
+    Some of our devices have multiple sockets the connector fits into. Be sure to use the correct one, 
+    the one labeled **CONFIG**!
+
+![Connecting our LoRaWAN board](img/adapter1low.jpg){: style="width:49%; display: inline-block; margin: 0 auto;"}
+![Connecting our LoRaWAN board](img/nrf9160-wmbus-cfg.jpg){: style="width:49%; display: inline-block; margin: 0 auto;"}
+
+The LoRaWAN Board (left image) can be powered by the config adapter. Other devices, like the NB-IoT/LTE-M boards or 
+the [wMBus-LoRaWAN-Bridge Hardware revision 2](/lorawan-sensors/wmbus-lorawan/index.html#hardware-revision-2x-active-since-2020), 
+need to be connected to their normal power supply. *If in doubt, just make sure you have the device powered!*
+
+### Software connection
+When your device is successfully attached to your computer, you can build a connection with the Lobaro Maintenance Tool:
+
+![Connect to Hardware, auto](img/tool-connect-auto.png)
+
+Under *Hardware Connectiom* select *auto* and click *Connect*, as seen in the screenshot above. If you know to 
+which port the device is connected to your computer (either COM or ttyUSB), you can alternatively select it explicitly 
+instead of using *auto*.
+
+
+## Device Configuration
+![Config loaded](img/tool-config-loaded.png)
+
+When you are connected to a Lobaro Device, you can use the Tab *CONFIGURATION* to read and change the 
+configuration parameters of the Device. You can read out the current configuration from the device by pressing the  
+*Reload Config* button (reading takes a few seconds).
+
+!!! info "Reading/changing config reboots the device!"
+    Every time you use one of the buttons *Reload Config*. *Write to Device*, or *Restore Default*, the connected 
+    device will be rebooted! Also keep in mind that the operations triggered by pressing the buttons include 
+    communication with the device over a serial bus and they will take a few seconds.
+    
+    To avoid errors, please do not those buttons repeatedly!
+
+When the configuration is read, you can alter the parameters by clicking on the pencil icon on the right. Values 
+that you changed will by printed in bold font. When you have adjusted all values you want to change, you must press 
+*Write to Device* to actually change anything on the Device. Writing the values will reboot the device.
+
+The Button *Restore Default* will reset all config parameters of the connected Device to their internal default 
+values. The device will reboot, and the listed values of the configuration in the Lobaro Maintenance Tool well be 
+updated.
+
+!!! warning "Always reload the config before changing it!"
+    When you are working with multiple devices, make sure that your always press *Reload Config* after attaching 
+    a new device before you start updating values. If you fail to do so, you might accidentally transfer values from 
+    the previously attached device to the newly connected. This is especially a problem when working with LoRaWAN 
+    sensors, as you will copy the DevEUI from one device to the other!
+
+You can watch the rebooting of the Device and check the altered configuration parameters by locking in the *LOGS* Tab.
+
+
+## Device Logging
+![Device logging](img/tool-config-logs.png)
+All of our Devices provide extensive logging information over the *CONFIG* port. When you are connected to a Device
+in the Lobaro Maintenance Tool, you can read the log messages in the *LOGS* Tab. This feature is helpful if you 
+try to find out the cause of problems you experience. You can also find out a lot of information about your Device, 
+for example you can find the parameters used to connect your LoRaWAN Devices to your Network Server 
+(DevEUI, AppKey, etc.).
+
+All messages are displayed in the big textarea, each line is prefixed by the time it is received (using the clock 
+of your computer). You can use *Clear Log* to start again with an empty textarea. The cleared messages will still be 
+available through the log files that the tool creates.
+
+When starting, our devices print out their current configuration parameter values. Most Devices also have a power on 
+test, that checks if attached sensors can be read successfully. Any Problems that the Device detects will be printed 
+to the log.
+
+### Restarting
+The *LOGS* Tab also contains a button *Run (reset)*. This button triggers a reboot of the attached device. This 
+can be useful when you start working with your device or if you try to fix issues with connected sensors.
+
+### Log files
+The log is also written to a file on your computer whenever a Device is attached to the Maintenance Tool. Every time 
+you start the Lobaro Maintenance Tool, a new log file is created. When you press the button *Show Log Files*, a 
+file browser is opened at the location where log files are kept. 
+
+### Sending to the Device
+Below the textarea is an input field *Send via UART*. Text entered here (and confirmed with Enter) will be sent to 
+the connected Device via UART. Some of our Devices use this feature, for example the 
+[LoRaWAN Modbus Bridge](/lorawan-sensors/modbus-lorawan.html#dialog-mode) for its interactive Dialog Mode.
+
+### Log parsing
+If need to parse the log messages of one of our Devices with your own tools, you can connect to it without the 
+Maintenance Tool by using any serial UART reader. You can find the UART parameters at the page for our 
+[Config Adapter](usb-config-adapter.md#default-uart-configuration).
+
+## Updating Firmware
+TODO:
 
 ## Changelog
 ### 1.5.4 - 11.02.2020

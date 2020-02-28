@@ -71,7 +71,7 @@ Download:
 
 ### v2.3.6 (07.01.2020)
 - Increase wireless MBUS C1/T1 mode receive bandwidth
-- Change detection method for incomming C1/T1 mode telegrams
+- Change detection method for incoming C1/T1 mode telegrams
 
 ### v2.3.5 (23.12.2019)
 - Improve wireless M-BUS C1/T1 mode receive sensitivity
@@ -117,7 +117,7 @@ Messages are split into chunks with 1 prefix byte:
 Prefix byte bits: <7..2 RESERVED><1 LAST><0 FIRST>
 The FIRST bit is set on the first packet.
 The LAST bit is set on the last packet.
-Together with the LoRaWAN framecounter, a whole message can be reconstructed in the backend.
+Together with the LoRaWAN frame counter, a whole message can be reconstructed in the backend.
 
 ### v2.0.0 (12.02.2019)
 - Leanring mode to learn up to 20 devices with their intervals.
