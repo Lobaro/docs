@@ -17,12 +17,14 @@ Supports the PC based configuration of all Lobaro IoT sensors.
 
 It is intended to be used in conjunction with our [**USB configuration adapter**](./usb-config-adapter.md). 
 
+
 ## Features
 
 * Change static sensor configuration
 * Perform firmware updates for your Lobaro devices
 * Live monitoring of device diagnostic output
 * Save diagnostric output into *.txt file
+
 
 ## System Requirements
 
@@ -42,6 +44,7 @@ It is intended to be used in conjunction with our [**USB configuration adapter**
     
     [**CP2102 Driver Download**](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers){: target="_blank"}       
     
+    
 ## Download & Installation
 
 ### macOS / Linux 
@@ -56,7 +59,6 @@ chmod +x lobaro-tool
 !!! info
     If MacOS shows up a security warning and refuses to start the tool: 
     You can solve this by right-clicking the lobaro-tool file, selecting open and overrule the warning.
-
 
 ### Windows
 After downloading simply start the "lobaro-tool.exe" with double click. 
@@ -161,8 +163,49 @@ If need to parse the log messages of one of our Devices with your own tools, you
 Maintenance Tool by using any serial UART reader. You can find the UART parameters at the page for our 
 [Config Adapter](usb-config-adapter.md#default-uart-configuration).
 
+
 ## Updating Firmware
-TODO:
+Our devices are shipped ready to use with firmware installed on them, so normally you do not need to install firmware 
+yourself. However, over time we sometimes add new features to our devices or fix bugs that come up over time.
+If you want to use those improvements for devices all ready shipped to you, you can update the firmware yourself.
+
+!!! info "Firmware updates with our config adapter vs. firmware update over the air (FUOTA)"
+    This page describes how you install firmware on devices that you have physical access to. This can be done 
+    for most of our devices, those using LoRaWAN and those using NB-IoT/LTE-M.
+    
+    Our NB-IoT/LTE-M devices also support installing firmware over the air, without physical access. This can 
+    currently only be done by Lobaro.
+
+### Getting the Firmware
+You will need the Firmware you want to install to your device as a file on your computer. You can get the latest 
+Firmware files from this site, the [Lobaro Online Documentation](https://docs.lobaro.com), on the *Firmware* 
+subpage for your Device. The files are in a format called *Hex* and are therefore also called *Hex-File*.
+The filename always starts with `app-` and contains the version number as well as a short description of its 
+function and the hardware it is used for. So, for example, `app-nrf9160-wmbus-TZ2-0.3.1-mcuboot-slot0.hex` contains 
+firmware for our wMBus-Gateway on NB-IoT-Hardware (nrf9160) in version `0.3.1`.
+
+In some cases you will get a hex-file provided directly by Lobaro, when we develop a specialised solution for you.
+
+!!! warning "Make sure you install the correct Firmware for your hardware!"
+    If you install Firmware for a different hardware you will get unpredictable results.
+
+### Installing Firmware
+![Firmware Update](img/tool-config-flash.png)
+
+Make sure your Device is successfully [attached to the your computer](#physical-connection) and 
+the [Maintenance Tool is connected](#software-connection), as 
+described above. In the Tab *FIRMWARE* you can select the Firmware file you want to install using the button
+*Select Hex File*. This will open a file selection dialog, where you can select the hex-file with the Firmware you 
+want to install to your Device. To start installing you need to press *Flash Hex File*. The upload will take 
+several seconds; progress will be displayed by the blue progress bar. It turns green on successful completion.
+You can verify the installation succeeded and your Device is now running the correct version by checking the *LOGS* 
+Tab. 
+
+You should also take a look at the Configuration Parameters. When an update adds new features, there might be 
+new Configuration Parameters to set, or some existing Parameters might work differently. Check the Firmware's 
+Changelog to see what changed between versions and what you have to look out for, for your individual 
+Firmware update.
+
 
 ## Changelog
 ### 1.5.4 - 11.02.2020
@@ -244,4 +287,3 @@ TODO:
 - Restore Default Config
 - Close button
 - Closing the browser window now also shut down the server
-
