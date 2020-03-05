@@ -68,7 +68,7 @@ You can find details about LoRaWAN in our [background article](../../background/
 !!! success "Further utility meter compatibility"
     Beside the example meters in the list above the Lobaro wMBUS LoRaWAN bridge works with **every meter** using standard 868 MHz wireless MBus:
     
-    * wireless MBUS S1 & C1/T1 modes (following DIN EN 13757-4)
+    * wireless MBUS S1, C1 or T1 mode (unidirectional 868 MHz modes following DIN EN 13757-4)
     * [Open metering specification](https://oms-group.org/en/){: target="_blank"} v3 & v4
 
 ##Work Cycle
