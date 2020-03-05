@@ -305,19 +305,40 @@ in our LoRaWAN background article.
 |`devFilter`       | wMBus id filter e.g. "88009035, 06198833" (8 digits)| `blank`= no filter | 
 |`learningMode`    | Enable tx interval learning mode| `false`= Do not use learning mode | 
 |`meterIntervalSec`| Expected meter tx interval | `0` (Learning mode) | 
-|`learnedListenSec`| Time to listen in seconds to learn meters.| `600` (Learning mode) | 
+|`learnedListenSec`| Listen time with learned meeters.| `600` (Learning mode) | 
 
 <sup>&dagger;</sup> See also our [Introduction to Cron expressions](/background/cron-expressions.html).
 
 ###Learning Mode
-The learning mode can learn the transmission intervals of up to 20 meters to conserve energy. 
-When learning is completed over one listening interval the device will only wakeup 10 seconds before and after receiving the learned meters in future.
+The larning mode can be enabled by setting `learningMode = true` in the configuration. 
 
-To enable the learning mode the parameter `learningMode` must to be set to `true`. If `meterIntervalSec` is set to `0` the algorithm will try to learn the tx intervals based on initial long
-wmbus listing. When received the first time, a specific device is added to an internal list of known devices. When received the second time its wMBUS transmission interval is calculated. 
-The second step is omitted when "meterIntervalSec" ist set to any value but 0. When missing one device for whatever reason, the bridge will start the learning mode again and stay awake for one full listening period.
+If `meterIntervalSec` is set to `0` the algorithm will try to learn the tx intervals intervals and times of up to 20 meters to conserve energy
+When a device is received the first time, it is added to an internal list of known devices. 
+When received the second time the wMBUS transmission interval is calculated. 
+The second step is omitted when `meterIntervalSec` ist set to any value but `0`. 
+When missing one device for whatever reason, the bridge will start the learning phase again.
 
-While receiving learned sensors the maximum receive interval is doubled but ends as soon as all learned devices are received.
+Learning of individual intervals can be skipped by setting `meterIntervalSec` to a value that is valid for all meters. 
+If `meterIntervalSec` is `0` the bridge will wait for two packets from each wMbus device and calculates the sending interval based on the times. 
+This might not always be correct due to possible jitter. 
+
+**Procedure**
+
+1. Power ON.
+2. Enter "learning Phase" and listen for 2x `_modeDurSec` if `meterIntervalSec`, else for `_modeDurSec`.
+3. Create an internal list with up to 20 meters, with either individual intervals or all intervals set to `meterIntervalSec`.
+4. On next `listenCron` only wake up as little as possible based on the learned data.
+5. When any learned meter is missing, goto 2. else sleep till `listenCron`.
+
+!!!note "Example"
+    A meter sends with jitter every 55-65 seconds. The bridge might learn an interval of 55 seconds after observing 2 messages around 12:00:00.
+    The bridge will expect next data at 12:00:55, 12:01:50, 12:02:45, etc. and probably miss data, which leads to a new learning phase.
+    
+    When setting the `meterIntervalSec` to `60` the bridge needs only one wMbus packet e.g. at 12:00:00 and expects the next packets at 12:01:00, 12:02:00, etc.
+    which is closer to reality.
+
+To account possible jitter `learnedListenSec` can be used to tell the bridge how long it should stay awake to receive a meter at a learned point in time.
+`learnedListenSec = 30` would wake up 15 seconds before the expected time and wait until the expected wMbus telegram is received or after 30 seconds.
 
 ##Payload formats
 
