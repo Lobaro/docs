@@ -24,16 +24,14 @@ The internal SD-Card is write protected. All variable data is stored on the exte
 Usually you will not need to change anything inside the Chirpstack Application Server. 
 All devices are managed by the Lobaro Modbus Server.
 
-## Remote management
-
-The Chirpstack Application server can be reached locally at `http://<gw-ip>:8080`.
+## Remote access {: #remote-access}
 
 Per default the gateway obtains the IP address via DHCP. 
 If configured with a fixed IP address, the gateway has a label with the configured IP address and subnet.
 
 The gateway can be accessed via SSH on port 22. Default login credentials are provided by Lobaro.
 
-### Lobaro Modbus Server
+## Lobaro Modbus Server
 
 The Lobaro Modbus Server (`lobaro-modbus-server`) is responsible for fetching data from the local LoRaWAN Network Server
 and provides received data via modbus.
@@ -66,7 +64,7 @@ Check the logs with
 
     sudo journalctl --no-pager -e -u lobaro-modbus-server
 
-#### Debugging
+### Debugging
 
 Beside checking the logs, you can also analyze the files in the `dataDir` (see config).
 
@@ -127,7 +125,7 @@ Example `register-map.json`:
 }
 ```
 
-#### Configuration file
+### Configuration file
 
 Example config:
 
@@ -233,4 +231,50 @@ mapping:
         port: 2
         value: "txInfo.dr"
         type: int16
+```
+## Chirpstack
+
+The gateway uses a local Chirpstack server. Access management interface on `https://<gw-ip>:8080`.
+
+Documentation can be found on [Chripstack.io](https://chirpstack.io){: target="_blank"}.
+
+For each type of device the `lobaro-modbus-server` needs to reference a Device Profile. 
+See: [Chirpstack Device Profile Management](https://www.chirpstack.io/application-server/use/device-profiles/){: target="_blank"}.
+The Device Profile of each LoRaWAN device must be referenced by its name or UUID in the `lobaro-modbus-server.yml` config file.
+
+## Gateway administration
+
+When ever any file on the SD-Card need to change make sure to execute `~/enableWriteAccess.sh`
+
+### Change password
+
+Login via SSH (see: [Remote access](#remote-access))
+
+    passwd
+
+### Change IP address
+
+    sudo vim /etc/network/interfaces
+
+```
+pi@LoRaGateway:~ $ cat /etc/network/interfaces
+# interfaces(5) file used by ifup(8) and ifdown(8)
+
+# Please note that this file is written to be used with dhcpcd
+# For static IP, consult /etc/dhcpcd.conf and 'man dhcpcd.conf'
+
+# Include files from /etc/network/interfaces.d:
+source-directory /etc/network/interfaces.d
+
+auto lo
+iface lo inet loopback
+
+# DHCP (Default, comment line to disable DHCP)
+iface eth0 inet manual
+
+# Fixed IP (Uncomment to enable or use /etc/dhcpcd.conf)
+#auto eth0
+#iface eth0 inet static
+#    address 10.0.0.42/24
+#    gateway 10.0.0.1
 ```

@@ -54,6 +54,13 @@ Instead of `info` you can use `tip`, `success`, `question`, `warning`, `failure`
 `example`, `quote`. 
 See [Admonition](https://squidfunk.github.io/mkdocs-material/extensions/admonition/).
 
+**Link to heading**
+
+```
+### My Custom Heading{: #custom-id}
+```
+
+[Go to Custom Heading](#custom-id)
 
 ### Legacy
 For legacy online documentation see [repo wiki](https://github.com/Lobaro/docs/wiki).
