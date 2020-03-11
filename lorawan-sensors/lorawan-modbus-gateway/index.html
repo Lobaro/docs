@@ -790,14 +790,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#remote-management" class="md-nav__link">
-    Remote management
+  <a href="#remote-access" class="md-nav__link">
+    Remote access
   </a>
   
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#lobaro-modbus-server" class="md-nav__link">
     Lobaro Modbus Server
   </a>
@@ -821,6 +820,35 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chirpstack" class="md-nav__link">
+    Chirpstack
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gateway-administration" class="md-nav__link">
+    Gateway administration
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#change-password" class="md-nav__link">
+    Change password
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-ip-address" class="md-nav__link">
+    Change IP address
+  </a>
   
 </li>
         
@@ -1089,14 +1117,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#remote-management" class="md-nav__link">
-    Remote management
+  <a href="#remote-access" class="md-nav__link">
+    Remote access
   </a>
   
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#lobaro-modbus-server" class="md-nav__link">
     Lobaro Modbus Server
   </a>
@@ -1120,6 +1147,35 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chirpstack" class="md-nav__link">
+    Chirpstack
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gateway-administration" class="md-nav__link">
+    Gateway administration
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#change-password" class="md-nav__link">
+    Change password
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-ip-address" class="md-nav__link">
+    Change IP address
+  </a>
   
 </li>
         
@@ -1171,12 +1227,11 @@
 </ul>
 <p>Usually you will not need to change anything inside the Chirpstack Application Server. 
 All devices are managed by the Lobaro Modbus Server.</p>
-<h2 id="remote-management">Remote management</h2>
-<p>The Chirpstack Application server can be reached locally at <code>http://&lt;gw-ip&gt;:8080</code>.</p>
+<h2 id="remote-access">Remote access</h2>
 <p>Per default the gateway obtains the IP address via DHCP. 
 If configured with a fixed IP address, the gateway has a label with the configured IP address and subnet.</p>
 <p>The gateway can be accessed via SSH on port 22. Default login credentials are provided by Lobaro.</p>
-<h3 id="lobaro-modbus-server">Lobaro Modbus Server</h3>
+<h2 id="lobaro-modbus-server">Lobaro Modbus Server</h2>
 <p>The Lobaro Modbus Server (<code>lobaro-modbus-server</code>) is responsible for fetching data from the local LoRaWAN Network Server
 and provides received data via modbus.</p>
 <p>To change any filed on the SD Card (including all config files) you need to execute the script:</p>
@@ -1210,7 +1265,7 @@ and provides received data via modbus.</p>
 </code></pre></div>
 
 
-<h4 id="debugging">Debugging</h4>
+<h3 id="debugging">Debugging</h3>
 <p>Beside checking the logs, you can also analyze the files in the <code>dataDir</code> (see config).</p>
 <p>There are two files that help writing the config and checking the results.</p>
 <ul>
@@ -1265,7 +1320,7 @@ and provides received data via modbus.</p>
 <span class="err">  }</span>
 <span class="err">}</span>
 </code></pre></div></p>
-<h4 id="configuration-file">Configuration file</h4>
+<h3 id="configuration-file">Configuration file</h3>
 <p>Example config:</p>
 <div class="codehilite"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">application</span><span class="w"> </span><span class="n">stores</span><span class="w"> </span><span class="n">persistent</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="k">at</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="k">path</span><span class="w"></span>
 <span class="nl">dataDir</span><span class="p">:</span><span class="w"> </span><span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">ssd</span><span class="o">/</span><span class="nf">var</span><span class="o">/</span><span class="k">data</span><span class="o">/</span><span class="n">lobaro</span><span class="o">-</span><span class="n">modbus</span><span class="o">-</span><span class="n">server</span><span class="o">/</span><span class="w"></span>
@@ -1368,6 +1423,47 @@ and provides received data via modbus.</p>
 <span class="w">        </span><span class="nl">port</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w"></span>
 <span class="w">        </span><span class="k">value</span><span class="err">:</span><span class="w"> </span><span class="ss">&quot;txInfo.dr&quot;</span><span class="w"></span>
 <span class="w">        </span><span class="nl">type</span><span class="p">:</span><span class="w"> </span><span class="n">int16</span><span class="w"></span>
+</code></pre></div>
+
+<h2 id="chirpstack">Chirpstack</h2>
+<p>The gateway uses a local Chirpstack server. Access management interface on <code>https://&lt;gw-ip&gt;:8080</code>.</p>
+<p>Documentation can be found on <a href="https://chirpstack.io" target="_blank">Chripstack.io</a>.</p>
+<p>For each type of device the <code>lobaro-modbus-server</code> needs to reference a Device Profile. 
+See: <a href="https://www.chirpstack.io/application-server/use/device-profiles/" target="_blank">Chirpstack Device Profile Management</a>.
+The Device Profile of each LoRaWAN device must be referenced by its name or UUID in the <code>lobaro-modbus-server.yml</code> config file.</p>
+<h2 id="gateway-administration">Gateway administration</h2>
+<p>When ever any file on the SD-Card need to change make sure to execute <code>~/enableWriteAccess.sh</code></p>
+<h3 id="change-password">Change password</h3>
+<p>Login via SSH (see: <a href="#remote-access">Remote access</a>)</p>
+<div class="codehilite"><pre><span></span><code><span class="err">passwd</span>
+</code></pre></div>
+
+
+<h3 id="change-ip-address">Change IP address</h3>
+<div class="codehilite"><pre><span></span><code><span class="err">sudo vim /etc/network/interfaces</span>
+</code></pre></div>
+
+
+<div class="codehilite"><pre><span></span><code><span class="nf">pi</span><span class="nv">@LoRaGateway</span><span class="err">:</span><span class="o">~</span><span class="w"> </span><span class="err">$</span><span class="w"> </span><span class="n">cat</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">network</span><span class="o">/</span><span class="n">interfaces</span><span class="w"></span>
+<span class="err">#</span><span class="w"> </span><span class="n">interfaces</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="k">file</span><span class="w"> </span><span class="n">used</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">ifup</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">ifdown</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span><span class="w"></span>
+
+<span class="err">#</span><span class="w"> </span><span class="n">Please</span><span class="w"> </span><span class="n">note</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="k">file</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">written</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">used</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">dhcpcd</span><span class="w"></span>
+<span class="err">#</span><span class="w"> </span><span class="k">For</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="n">IP</span><span class="p">,</span><span class="w"> </span><span class="n">consult</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">dhcpcd</span><span class="p">.</span><span class="n">conf</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="s1">&#39;man dhcpcd.conf&#39;</span><span class="w"></span>
+
+<span class="err">#</span><span class="w"> </span><span class="k">Include</span><span class="w"> </span><span class="n">files</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">network</span><span class="o">/</span><span class="n">interfaces</span><span class="p">.</span><span class="nl">d</span><span class="p">:</span><span class="w"></span>
+<span class="n">source</span><span class="o">-</span><span class="n">directory</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">network</span><span class="o">/</span><span class="n">interfaces</span><span class="p">.</span><span class="n">d</span><span class="w"></span>
+
+<span class="n">auto</span><span class="w"> </span><span class="n">lo</span><span class="w"></span>
+<span class="n">iface</span><span class="w"> </span><span class="n">lo</span><span class="w"> </span><span class="n">inet</span><span class="w"> </span><span class="n">loopback</span><span class="w"></span>
+
+<span class="err">#</span><span class="w"> </span><span class="n">DHCP</span><span class="w"> </span><span class="p">(</span><span class="k">Default</span><span class="p">,</span><span class="w"> </span><span class="n">comment</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">disable</span><span class="w"> </span><span class="n">DHCP</span><span class="p">)</span><span class="w"></span>
+<span class="n">iface</span><span class="w"> </span><span class="n">eth0</span><span class="w"> </span><span class="n">inet</span><span class="w"> </span><span class="n">manual</span><span class="w"></span>
+
+<span class="err">#</span><span class="w"> </span><span class="n">Fixed</span><span class="w"> </span><span class="n">IP</span><span class="w"> </span><span class="p">(</span><span class="n">Uncomment</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">enable</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="k">use</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">dhcpcd</span><span class="p">.</span><span class="n">conf</span><span class="p">)</span><span class="w"></span>
+<span class="n">#auto</span><span class="w"> </span><span class="n">eth0</span><span class="w"></span>
+<span class="n">#iface</span><span class="w"> </span><span class="n">eth0</span><span class="w"> </span><span class="n">inet</span><span class="w"> </span><span class="k">static</span><span class="w"></span>
+<span class="err">#</span><span class="w">    </span><span class="n">address</span><span class="w"> </span><span class="mf">10.0.0.42</span><span class="o">/</span><span class="mi">24</span><span class="w"></span>
+<span class="err">#</span><span class="w">    </span><span class="n">gateway</span><span class="w"> </span><span class="mf">10.0.0.1</span><span class="w"></span>
 </code></pre></div>
                 
                   
