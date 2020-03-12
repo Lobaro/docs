@@ -10,7 +10,6 @@ The latest firmware version is **v2.4.0** *(since 2020-02-25)*
     Please refer to [Updating Firmware](../../tools/lobaro-tool.md#updating-firmware){: target="_blank"} on the page 
     about our Lobaro Maintenance Tool.
 
-
 ## Firmware Downloads
 
 !!! caution "Select correct Hardware revisions"
