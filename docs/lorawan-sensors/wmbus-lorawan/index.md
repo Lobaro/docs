@@ -401,6 +401,9 @@ happen in LoRaWAN since it's a ALOHA based protocol, e.g. collisions and some pa
 losses are accepted by principle of operation. In case the backend noticed a missing packet
 the wMBUS telegram can't be assembled anymore as described before.
 
+!!!note
+    **[Reference Implementation in GoLang](https://gist.github.com/Niondir/7fe2da1924de8525fe47cfa4efe9a5a9)**
+
 ####Examples
 
 Examples (with `loraMaxMsgSize` = 50):
