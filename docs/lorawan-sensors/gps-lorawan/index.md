@@ -512,5 +512,6 @@ function Decoder(bytes, port) {
 ```
 
 ## PDF Documentation
+* [Product Dimensions (pdf)](files/Lobaro-Compact-Housing.pdf){: target="_blank"}
 * [User Manual (en)](files/lorawan-gps-tracker_en.pdf)
 * [CE Declaration of Conformity](files/ce-GPS-LoRaWAN.pdf)

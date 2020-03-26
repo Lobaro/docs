@@ -11,7 +11,7 @@ and pricing please contact us at [sales@lobaro.de](mailto:sales@lobaro.de)
 
 ![Housing Lobaro Box1](img/1.png){: style="width:85%"}
 
-
+* [Product Dimensions (pdf)](img/Lobaro-Compact-Housing.pdf){: target="_blank"}
 * Size: 114,30mm (w) x 59,30mm (l) x 26,80mm (h)
 * Waterproof: IP65 
 
@@ -19,7 +19,7 @@ and pricing please contact us at [sales@lobaro.de](mailto:sales@lobaro.de)
 
 ![Housing Lobaro Box](img/housing-spelsberg-closed.jpg){: style="width:40%"}
 
-* [Product Specifications (external link)](https://www.spelsberg.com/nc/product/an/20040401//){: target="_blank"}
+* [Product Specifications (external link)](https://www.spelsberg.com/nc/product/an/20040401/){: target="_blank"}
 
 * Size: 122mm (w) x 82mm (l) x 55mm (h)
 * Waterproof: IP67
