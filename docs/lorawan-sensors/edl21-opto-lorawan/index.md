@@ -157,6 +157,17 @@ As you can see by this the device will start the LoRaWAN join only after receivi
 
 [Information about the disposal of the Device](/background/weee-disposal).
 
+## Payload Format Status Packet (Port 1)
+
+Once per day a status packet will be sent. It contains basic information about the device.
+The Battery Voltage is transmitted in 1/1000 V and the temperature in 1/10 °C. Both are in Big Endian byte order. 
+
+| Version Major | Version Minor| Version Patch | Flags | Battery Voltage | Temperature |
+|------|------|------|------|------|------|
+|1 byte|1 byte|1 byte|1 byte|2 byte|2byte|
+| unsigned |unsigned |unsigned|unsigned|unsigned|signed|
+
+
 
 ## Payload Format (old, Port 2, without exponent)
 
