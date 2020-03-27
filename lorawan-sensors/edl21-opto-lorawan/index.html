@@ -529,6 +529,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#payload-format-status-packet-port-1" class="md-nav__link">
+    Payload Format Status Packet (Port 1)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#payload-format-old-port-2-without-exponent" class="md-nav__link">
     Payload Format (old, Port 2, without exponent)
   </a>
@@ -1240,6 +1247,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#payload-format-status-packet-port-1" class="md-nav__link">
+    Payload Format Status Packet (Port 1)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#payload-format-old-port-2-without-exponent" class="md-nav__link">
     Payload Format (old, Port 2, without exponent)
   </a>
@@ -1681,6 +1695,39 @@ in our LoRaWAN background article.</p>
 </table>
 <h3 id="disposal-weee-entsorgung">Disposal / WEEE / Entsorgung</h3>
 <p><a href="/background/weee-disposal">Information about the disposal of the Device</a>.</p>
+<h2 id="payload-format-status-packet-port-1">Payload Format Status Packet (Port 1)</h2>
+<p>Once per day a status packet will be sent. It contains basic information about the device.
+The Battery Voltage is transmitted in 1/1000 V and the temperature in 1/10 °C. Both are in Big Endian byte order. </p>
+<table>
+<thead>
+<tr>
+<th>Version Major</th>
+<th>Version Minor</th>
+<th>Version Patch</th>
+<th>Flags</th>
+<th>Battery Voltage</th>
+<th>Temperature</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 byte</td>
+<td>1 byte</td>
+<td>1 byte</td>
+<td>1 byte</td>
+<td>2 byte</td>
+<td>2byte</td>
+</tr>
+<tr>
+<td>unsigned</td>
+<td>unsigned</td>
+<td>unsigned</td>
+<td>unsigned</td>
+<td>unsigned</td>
+<td>signed</td>
+</tr>
+</tbody>
+</table>
 <h2 id="payload-format-old-port-2-without-exponent">Payload Format (old, Port 2, without exponent)</h2>
 <p>The payload consists of multiple entries, one entry per OBIS code given in the configuration.
 Each entry follows the following structure:</p>
