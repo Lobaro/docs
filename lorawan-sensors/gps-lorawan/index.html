@@ -67,6 +67,8 @@
     
       <link rel="stylesheet" href="../../css/lobarodoc.css">
     
+      <link rel="stylesheet" href="../../css/simple-lightbox.min.css">
+    
     
       
         
@@ -1222,10 +1224,70 @@
       
 
 
-  <li class="md-nav__item">
-    <a href="../../dashboard/index.html" title="Lobaro IoT Platform" class="md-nav__link">
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
       Lobaro IoT Platform
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        Lobaro IoT Platform
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../platform/index.html" title="Manual" class="md-nav__link">
+      Manual
     </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../platform/integrations.html" title="Integrations" class="md-nav__link">
+      Integrations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../platform/parser.html" title="Parser" class="md-nav__link">
+      Parser
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../platform/table-config.html" title="Table Config" class="md-nav__link">
+      Table Config
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
   </li>
 
     
@@ -2404,6 +2466,29 @@ The table underneath explains the message format used.</p>
             <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;error&quot;</span><span class="o">:</span><span class="s2">&quot;Unsupported port&quot;</span><span class="p">,</span><span class="s2">&quot;port&quot;</span><span class="o">:</span><span class="nx">port</span><span class="p">};</span>
     <span class="p">}</span>
 <span class="p">}</span>
+
+<span class="c1">// Wrapper for Lobaro Platform</span>
+<span class="kd">function</span> <span class="nx">Parse</span><span class="p">(</span><span class="nx">input</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Decode an incoming message to an object of fields.</span>
+    <span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">bytes</span><span class="p">(</span><span class="nx">atob</span><span class="p">(</span><span class="nx">input</span><span class="p">.</span><span class="nx">data</span><span class="p">));</span>
+    <span class="kd">var</span> <span class="nx">decoded</span> <span class="o">=</span> <span class="nx">Decoder</span><span class="p">(</span><span class="nx">b</span><span class="p">,</span> <span class="nx">input</span><span class="p">.</span><span class="nx">fPort</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="nx">decoded</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Wrapper for Loraserver / ChirpStack</span>
+<span class="kd">function</span> <span class="nx">Decode</span><span class="p">(</span><span class="nx">fPort</span><span class="p">,</span> <span class="nx">bytes</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">Decoder</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">fPort</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Wrapper for Digimondo niota.io (uncomment only when used in niota)</span>
+<span class="cm">/*</span>
+<span class="cm">module.exports = function (payload, meta) {</span>
+<span class="cm">    const port = meta.lora.fport;</span>
+<span class="cm">    const buf = Buffer.from(payload, &#39;hex&#39;);</span>
+
+<span class="cm">    return Decoder(buf, port);</span>
+<span class="cm">}*/</span>
 </code></pre></div>
 
 <h2 id="pdf-documentation">PDF Documentation</h2>
@@ -2491,6 +2576,8 @@ The table underneath explains the message format used.</p>
       <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
       
         <script src="../../js/mermaid.min.js"></script>
+      
+        <script src="../../js/simple-lightbox.js"></script>
       
     
   </body>
