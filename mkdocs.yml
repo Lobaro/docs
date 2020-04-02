@@ -55,8 +55,10 @@ markdown_extensions:
   - pymdownx.tilde
 extra_css:
   - "css/lobarodoc.css"
+  - "css/simple-lightbox.min.css"
 extra_javascript:
   - "js/mermaid.min.js"
+  - 'js/simple-lightbox.js'
 nav:
   - Documentation Start: index.md
   - LoRaWAN Sensors:
@@ -102,7 +104,11 @@ nav:
   - Lobaro Tools:
       - Lobaro Maintenance Tool: tools/lobaro-tool.md
       - USB Config Adapter: tools/usb-config-adapter.md
-  - Lobaro IoT Platform: dashboard/index.md
+  - Lobaro IoT Platform:
+    - Manual: platform/index.md
+    - Integrations: platform/integrations.md
+    - Parser: platform/parser.md
+    - Table Config: platform/table-config.md
   - Lobaro Shop: https://www.lobaro-shop.com/
   - Contact / Impressum: https://www.lobaro.com/contact/
 
