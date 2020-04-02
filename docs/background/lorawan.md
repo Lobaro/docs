@@ -667,12 +667,14 @@ function Decode(fPort, bytes) {
     return Decoder(bytes, fPort);
 }
 
-// Wrapper for Digimondo niota.io
+// Wrapper for Digimondo niota.io 
+// Uncomment only when used in niota!
+/*
 module.exports = function (payload, meta) {
     const port = meta.lora.fport;
     const buf = Buffer.from(payload, 'hex');
 
     return Decoder(buf, port);
-}
+}*/
 
 ```

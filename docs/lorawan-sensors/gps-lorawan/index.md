@@ -509,6 +509,29 @@ function Decoder(bytes, port) {
             return {"error":"Unsupported port","port":port};
     }
 }
+
+// Wrapper for Lobaro Platform
+function Parse(input) {
+    // Decode an incoming message to an object of fields.
+    var b = bytes(atob(input.data));
+    var decoded = Decoder(b, input.fPort);
+
+    return decoded;
+}
+
+// Wrapper for Loraserver / ChirpStack
+function Decode(fPort, bytes) {
+    return Decoder(bytes, fPort);
+}
+
+// Wrapper for Digimondo niota.io (uncomment only when used in niota)
+/*
+module.exports = function (payload, meta) {
+    const port = meta.lora.fport;
+    const buf = Buffer.from(payload, 'hex');
+
+    return Decoder(buf, port);
+}*/
 ```
 
 ## PDF Documentation
