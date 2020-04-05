@@ -36,7 +36,9 @@ Add the Token into the HTTP request Header:
 using the token (e.g. `Bearer eyJhbGciOiJ...`) in the `Authorization` header field.  
 Please consult the documentation of your network server for further instructions.
 
-* Chirpstack: https://backend.lobaro.com/api/loraserver/uplink
+* Chirpstack: https://backend.lobaro.com/api/chirpstack/uplink (deprecated: `/api/loraserver/uplink`)
+* Element-IoT: https://backend.lobaro.com/api/element-iot/data
+* Actility: https://backend.lobaro.com/api/actility/data
 * Everynet: https://backend.lobaro.com/api/everynet/data
 
 We also support other network servers on request, e.g. TTN, Element-IoT, Firefly, Actility, Loriot, ... Just ask!
