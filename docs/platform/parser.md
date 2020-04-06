@@ -98,3 +98,8 @@ Set the Sensor time of the current data record. Used for display, filter, sortin
 ```javascript
 Record.setTime(new Date());
 ```
+
+Get the time when the data was received by the server in ms, compatible with `new Date(...)`.
+```javascript
+Record.getReceivedAt();
+```
