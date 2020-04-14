@@ -53,6 +53,17 @@ retrieving data from environmental sensors like temperature and humidity.
 Industrial machines as well as solar panel installations often include a Modbus 
 connection to supply supervision and automated operation.
 
+## Supported Devices
+The Lobaro Modbus LoRaWAN Bridge works with all devices that act as a Modbus Client 
+using RTU or ASCII (Modbus TCP is *not* supported). Some devices that have been used successfully 
+with the Bridge:
+
+| Device | Type | Manufacturer | More information |
+|--------|------|--------------|------------------|
+| Octave Ultrasonic Meter | Water meter | Arad Group | [External Link](https://arad.co.il/product/octave/) |
+| ECL Controller | Heat/Hot Water Regulation | Danfoss | [External Link](https://www.danfoss.com/en/products/electronic-controls/dhs/electronic-controllers-and-application-keys/ecl-controllers/) |
+| UMD 97 | Smart Grid Power Meter | PQ Plus | [External Link (German)](https://www.pq-plus.de/news/pqplus/umd-97-messgeraet.html) |
+
 ## Product variants
 The LoRaWAN Modbus bridge can be ordered in two standard variants. For even more customizations options see
 [Hardware Variants](/hardware.html) overview.
