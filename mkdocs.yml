@@ -109,6 +109,9 @@ nav:
     - Integrations: platform/integrations.md
     - Parser: platform/parser.md
     - Table Config: platform/table-config.md
+    - Changelog:
+      - Frontend: platform/changelog-frontend.md
+      - Backend: platform/changelog-backend.md
   - Lobaro Shop: https://www.lobaro-shop.com/
   - Contact / Impressum: https://www.lobaro.com/contact/
 
