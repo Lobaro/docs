@@ -63,6 +63,7 @@ with the Bridge:
 | Octave Ultrasonic Meter | Water meter | Arad Group | [External Link](https://arad.co.il/product/octave/) |
 | ECL Controller | Heat/Hot Water Regulation | Danfoss | [External Link](https://www.danfoss.com/en/products/electronic-controls/dhs/electronic-controllers-and-application-keys/ecl-controllers/) |
 | UMD 97 | Smart Grid Power Meter | PQ Plus | [External Link (German)](https://www.pq-plus.de/news/pqplus/umd-97-messgeraet.html) |
+| DRS458DE | Power Meter | B+G E-Tech GmbH | [External Link](https://bg-etech.de/Bedienungsanleitungen.html) |
 
 ## Product variants
 The LoRaWAN Modbus bridge can be ordered in two standard variants. For even more customizations options see
