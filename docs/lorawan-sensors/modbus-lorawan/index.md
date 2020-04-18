@@ -772,6 +772,10 @@ example NarrowBand-IoT.
 | **Modbus communication** |                                                                         |
 | Bus                      | RS-485 twisted pair wires (with optional GND)                           |
 | Protocol                 | RTU/ASCII                                                               |
+| Bus IO Protection        | >±15 kV HBM Protection                                                  |
+| Bus IO Protection        | >±12 kV IEC 61000-4-2 Contact Discharge                                 |
+| Bus IO Protection        | >±4 kV IEC 61000-4-4 Fast Transient Burst                               |
+| Max. RS485 Cable Length  | 3m                                                                      |
 | **Environmental Requirements** |                                                                   |
 | Operating temperature    | -20°C &ndash; 55°C                                                      |
 | Max installation height  | 2m                                                                      |
@@ -780,7 +784,8 @@ example NarrowBand-IoT.
 
 ### CE Declaration of Conformity
 
-[CE Declaration of Conformity](files/ce-Modbus485-lorawan.pdf) (pdf).
+[CE Declaration of Conformity Modbus LoRaWAN](files/ce-Modbus485-lorawan.pdf) (pdf).
+[CE Declaration DR-15-5 Power Supply](files/dr-15-5-ce.pdf) (pdf).
 
 ### Disposal / WEEE / Entsorgung
 
