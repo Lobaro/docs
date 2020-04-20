@@ -9,6 +9,26 @@ Public Lobaro instance: [platform.lobaro.com](https://platform.lobaro.com){: tar
 We offer On-Premise hosting and dedicated cloud instances. 
 The documentation will always reference the Public Lobaro instance of the Platform.
 
+## Features
+
+* Multi tenant (Organisations) with branding / white labeling
+* IoT Device Management
+  * Support for all Lobaro Devices
+  * Possibility to integrate 3rd party IoT Devices (LoRaWAN, NB-IoT, ...)
+  * Device configuration
+  * Firmware updates
+* Data parsing and persistence
+* Datasources
+  * LoRaWAN Network Server
+  * NB-IoT (CoAP)
+  * GSM / LTE
+  * REST
+* APIs to access or forward data to Use-Case specific applications
+
+We offer free access to the platform for 12 Month with the purchase of any Lobaro device in our shared instance.
+In addition we offer private instance hosting on AWS or On-Premise (any Server with Root access).
+
+
 ## Overview
 
 ![Navigation Integrations](img/nav-main.png)
