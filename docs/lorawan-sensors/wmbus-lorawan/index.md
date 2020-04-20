@@ -64,6 +64,7 @@ You can find details about LoRaWAN in our [background article](../../background/
 | Q water 5.5 | Water         | Qundis       | [External Link](https://qundis.com/products/water-meters/){: target="_blank"}  |
 | Modularis yFlow | Water addon | Hermann Pipersberg | [External Link](https://www.pipersberg.de/wp-content/uploads/2017/09/Wasser_119_Wireless-MBus-OMS-868MHz-yFlow.pdf){: target="_blank"}  |
 | Munia | Temp. & Humidity      | Weptech         | [External Link](https://www.weptech.de/en/wireless-m-bus/humidity-temperature-sensor-munia.html){: target="_blank"}  |
+| Qalcosonic W1 (Honeywell Q400) | Water | Axioma Metering | [External Link](https://www.axiomametering.com/en/products/water-metering-devices/ultrasonic/qalcosonic-w1){: target="_blank"} |
 
 !!! success "Further utility meter compatibility"
     Beside the example meters in the list above the Lobaro wMBUS LoRaWAN bridge works with **every meter** using standard 868 MHz wireless MBus:
