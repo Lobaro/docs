@@ -450,6 +450,15 @@ function readVersion(bytes) {
     return "v" + bytes[0] + "." + bytes[1] + "." + bytes[2];
 }
 
+function signed(val, bits) {
+    if ((val & 1 << (bits - 1)) > 0) { // value is negative (16bit 2's complement)
+        var mask = Math.pow(2, bits) - 1;
+        val = (~val & mask) + 1; // invert all bits & add 1 => now positive value
+        val = val * -1;
+    }
+    return val;
+}
+
 function int40_BE(bytes, idx) {
     bytes = bytes.slice(idx || 0);
     return bytes[0] << 32 |
@@ -458,7 +467,7 @@ function int40_BE(bytes, idx) {
 
 function int16_BE(bytes, idx) {
     bytes = bytes.slice(idx || 0);
-    return bytes[0] << 8 | bytes[1] << 0;
+    return signed(bytes[0] << 8 | bytes[1] << 0, 16);
 }
 
 function decode_status(bytes) {
