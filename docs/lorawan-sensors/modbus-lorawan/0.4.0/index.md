@@ -461,8 +461,7 @@ function signed(val, bits) {
 
 function int40_BE(bytes, idx) {
     bytes = bytes.slice(idx || 0);
-    return bytes[0] << 32 |
-        bytes[1] << 24 | bytes[2] << 16 | bytes[3] << 8 | bytes[4] << 0;
+    return signed(bytes[0] << 32 | bytes[1] << 24 | bytes[2] << 16 | bytes[3] << 8 | bytes[4] << 0, 40);
 }
 
 function int16_BE(bytes, idx) {
