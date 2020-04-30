@@ -3,10 +3,10 @@
 ![Screenshot Lobaro-Tool](./img/Lobaro_Tool_ConfigFeature.png)
 
 !!! info "Downloads"
-    * [**Lobaro Maintenance Tool Download (v1.5.4 Windows)**](https://github.com/lobaro/flash-tool-release/releases/download/1.5.4/lobaro-tool.exe){: target="_blank"}
-    * [**Lobaro Maintenance Tool Download (v1.5.4 Linux)**](https://github.com/lobaro/flash-tool-release/releases/download/1.5.4/lobaro-tool-linux){: target="_blank"}
-    * [**Lobaro Maintenance Tool Download (v1.5.4 Mac 64Bit)**](https://github.com/lobaro/flash-tool-release/releases/download/1.5.4/lobaro-tool-mac64){: target="_blank"}
-    * [**Lobaro Maintenance Tool previous versions**](https://github.com/lobaro/flash-tool-release/releases){: target="_blank"}
+    * [**Lobaro Maintenance Tool Download (v1.7.0 Windows)**](https://github.com/lobaro/flash-tool-release/releases/download/1.7.0/lobaro-tool_1.7.0_windows_x86_64.zip){: target="_blank"}
+    * [**Lobaro Maintenance Tool Download (v1.7.0 Linux)**](https://github.com/lobaro/flash-tool-release/releases/download/1.7.0/lobaro-tool_1.7.0_linux_x86_64.zip){: target="_blank"}
+    * [**Lobaro Maintenance Tool Download (v1.7.0 Mac 64Bit)**](https://github.com/lobaro/flash-tool-release/releases/download/1.7.0/lobaro-tool_1.7.0_mac_x86_64.zip){: target="_blank"}
+    * [**Lobaro Maintenance Tool other variants and previous versions**](https://github.com/lobaro/flash-tool-release/releases){: target="_blank"}
     * [**CP2102 Driver Download**](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers){: target="_blank"}  
     
 !!! danger "Device config not saved?"
@@ -208,6 +208,26 @@ Firmware update.
 
 
 ## Changelog
+
+### 1.7.0 - 2020-04-30
+#### Added
+- NB-IoT Devices in hardware.csv
+- Firmware in hardware.csv
+- Time zone in hardware.csv
+
+#### Fixed
+- Remove redundant resets after flash
+
+### 1.6.4 - 23.03.2020
+- Move logs to "logs" subdir
+- Add hardware.csv file with information about flashed devices
+- Improve handling of websockets
+- Display Device Info and Test Results on Flash tab
+
+### 1.5.5 - 18.02.2020
+- Parameter --uart-connect to automatically connect to given 'comport'
+- Parameter --uart-reconnect to automatically reconnect on uart disconnect
+
 ### 1.5.4 - 11.02.2020
 - Fix a bug where the configuration can not be changed
 
