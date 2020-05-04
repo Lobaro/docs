@@ -341,7 +341,7 @@ This might not always be correct due to possible jitter.
 To account possible jitter `learnedListenSec` can be used to tell the bridge how long it should stay awake to receive a meter at a learned point in time.
 `learnedListenSec = 30` would wake up 15 seconds before the expected time and wait until the expected wMbus telegram is received or after 30 seconds.
 
-##Payload formats
+## Uplink Payload formats
 
 After collecting wireless M-Bus telegrams over the air, the Bridge starts uploading data
 via LoRaWAN. There exist two data formats that are transmitted over different LoRaWAN
@@ -547,6 +547,26 @@ enters a low power sleep mode until the next transmission is possible again.
 The next data collection phase will be started only after completion of the previous upload
 phase in respect to the configured `listenCron` parameter. Because of this it is advisable to define the cron parameter with an 
 estimation of the upload duration in mind. This will avoid unexpected 'skipping' of data collection phases.    
+
+## Downlink Payload formats {: downlink}
+
+### Update Configuration
+Update of Configuration parameters is documented in our [LoRaWAN downlink messages](/background/lorawan.html#remote-configuration) documentation.
+
+### Ad-hoc readout
+
+!!! note
+    Needs firmware version **higher than** v2.4.0 
+    
+    
+Triggers an Ad hoc readout, independent of CRON triggers. 
+The Ad-hoc readout is using the same parameters as a CRON triggered readout.
+
+**Downlink Message:**
+
+* Port: 132
+* Message: `read` (ASCII Encoded)
+
 
 ##Decoding wMBUS telegrams
 After receiving the raw wireless M-Bus telegrams from your LoRaWAN network provider
