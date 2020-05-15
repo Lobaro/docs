@@ -93,7 +93,9 @@ nav:
       - LoRaWAN Modbus Gateway:
           - Manual: lorawan-sensors/lorawan-modbus-gateway/index.md
   - NB-IoT / LTE-M Sensors:
-      - wMBus Gateway: nbiot-sensors/wmbus-nbiot/index.md
+      - wMBus Gateway:
+        - Manual: nbiot-sensors/wmbus-nbiot/index.md
+        - Firmware & Changelog: nbiot-sensors/wmbus-nbiot/firmware.md
   - Background Articles:
       - Hardware Variations: hardware.md
       - CRON Expressions: background/cron-expressions.md
