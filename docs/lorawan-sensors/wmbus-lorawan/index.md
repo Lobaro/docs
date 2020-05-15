@@ -13,7 +13,6 @@ This is the latest version. The previous v1.x documentation can be found here: [
 - [X] LoRaWAN Class A or Class C operation
 - [X] LoRaWAN 1.1 time synchronisation
 - [X] Wireless MBus S1, C1 and T1 modes (868 MHz) compatible 
-- [X] Learning mode of meter tx intervals for optimal battery lifetime
 - [X] Configuration via USB or remotely via LoRaWAN downlink
 - [X] Big 19Ah size "D" battery for 10 years+ possible battery lifetime
 - [X] IP67 outdoor housing with pressure compensating element
@@ -304,42 +303,9 @@ in our LoRaWAN background article.
 |`mFilter`         | wMBus manufacturer filter sep. by "," e.g. "dme,itw"| `blank`= no filter | 
 |`typFilter`       | wMBus device type filter e.g. "08,07" for Heat Coast and Water | `blank`= no filter | 
 |`devFilter`       | wMBus id filter e.g. "88009035, 06198833" (8 digits)| `blank`= no filter | 
-|`learningMode`    | Enable tx interval learning mode| `false`= Do not use learning mode | 
-|`meterIntervalSec`| Expected meter tx interval | `0` (Learning mode) | 
-|`learnedListenSec`| Listen time with learned meeters.| `600` (Learning mode) | 
 
 <sup>&dagger;</sup> See also our [Introduction to Cron expressions](/background/cron-expressions.html).
 
-###Learning Mode
-The larning mode can be enabled by setting `learningMode = true` in the configuration. 
-
-If `meterIntervalSec` is set to `0` the algorithm will try to learn the tx intervals intervals and times of up to 20 meters to conserve energy
-When a device is received the first time, it is added to an internal list of known devices. 
-When received the second time the wMBUS transmission interval is calculated. 
-The second step is omitted when `meterIntervalSec` ist set to any value but `0`. 
-When missing one device for whatever reason, the bridge will start the learning phase again.
-
-Learning of individual intervals can be skipped by setting `meterIntervalSec` to a value that is valid for all meters. 
-If `meterIntervalSec` is `0` the bridge will wait for two packets from each wMbus device and calculates the sending interval based on the times. 
-This might not always be correct due to possible jitter. 
-
-**Procedure**
-
-1. Power ON.
-2. Enter "learning Phase" and listen for 2x `_modeDurSec` if `meterIntervalSec`, else for `_modeDurSec`.
-3. Create an internal list with up to 20 meters, with either individual intervals or all intervals set to `meterIntervalSec`.
-4. On next `listenCron` only wake up as little as possible based on the learned data.
-5. When any learned meter is missing, goto 2. else sleep till `listenCron`.
-
-!!!note "Example"
-    A meter sends with jitter every 55-65 seconds. The bridge might learn an interval of 55 seconds after observing 2 messages around 12:00:00.
-    The bridge will expect next data at 12:00:55, 12:01:50, 12:02:45, etc. and probably miss data, which leads to a new learning phase.
-    
-    When setting the `meterIntervalSec` to `60` the bridge needs only one wMbus packet e.g. at 12:00:00 and expects the next packets at 12:01:00, 12:02:00, etc.
-    which is closer to reality.
-
-To account possible jitter `learnedListenSec` can be used to tell the bridge how long it should stay awake to receive a meter at a learned point in time.
-`learnedListenSec = 30` would wake up 15 seconds before the expected time and wait until the expected wMbus telegram is received or after 30 seconds.
 
 ## Uplink Payload formats
 

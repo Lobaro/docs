@@ -25,7 +25,8 @@ The latest firmware version is **v2.4.0** *(since 2020-02-25)*
 
 Download: 
 
-* [app-wMbusLoraBridge-2.4.0+hw2.hex](firmware/app-wMbusLoraBridge-2.4.0+hw2.hex) (hardware v2.x) [current release]
+* [app-wMbusLoraBridge-2.5.1+hw2.hex](firmware/app-wMbusLoraBridge-2.5.1+hw2.hex) (hardware v2.x) [current release]
+* [app-wMbusLoraBridge-2.4.0+hw2.hex](firmware/app-wMbusLoraBridge-2.4.0+hw2.hex) (hardware v2.x)
 
 
 ### Hardware Revision 1.x (active since 2017)
@@ -34,7 +35,8 @@ Download:
 
 Download:
 
-* [app-wMbusLoraBridge-2.4.0+hw1.hex](firmware/app-wMbusLoraBridge-2.4.0+hw1.hex) (hardware v1.x) [current release]
+* [app-wMbusLoraBridge-2.5.1+hw1.hex](firmware/app-wMbusLoraBridge-2.5.1+hw1.hex) (hardware v1.x) [current release]
+* [app-wMbusLoraBridge-2.4.0+hw1.hex](firmware/app-wMbusLoraBridge-2.4.0+hw1.hex) (hardware v1.x)
 
 !!! info "Please note revisions 1.x are no longer the default variant since 02/2020"
     The v1 hardware revisions are still active but only on special sales inquiry! 
@@ -52,6 +54,17 @@ Download:
     Make sure to select the **"Firmware Updates"** checkbox!    
     
 ## Release changelog
+
+### v2.5.1 (15.05.2020)
+- Adjust to Lobawan v1.2.0
+
+### v2.5.0 (unreleased)
+- Remove learning mode.
+- Also send status message when not collecting telegrams.
+- Add second cron expression for status message.
+- Add remote command for triggering collection of telegrams outside of cron.
+- Add `listenOnBoot` config parameter allowing to disable collection on boot.
+- Send Status message before listening on boot.
 
 ### v2.4.0 (25.02.2020)
 - Add new Payload Format 2, that includes RSSI of received wMBus telegrams.
