@@ -13,7 +13,7 @@
       
       
       <link rel="shortcut icon" href="../favicon.ico">
-      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.1.6">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.2.0">
     
     
       
@@ -21,9 +21,9 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.4b9ffd7b.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.18ac144a.min.css">
       
-        <link rel="stylesheet" href="../assets/stylesheets/palette.b79bcd20.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.616af814.min.css">
       
       
         
@@ -59,7 +59,8 @@
   
     
     
-    <body dir="ltr" data-md-color-primary="white" data-md-color-accent="indigo">
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="white" data-md-color-accent="indigo">
   
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -1366,18 +1367,18 @@ Access tokens can be managed on the REST Integration page.</p>
 <h4 id="receive-data-from-a-lorawan-network-server">Receive data from a LoRaWAN network server</h4>
 <ol>
 <li>Create an Access Token in the Lobaro Platform with the role <code>network-server</code> to allow write access for device data.</li>
-<li>
-<p>Configure your network server to send data to the corresponding endpoint (see list below)
+<li>Configure your network server to send data to the corresponding endpoint (see list below)
 using the token (e.g. <code>Bearer eyJhbGciOiJ...</code>) in the <code>Authorization</code> header field.<br />
-Please consult the documentation of your network server for further instructions.</p>
-</li>
-<li>
-<p>Chirpstack: <a href="https://backend.lobaro.com/api/chirpstack/uplink">https://backend.lobaro.com/api/chirpstack/uplink</a> (deprecated: <code>/api/loraserver/uplink</code>)</p>
-</li>
+Please consult the documentation of your network server for further instructions.</li>
+</ol>
+<p>Platform REST Endpoints for network server integrations:</p>
+<ul>
+<li>Chirpstack: <a href="https://backend.lobaro.com/api/chirpstack/uplink">https://backend.lobaro.com/api/chirpstack/uplink</a> (deprecated: <code>/api/loraserver/uplink</code>)</li>
 <li>Element-IoT: <a href="https://backend.lobaro.com/api/element-iot/data">https://backend.lobaro.com/api/element-iot/data</a></li>
 <li>Actility: <a href="https://backend.lobaro.com/api/actility/data">https://backend.lobaro.com/api/actility/data</a></li>
 <li>Everynet: <a href="https://backend.lobaro.com/api/everynet/data">https://backend.lobaro.com/api/everynet/data</a></li>
-</ol>
+<li>TTN: <a href="https://backend.lobaro.com/api/ttn/data">https://backend.lobaro.com/api/ttn/data</a> (Platform Version &gt; 1.0.6)</li>
+</ul>
 <p>We also support other network servers on request, e.g. TTN, Element-IoT, Firefly, Actility, Loriot, ... Just ask!</p>
 <h3 id="filter-query-parameters">Filter query parameters</h3>
 <p>Filters parameters can be appended to some requests in the form of <code>f:&lt;parameter&gt;=&lt;op&gt;:&lt;value&gt;</code> 
@@ -1516,15 +1517,15 @@ The fetched token is used for all API calls and automatically refreshed when inv
       
     </div>
     
-      <script src="../assets/javascripts/vendor.a0c4167b.min.js"></script>
-      <script src="../assets/javascripts/bundle.fb26dd1d.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      <script src="../assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
       <script>
         app = initialize({
           base: "..",
           features: [],
           search: Object.assign({
-            worker: "../assets/javascripts/worker/search.37585f48.min.js"
+            worker: "../assets/javascripts/worker/search.27c6a5e6.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
