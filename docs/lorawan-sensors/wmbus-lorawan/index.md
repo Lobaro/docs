@@ -331,7 +331,7 @@ Port 1 - In order to provide some information about the health & connectivity st
 device itself, the device sends a status update at a daily basis. The status packet is sent
 on the first upload phase after activation of the device (after reboot) and then repeatedly in
 every upload phase that takes place a day or longer after the previous status packet. It has
-a fixed length of 7 bytes. The battery voltages and ambient temperature are encodes as 16
+a length of 7 or 8 bytes. The battery voltages and ambient temperature are encodes as 16
 bit integer using little endian encoding.
 
 |name|type|bytes|description|example|
@@ -339,6 +339,7 @@ bit integer using little endian encoding.
 |version|uint8[3]|0-2|Version of the firmware running on the device|1, 5, 1 ≡ v1.5.1|
 |v_bat|uint16|3-4|Battery voltage in mV|2947 ≡ 2:947V|
 |temp|int16|5-6|Temperature measured inside the device in 1/10 °C|246 ≡ 24.6°C|
+|flags|int8|7|Bit 7 (e.g. 0x01) = No wMbus Telegram received (**added in v2.5.0**) | 0x01 |
 
 !!! warning "Temperature Sensor"
     The temperature sensor is not present anymore on dedicated V2 hardware, instead 0xffff will be returned.
