@@ -13,7 +13,7 @@
       
       
       <link rel="shortcut icon" href="../../favicon.ico">
-      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.2.0">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.2.1">
     
     
       
@@ -21,7 +21,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.18ac144a.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.71dfd922.min.css">
       
         <link rel="stylesheet" href="../../assets/stylesheets/palette.616af814.min.css">
       
@@ -2484,7 +2484,7 @@ current Spreading Factor.</p>
 device itself, the device sends a status update at a daily basis. The status packet is sent
 on the first upload phase after activation of the device (after reboot) and then repeatedly in
 every upload phase that takes place a day or longer after the previous status packet. It has
-a fixed length of 7 bytes. The battery voltages and ambient temperature are encodes as 16
+a length of 7 or 8 bytes. The battery voltages and ambient temperature are encodes as 16
 bit integer using little endian encoding.</p>
 <table>
 <thead>
@@ -2517,6 +2517,13 @@ bit integer using little endian encoding.</p>
 <td>5-6</td>
 <td>Temperature measured inside the device in 1/10 °C</td>
 <td>246 ≡ 24.6°C</td>
+</tr>
+<tr>
+<td>flags</td>
+<td>int8</td>
+<td>7</td>
+<td>Bit 7 (e.g. 0x01) = No wMbus Telegram received (<strong>added in v2.5.0</strong>)</td>
+<td>0x01</td>
 </tr>
 </tbody>
 </table>
