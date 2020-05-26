@@ -2,16 +2,16 @@
 
 ## Firmware Downloads
 
+!!! warning "Make sure you install the correct firmware for your hardware revision"
+    The device will not work if an incompatible firmware is installed. 
+    If you are unsure, which hardware revision your device is, check with the 
+    [description of hardware revisions](revisions.md).
 
-### Hardware Revision 2.x
+### Hardware Revision 3
 
-![Product GPS Tracker HW2](files/gpslorawan.png){: style="height:250px;display: block; margin: 0 auto;"}
+![Product GPS Tracker HW3](files/GPS-Tracker-V3-Open2.png){: style="height:250px;display: block; margin: 0 auto;"}
 
-**Downloads**: 
-
-* [app-lorawan-gps-button-6.1.0.hex](firmware/app-lorawan-gps-button-6.1.0.hex) (hardware v2.x) [current release]
-
-* [app-lorawan-gps-button-6.0.3.hex](firmware/app-lorawan-gps-button-6.0.3.hex) (hardware v2.x)
+* [app-lorawan-gps-7.0.0.hex](firmware/app-lorawan-gps-7.0.0.hex) (hardware v3.x) [current release]
 
 !!! hint "Firmware Release Notifications"
     We normally send e-mail notifications upon release of new firmware versions. To receive this mails you can sign up
@@ -21,23 +21,48 @@
     
     Make sure to select the **"Firmware Updates"** checkbox!    
 
-### Hardware Revision 1.x 
+### Hardware Revision 2
 
-![GPS Tracker HW1](files/config.png){: style="height:150px; display: block; margin: 0 auto;"}
+![Product GPS Tracker HW2](files/gpslorawan.png){: style="height:250px;display: block; margin: 0 auto;"}
+
+**Downloads**: 
+
+* [app-lorawan-gps-button-6.1.0.hex](6.0.0/firmware/app-lorawan-gps-button-6.1.0.hex) (hardware v2.x) [current release]
+* [app-lorawan-gps-button-6.0.3.hex](6.0.0/firmware/app-lorawan-gps-button-6.0.3.hex) (hardware v2.x)
+
+!!! warning
+    This hardware revision is no longer available for sale! Consider using the improved HW Rev 3.
+
+### Hardware Revision 1 
+
+![GPS Tracker HW1](files/GPS_LoRaWAN_Tracker_Opencase_frei.jpg){: style="height:150px; display: block; margin: 0 auto;"}
 
 **Downloads**:
 
-* [app-lorawan-gps-button-5.0.5.hex](firmware/app-lorawan-gps-button-5.0.5.hex) (hardware v1.x)
-* [app-lorawan-gps-button-4.0.9.hex](firmware/app-lorawan-gps-button-4.0.9.hex) (hardware v1.x)
+* [app-lorawan-gps-button-5.0.5.hex](6.0.0/firmware/app-lorawan-gps-button-5.0.5.hex) (hardware v1.x)
+* [app-lorawan-gps-button-4.0.9.hex](6.0.0/firmware/app-lorawan-gps-button-4.0.9.hex) (hardware v1.x)
 
 !!! info 
     The LoRaWAN GPS data uplink data encoding has been changed between firmware 4.x ("legacy format") and 5.x. See the manual for details.
     
 !!! warning
-    This hardware revision is no longer available for sale! Consider using the improved HW Rev 2.x.
+    This hardware revision is no longer available for sale! Consider using the improved HW Rev 3.
 
 ## Changelog
 --------------------
+### v7.0.0 - 28.04.2020
+* Completely rewrite firmware for new board rev3 with new LoRaWAN features and concepts.
+* Extend Payload format on port 2 (add HDOP and Timestamp of last Fix).
+* Listen to MEMS events while not asleep.
+* Check for movement by GPS to update activity mode.
+* New LED blinking patterns.
+* Add regular status message on port 1.
+* Update to new Lobaro LoRaWAN Stack (LoRaWAN v1.1, remote Configuration via Downlink, Class C, ...).
+* Enable Time synchronisation from GPS.
+* Change naming from "Alive Mode" to "Passive Mode" for easier distinguishing from "Active Mode".
+* Reduce power consumption during deep sleep by ~20%.
+* Removed Cayenne Payload Format
+
 ### v6.1.0 - 09.12.2019
 * added new parameters to increase accuracy: maxHDOP & maxDataAfterFix
 

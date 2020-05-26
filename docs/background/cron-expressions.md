@@ -1,6 +1,6 @@
 # Cron Expressions
 
-We use CRON expressions setup the timing of our hardware during device configuration using the [Lobaro Maintenance Tool](/tools/lobaro-tool/) or remotely over the air.
+We use CRON expressions setup the timing of our hardware during device configuration using the [Lobaro Maintenance Tool](../tools/lobaro-tool.md) or remotely over the air.
 
 The CRON expressions consists of 6 fields, separated by space: e.g. `0 0/15 * * * *` , which describes time points every 15 minutes starting from minute 0.
 

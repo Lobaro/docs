@@ -77,7 +77,9 @@ nav:
           - Firmware & Changelog: lorawan-sensors/1-wire-lorawan/firmware.md
       - GPS Tracker:
           - Manual: lorawan-sensors/gps-lorawan/index.md
+          - Manual (legacy): lorawan-sensors/gps-lorawan/6.0.0/index.md
           - Firmware & Changelog: lorawan-sensors/gps-lorawan/firmware.md
+          - Hardware Revisions: lorawan-sensors/gps-lorawan/revisions.md
       - Usonic Distance Sensor:
           - Manual: lorawan-sensors/usonic-lorawan/index.md
           - Firmware & Changelog: lorawan-sensors/usonic-lorawan/firmware.md
