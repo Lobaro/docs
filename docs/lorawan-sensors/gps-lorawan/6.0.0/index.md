@@ -419,7 +419,7 @@ The table underneath explains the message format used.
 |Operating temperature range|-20°C to +55°C|
 |Max. Installation height|2m|
 |**Conformity**||
-|<img title="CE" alt="CE logo" src="/img/symbol-ce.svg" height="60"> <img title="weee" title="weee logo" src="/img/symbol-weee.svg" height="60">||
+|<img title="CE" alt="CE logo" src="/img/symbol-ce.svg" style="height:60px;"> <img title="weee" title="weee logo" src="/img/symbol-weee.svg" style="height:60px;">||
 
 
 ## Parser
