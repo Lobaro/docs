@@ -54,8 +54,17 @@ what the Gateway does during that time).
 ### Configuring the device
 If you purchased your *Lobaro wMBus Gateway* with a SIM card included and you are using the Lobaro Platform, 
 you will not need to change any configuration for the device to work. Instructions on how to change the 
-device's configuration using the Lobaro Config Adapter will be provided later.
+device's configuration using the Lobaro Config Adapter can be found on the 
+[Device Configuration](../../tools/lobaro-tool.md#device-configuration) on the manual page for our 
+Configuration Tool.
 
+### Mobile operator configuration
+If you are using a different mobile operator than pre-configured, you should change the mobile operator 
+code set in the Config Parameter `Operator`. Operator codes are 5 digit codes that indicate country and 
+operator, for example Deutsche Telekom in Germany has `26201` and Tele2 in Sweden has `24007`. You can find 
+a [list of mobile operator codes][operator-list] on Wikipedia. 
+
+[operator-list]: https://en.wikipedia.org/wiki/Mobile_Network_Codes_in_ITU_region_2xx_(Europe)
 
 ## The Lobaro Platform
 The easiest way to work with the *Lobaro wMBus NB-IoT Gateway* is the *Lobaro Platform*. You can find it 
