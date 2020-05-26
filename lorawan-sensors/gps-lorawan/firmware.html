@@ -13,7 +13,7 @@
       
       
       <link rel="shortcut icon" href="../../favicon.ico">
-      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.2.1">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.2.2">
     
     
       
@@ -21,9 +21,9 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.71dfd922.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.a2408e81.min.css">
       
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.616af814.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a46bcfb3.min.css">
       
       
         
@@ -498,6 +498,18 @@
           
           
 
+
+  <li class="md-nav__item">
+    <a href="6.0.0/index.html" title="Manual (legacy)" class="md-nav__link">
+      Manual (legacy)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
   
 
 
@@ -543,15 +555,22 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#hardware-revision-2x" class="md-nav__link">
-    Hardware Revision 2.x
+  <a href="#hardware-revision-3" class="md-nav__link">
+    Hardware Revision 3
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#hardware-revision-1x" class="md-nav__link">
-    Hardware Revision 1.x
+  <a href="#hardware-revision-2" class="md-nav__link">
+    Hardware Revision 2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hardware-revision-1" class="md-nav__link">
+    Hardware Revision 1
   </a>
   
 </li>
@@ -568,6 +587,13 @@
   
     <nav class="md-nav" aria-label="Changelog">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#v700-28042020" class="md-nav__link">
+    v7.0.0 - 28.04.2020
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#v610-09122019" class="md-nav__link">
@@ -690,6 +716,18 @@
   
 </nav>
     
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="revisions.html" title="Hardware Revisions" class="md-nav__link">
+      Hardware Revisions
+    </a>
   </li>
 
         
@@ -1379,15 +1417,22 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#hardware-revision-2x" class="md-nav__link">
-    Hardware Revision 2.x
+  <a href="#hardware-revision-3" class="md-nav__link">
+    Hardware Revision 3
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#hardware-revision-1x" class="md-nav__link">
-    Hardware Revision 1.x
+  <a href="#hardware-revision-2" class="md-nav__link">
+    Hardware Revision 2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hardware-revision-1" class="md-nav__link">
+    Hardware Revision 1
   </a>
   
 </li>
@@ -1404,6 +1449,13 @@
   
     <nav class="md-nav" aria-label="Changelog">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#v700-28042020" class="md-nav__link">
+    v7.0.0 - 28.04.2020
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#v610-09122019" class="md-nav__link">
@@ -1544,16 +1596,16 @@
                 
                 <h1 id="lorawan-gps-tracker">LoRaWAN GPS Tracker</h1>
 <h2 id="firmware-downloads">Firmware Downloads</h2>
-<h3 id="hardware-revision-2x">Hardware Revision 2.x</h3>
-<p><img alt="Product GPS Tracker HW2" src="files/gpslorawan.png" style="height:250px;display: block; margin: 0 auto;" /></p>
-<p><strong>Downloads</strong>: </p>
+<div class="admonition warning">
+<p class="admonition-title">Make sure you install the correct firmware for your hardware revision</p>
+<p>The device will not work if an incompatible firmware is installed. 
+If you are unsure, which hardware revision your device is, check with the 
+<a href="revisions.html">description of hardware revisions</a>.</p>
+</div>
+<h3 id="hardware-revision-3">Hardware Revision 3</h3>
+<p><img alt="Product GPS Tracker HW3" src="files/GPS-Tracker-V3-Open2.png" style="height:250px;display: block; margin: 0 auto;" /></p>
 <ul>
-<li>
-<p><a href="firmware/app-lorawan-gps-button-6.1.0.hex">app-lorawan-gps-button-6.1.0.hex</a> (hardware v2.x) [current release]</p>
-</li>
-<li>
-<p><a href="firmware/app-lorawan-gps-button-6.0.3.hex">app-lorawan-gps-button-6.0.3.hex</a> (hardware v2.x)</p>
-</li>
+<li><a href="firmware/app-lorawan-gps-7.0.0.hex">app-lorawan-gps-7.0.0.hex</a> (hardware v3.x) [current release]</li>
 </ul>
 <div class="admonition hint">
 <p class="admonition-title">Firmware Release Notifications</p>
@@ -1562,12 +1614,23 @@ to the Lobaro newsletter here.</p>
 <p><a href="http://eepurl.com/gQYRbH" target="_blank"><strong>Subscribe to our email newsletter here</strong></a> </p>
 <p>Make sure to select the <strong>"Firmware Updates"</strong> checkbox!    </p>
 </div>
-<h3 id="hardware-revision-1x">Hardware Revision 1.x</h3>
-<p><img alt="GPS Tracker HW1" src="files/config.png" style="height:150px; display: block; margin: 0 auto;" /></p>
+<h3 id="hardware-revision-2">Hardware Revision 2</h3>
+<p><img alt="Product GPS Tracker HW2" src="files/gpslorawan.png" style="height:250px;display: block; margin: 0 auto;" /></p>
+<p><strong>Downloads</strong>: </p>
+<ul>
+<li><a href="6.0.0/firmware/app-lorawan-gps-button-6.1.0.hex">app-lorawan-gps-button-6.1.0.hex</a> (hardware v2.x) [current release]</li>
+<li><a href="6.0.0/firmware/app-lorawan-gps-button-6.0.3.hex">app-lorawan-gps-button-6.0.3.hex</a> (hardware v2.x)</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This hardware revision is no longer available for sale! Consider using the improved HW Rev 3.</p>
+</div>
+<h3 id="hardware-revision-1">Hardware Revision 1</h3>
+<p><img alt="GPS Tracker HW1" src="files/GPS_LoRaWAN_Tracker_Opencase_frei.jpg" style="height:150px; display: block; margin: 0 auto;" /></p>
 <p><strong>Downloads</strong>:</p>
 <ul>
-<li><a href="firmware/app-lorawan-gps-button-5.0.5.hex">app-lorawan-gps-button-5.0.5.hex</a> (hardware v1.x)</li>
-<li><a href="firmware/app-lorawan-gps-button-4.0.9.hex">app-lorawan-gps-button-4.0.9.hex</a> (hardware v1.x)</li>
+<li><a href="6.0.0/firmware/app-lorawan-gps-button-5.0.5.hex">app-lorawan-gps-button-5.0.5.hex</a> (hardware v1.x)</li>
+<li><a href="6.0.0/firmware/app-lorawan-gps-button-4.0.9.hex">app-lorawan-gps-button-4.0.9.hex</a> (hardware v1.x)</li>
 </ul>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
@@ -1575,10 +1638,24 @@ to the Lobaro newsletter here.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>This hardware revision is no longer available for sale! Consider using the improved HW Rev 2.x.</p>
+<p>This hardware revision is no longer available for sale! Consider using the improved HW Rev 3.</p>
 </div>
 <h2 id="changelog">Changelog</h2>
 <hr />
+<h3 id="v700-28042020">v7.0.0 - 28.04.2020</h3>
+<ul>
+<li>Completely rewrite firmware for new board rev3 with new LoRaWAN features and concepts.</li>
+<li>Extend Payload format on port 2 (add HDOP and Timestamp of last Fix).</li>
+<li>Listen to MEMS events while not asleep.</li>
+<li>Check for movement by GPS to update activity mode.</li>
+<li>New LED blinking patterns.</li>
+<li>Add regular status message on port 1.</li>
+<li>Update to new Lobaro LoRaWAN Stack (LoRaWAN v1.1, remote Configuration via Downlink, Class C, ...).</li>
+<li>Enable Time synchronisation from GPS.</li>
+<li>Change naming from "Alive Mode" to "Passive Mode" for easier distinguishing from "Active Mode".</li>
+<li>Reduce power consumption during deep sleep by ~20%.</li>
+<li>Removed Cayenne Payload Format</li>
+</ul>
 <h3 id="v610-09122019">v6.1.0 - 09.12.2019</h3>
 <ul>
 <li>added new parameters to increase accuracy: maxHDOP &amp; maxDataAfterFix</li>
@@ -1676,7 +1753,7 @@ to the Lobaro newsletter here.</p>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="index.html" title="Manual" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="6.0.0/index.html" title="Manual (legacy)" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -1685,19 +1762,19 @@ to the Lobaro newsletter here.</p>
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Manual
+                Manual (legacy)
               </div>
             </div>
           </a>
         
         
-          <a href="../usonic-lorawan/index.html" title="Manual" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="revisions.html" title="Hardware Revisions" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Manual
+                Hardware Revisions
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
