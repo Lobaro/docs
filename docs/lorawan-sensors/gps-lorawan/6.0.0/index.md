@@ -1,6 +1,6 @@
 # GPS / GLONASS LoRaWAN Tracker
 
-!!! warning "Outdated version"
+!!! warning "New version available"
     This is the manual for a deprecated version of our GPS-Tracker, which is no longer manufactured.
     This hardware revision uses has an addon strip screwed on the basis board, labeled *GPS Addon V2.x*
     (compare the photograph below). Our current hardware revision is labeled *Lobaro LoRaWAN GPS 3* and does 
