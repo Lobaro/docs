@@ -1,4 +1,4 @@
-# GPS / GLONASS LoRaWAN Tracker
+# GPS / BeiDou LoRaWAN Tracker
 
 !!! info "Different Hardware Revision"
     This manual is for the GPS-Tracker in hardware revision 3 running firmware starting 
@@ -7,10 +7,23 @@
     the [Hardware Revisions Overview](revisions.md), which also links to the manuals for 
     each revision.
     
-## Overview
 
-`Order number: 8000116` <br>
+**GPS-LoRaWAN V3** &ndash; Order number: `8000116` <br>
 ![Product Image](files/GPS-Tracker-V3-Open2-mitLogos2.jpg){: style="height:500px;display: block; margin: 0 auto;"}
+
+## Key Features
+- [X] LoRaWAN 1.0.x and 1.1 network servers supported
+- [X] LoRaWAN Class A or Class C operation
+- [X] TTN-Mapper compatible
+- [X] Time synchronisation via GPS or LoRaWAN
+- [X] Simultaneous GPS and BeiDou support for better satellite coverage
+- [X] Configuration via USB or remotely via LoRaWAN downlink
+- [X] Visual Feedback through on-board LED
+- [X] Power conserving when stationary (Passive Mode)
+- [X] Integrated motion detector and temperature sensor
+- [X] Optional: complete Lobaro IoT Platform integration
+
+## Overview
 
 The LoRaWAN GPS Tracker (GPS-LoRaWAN V3) is a battery powered tracking device, that
 uses the satellite based positioning services [GPS](https://en.wikipedia.org/Global_Positioning_System) 
@@ -28,12 +41,29 @@ device is only possible if you follow the guides provided in this manual. Using 
 differently than intended by Lobaro my cause damage to people, the environment, or
 the device.**
 
+## Quick-start
+This is a basic guide to get the GPS-Tracker running using the free LoRaWAN-Network 
+[The Things Network][ttn] (TTN).
+TTN supply documentation that helps you in following this steps.
+Any LoRaWAN-Network can be used. Refer to the rest of the manual for detailed information. 
+
+- Create an account on [The Things Network][ttn-console]
+- Create a new application for the Lobaro GPS Tracker V3
+- Copy our [Reference Parser](#parser) to your application
+- Create a new Device in your new application in TTN
+- Adjust the device parameters `DevEUI`, `AppEUI`/`JoinEUI`, and `AppKey`. Either change the 
+  values in the TTN-Device entry or change the configuration of the GPS-Tracker using the 
+  Lobaro Config Adapter
+- Make sure you have coverage by a TTN-Gateway and GPS (outside)
+- Insert batteries into the tracker
+- Check for data in TTN
 
 ## Operating the GPS Tracker
 Once batteries are inserted into the device, it will start working. The Tracker will
 most likely need to be adjusted to your personal LoRaWAN configuration (see chapter "Configuration").
 
 ### Batteries
+Please see our page on [Battery Disposal](../../background/weee-disposal.md#batteries).
 
 The LoRaWAN GPS Tracker default power supply consists of two series connected off-theshelf
 1.5V 'AA' sized batteries. Be sure to get the polarity right, see the '+'-Symbol on the
@@ -110,6 +140,9 @@ longitude, and height) using GPS. You can identify this phase by the onboard LED
 on and off in one second intervals.
 Once the position has been determined successfully (or the attempt timed out and failed,
 because of bad GPS reception), the device enters the Data Transfer Phase.
+
+During this phase the Tracker gives visual feedback over it's LED. See [LED Patterns](#led-patterns)
+for an explanation.
 
 #### Data Transfer Phase
 
@@ -268,6 +301,18 @@ Examples of CRON definitions: <br>
 |`0 0 6 * * *`     |daily at 6:00:00|
 |`0 0 13 1,15 * *` |1st and 15th day of every month at 13:00:00|
 |`0 0 9 1-5 * *`   |every month daily from day 1 till 5 at 9:00:00|
+
+
+## LED patterns
+The GPS-Tracker gives visual feedback about it's operations using a green on-board LED.
+
+| Meaning | Pattern | Explanation |
+|-|--|--|
+| Device Start | &mdash; <br> single ½ second blink     | Device just (re-)booted, testing LED | 
+| GPS active   | &bull;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &bull;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &bull;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &bull;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &bull;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  … <br> short blinks every second | GPS module is active and Tracker is trying to get a Position Fix |
+| GPS fix      | &ndash; &ndash; <br> two long blinks            | GPS process completed, valid position determined |
+| GPS failed   | &ndash; &bull; &bull; &bull; &bull; &bull; <br>one long and 5 short blinks | GPS process timed out, no position determined |
+
 
 ## LoRaWAN Data Upload Formats
 
@@ -743,7 +788,13 @@ so that you get the data from the GPS-Tracker while also sending them to TTN-Map
 |**Conformity**||
 |<img title="CE" alt="CE logo" src="/img/symbol-ce.svg" style="height:60px;"> <img title="weee" title="weee logo" src="/img/symbol-weee.svg" style="height:60px;">||
 
+## Disposal
+For information on disposal of the *LoRaWAN GPS-Tracker V3*, please refer to our page on 
+[Disposal of Lobaro Devices](../../background/weee-disposal.md).
 
 ## PDF Documentation
 * [Product Dimensions (pdf)](files/Lobaro-Compact-Housing.pdf){: target="_blank"}
 * [CE Declaration of Conformity](files/scan-ce-conformity-gps-lorawan.pdf)
+
+[ttn]: https://www.thethingsnetwork.org
+[ttn-console]: https://console.thethingsnetwork.org
