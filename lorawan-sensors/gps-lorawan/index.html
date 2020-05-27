@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#gps-glonass-lorawan-tracker" class="md-skip">
+        <a href="#gps-beidou-lorawan-tracker" class="md-skip">
           Skip to content
         </a>
       
@@ -523,8 +523,22 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#key-features" class="md-nav__link">
+    Key Features
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#overview" class="md-nav__link">
     Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    Quick-start
   </a>
   
 </li>
@@ -663,6 +677,13 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#led-patterns" class="md-nav__link">
+    LED patterns
+  </a>
   
 </li>
       
@@ -840,6 +861,13 @@
         <li class="md-nav__item">
   <a href="#technical-characteristics" class="md-nav__link">
     Technical characteristics
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#disposal" class="md-nav__link">
+    Disposal
   </a>
   
 </li>
@@ -1572,8 +1600,22 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#key-features" class="md-nav__link">
+    Key Features
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#overview" class="md-nav__link">
     Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    Quick-start
   </a>
   
 </li>
@@ -1712,6 +1754,13 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#led-patterns" class="md-nav__link">
+    LED patterns
+  </a>
   
 </li>
       
@@ -1894,6 +1943,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#disposal" class="md-nav__link">
+    Disposal
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#pdf-documentation" class="md-nav__link">
     PDF Documentation
   </a>
@@ -1920,7 +1976,7 @@
                   
                 
                 
-                <h1 id="gps-glonass-lorawan-tracker">GPS / GLONASS LoRaWAN Tracker</h1>
+                <h1 id="gps-beidou-lorawan-tracker">GPS / BeiDou LoRaWAN Tracker</h1>
 <div class="admonition info">
 <p class="admonition-title">Different Hardware Revision</p>
 <p>This manual is for the GPS-Tracker in hardware revision 3 running firmware starting 
@@ -1929,9 +1985,22 @@ older revision of the device or are unsure which revision you have, please refer
 the <a href="revisions.html">Hardware Revisions Overview</a>, which also links to the manuals for 
 each revision.</p>
 </div>
-<h2 id="overview">Overview</h2>
-<p><code>Order number: 8000116</code> <br>
+<p><strong>GPS-LoRaWAN V3</strong> &ndash; Order number: <code>8000116</code> <br>
 <img alt="Product Image" src="files/GPS-Tracker-V3-Open2-mitLogos2.jpg" style="height:500px;display: block; margin: 0 auto;" /></p>
+<h2 id="key-features">Key Features</h2>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> LoRaWAN 1.0.x and 1.1 network servers supported</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> LoRaWAN Class A or Class C operation</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> TTN-Mapper compatible</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Time synchronisation via GPS or LoRaWAN</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Simultaneous GPS and BeiDou support for better satellite coverage</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Configuration via USB or remotely via LoRaWAN downlink</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Visual Feedback through on-board LED</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Power conserving when stationary (Passive Mode)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Integrated motion detector and temperature sensor</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Optional: complete Lobaro IoT Platform integration</li>
+</ul>
+<h2 id="overview">Overview</h2>
 <p>The LoRaWAN GPS Tracker (GPS-LoRaWAN V3) is a battery powered tracking device, that
 uses the satellite based positioning services <a href="https://en.wikipedia.org/Global_Positioning_System">GPS</a> 
 and <a href="https://en.wikipedia.org/wiki/BeiDou">BeiDou</a> to determine its location and transmits the
@@ -1946,10 +2015,28 @@ sleep mode that only uses ∼25 µA (or ~14 µA without motion sensor).  </p>
 device is only possible if you follow the guides provided in this manual. Using the device
 differently than intended by Lobaro my cause damage to people, the environment, or
 the device.</strong></p>
+<h2 id="quick-start">Quick-start</h2>
+<p>This is a basic guide to get the GPS-Tracker running using the free LoRaWAN-Network 
+<a href="https://www.thethingsnetwork.org">The Things Network</a> (TTN).
+TTN supply documentation that helps you in following this steps.
+Any LoRaWAN-Network can be used. Refer to the rest of the manual for detailed information. </p>
+<ul>
+<li>Create an account on <a href="https://console.thethingsnetwork.org">The Things Network</a></li>
+<li>Create a new application for the Lobaro GPS Tracker V3</li>
+<li>Copy our <a href="#parser">Reference Parser</a> to your application</li>
+<li>Create a new Device in your new application in TTN</li>
+<li>Adjust the device parameters <code>DevEUI</code>, <code>AppEUI</code>/<code>JoinEUI</code>, and <code>AppKey</code>. Either change the 
+  values in the TTN-Device entry or change the configuration of the GPS-Tracker using the 
+  Lobaro Config Adapter</li>
+<li>Make sure you have coverage by a TTN-Gateway and GPS (outside)</li>
+<li>Insert batteries into the tracker</li>
+<li>Check for data in TTN</li>
+</ul>
 <h2 id="operating-the-gps-tracker">Operating the GPS Tracker</h2>
 <p>Once batteries are inserted into the device, it will start working. The Tracker will
 most likely need to be adjusted to your personal LoRaWAN configuration (see chapter "Configuration").</p>
 <h3 id="batteries">Batteries</h3>
+<p>Please see our page on <a href="../../background/weee-disposal.html#batteries">Battery Disposal</a>.</p>
 <p>The LoRaWAN GPS Tracker default power supply consists of two series connected off-theshelf
 1.5V 'AA' sized batteries. Be sure to get the polarity right, see the '+'-Symbol on the
 board. In general only AA cells of the types Alkali-Manganese (1.5V, LR6) and Lithium-Iron-
@@ -2013,6 +2100,8 @@ longitude, and height) using GPS. You can identify this phase by the onboard LED
 on and off in one second intervals.
 Once the position has been determined successfully (or the attempt timed out and failed,
 because of bad GPS reception), the device enters the Data Transfer Phase.</p>
+<p>During this phase the Tracker gives visual feedback over it's LED. See <a href="#led-patterns">LED Patterns</a>
+for an explanation.</p>
 <h4 id="data-transfer-phase">Data Transfer Phase</h4>
 <p>During the Data Transfer Phase the Tracker uploads the GPS coordinates to the LoRaWAN
 network. The message contains the information if the measurement was successful. Some
@@ -2292,6 +2381,39 @@ depenting on the status of daylight saving time.</p>
 <tr>
 <td><code>0 0 9 1-5 * *</code></td>
 <td>every month daily from day 1 till 5 at 9:00:00</td>
+</tr>
+</tbody>
+</table>
+<h2 id="led-patterns">LED patterns</h2>
+<p>The GPS-Tracker gives visual feedback about it's operations using a green on-board LED.</p>
+<table>
+<thead>
+<tr>
+<th>Meaning</th>
+<th>Pattern</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Device Start</td>
+<td>&mdash; <br> single ½ second blink</td>
+<td>Device just (re-)booted, testing LED</td>
+</tr>
+<tr>
+<td>GPS active</td>
+<td>&bull;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &bull;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &bull;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &bull;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &bull;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  … <br> short blinks every second</td>
+<td>GPS module is active and Tracker is trying to get a Position Fix</td>
+</tr>
+<tr>
+<td>GPS fix</td>
+<td>&ndash; &ndash; <br> two long blinks</td>
+<td>GPS process completed, valid position determined</td>
+</tr>
+<tr>
+<td>GPS failed</td>
+<td>&ndash; &bull; &bull; &bull; &bull; &bull; <br>one long and 5 short blinks</td>
+<td>GPS process timed out, no position determined</td>
 </tr>
 </tbody>
 </table>
@@ -3086,6 +3208,9 @@ so that you get the data from the GPS-Tracker while also sending them to TTN-Map
 </tr>
 </tbody>
 </table>
+<h2 id="disposal">Disposal</h2>
+<p>For information on disposal of the <em>LoRaWAN GPS-Tracker V3</em>, please refer to our page on 
+<a href="../../background/weee-disposal.html">Disposal of Lobaro Devices</a>.</p>
 <h2 id="pdf-documentation">PDF Documentation</h2>
 <ul>
 <li><a href="files/Lobaro-Compact-Housing.pdf" target="_blank">Product Dimensions (pdf)</a></li>
