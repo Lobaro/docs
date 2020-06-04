@@ -2,6 +2,20 @@
 
 **Application:** Lobaro Backend
 
+## unreleased
+
+## 1.7.0 - 2020-06-04
+
+### Added
+- Allow sending user invitation mails with password reset link
+- Allow user to restore a lost password
+- GraphQL API: Devices can be filtered by DeviceTypeId
+- Verify that server.frontendUrl is set in configuration
+- Add TTN REST Endpoint /api/ttn/data
+
+### Changed
+- Prevent spaces in device addresses
+
 ## 1.6.0 - 2020-04-09
 
 ### Added
