@@ -525,7 +525,8 @@ to modify parser and configuration under [TTN-Mapper](#ttn-mapper).
 /**
  * Parser for Lobaro GPS-Tracker v3 to be used in The Things Network
  *
- * When used with TTN-Mapper integration (
+ * When used with TTN-Mapper integration set global variable
+ * TTN_MAPPER to false. See https://docs.lobaro.com for details.
  *
  * Copyright 2020 Lobaro GmbH - https://www.lobaro.com
  * Free to be used under MIT License:
