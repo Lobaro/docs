@@ -782,7 +782,7 @@ example NarrowBand-IoT.
 | **Environmental Requirements** |                                                                   |
 | Operating temperature    | -20°C &ndash; 55°C                                                      |
 | Max installation height  | 2m                                                                      |
-| **Standards** <br> <img title="CE" alt="CE logo" src="/img/symbol-ce.svg" height="60"> <img title="weee" title="weee logo" src="/img/symbol-weee.svg" height="60"> |
+| **Standards** <br> <img title="CE" alt="CE logo" src="/img/symbol-ce.svg" style="height:60px;"> <img title="weee" title="weee logo" src="/img/symbol-weee.svg" style="height:60px;"> |
 |                          |                                                                         |
 
 ### CE Declaration of Conformity
