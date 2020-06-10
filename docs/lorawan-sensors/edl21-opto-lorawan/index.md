@@ -150,7 +150,7 @@ As you can see by this the device will start the LoRaWAN join only after receivi
 | **Environmental Requirements** |                                                                   |
 | Operating temperature    | -20°C &ndash; 55°C                                                      |
 | Max installation height  | 2m                                                                      |
-| **Standards** <br> <img title="CE" alt="CE logo" src="/img/symbol-ce.svg" height="60"> <img title="weee" title="weee logo" src="/img/symbol-weee.svg" height="60"> |
+| **Standards** <br> <img title="CE" alt="CE logo" src="/img/symbol-ce.svg" style="height:60px;"> <img title="weee" title="weee logo" src="/img/symbol-weee.svg" style="height:60px;"> |
 |                          |                                                                         |
 
 ### Disposal / WEEE / Entsorgung
@@ -178,7 +178,7 @@ Each entry follows the following structure:
 |------|------|------|
 |6 bytes|1 byte|n bytes, LSB first|
 
-Example packet: 01 00 01 08 00 FE 08 FF 01 00 00 00 00 00 00 01 00 01 08 00 FE 08 FF 02 00 00 00 00 00 00
+Example packet: `01 00 01 08 00 FE 08 FF 01 00 00 00 00 00 00 01 00 01 08 00 FE 08 FF 02 00 00 00 00 00 00`
 
 Entry 1: 
 
