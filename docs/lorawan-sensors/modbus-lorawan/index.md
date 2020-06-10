@@ -482,6 +482,9 @@ Responses and high Spreading Factors, the Response could be split into up to
 6 messages. You can use the frame counter and the indicated length to verify 
 if you receive all parts.
 
+!!!warning Known Issue
+    Remaining data is not send on port 5 as documented above, but on port 3. 
+
 Modbus Responses that are split up will never be packed together with other 
 Responses. The [Examples](#examples) section contains an illustration of 
 a split up Response.
