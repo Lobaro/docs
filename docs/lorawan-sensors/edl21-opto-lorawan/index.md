@@ -25,7 +25,7 @@ interested in further processing this data.
 - [X] Configuration via USB or remotely via LoRaWAN downlink
 - [X] Compatible with many electrical utility meters
 - [X] RGB Status LED
-- [X] Variants with external power-supply and D-cell batteries available on request
+- [X] Variant with external power-supply available on request
 - [X] Separation of infrared readout head and LoRaWAN antenna possible
 
 ## Compatible utility meters
