@@ -1,6 +1,6 @@
 # EDL21 Electricity meter LoRaWAN Bridge
 
-![Lobaro EDL21 LoRaWAN Bridge](files/edl21_small.jpg){: style="width:45%; vertical-align: top;"}
+![Lobaro EDL21 LoRaWAN Bridge](files/EDL21_LabelV2_Front_klein.jpg){: style="width:45%; vertical-align: top; display: block; margin: 0 auto;"}
 
 The EDL21 over LoRaWAN bridge is a device that can be used to readout modern utility meters with standardized infrared "INFO" interface. 
 
@@ -49,16 +49,17 @@ On request we offer also the integration of electricity meters using the D0 inte
 Please contact us if you need an offer for a custom firmware supporting your meter of interest.
 
 ## Product variants
-`EDL21-LoRaWAN Bridge (universal head, AA, int. Ant.), Order number: 8000057` <br>
-![Lobaro EDL21 LoRaWAN Bridge](files/Lastenheft-EDL21-LoRaWAN-bridge.jpg){: style="width:100%;"}
+`EDL21-LoRaWAN Bridge (universal head, XH battery connector, int. Ant.), Order number: 8000091` <br>
+![Lobaro EDL21 LoRaWAN Bridge](files/EDL21_LabelV2_Front_klein.jpg){: style="width:45%"; }
+![Lobaro EDL21 LoRaWAN Bridge](files/EDL21-detail-view-stromzaehler-lorawan.jpg){: style="width:45%; vertical-align: top;"}
+
 
 !!! note "Customization Options"
-    The product variant shown above is the *standard* variant in our compact housing and powered by two AA batteries.
+    The product variant shown above is the *standard* variant for use with a ER34614 3.6V D-cell Battery connected over a XH connector.
      
     [**Other power supply options & housing are available on request**](../../hardware.md){: target="_blank"}
     
     * External antenna
-    * D-cell batteries
     * External power-supply
     * NB-IoT instead of LoRaWAN
     * Different infrared data formats other than SML
@@ -69,7 +70,7 @@ Please contact us if you need an offer for a custom firmware supporting your met
 1. Connect to the device with the [Lobaro Tool](https://www.lobaro.com/lobaro-maintenance-tool/) using the [Lobaro Config Adapter](https://www.lobaro-shop.com/product_info.php?info=p7_lobaro-usb-konfigurations-adapter.html) 
 2. Under Configuration click "Reload Config" and change the fields ReadCron and ObisCode as you need followed by clicking on "Write to Device" [click here for a configuration example](files/edl21_config_tool.jpg)
 3. Register the device in your LoRaWAN network
-4. Insert 2 batteries ('AA' size, 1.5V) / Connect external powersupply
+4. Connect ER34614 3.6V D-cell Battery via XH connector / Connect external powersupply
 5. If not connected to anything the red LED will start blinking as long as no data is received, after 1 minute it will sleep for 15 seconds after every 5 retries
 6. Tighten the screws and install the bridge beside your electric meter
 7. Place the EDL21 opto head on the "Info" interface
