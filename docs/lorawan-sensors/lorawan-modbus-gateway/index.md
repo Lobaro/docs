@@ -29,7 +29,10 @@ All devices are managed by the Lobaro Modbus Server.
 Per default the gateway obtains the IP address via DHCP. 
 If configured with a fixed IP address, the gateway has a label with the configured IP address and subnet.
 
-The gateway can be accessed via SSH on port 22. Default login credentials are provided by Lobaro.
+The gateway can be accessed via SSH on port 22. Default login credentials are:
+
+* User: pi
+* Password: lobarogw
 
 ## Lobaro Modbus Server
 
