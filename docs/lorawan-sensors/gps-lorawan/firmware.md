@@ -11,7 +11,7 @@
 
 ![Product GPS Tracker HW3](files/GPS-Tracker-V3-Open2.png){: style="height:250px;display: block; margin: 0 auto;"}
 
-* [app-lorawan-gps-7.0.0.hex](firmware/app-lorawan-gps-7.0.0.hex) (hardware v3.x) [current release]
+* [app-lorawan-gps-7.1.0.hex](firmware/app-lorawan-gps-7.1.0.hex) (hardware v3.x) [current release]
 
 !!! hint "Firmware Release Notifications"
     We normally send e-mail notifications upon release of new firmware versions. To receive this mails you can sign up
@@ -50,6 +50,17 @@
 
 ## Changelog
 --------------------
+### v7.1.0 - 17.06.2020
+#### Added
+- Add timestamp for last movement event to Port 2 payload
+- Add config parameter `movementDistance` that configures how GPS-position changes 
+  are calculated as movement events.
+#### Fixed
+- LoRaWAN 1.1 issue that sometimes led to invalid DevNonces used for OTAA Join.
+- Make sure, mode changes from active to passive are reported in final uplink before change
+- Fix an issue that could lead to all zero position data sent as valid position
+- Upgrade to Lobaro LoRaWAN Stack 1.2.2 (RX Window adjustment).
+
 ### v7.0.0 - 28.04.2020
 * Completely rewrite firmware for new board rev3 with new LoRaWAN features and concepts.
 * Extend Payload format on port 2 (add HDOP and Timestamp of last Fix).

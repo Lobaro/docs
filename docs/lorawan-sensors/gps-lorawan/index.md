@@ -267,6 +267,7 @@ parameters used for this.
 |`memsTh`         |`int`    |   Threshold for the internal motion detector to register movement. Values range from 2 to 255. A higher value makes the device less sensitive.<br>2 Environment (wind or steps) may trigger.<br>5 Standard, picking up the device will activate it. <br> 20 Carefully picking it up will not trigger the device.<br>50 When carried, running will trigger, walking won't.<br>100+ Shaking will activate, dropping the device might not.          | `5` |
 |`maxHDOP`        |`int`    |   Maximum acceptable Horizontal Dilution Of Precision,  between 1 and 50, smaller is better | `2` |
 |`maxDataAfterFix`|`int`    |   If the HDOP target cannot be matched this value determines after how many datapackets with fix the position will be accepted | `20` | 
+|`moveDist`       |`int`    |   (since 7.1.0) travelled distance in metres between two GPS-measurements, that counts as movment event | `1000` |
 
 ###Cron expressions
 Cron expressions are used to define specific points in time and regular repetitions of them.  
@@ -414,7 +415,7 @@ If no new position could be determined, the last known valid position is uploade
 get position data, even if the Tracker does not have GPS coverage and LoRaWAN coverage at 
 the same time.
 
-The data message is 23 bytes long and transmitted on port 2.
+The data message is 28 bytes long and transmitted on port 2.
 The message is partly compatible with the data message of older firmware (versions 5 and 6); 
 only new values have been appended at the end. Byte positions are counted starting with 0.
 
@@ -429,6 +430,7 @@ only new values have been appended at the end. Byte positions are counted starti
 | SatCnt    | `16`    | uint8    | Number of satellites used for fix | `0x06` = `6` |
 | HDOP      | `17`    | uint8    | 1/10 * [Horizontal Dilution of Precision](https://de.wikipedia.org/wiki/Dilution_of_Precision) | `0x0f` = `15` = `HDOP 1.5` |
 | Timestamp | `18-22` | int40    | UNIX Timestamp of position data in message (0 for never) | `0x005eccd15f` = `1590481247` = `2020-05-26T08:20:47` UTC |
+| Movement  | `23-27` | int40    | (since 7.1.0) UNIX Timestamp of last movement event (0 for never). Either MEMS or GPS movement | `0x005eccd15f` = `1590481247` = `2020-05-26T08:20:47` UTC |
 
 #### Temperature and Voltage
 Same as in Status Message, useful for checking the health of the device.
@@ -492,7 +494,7 @@ a valid timestamp is a real measured position taken at that time. See [Position]
 
 #### Example Data Message
 ```
-Payload on Port 2: '00D40BC40051B427000F45DA0016A803060F005ECCCE29'
+Payload on Port 2: '00D40BC40051B427000F45DA0016A803060F005ECCCE29005ECCCE20'
 -------------------------------------------------------------------
 '00D4' - Temperature
     0x00d4 = 212 = 21.2°C
@@ -512,6 +514,8 @@ Payload on Port 2: '00D40BC40051B427000F45DA0016A803060F005ECCCE29'
     0x0f = 15 = 1.5 HDOP
 '005ECCCE29'
     0x005eccce29 = 1590480425 = 2020-05-26T08:07:05 UTC
+'005ECCCE20'
+    0x005eccce20 = 1590480416 = 2020-05-26T08:06:56 UTC
 ```
 
 ## Parser {#parser}
@@ -728,7 +732,6 @@ as follows:
 | `RndDelay`   | `0`             | Random delay would distort position while moving. |
 | `activeCron` | `0 0/3 * * * *` | Suggestion that uploads position every minute while active. Adjust as needed. |
 | `activeTO`   | `5`             | Switch to passive mode after 5 minutes without movement. |
-
 ### Parser
 The payload format decoder must be slightly adjusted for the use of TTN-Mapper, because the Lobaro GPS-Tracker will 
 upload it's latest known valid position when no GPS-fix can be achieved (indicating so by a flag and giving the 
