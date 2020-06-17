@@ -25,7 +25,8 @@ The latest firmware version is **v2.4.0** *(since 2020-02-25)*
 
 Download: 
 
-* [app-wMbusLoraBridge-2.5.1+hw2.hex](firmware/app-wMbusLoraBridge-2.5.1+hw2.hex) (hardware v2.x) [current release]
+* [app-wMbusLoraBridge-2.5.2+hw2.hex](firmware/app-wMbusLoraBridge-2.5.2+hw2.hex) (hardware v2.x) [current release]
+* [app-wMbusLoraBridge-2.5.1+hw2.hex](firmware/app-wMbusLoraBridge-2.5.1+hw2.hex) (hardware v2.x)
 * [app-wMbusLoraBridge-2.4.0+hw2.hex](firmware/app-wMbusLoraBridge-2.4.0+hw2.hex) (hardware v2.x)
 
 
@@ -35,7 +36,8 @@ Download:
 
 Download:
 
-* [app-wMbusLoraBridge-2.5.1+hw1.hex](firmware/app-wMbusLoraBridge-2.5.1+hw1.hex) (hardware v1.x) [current release]
+* [app-wMbusLoraBridge-2.5.2+hw1.hex](firmware/app-wMbusLoraBridge-2.5.2+hw1.hex) (hardware v1.x) [current release]
+* [app-wMbusLoraBridge-2.5.1+hw1.hex](firmware/app-wMbusLoraBridge-2.5.1+hw1.hex) (hardware v1.x)
 * [app-wMbusLoraBridge-2.4.0+hw1.hex](firmware/app-wMbusLoraBridge-2.4.0+hw1.hex) (hardware v1.x)
 
 !!! info "Please note revisions 1.x are no longer the default variant since 02/2020"
@@ -62,6 +64,11 @@ Download:
     Make sure to select the **"Firmware Updates"** checkbox!    
     
 ## Release changelog
+
+### v2.5.2 - 2020-06-17
+- Time Sync only one attempt at bootup
+- use Lobawan v1.2.2, fixes issues with OTAA Join under certain conditions
+
 
 ### v2.5.1 - 2020-05-15
 
