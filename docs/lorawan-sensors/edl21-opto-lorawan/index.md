@@ -262,12 +262,13 @@ function parse_int8(bytes, idx) {
 function parse_int16(bytes, idx) {
     bytes = bytes.slice(idx || 0);
     var t = bytes[0] << 8 | bytes[1] << 0;
-    if( (t & 1<<15) > 0){ // temp is negative (16bit 2's complement)
-        t = ((~t)& 0xffff)+1; // invert 16bits & add 1 => now positive value
-        t=t*-1;
+    if ((t & 1 << 15) > 0) { // temp is negative (16bit 2's complement)
+        t = ((~t) & 0xffff) + 1; // invert 16bits & add 1 => now positive value
+        t = t * -1;
     }
     return t;
 }
+
 function parse_uint16(bytes, idx) {
     bytes = bytes.slice(idx || 0);
     var t = bytes[0] << 8 | bytes[1] << 0;
@@ -284,7 +285,7 @@ function toNumber(bytes) {
 }
 
 function readVersion(bytes) {
-    if (bytes.length<3) {
+    if (bytes.length < 3) {
         return null;
     }
     return "v" + bytes[0] + "." + bytes[1] + "." + bytes[2];
@@ -292,7 +293,7 @@ function readVersion(bytes) {
 
 function decodeStatus(bytes) {
     var decoded = {
-        "version":readVersion(bytes),
+        "version": readVersion(bytes),
         "flags": bytes[3],
         "vBat": parse_uint16(bytes, 4) / 1000,
         "temp": parse_int16(bytes, 6) / 10,
@@ -352,24 +353,24 @@ function decodeSmlValuesV2(bytes) {
         pos += 1;
         var value = readValue(len, bytes, pos);
         pos += len;
+        var exponent = 1;
+        var val = {};
         if (len > 0) {
-            var exponent = parse_int8(bytes, pos);
+            exponent = parse_int8(bytes, pos);
             pos += 1;
-        }
-        if (len > 0) {
-            var val = {
+            val = {
                 nameHex: toHexString(name),
                 len: len,
                 value: toNumber(value) * Math.pow(10, exponent),
                 valueHex: toHexString(value),
-            }
+            };
         } else {
-            var val = {
+            val = {
                 nameHex: toHexString(name),
                 len: len,
                 value: toNumber(value),
                 valueHex: toHexString(value),
-            }
+            };
         }
 
         decoded.values.push(val);
@@ -378,28 +379,29 @@ function decodeSmlValuesV2(bytes) {
     return decoded;
 }
 
+// Test input (Port 3): 01 00 01 08 00 FE 08 FF 01 00 00 00 00 00 00 FF
 function Decoder(bytes, port) {
     // Decode an uplink message from a buffer
     // (array) of bytes to an object of fields.
-    if (port === 1) {
-        return decodeStatus(bytes);
-    }
-    if (port === 2) {
-        return decodeSmlValuesV1(bytes);
-    }
-    if (port == 3) {
-        return decodeSmlValuesV2(bytes);
+    switch (port) {
+        case 1:
+            return decodeStatus(bytes);
+        case 2:
+            return decodeSmlValuesV1(bytes);
+        case 3:
+            return decodeSmlValuesV2(bytes);
     }
 }
 
 // Wrapper for niota.io
+/*
 module.exports = function (payload, meta) {
     const port = meta.lora.fport;
     const buf = Buffer.from(payload, 'hex');
 
     return Decoder(buf, port);
 }
-
+*/
 ```
 
 ### Example parser result
