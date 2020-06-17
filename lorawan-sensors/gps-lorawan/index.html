@@ -840,13 +840,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#parser_1" class="md-nav__link">
-    Parser
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#integration" class="md-nav__link">
     Integration
   </a>
@@ -1917,13 +1910,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#parser_1" class="md-nav__link">
-    Parser
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#integration" class="md-nav__link">
     Integration
   </a>
@@ -2329,6 +2315,12 @@ parameters used for this.</p>
 <td>If the HDOP target cannot be matched this value determines after how many datapackets with fix the position will be accepted</td>
 <td><code>20</code></td>
 </tr>
+<tr>
+<td><code>moveDist</code></td>
+<td><code>int</code></td>
+<td>(since 7.1.0) travelled distance in metres between two GPS-measurements, that counts as movment event</td>
+<td><code>1000</code></td>
+</tr>
 </tbody>
 </table>
 <h3 id="cron-expressions">Cron expressions</h3>
@@ -2642,7 +2634,7 @@ If no new position could be determined, the last known valid position is uploade
 (together with a timestamp of when that position was valid). This makes it possible to 
 get position data, even if the Tracker does not have GPS coverage and LoRaWAN coverage at 
 the same time.</p>
-<p>The data message is 23 bytes long and transmitted on port 2.
+<p>The data message is 28 bytes long and transmitted on port 2.
 The message is partly compatible with the data message of older firmware (versions 5 and 6); 
 only new values have been appended at the end. Byte positions are counted starting with 0.</p>
 <table>
@@ -2719,6 +2711,13 @@ only new values have been appended at the end. Byte positions are counted starti
 <td>UNIX Timestamp of position data in message (0 for never)</td>
 <td><code>0x005eccd15f</code> = <code>1590481247</code> = <code>2020-05-26T08:20:47</code> UTC</td>
 </tr>
+<tr>
+<td>Movement</td>
+<td><code>23-27</code></td>
+<td>int40</td>
+<td>(since 7.1.0) UNIX Timestamp of last movement event (0 for never). Either MEMS or GPS movement</td>
+<td><code>0x005eccd15f</code> = <code>1590481247</code> = <code>2020-05-26T08:20:47</code> UTC</td>
+</tr>
 </tbody>
 </table>
 <h4 id="temperature-and-voltage">Temperature and Voltage</h4>
@@ -2790,7 +2789,7 @@ starts with the least significant bit with <code>0</code>.</p>
 the upload. So it indicates if the message contains a new valid position. Any position uploaded with 
 a valid timestamp is a real measured position taken at that time. See <a href="#position">Position</a> for details.</p>
 <h4 id="example-data-message">Example Data Message</h4>
-<div class="highlight"><pre><span></span><code>Payload on Port 2: &#39;00D40BC40051B427000F45DA0016A803060F005ECCCE29&#39;
+<div class="highlight"><pre><span></span><code>Payload on Port 2: &#39;00D40BC40051B427000F45DA0016A803060F005ECCCE29005ECCCE20&#39;
 -------------------------------------------------------------------
 &#39;00D4&#39; - Temperature
     0x00d4 = 212 = 21.2°C
@@ -2810,6 +2809,8 @@ a valid timestamp is a real measured position taken at that time. See <a href="#
     0x0f = 15 = 1.5 HDOP
 &#39;005ECCCE29&#39;
     0x005eccce29 = 1590480425 = 2020-05-26T08:07:05 UTC
+&#39;005ECCCE20&#39;
+    0x005eccce20 = 1590480416 = 2020-05-26T08:06:56 UTC
 </code></pre></div>
 
 <h2 id="parser">Parser</h2>
@@ -3055,13 +3056,33 @@ as follows:</p>
 <td><code>5</code></td>
 <td>Switch to passive mode after 5 minutes without movement.</td>
 </tr>
+<tr>
+<td>### Parser</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>The payload format decoder must be slightly adjusted for the use of TTN-Mapper, because the Lobaro GPS-Tracker will</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>upload it's latest known valid position when no GPS-fix can be achieved (indicating so by a flag and giving the</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>timestamp of the localisation). TTN-Mapper would parse that as a new valid position, so the parser <strong>must drop</strong> those</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>messages in order to stop wrong data points to end up in TTN-Mapper.</td>
+<td></td>
+<td></td>
+</tr>
 </tbody>
 </table>
-<h3 id="parser_1">Parser</h3>
-<p>The payload format decoder must be slightly adjusted for the use of TTN-Mapper, because the Lobaro GPS-Tracker will 
-upload it's latest known valid position when no GPS-fix can be achieved (indicating so by a flag and giving the 
-timestamp of the localisation). TTN-Mapper would parse that as a new valid position, so the parser <strong>must drop</strong> those 
-messages in order to stop wrong data points to end up in TTN-Mapper.</p>
 <p>Change the line at the top of the parser from to activate TTN_MAPPER conformity:
 <div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nx">TTN_MAPPER</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
 </code></pre></div></p>
