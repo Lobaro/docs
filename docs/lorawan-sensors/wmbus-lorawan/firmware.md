@@ -1,6 +1,6 @@
 # Wireless mBUS over LoRaWAN Bridge
 
-The latest firmware version is **v2.4.0** *(since 2020-02-25)*
+The latest firmware version is **v2.5.2** *(since 2020-02-25)*
 
 !!! faq "Which firmware version am I using right now?"
     You can see the firmware version of your device by inspecting the USB log output in our PC maintenance tool. Or use the information
