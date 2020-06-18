@@ -4,7 +4,7 @@
 
 **Downloads:**
 
-* [app-lorawan-environment-TZ0-0.0.1.hex](firmware/app-lorawan-environment-TZ0-0.0.1.hex)
+* [app-lorawan-environment-0.0.2.hex](firmware/app-lorawan-environment-0.0.2.hex)
 
 !!! hint "Firmware Release Notifications"
     We normally send e-mail notifications upon release of new firmware versions. To receive this mails you can sign up
@@ -16,5 +16,9 @@
 
 ## Changelog
 --------------------
-### v0.0.1 (06.01.2020)
-* Initial release
+### v0.0.2 - 2020-06-18
+- Use Lobawan Stack 1.2.2 (fixes some OTAA Join issues).
+- Make logging of atmospheric values human readable.
+
+### v0.0.1 - 2020-01-06
+- Initial release
