@@ -140,7 +140,7 @@ Several values are a number of bytes, that need to be entered as hexstrings (wit
 |`OpMode`    |Operation Mode                       |`string`  | `A`= Class A, `C`= Class C |
 |`TimeSync`  |Days after which to sync time        |`int`     | days, `0`=don't sync time | 
 |`RndDelay`  |Random delay before sending          |`int`     | max seconds |
-|`RemoteConf`|Support Remote Configuration         |`bool`    | `true`=allow, `false`=deactivate |
+|`RemoteConf`|Support Remote Configuration         |`bool`    | `true`=allow (default), `false`=deactivate |
 |`LostReboot`|Days without downlink before reboot  |`int`     | days, `0`=don't reboot |
 
 `OTAA`
