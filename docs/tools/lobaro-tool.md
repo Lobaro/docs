@@ -96,6 +96,10 @@ Under *Hardware Connectiom* select *auto* and click *Connect*, as seen in the sc
 which port the device is connected to your computer (either COM or ttyUSB), you can alternatively select it explicitly 
 instead of using *auto*.
 
+!!! info "UART Connection"
+    115200 Baud - 8N1
+    DTR (Boot): enabled, RTS (Reset): disabled (Für Start im Firmware mode)
+
 
 ## Device Configuration
 ![Config loaded](img/tool-config-loaded.png)
