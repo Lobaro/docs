@@ -13,7 +13,7 @@
       
       
       <link rel="shortcut icon" href="../../favicon.ico">
-      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.3.3">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.4.0">
     
     
       
@@ -483,6 +483,34 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#temperature-and-error-values" class="md-nav__link">
+    Temperature and Error values
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sensor-ids" class="md-nav__link">
+    Sensor IDs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#internal-sensor" class="md-nav__link">
+    Internal Sensor
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sensor-order" class="md-nav__link">
+    Sensor order
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#payload" class="md-nav__link">
     Payload
   </a>
@@ -504,6 +532,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#data-message-port-3" class="md-nav__link">
+    Data Message (Port 3)
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -518,8 +553,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#thethingsnetwork-ttn" class="md-nav__link">
-    TheThingsNetwork (TTN)
+  <a href="#thethingsnetwork-ttn-chirpstack" class="md-nav__link">
+    TheThingsNetwork (TTN) / ChirpStack
   </a>
   
 </li>
@@ -1325,6 +1360,34 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#temperature-and-error-values" class="md-nav__link">
+    Temperature and Error values
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sensor-ids" class="md-nav__link">
+    Sensor IDs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#internal-sensor" class="md-nav__link">
+    Internal Sensor
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sensor-order" class="md-nav__link">
+    Sensor order
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#payload" class="md-nav__link">
     Payload
   </a>
@@ -1346,6 +1409,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#data-message-port-3" class="md-nav__link">
+    Data Message (Port 3)
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1360,8 +1430,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#thethingsnetwork-ttn" class="md-nav__link">
-    TheThingsNetwork (TTN)
+  <a href="#thethingsnetwork-ttn-chirpstack" class="md-nav__link">
+    TheThingsNetwork (TTN) / ChirpStack
   </a>
   
 </li>
@@ -1408,7 +1478,7 @@
 </ul>
 </div>
 <h2 id="target-measurement-purpose">Target Measurement / Purpose</h2>
-<p>Supports up to 20 <a href="https://www.maximintegrated.com/en/products/sensors/DS18B20.html" target="_blank">DS18x20 1-Wire</a> temperature sensors. The temperature form all sensors in read regualarly and send via LoRaWAN uplink.
+<p>Supports up to 32 <a href="https://www.maximintegrated.com/en/products/sensors/DS18B20.html" target="_blank">DS18x20 1-Wire</a> temperature sensors. The temperature form all sensors in read regualarly and send via LoRaWAN uplink.
 When the payload gets too big for a single LoRaWAN message, it is split into multiple uplinks.</p>
 <h2 id="configuration">Configuration</h2>
 <p>Without configuration the sensors will be transmitted ordered by the 48 Bit id, ignoring the Sensorfamily prefix and the Checksum.</p>
@@ -1423,34 +1493,97 @@ When the payload gets too big for a single LoRaWAN message, it is split into mul
 <tbody>
 <tr>
 <td><code>SendInternalTemp</code></td>
-<td>Toggle output of internal sensor</td>
-<td>"true" or "false"</td>
+<td>Toggle output of internal sensor. Will alway be sent first.</td>
+<td><code>true</code> or <code>false</code></td>
+</tr>
+<tr>
+<td><code>SendSensorId</code></td>
+<td>Include Sensor ID in upload. Changes Payload format and Port.</td>
+<td><code>true</code> or <code>false</code></td>
 </tr>
 <tr>
 <td><code>SensorIdOrder</code></td>
-<td>Semicolon separated list of 48 Bit IDs in hex</td>
-<td>22ffffff0000;44ffffff0000;11ffffff0000</td>
+<td>Semicolon separated list of 48 Bit IDs in hex (up to 25)</td>
+<td><code>22ffffff0000;44ffffff0000;11ffffff0000</code></td>
+</tr>
+<tr>
+<td><code>TestMode</code></td>
+<td>Run device in Testing Mode to help identify sensors. Must be <code>false</code> for normal operations.</td>
+<td><code>true</code> or <code>false</code></td>
 </tr>
 </tbody>
 </table>
+<h2 id="temperature-and-error-values">Temperature and Error values</h2>
+<p>Temperature is transmitted in 10<sup>th</sup> of degrees Centigrade (d°C), to avoid having to deal with floating point numbers.
+Error conditions for individual sensors are transmitted as temperatures below -300°C.</p>
+<table>
+<thead>
+<tr>
+<th>temperature</th>
+<th>hex value</th>
+<th>error condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-899.0°C</td>
+<td><code>0xdce2</code></td>
+<td>Sensor not found (for sensors set in <code>SensorIdOrder</code>).</td>
+</tr>
+<tr>
+<td>-997.0°C</td>
+<td><code>0xd90e</code></td>
+<td>Communication timed out.</td>
+</tr>
+<tr>
+<td>-998.0°C</td>
+<td><code>0xd904</code></td>
+<td>Temperature read out error.</td>
+</tr>
+<tr>
+<td>-999.0°C</td>
+<td><code>0xd8fa</code></td>
+<td>No temperature value.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="sensor-ids">Sensor IDs</h2>
+<p>A complete sensor ID consists of 8 bytes:</p>
+<div class="highlight"><pre><span></span><code>byte    0: family code
+bytes 1-6: serial number
+byte    7: crc cecksum 
+</code></pre></div>
+
+<p>Only the serial number is used by the device. Family code and checksum are omitted for uploads and in configuration.</p>
+<h2 id="internal-sensor">Internal Sensor</h2>
+<p>There is a temperature sensor included in the board of the device. If <code>SendInternalTemp</code> is set to <code>true</code>, that sensor 
+will be included in uploads. It will always be the first sensor in the list.</p>
+<h2 id="sensor-order">Sensor order</h2>
+<p>The sensors will be ordered by their IDs (without the leading byte indicating the sensor type). You can fix the 
+upload order by listing sensors in <code>SensorIdOrder</code>. Sensors included here will always be included in upload messages, 
+whether the sensor is found or not. If the sensor cannot be found, a temperature value of -899.0°C (=<code>0xdce2</code>) is sent.</p>
+<p>If the internal sensor is included (by <code>SendInternalTemp</code>=<code>true</code>), the internal sensor will still be sent first, 
+before the first sensor listed in <code>SensorIdOrder</code>.</p>
+<p>Any sensors that are found and are neither internal nor listed in <code>SensorIdOrder</code> will be appended after the last 
+sensor from <code>SensorIdOrder</code>, ordered by their IDs.</p>
 <h2 id="payload">Payload</h2>
 <p>Example payloads for each port:</p>
 <h3 id="status-message-port-1">Status Message (Port 1)</h3>
-<p>Payload: (No Example yet)</p>
+<p>Payload: <code>00040001070ce3</code></p>
 <p>Decoded:
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-  <span class="nt">&quot;temp&quot;</span><span class="p">:</span> <span class="mf">20.4</span><span class="p">,</span>
-  <span class="nt">&quot;vBat&quot;</span><span class="p">:</span> <span class="mf">3.0</span><span class="p">,</span>
-  <span class="nt">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;v0.2.0&quot;</span>
+  <span class="nt">&quot;temp&quot;</span><span class="p">:</span> <span class="mf">26.3</span><span class="p">,</span>
+  <span class="nt">&quot;vBat&quot;</span><span class="p">:</span> <span class="mf">3.299</span><span class="p">,</span>
+  <span class="nt">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;v0.4.0&quot;</span>
 <span class="p">}</span>
 </code></pre></div></p>
 <h3 id="data-message-port-2">Data Message (Port 2)</h3>
+<p>Payload with temperature measurements when Sensor-ID is included.</p>
 <p>Structure:</p>
 <table>
 <thead>
 <tr>
 <th>name</th>
-<th align="left">pos</th>
 <th align="left">len</th>
 <th>type</th>
 <th>description</th>
@@ -1459,21 +1592,18 @@ When the payload gets too big for a single LoRaWAN message, it is split into mul
 <tbody>
 <tr>
 <td>success</td>
-<td align="left">0</td>
 <td align="left">1</td>
 <td><code>uint8</code></td>
 <td>0 = Read error, 1 = Success</td>
 </tr>
 <tr>
 <td>sensor id</td>
-<td align="left">1</td>
 <td align="left">6</td>
-<td><code>[]byte</code></td>
+<td><code>uint8[6]</code></td>
 <td>6-Byte 1-Wire Sensor Id</td>
 </tr>
 <tr>
 <td>temperature</td>
-<td align="left">3</td>
 <td align="left">2</td>
 <td><code>int16 BE</code></td>
 <td>Temperature in 1/10 °C</td>
@@ -1481,12 +1611,13 @@ When the payload gets too big for a single LoRaWAN message, it is split into mul
 <tr>
 <td>...</td>
 <td align="left"></td>
-<td align="left"></td>
 <td></td>
 <td>... sensor id and temperature fields repeat ...</td>
 </tr>
 </tbody>
 </table>
+<p>When the total length of data exceeds 50 bytes, the message will be split and uploaded 
+in multiple packets using this format.</p>
 <p>Example Payload:
 <code>01551e46920d0200da96b446920c0200d7dafc46920d0200d5202e4692050200dc</code></p>
 <p>Decoded:
@@ -1512,8 +1643,58 @@ When the payload gets too big for a single LoRaWAN message, it is split into mul
   <span class="nt">&quot;success&quot;</span><span class="p">:</span> <span class="kc">true</span>
 <span class="p">}</span>
 </code></pre></div></p>
+<h3 id="data-message-port-3">Data Message (Port 3)</h3>
+<p>Payload with temperature measurements when Sensor-ID is omitted.</p>
+<p>Before v0.4.0 this format is sent on Port 2.</p>
+<p>Structure:</p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th align="left">len</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>success</td>
+<td align="left">1</td>
+<td><code>uint8</code></td>
+<td>0 = Read error, 1 = Success</td>
+</tr>
+<tr>
+<td>temperature</td>
+<td align="left">2</td>
+<td><code>int16 BE</code></td>
+<td>Temperature in 1/10 °C</td>
+</tr>
+<tr>
+<td>...</td>
+<td align="left"></td>
+<td></td>
+<td>... temperature field repeats ...</td>
+</tr>
+</tbody>
+</table>
+<p>When the total length of data exceeds 50 bytes, the message will be split and uploaded 
+in multiple packets using this format.</p>
+<p>Example Payload:
+<code>0100f500f500f800f500f300f8</code></p>
+<p>Decoded:
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;sensors&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="mf">24.5</span><span class="p">,</span>
+      <span class="mf">24.5</span><span class="p">,</span>
+      <span class="mf">24.8</span><span class="p">,</span>
+      <span class="mf">24.5</span><span class="p">,</span>
+      <span class="mf">24.3</span><span class="p">,</span>
+      <span class="mf">24.8</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;success&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">}</span>
+</code></pre></div></p>
 <h2 id="parser">Parser</h2>
-<h3 id="thethingsnetwork-ttn">TheThingsNetwork (TTN)</h3>
+<h3 id="thethingsnetwork-ttn-chirpstack">TheThingsNetwork (TTN) / ChirpStack</h3>
 <div class="highlight"><pre><span></span><code><span class="kd">function</span> <span class="nx">readVersion</span><span class="p">(</span><span class="nx">bytes</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">bytes</span><span class="p">.</span><span class="nx">length</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
@@ -1585,6 +1766,32 @@ When the payload gets too big for a single LoRaWAN message, it is split into mul
     <span class="k">return</span> <span class="nx">decoded</span><span class="p">;</span>
 <span class="p">}</span>
 
+<span class="kd">function</span> <span class="nx">DecoderPort3</span><span class="p">(</span><span class="nx">bytes</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Decode an uplink message from a buffer</span>
+    <span class="c1">// (array) of bytes to an object of fields.</span>
+    <span class="kd">var</span> <span class="nx">sensors</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="kd">var</span> <span class="nx">success</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+
+    <span class="kd">var</span> <span class="nx">pos</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="nx">bytes</span><span class="p">.</span><span class="nx">length</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="nx">pos</span><span class="o">+=</span><span class="mi">1</span><span class="p">;</span>
+        <span class="nx">success</span> <span class="o">=</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!==</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kd">var</span> <span class="nx">left</span> <span class="o">=</span> <span class="nx">bytes</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="nx">pos</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">nr</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="nx">left</span><span class="o">&gt;=</span><span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">temp</span> <span class="o">=</span> <span class="nx">parse_sint16</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">pos</span><span class="p">)</span> <span class="o">/</span> <span class="mf">10.0</span>
+        <span class="nx">sensors</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">temp</span><span class="p">);</span>
+        <span class="nx">pos</span> <span class="o">+=</span> <span class="mi">2</span><span class="p">;</span>
+        <span class="nx">left</span> <span class="o">=</span> <span class="nx">bytes</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="nx">pos</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// if (port === 1) decoded.led = bytes[0];</span>
+
+    <span class="kd">var</span> <span class="nx">decoded</span> <span class="o">=</span> <span class="p">{};</span>
+    <span class="nx">decoded</span><span class="p">[</span><span class="s1">&#39;success&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nx">success</span><span class="p">;</span>
+    <span class="nx">decoded</span><span class="p">[</span><span class="s1">&#39;sensors&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nx">sensors</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">decoded</span><span class="p">;</span>
+<span class="p">}</span>
 
 <span class="kd">function</span> <span class="nx">Decoder</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">port</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">switch</span> <span class="p">(</span><span class="nx">port</span><span class="p">)</span> <span class="p">{</span>
@@ -1592,6 +1799,8 @@ When the payload gets too big for a single LoRaWAN message, it is split into mul
             <span class="k">return</span> <span class="nx">DecoderPort1</span><span class="p">(</span><span class="nx">bytes</span><span class="p">);</span>
         <span class="k">case</span> <span class="mi">2</span><span class="o">:</span>
             <span class="k">return</span> <span class="nx">DecoderPort2</span><span class="p">(</span><span class="nx">bytes</span><span class="p">);</span>
+        <span class="k">case</span> <span class="mi">3</span><span class="o">:</span>
+            <span class="k">return</span> <span class="nx">DecoderPort3</span><span class="p">(</span><span class="nx">bytes</span><span class="p">);</span>
     <span class="p">}</span>
     <span class="k">return</span> <span class="p">{</span>
         <span class="s2">&quot;error&quot;</span><span class="o">:</span> <span class="s2">&quot;Invalid port&quot;</span><span class="p">,</span>
@@ -1614,12 +1823,14 @@ When the payload gets too big for a single LoRaWAN message, it is split into mul
 <span class="p">}</span>
 
 <span class="c1">// Wrapper for Digimondo niota platform</span>
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">payload</span><span class="p">,</span> <span class="nx">meta</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kr">const</span> <span class="nx">port</span> <span class="o">=</span> <span class="nx">meta</span><span class="p">.</span><span class="nx">lora</span><span class="p">.</span><span class="nx">fport</span><span class="p">;</span>
-    <span class="kr">const</span> <span class="nx">buf</span> <span class="o">=</span> <span class="nx">Buffer</span><span class="p">.</span><span class="nx">from</span><span class="p">(</span><span class="nx">payload</span><span class="p">,</span> <span class="s1">&#39;hex&#39;</span><span class="p">);</span>
+<span class="cm">/*</span>
+<span class="cm">module.exports = function (payload, meta) {</span>
+<span class="cm">    const port = meta.lora.fport;</span>
+<span class="cm">    const buf = Buffer.from(payload, &#39;hex&#39;);</span>
 
-    <span class="k">return</span> <span class="nx">Decoder</span><span class="p">(</span><span class="nx">buf</span><span class="p">,</span> <span class="nx">port</span><span class="p">);</span>
-<span class="p">}</span>
+<span class="cm">    return Decoder(buf, port);</span>
+<span class="cm">}</span>
+<span class="cm">*/</span>
 </code></pre></div>
 
 <h2 id="ce-declaration-of-conformity">CE Declaration of Conformity</h2>
@@ -1695,14 +1906,14 @@ When the payload gets too big for a single LoRaWAN message, it is split into mul
     </div>
     
       <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../../assets/javascripts/bundle.4a5ba8d6.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      <script src="../../assets/javascripts/bundle.b39636ac.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
       <script>
         app = initialize({
           base: "../..",
           features: [],
           search: Object.assign({
-            worker: "../../assets/javascripts/worker/search.9b3611bd.min.js"
+            worker: "../../assets/javascripts/worker/search.a68abb33.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
