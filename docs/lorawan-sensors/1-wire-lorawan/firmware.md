@@ -17,8 +17,6 @@
 
 ## Changelog
 ### 0.4.0 - 2020-06-30
-#### Added
-- Start changelog.
 #### Changed
 - Use lobawan stack v1.2.2
 - Sensors from `SensorIdOrder` that are missing will still be uploaded (with -0x8000 value)
