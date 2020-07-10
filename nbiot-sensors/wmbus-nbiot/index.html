@@ -1006,6 +1006,60 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#using-raw-udp" class="md-nav__link">
+    Using Raw UDP
+  </a>
+  
+    <nav class="md-nav" aria-label="Using Raw UDP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cbor-messages-over-udp" class="md-nav__link">
+    CBOR messages over UDP
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controlling-the-device" class="md-nav__link">
+    Controlling the device
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#format" class="md-nav__link">
+    Format
+  </a>
+  
+    <nav class="md-nav" aria-label="Format">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schema" class="md-nav__link">
+    Schema
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#troubleshooting" class="md-nav__link">
     Troubleshooting
   </a>
@@ -1484,6 +1538,60 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#using-raw-udp" class="md-nav__link">
+    Using Raw UDP
+  </a>
+  
+    <nav class="md-nav" aria-label="Using Raw UDP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cbor-messages-over-udp" class="md-nav__link">
+    CBOR messages over UDP
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controlling-the-device" class="md-nav__link">
+    Controlling the device
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#format" class="md-nav__link">
+    Format
+  </a>
+  
+    <nav class="md-nav" aria-label="Format">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schema" class="md-nav__link">
+    Schema
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#troubleshooting" class="md-nav__link">
     Troubleshooting
   </a>
@@ -1599,6 +1707,116 @@ to your system when it is received.</p>
 change the Configuration directly in your hardware. This can be useful when you want to change 
 configuration while the mobile connection does not work (or if you do not want to use the Lobaro 
 Platform). See <a href="/tools/usb-config-adapter.html">Lobaro USB configuration adapter</a> for more information.</p>
+<h2 id="using-raw-udp">Using Raw UDP</h2>
+<p>In default configuration, the Gateway communicates using 
+<a href="https://en.wikipedia.org/wiki/Constrained_Application_Protocol">CoAP</a> with messages that are designed 
+to work with our Lobaro Platform as a backend. If you want to connect the Gateway directly to your own 
+backend, it can be hard to implement an endpoint.</p>
+<h3 id="cbor-messages-over-udp">CBOR messages over UDP</h3>
+<p>Starting with Firmware version 0.5.0, the Gateway supports a second format, where wMBus telegrams are uploaded without CoAP over UDP. When the 
+configuration Parameters <code>UdpHost</code> and <code>UdpPort</code> are set to a destination (IP address and port number), 
+wMBus telegrams will be sent to that destination instead of the Lobaro Platform. It will be sent as 
+a <a href="https://en.wikipedia.org/wiki/CBOR">CBOR</a> object using raw UDP packets without CoAP. CBOR can easily be 
+parsed in most programming languages using existing libraries. It is similar to JSON but uses a binary 
+representation.</p>
+<div class="admonition warning">
+<p class="admonition-title">Limitations of UDP</p>
+<p>Because UDP has no validation mechanism, there will be no retransmission in case of packet loss.
+You will be able to spot missing packets by gaps in the frame number. When implementing this, please 
+keep in mind, that UDP packets are not guaranteed to arrive in the order they are sent.</p>
+</div>
+<h3 id="controlling-the-device">Controlling the device</h3>
+<p>When <code>UdpHost</code> and <code>UdpPort</code> are set while <code>Host</code> and <code>Port</code> are referring to the Lobaro Platform, the 
+Gateway will upload the wMBus telegrams to the UDP destination but will also sent diagnostic messages to 
+the Platform. In this configuration you can still use the features of the Lobaro Platform to control the 
+device for configuration changes or firmware updates, while receiving your wMBus data directly to your 
+own backend.</p>
+<h3 id="format">Format</h3>
+<h4 id="schema">Schema</h4>
+<p>The CBOR object contains the following information
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;d&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;rssi&quot;</span><span class="p">:</span> <span class="err">&lt;int</span><span class="p">:</span> <span class="err">RSSI&gt;</span><span class="p">,</span>
+      <span class="nt">&quot;vbat&quot;</span><span class="p">:</span> <span class="err">&lt;int</span><span class="p">:</span> <span class="err">Supply</span> <span class="err">voltage</span> <span class="err">in</span> <span class="err">mV&gt;</span><span class="p">,</span>
+      <span class="nt">&quot;monitor&quot;</span><span class="p">:</span> <span class="err">&lt;string</span><span class="p">:</span> <span class="err">human</span> <span class="err">readable</span> <span class="err">diagnostic</span> <span class="err">information&gt;</span><span class="p">,</span>
+      <span class="nt">&quot;telegram&quot;</span><span class="p">:</span> <span class="err">&lt;bytes</span><span class="p">:</span> <span class="err">wmbus</span> <span class="err">telegram&gt;</span><span class="p">,</span>
+      <span class="nt">&quot;timestamp&quot;</span><span class="p">:</span> <span class="err">&lt;int</span><span class="p">:</span> <span class="err">unix</span> <span class="err">timestamp</span><span class="p">,</span> <span class="err">time</span> <span class="err">of</span> <span class="err">reception&gt;,</span>
+      <span class="nt">&quot;temperature&quot;</span><span class="p">:</span> <span class="err">&lt;int</span><span class="p">:</span> <span class="err">device</span> <span class="err">temperature</span> <span class="err">in</span> <span class="mi">1</span><span class="err">/</span><span class="mi">10</span><span class="err">°C&gt;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;i&quot;</span><span class="p">:</span> <span class="err">&lt;string</span><span class="p">:</span> <span class="err">device&#39;s</span> <span class="err">IMEI&gt;</span><span class="p">,</span>
+    <span class="nt">&quot;n&quot;</span><span class="p">:</span> <span class="err">&lt;int</span><span class="p">:</span> <span class="err">frame</span> <span class="err">number&gt;</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rssi</code></td>
+<td><a href="https://en.wikipedia.org/wiki/Received_signal_strength_indication">Received signal strength indication</a> indicating the quality of the received signal.</td>
+</tr>
+<tr>
+<td><code>vbat</code></td>
+<td>Supply voltage to the Gateway, measured in millivolts (mV).</td>
+</tr>
+<tr>
+<td><code>monitor</code></td>
+<td>Human readable diagnostic string. The format of this information subject to change and should not be relied on.</td>
+</tr>
+<tr>
+<td><code>telegram</code></td>
+<td>Bytes of the received wMBus telegram as a byte string.</td>
+</tr>
+<tr>
+<td><code>timestamp</code></td>
+<td>Time of reception of the telegram in the gateway, given as a <a href="https://en.wikipedia.org/wiki/Unix_time">Unix Timestamp</a>.</td>
+</tr>
+<tr>
+<td><code>temperature</code></td>
+<td>Temperature inside the Gateway, measured in tenth of Degree Centigrade (d°C).</td>
+</tr>
+<tr>
+<td><code>i</code></td>
+<td>IMEI of the Gateway's Modem, uniquely identifying the Device.</td>
+</tr>
+<tr>
+<td><code>n</code></td>
+<td>Frame number. Starts at <code>1</code> for the first UDP-upload after boot and is increased for every upload.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="example">Example</h4>
+<p>The following shows an example message if you display it as JSON. 
+In the CBOR object, the <code>telegram</code> is stored as a byte string. Because JSON does not support binary data, in this
+example it is encoded using base64.
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;d&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;rssi&quot;</span><span class="p">:</span> <span class="mi">-99</span><span class="p">,</span>
+      <span class="nt">&quot;vbat&quot;</span><span class="p">:</span> <span class="mi">3688</span><span class="p">,</span>
+      <span class="nt">&quot;monitor&quot;</span><span class="p">:</span> <span class="s2">&quot;connected:1, conMode:1, reg:5, tac:D71E, ci:019C1307, psm:11100000, tau:00001100, RSRP:56(2/4), RSRQ:24(3/4), SNR:37(3/4), conTime:3, conFails:0&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;telegram&quot;</span><span class="p">:</span> <span class="s2">&quot;SUSTRHkFAYg0CHgN/181AIJnADXIv1WtPFse1mYcZZQLiPR/aujF9e46meEB6CIkxJmHUEd6xPdAmop3uqIt4yWMgbwEbToKiCc=&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;timestamp&quot;</span><span class="p">:</span> <span class="mi">1594201536</span><span class="p">,</span>
+      <span class="nt">&quot;temperature&quot;</span><span class="p">:</span> <span class="mi">240</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;i&quot;</span><span class="p">:</span> <span class="s2">&quot;123456101550542&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;n&quot;</span><span class="p">:</span> <span class="mi">7</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p>Explanation:
+<div class="highlight"><pre><span></span><code>UDP-Uplink #7 from Gateway with IMEI 123456101550542
+Status of Gateway during upload:
+  internal Temperature: 24.0°C
+  supply Voltage: 3.688V
+  Mobile provider, Cell-ID: 019C1307
+Received wMBus Telegram:
+  time of recept: 2020-07-08T09:45:36 (UTC)
+  telegram (as hex): 49449344790501883408780dff5f350082670035c8bf55ad3c5b1ed6661c65940b88f47f6ae8c5f5ee3a99e101e82224c4998750477ac4f7409a8a77baa22de3258c81bc046d3a0a8827
+  rssi: -99
+</code></pre></div></p>
 <h2 id="troubleshooting">Troubleshooting</h2>
 <div class="admonition faq">
 <p class="admonition-title">I did not get a username/password for the <em>Lobaro Platform</em>.</p>
