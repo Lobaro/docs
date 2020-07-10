@@ -13,8 +13,8 @@ The latest firmware version is **v2.5.2** *(since 2020-02-25)*
 ## Firmware Downloads
 
 !!! caution "Select correct Hardware revisions"
-    Due to permanent development there exist two main hardware revisions of the Lobaro wMBUS over LoRaWAN bridge hardware.
-    **Please use the images below to select the right firmware file for your given hardware.**
+    Due to continuous development there exist two main hardware revisions of the Lobaro wMBUS over LoRaWAN bridge hardware.
+    **Please use the images below to select the correct firmware file for your given hardware.**
     
     The (dedicated) revision 2.x has a simpler production process which helped us to optimize bigger deployments. 
 

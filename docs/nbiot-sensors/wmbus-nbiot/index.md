@@ -116,6 +116,95 @@ configuration while the mobile connection does not work (or if you do not want t
 Platform). See [Lobaro USB configuration adapter](/tools/usb-config-adapter.html) for more information.
 
 
+## Using Raw UDP
+In default configuration, the Gateway communicates using 
+[CoAP](https://en.wikipedia.org/wiki/Constrained_Application_Protocol) with messages that are designed 
+to work with our Lobaro Platform as a backend. If you want to connect the Gateway directly to your own 
+backend, it can be hard to implement an endpoint.
+
+### CBOR messages over UDP
+Starting with Firmware version 0.5.0, the Gateway supports a second format, where wMBus telegrams are uploaded without CoAP over UDP. When the 
+configuration Parameters `UdpHost` and `UdpPort` are set to a destination (IP address and port number), 
+wMBus telegrams will be sent to that destination instead of the Lobaro Platform. It will be sent as 
+a [CBOR](https://en.wikipedia.org/wiki/CBOR) object using raw UDP packets without CoAP. CBOR can easily be 
+parsed in most programming languages using existing libraries. It is similar to JSON but uses a binary 
+representation.
+
+!!!warning "Limitations of UDP"
+
+    Because UDP has no validation mechanism, there will be no retransmission in case of packet loss.
+    You will be able to spot missing packets by gaps in the frame number. When implementing this, please 
+    keep in mind, that UDP packets are not guaranteed to arrive in the order they are sent.
+
+### Controlling the device
+When `UdpHost` and `UdpPort` are set while `Host` and `Port` are referring to the Lobaro Platform, the 
+Gateway will upload the wMBus telegrams to the UDP destination but will also sent diagnostic messages to 
+the Platform. In this configuration you can still use the features of the Lobaro Platform to control the 
+device for configuration changes or firmware updates, while receiving your wMBus data directly to your 
+own backend.
+
+### Format
+
+#### Schema
+The CBOR object contains the following information
+````json
+{
+    "d": {
+      "rssi": <int: RSSI>,
+      "vbat": <int: Supply voltage in mV>,
+      "monitor": <string: human readable diagnostic information>,
+      "telegram": <bytes: wmbus telegram>,
+      "timestamp": <int: unix timestamp, time of reception>,
+      "temperature": <int: device temperature in 1/10°C>
+    },
+    "i": <string: device's IMEI>,
+    "n": <int: frame number>
+}
+````
+
+| Name | Explanation |
+|------|-------------|
+| `rssi` | [Received signal strength indication](https://en.wikipedia.org/wiki/Received_signal_strength_indication) indicating the quality of the received signal. |
+| `vbat` | Supply voltage to the Gateway, measured in millivolts (mV). |
+| `monitor` | Human readable diagnostic string. The format of this information subject to change and should not be relied on. |
+| `telegram` | Bytes of the received wMBus telegram as a byte string. |
+| `timestamp` | Time of reception of the telegram in the gateway, given as a [Unix Timestamp](https://en.wikipedia.org/wiki/Unix_time). |
+| `temperature` | Temperature inside the Gateway, measured in tenth of Degree Centigrade (d°C). |
+| `i` | IMEI of the Gateway's Modem, uniquely identifying the Device. |
+| `n` | Frame number. Starts at `1` for the first UDP-upload after boot and is increased for every upload. |
+
+#### Example
+The following shows an example message if you display it as JSON. 
+In the CBOR object, the `telegram` is stored as a byte string. Because JSON does not support binary data, in this
+example it is encoded using base64.
+````json
+{
+    "d": {
+      "rssi": -99,
+      "vbat": 3688,
+      "monitor": "connected:1, conMode:1, reg:5, tac:D71E, ci:019C1307, psm:11100000, tau:00001100, RSRP:56(2/4), RSRQ:24(3/4), SNR:37(3/4), conTime:3, conFails:0",
+      "telegram": "SUSTRHkFAYg0CHgN/181AIJnADXIv1WtPFse1mYcZZQLiPR/aujF9e46meEB6CIkxJmHUEd6xPdAmop3uqIt4yWMgbwEbToKiCc=",
+      "timestamp": 1594201536,
+      "temperature": 240
+    },
+    "i": "123456101550542",
+    "n": 7
+}
+````
+
+Explanation:
+````
+UDP-Uplink #7 from Gateway with IMEI 123456101550542
+Status of Gateway during upload:
+  internal Temperature: 24.0°C
+  supply Voltage: 3.688V
+  Mobile provider, Cell-ID: 019C1307
+Received wMBus Telegram:
+  time of recept: 2020-07-08T09:45:36 (UTC)
+  telegram (as hex): 49449344790501883408780dff5f350082670035c8bf55ad3c5b1ed6661c65940b88f47f6ae8c5f5ee3a99e101e82224c4998750477ac4f7409a8a77baa22de3258c81bc046d3a0a8827
+  rssi: -99
+````
+
 ## Troubleshooting
 
 !!! faq "I did not get a username/password for the *Lobaro Platform*."
