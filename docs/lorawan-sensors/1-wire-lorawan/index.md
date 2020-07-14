@@ -1,6 +1,6 @@
 # 1-Wire LoRaWAN Bridge
-`Order number: 8000001` <br>
-![1-wire-lorawan](files/1.jpg){: style="height:350px;"}
+`Order number: 8000072 1m Cable / 8000120 10m Cable` <br>
+![1-wire-lorawan](files/Multi-Tempsensor-LoRaWAN-DS18B20-open-2.jpg){: style="height:350px;"}
 
 !!! info "Consider using the latest firmware on your hardware"
     * [**See available firmware downloads**](firmware.md){: target="_blank"}
