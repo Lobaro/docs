@@ -1,12 +1,22 @@
 ---
 version: 2.x
 ---
-# Wireless mBUS over LoRaWAN Bridge V2
+# LOB-GW-WMBUS-LW-2
+
+Lobaro Wireless M-Bus over LoRaWAN® Bridge V2.
 
 Version **v2.x** *(since 2020-02-18)* <br>
 This is the latest version. The previous v1.x documentation can be found here: [doc v1.x](1.x/index.md).
 
 ![Lobaro wmbus LoRaWAN Bridge V2](files/wmbus-lorawan-bridge-V2-IP67.jpg){: style="height:250px"}
+
+##Overview
+
+The LOB-GW-WMBUS-LW-2 is is a cost-effective & energy efficient bridge / range extender, that receives, caches and transparently forwards wireless M-Bus (C1, T1, S1 modes) 
+metering data from utility meters via any LoRaWAN® network onto the Internet. The metering data will not be decrypted by the device instead an unchanged 1:1 forwarding 
+takes place via one or more LoRaWAN® packets (depending on the wMBUS telegram byte size). Thus the end-to-end encryption of sensitive wireless M-BUS consumption data is preserved.
+
+LoRaWAN® is a mark used under license from the LoRa Alliance®.
 
 ## Key Features
 - [X] LoRaWAN 1.0.x and 1.1 network servers supported
@@ -21,18 +31,7 @@ This is the latest version. The previous v1.x documentation can be found here: [
 - [X] Optional: complete Lobaro IoT Platform integration
 
 
-##Overview
-
-The Lobaro wireless M-Bus (wMBUS) to LoRaWAN Bridge is a cost-effective & energy
-efficient device that receives, caches and transparently forwards wireless M-Bus metering
-data from up to 500 utility meters via any LoRaWAN network onto the Internet. 
-The metering data will not be decrypted by the LoRaWAN Bridge, instead an unchanged
-1:1 forwarding takes place via one or more LoRaWAN packets (depending on the wMBUS telegram byte size). 
-Thus the end-to-end encryption of sensitive wireless MBUS consumption data is preserved. 
-
-![Lobaro wmbus LoRaWAN Bridge system components](files/Lobaro-wMBus-LoRaWAN-Metering-Bridge.jpg){: style="width:100%"}
-*Note: The Lobaro IoT platform is fully optional!*
-
+##Introduction
 Many gas, water, electricity and heat meters can be read wirelessly using the common
 short range 868 MHz wireless M-Bus / OMS industry standard. Because such wMBUS enabled meters use the classical
 energy saving FSK radio modulation, the wireless range is designed for less than 50m
@@ -41,6 +40,9 @@ metering data over larger distances onto the Internet. The advanced LoRa radio m
 inside the Lobaro wMBUS to LoRaWAN Bridge is one of such a key technologies. 
 
 You can find details about LoRaWAN in our [background article](../../background/lorawan.md).
+
+![Lobaro wmbus LoRaWAN Bridge system components](files/Lobaro-wMBus-LoRaWAN-Metering-Bridge.jpg){: style="width:100%"}
+*Note: The Lobaro IoT platform is fully optional!*
 
 !!! warning "Please use always the latest firmware on your lorawan wmbus bridge!"
     * [**Check latest firmware releases available for download**](firmware.md){: target="_blank"}
@@ -126,7 +128,7 @@ again.
 ##The wMBUS LoRaWAN Bridge 
 
 ###Hardware revision 2.x (active since 2020)
-`wMBUS LoRaWAN Bridge V2.0 (XH battery-connector, IP67 housing, DAE), PN: 8000095`
+`LOB-GW-WMBUS-LW-2, PN: 8000095`
 
 ![wMBUS LoRaWAN bride HW Rev2](files/Lobaro-wMBus-LoRaWAN-v2-Housing-open-2.jpg){: style="height:200px;display: block; margin: 0 auto;"}
 

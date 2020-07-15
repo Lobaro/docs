@@ -7,11 +7,11 @@ of [Lobaro GmbH](https://www.lobaro.de){: target="_blank"}.
 
 ## Hardware
 
-### Lobaro IoT Sensoren
+### Lobaro IoT Sensors
 
 | Sensor Name         | RF-Technology     | Target Measurement / Purpose |
 | :-------------  |:----------------|:----------------|
-| [wMBus NB-IoT Gateway](nbiot-sensors/wmbus-nbiot)             | NB-IoT / LTE-M | wMBus enabled meter reading |
+| [wMBus NB-IoT Gateway](nbiot-sensors/wmbus-nbiot)             | NB-IoT  | wMBus enabled meter reading |
 | [wMBus LoRaWAN Bridge](lorawan-sensors/wmbus-lorawan)         | LoRaWAN | wMBus enabled meter reading |
 | [Modbus LoRaWAN Bridge](lorawan-sensors/modbus-lorawan)       | LoRaWAN | RS485 ModBus readout |
 | [EDL21 Electricity meter LoRaWAN Bridge](lorawan-sensors/edl21-opto-lorawan) | LoRaWAN | Electricity meter readout |
@@ -21,6 +21,8 @@ of [Lobaro GmbH](https://www.lobaro.de){: target="_blank"}.
 | [Environment LoRaWAN Sensor](lorawan-sensors/environment-lorawan) | LoRaWAN | Humidity, Temperature, and Air Pressure sensor |
 | [Humidity & Temperature LoRaWAN Sensor](lorawan-sensors/humidity-temp-lorawan) | LoRaWAN | Humidity and Temperature external probe |
 | [Pressure LoRaWAN Sensor](lorawan-sensors/pressure-lorawan)   | LoRaWAN | Measurement of liquid / water level |
+
+LoRaWAN® is a mark used under license from the LoRa Alliance®.
 
 !!! hint "Firmware Release Notifications"
     We normally send e-mail notifications upon release of new firmware versions. To receive this mails you can sign up
