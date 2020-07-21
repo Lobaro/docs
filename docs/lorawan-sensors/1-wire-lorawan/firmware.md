@@ -4,7 +4,7 @@
 
 **Downloads:**
 
-* [app-lorawan-onewire-bridge-0.4.0.hex](firmware/app-lorawan-onewire-bridge-0.4.0.hex)
+* [app-lorawan-onewire-bridge-0.4.1.hex](firmware/app-lorawan-onewire-bridge-0.4.1.hex)
 * [app-lorawan-onewire-bridge-0.3.4.hex](firmware/app-lorawan-onewire-bridge-0.3.4.hex)
 
 !!! hint "Firmware Release Notifications"
