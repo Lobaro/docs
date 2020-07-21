@@ -100,7 +100,7 @@ the Data Collection Phase is entered according to the cron configuration.
 
 ###Data Collection Phase
 During the wMBUS collection phase the device receives any wireless M-Bus data with valid
-CRC and stores it for the following LoRaWAN upload phase but only if the received telegram
+CRC and stores it (without DLL CRCs) for the following LoRaWAN upload phase but only if the received telegram
 passes the user defined white list filters. Similar telegrams of one identical meter may be
 received multiple times during this phase. In this case the newest telegram with the same
 id, type and length will replace the previously received one. Only the latest telegram will be
@@ -110,8 +110,8 @@ is entered.
 
 ###Data Transfer Phase
 During the Data Transfer Phase the Bridge uploads all previously stored wMBUS data using
-LoRaWAN. Depending on original wMBUS telegram byte sitze this can require multiple LoRaWAN
-messages to be sent. Since LoRa requires any device to respect a strict duty cycle,
+LoRaWAN. All wMBUS DLL (Data Link Layer) CRCs are removed before the LoRaWAN upload since LoRaWAN has it own data integrity checks. 
+Depending on original wMBUS telegram byte sitze this can require multiple LoRaWAN messages to be sent. Since LoRa requires any device to respect a strict duty cycle,
 it is possible, that the Bridge will need to wait before sending its messages. If this happens,
 the device will enter a power saving modus while waiting for the next message. It is possible
 that transferring all data will take several minutes.
