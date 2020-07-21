@@ -16,6 +16,10 @@
     Make sure to select the **"Firmware Updates"** checkbox!    
 
 ## Changelog
+## 0.4.1 - 2020-07-21
+### Fixed
+- Fix payload of sensor data
+
 ### 0.4.0 - 2020-06-30
 #### Changed
 - Use lobawan stack v1.2.2
