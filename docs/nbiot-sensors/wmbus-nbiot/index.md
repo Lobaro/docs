@@ -59,19 +59,19 @@ device's configuration using the Lobaro Config Adapter can be found on the
 [Device Configuration](../../tools/lobaro-tool.md#device-configuration) on the manual page for our 
 Configuration Tool.
 
-### Mobile operator configuration
+### Mobile operator and LTE band configuration
 If you are using a different mobile operator than pre-configured, you should change the mobile operator 
-code set in the Config Parameter `Operator`. Operator codes are 5 digit codes that indicate country and 
+code set in the Config Parameters `Operator` and (LTE) `Band` Operator codes are 5 digit codes that indicate country and 
 operator.
 
-Common examples:
+Common examples :
 
-| Network operator          | Code     | Country |
-| :-------------  |:----------------|:----------------|
-| Deutsche Telekom            | 26201  | Germany |
-| 1nce.com        | 26201 | Germany |
-| Vodafone Deutschland      | 26202 | Germany |
-| Tele2 | 24007 | Sweden |
+| Network operator   | Country       | Code      | Band
+| :-------------  |:----------------|:----------------|:----------------|
+| Deutsche Telekom  | Germany           | 26201  | 8 |
+| 1nce.com      | Germany  | 26201  | 8 |
+| Vodafone Deutschland    | Germany  | 26202  | 20 |
+| Tele2 | Sweden | 24007  | ? |
  
 Other provider codes you can find in a [list of mobile operator codes][operator-list] on Wikipedia. 
 
