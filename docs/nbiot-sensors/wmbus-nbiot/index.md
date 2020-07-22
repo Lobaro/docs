@@ -81,7 +81,7 @@ Additional information on operators and bands can be found [here](https://halber
 
 [operator-list]: https://en.wikipedia.org/wiki/Mobile_Network_Codes_in_ITU_region_2xx_(Europe)
 
-The NB-IoT Bands selected for Europe are B3 (1800 MHz), B8 (900 MHz) and B20 (800 MHz). B8 and B20 are supported by the Lobaro Gateway, B20 is available on special sales request.
+The NB-IoT Bands selected for Europe are B3 (1800 MHz), B8 (900 MHz) and B20 (800 MHz). B8 and B20 are supported by the Lobaro Gateway, B3 is available on special sales request.
 
 ## The Lobaro Platform
 The easiest way to work with the *Lobaro wMBus NB-IoT Gateway* is the *Lobaro Platform*. You can find it 
