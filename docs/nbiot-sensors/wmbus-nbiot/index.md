@@ -66,7 +66,7 @@ operator.
 
 Common examples :
 
-| Network operator   | Country       | Code      | Band
+| Network    | Country       | Operator      | Band
 | :-------------  |:----------------|:----------------|:----------------|
 | Deutsche Telekom  | Germany           | 26201  | 8 |
 | 1nce.com      | Germany  | 26201  | 8 |
