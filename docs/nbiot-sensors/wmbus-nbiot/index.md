@@ -71,11 +71,17 @@ Common examples :
 | Deutsche Telekom  | Germany           | 26201  | 8 |
 | 1nce.com      | Germany  | 26201  | 8 |
 | Vodafone Deutschland    | Germany  | 26202  | 20 |
-| Tele2 | Sweden | 24007  | ? |
+| TDC A/S | Denmark | 23801  |  20 |
+| Telenor Denmark | Denmark | 23802  | 20 |
+| Telia DK | Denmark | 23820  | 20 |
+| Tele2 | Sweden | 24007  | 20 |
  
 Other provider codes you can find in a [list of mobile operator codes][operator-list] on Wikipedia. 
+Additional information on operators and bands can be found [here](https://halberdbastion.com/intelligence/mobile-networks).
 
 [operator-list]: https://en.wikipedia.org/wiki/Mobile_Network_Codes_in_ITU_region_2xx_(Europe)
+
+The NB-IoT Bands selected for Europe are B3 (1800 MHz), B8 (900 MHz) and B20 (800 MHz). B8 and B20 are supported by the Lobaro Gateway, B20 is available on special sales request.
 
 ## The Lobaro Platform
 The easiest way to work with the *Lobaro wMBus NB-IoT Gateway* is the *Lobaro Platform*. You can find it 
