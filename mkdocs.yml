@@ -72,7 +72,7 @@ nav:
       - EDL21 Bridge:
           - Manual: lorawan-sensors/edl21-opto-lorawan/index.md
           - Firmware & Changelog: lorawan-sensors/edl21-opto-lorawan/firmware.md
-      - 1-Wire Bridge:
+      - Multi Temp. Sensor Box:
           - Manual: lorawan-sensors/1-wire-lorawan/index.md
           - Firmware & Changelog: lorawan-sensors/1-wire-lorawan/firmware.md
       - GPS Tracker:

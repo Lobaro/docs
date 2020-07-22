@@ -1,25 +1,89 @@
-# 1-Wire LoRaWAN Bridge
-`Order number: 8000072 1m Cable / 8000120 10m Cable` <br>
+#LOB-S-1WT-LW
+
+Multi Temperature Sensor Box
+
+[Link to B2B Online Shop](https://www.lobaro.com/products/lorawan-multi-temperatur-box/) <br>
+
 ![1-wire-lorawan](files/Multi-Tempsensor-LoRaWAN-DS18B20-open-2.jpg){: style="height:350px;"}
 
 !!! info "Consider using the latest firmware on your hardware"
     * [**See available firmware downloads**](firmware.md){: target="_blank"}
 
+## Quickstart 
+1. Connect to the device with the [Lobaro Tool](https://www.lobaro.com/lobaro-maintenance-tool/) using the [Lobaro Config Adapter](https://www.lobaro-shop.com/product_info.php?info=p7_lobaro-usb-konfigurations-adapter.html) 
+2. Under Configuration click "Reload Config" and change the configuration according to your needs
+3. Register the device in your LoRaWAN network
+4. Connect ER34614 3.6V D-cell Battery via XH connector / Connect external powersupply
+
+## Key Features
+- [X] Supports up to 25 [DS18x20](https://www.maximintegrated.com/en/products/sensors/DS18B20.html) 1-Wire sensors
+- [X] 8-Port easy installation Hub available 
+- [X] IP67 outdoor housing with pressure compensating element
+- [X] Comes with one sensor attached
+- [X] Sensor output order can be configured
+- [X] Testmode for easy sensor identification
+- [X] Big 19Ah size "D" battery for 10 years+ possible battery lifetime (not included)
+- [X] LoRaWAN 1.0.x and 1.1 network servers supported
+- [X] LoRaWAN Class A or Class C operation
+- [X] LoRaWAN 1.1 time synchronisation
+- [X] Variant with external power-supply and or external antenna available on request
+- [X] Quick closing screws with cover retainer on housing
+
+
+
 ## Target Measurement / Purpose
 
-Supports up to 32 [DS18x20 1-Wire](https://www.maximintegrated.com/en/products/sensors/DS18B20.html){: target="_blank"} temperature sensors. The temperature form all sensors in read regualarly and send via LoRaWAN uplink.
-When the payload gets too big for a single LoRaWAN message, it is split into multiple uplinks.
+The Multi Temperature Sensor Box is used to read out up to up to 25 [DS18x20](https://www.maximintegrated.com/en/products/sensors/DS18B20.html){: target="_blank"} 1-Wire temperature sensors. The temperature from all sensors is read regualarly and sent via LoRaWAN uplink automatically splitting the data into multiple uplinks if the payload gets too big for a single LoRaWAN message.
+Sensors can be attached in series or in star configuration. 
+
+## Additional Hardware
+For easy connection of up to 7 DS18x20 1-Wire sensors consider using our [Modbus & 1-Wire 8-Port Hub](https://www.lobaro.com/products/verteilerbox-1-wire-modbus/) (`Order number: 8000130`).
+Multiple Hubs can be connected to each other to achieve the limit of 25 sensors per Box.
+
+![1-wire-hub](files/1-Wire-Modbus-outdoor-IP66-8port-hub-V2.jpg){: style="height:250px;"}
+![1-wire-overview](files/LoRaWAN-NB-IoT-Multi-Temperature-Sensing-Solution.jpg){: style="height:250px;"}
 
 
 ## Configuration
+The configuration is done using [Lobaro Maintenance Tool](/tools/lobaro-tool/) and the Lobaro USB PC adapter.
+
+### LoRaWAN
+The connection to the LoRaWAN network is defined by multiple configuration parameters.
+This need to be set according to your LoRaWAN network and the way your device is 
+supposed to be attached to it, or the device will not be able to send any data.
+
+For a detailed introduction into how this values need to be configured, please 
+refer to the chapter [LoRaWAN configuration](/background/lorawan.html#lorawan-configuration) 
+in our LoRaWAN background article.
+
+| Name       | Description | Type | Values |
+|------------|-------------|------|-------|
+|`OTAA`      |Activation: OTAA or ABP              |`bool`    | `true`= use OTAA, `false`= use ABP |
+|`DevEUI`    |DevEUI used to identify the Device   |`byte[8]` | e.g. `0123456789abcdef` | 
+|`JoinEUI`   |Used for OTAA (called AppEUI in v1.0)|`byte[8]` | e.g. `0123456789abcdef` | 
+|`AppKey`    |Key used for OTAA (v1.0 and v1.1)    |`byte[16]`| |
+|`NwkKey`    |Key used for OTAA (v1.1 only)        |`byte[16]`| |
+|`SF`        |Initial / maximum Spreading Factor   |`int`     | `7` - `12` |
+|`ADR`       |Use Adaptive Data Rate               |`bool`    | `true`= use ADR, `false`= don't |
+|`OpMode`    |Operation Mode                       |`string`  | `A`= Class A, `C`= Class C |
+|`TimeSync`  |Days after which to sync time        |`int`     | days, `0`=don't sync time | 
+|`RndDelay`  |Random delay before sending          |`int`     | max seconds |
+|`RemoteConf`|Not supported by this firmware       |`bool`    | `false`=deactivate |
+|`LostReboot`|Days without downlink before reboot  |`int`     | days, `0`=don't reboot |
+
+### Operation
 Without configuration the sensors will be transmitted ordered by the 48 Bit id, ignoring the Sensorfamily prefix and the Checksum.
  
 | name | description | example value |
 |------|-------------|----------------|
+| `TestMode`         | Run device in Testing Mode to help identify sensors. Must be `false` for normal operations. | `true` or `false` |
+| `MeasureCron`      | Cron expression<sup>&dagger;</sup> defining when to read out sensors| `0 0/15 * * * *`(every 15 minutes)|
 | `SendInternalTemp` | Toggle output of internal sensor. Will alway be sent first.  | `true` or `false` |
 | `SendSensorId`     | Include Sensor ID in upload. Changes Payload format and Port.      | `true` or `false` |
 | `SensorIdOrder`    | Semicolon separated list of 48 Bit IDs in hex (up to 25) | `22ffffff0000;44ffffff0000;11ffffff0000` |
-| `TestMode`         | Run device in Testing Mode to help identify sensors. Must be `false` for normal operations. | `true` or `false` |
+
+
+<sup>&dagger;</sup> See also our [Introduction to Cron expressions](/background/cron-expressions.html).
 
 ## Temperature and Error values
 Temperature is transmitted in 10th of degrees Centigrade (d°C), to avoid having to deal with floating point numbers.

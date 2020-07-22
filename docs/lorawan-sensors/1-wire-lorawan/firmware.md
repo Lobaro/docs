@@ -1,4 +1,4 @@
-# 1-Wire LoRaWAN Bridge (Temperature Sensors)
+# Multi Temperature Sensor Box
 
 ## Firmware
 

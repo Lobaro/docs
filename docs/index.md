@@ -15,7 +15,7 @@ of [Lobaro GmbH](https://www.lobaro.de){: target="_blank"}.
 | [wMBus LoRaWAN Bridge](lorawan-sensors/wmbus-lorawan)         | LoRaWAN | wMBus enabled meter reading |
 | [Modbus LoRaWAN Bridge](lorawan-sensors/modbus-lorawan)       | LoRaWAN | RS485 ModBus readout |
 | [EDL21 Electricity meter LoRaWAN Bridge](lorawan-sensors/edl21-opto-lorawan) | LoRaWAN | Electricity meter readout |
-| [1-Wire LoRaWAN Bridge](lorawan-sensors/1-wire-lorawan)       | LoRaWAN | Read multiple temperature sensors |
+| [Multi Temperature Sensor Box](lorawan-sensors/1-wire-lorawan)       | LoRaWAN | Read multiple temperature sensors |
 | [GPS Tracker LoRaWAN](lorawan-sensors/gps-lorawan)            | LoRaWAN | GPS Tracker with motion detection |
 | [Usonic LoRaWAN Sensor](lorawan-sensors/usonic-lorawan)       | LoRaWAN | Ultrasonic object / distance detection |
 | [Environment LoRaWAN Sensor](lorawan-sensors/environment-lorawan) | LoRaWAN | Humidity, Temperature, and Air Pressure sensor |
