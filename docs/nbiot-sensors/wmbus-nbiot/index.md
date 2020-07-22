@@ -62,8 +62,18 @@ Configuration Tool.
 ### Mobile operator configuration
 If you are using a different mobile operator than pre-configured, you should change the mobile operator 
 code set in the Config Parameter `Operator`. Operator codes are 5 digit codes that indicate country and 
-operator, for example Deutsche Telekom in Germany has `26201` and Tele2 in Sweden has `24007`. You can find 
-a [list of mobile operator codes][operator-list] on Wikipedia. 
+operator.
+
+Common examples:
+
+| Network operator          | Code     | Country |
+| :-------------  |:----------------|:----------------|
+| Deutsche Telekom            | 26201  | Germany |
+| 1nce.com        | 26201 | Germany |
+| Vodafone Deutschland      | 26202 | Germany |
+| Tele2 | 24007 | Sweden |
+ 
+Other provider codes you can find in a [list of mobile operator codes][operator-list] on Wikipedia. 
 
 [operator-list]: https://en.wikipedia.org/wiki/Mobile_Network_Codes_in_ITU_region_2xx_(Europe)
 
