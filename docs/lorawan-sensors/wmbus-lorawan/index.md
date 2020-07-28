@@ -302,9 +302,9 @@ in our LoRaWAN background article.
 |`listenCron `     | Cron expression<sup>&dagger;</sup> defining when to rx wMBUS| `0 0/15 * * * *`(every 15 minutes)|
 |`cmodeDurSec`     | Duration (Seconds) of C1/T1-mode receive| `0`= Do not collect C1/T1 mode |
 |`smodeDurSec`     | Duration (Seconds) of S1-mode receive| `0`= Do not collect S1 mode |
-|`mFilter`         | wMBus manufacturer filter sep. by "," e.g. "dme,itw"| `blank`= no filter | 
-|`typFilter`       | wMBus device type filter e.g. "08,07" for Heat Coast and Water | `blank`= no filter | 
-|`devFilter`       | wMBus id filter e.g. "88009035, 06198833" (8 digits)| `blank`= no filter | 
+|`mFilter`         | wMBus manufacturer filter sep. by `,` e.g. `dme,itw`| `blank`= no filter | 
+|`typFilter`       | wMBus device type filter e.g. `08,07` for Heat Cost and Water | `blank`= no filter | 
+|`devFilter`       | wMBus id filter e.g. `88009035,06198833` (8 digits)| `blank`= no filter | 
 
 <sup>&dagger;</sup> See also our [Introduction to Cron expressions](/background/cron-expressions.html).
 
