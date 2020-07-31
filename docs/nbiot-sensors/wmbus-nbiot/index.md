@@ -71,6 +71,7 @@ Common examples :
 | Deutsche Telekom  | Germany           | 26201  | 8 |
 | 1nce.com      | Germany  | 26201  | 8 |
 | Vodafone Deutschland    | Germany  | 26202  | 20 |
+| T-Mobile Austria GmbH (Magenta)   | Germany  | 23203  | 8 |
 | TDC A/S | Denmark | 23801  |  20 (?)|
 | Telenor Denmark | Denmark | 23802  | 20 (?) |
 | Telia DK | Denmark | 23820  | 20 (?) |
