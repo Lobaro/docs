@@ -267,7 +267,7 @@ parameters used for this.
 |`memsTh`         |`int`    |   Threshold for the internal motion detector to register movement. Values range from 2 to 255. A higher value makes the device less sensitive.<br>2 Environment (wind or steps) may trigger.<br>5 Standard, picking up the device will activate it. <br> 20 Carefully picking it up will not trigger the device.<br>50 When carried, running will trigger, walking won't.<br>100+ Shaking will activate, dropping the device might not.          | `5` |
 |`maxHDOP`        |`int`    |   Maximum acceptable Horizontal Dilution Of Precision,  between 1 and 50, smaller is better | `2` |
 |`maxDataAfterFix`|`int`    |   If the HDOP target cannot be matched this value determines after how many datapackets with fix the position will be accepted | `20` | 
-|`moveDist`       |`int`    |   (since 7.1.0) travelled distance in metres between two GPS-measurements, that counts as movment event | `1000` |
+|`moveDist`       |`int`    |   (since 7.1.0) travelled distance in metres between two GPS-measurements, that counts as movment event | `100` |
 
 ###Cron expressions
 Cron expressions are used to define specific points in time and regular repetitions of them.  
