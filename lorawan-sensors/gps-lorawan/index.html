@@ -1976,9 +1976,8 @@ each revision.</p>
 <h2 id="key-features">Key Features</h2>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> LoRaWAN 1.0.x and 1.1 network servers supported</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> LoRaWAN Class A or Class C operation</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> TTN-Mapper compatible</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Time synchronisation via GPS or LoRaWAN</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Time synchronisation via GPS</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Simultaneous GPS and BeiDou support for better satellite coverage</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Configuration via USB or remotely via LoRaWAN downlink</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Visual Feedback through on-board LED</li>
@@ -2208,24 +2207,6 @@ in our LoRaWAN background article.</p>
 <td>Initial / maximum Spreading Factor</td>
 <td><code>int</code></td>
 <td><code>7</code> - <code>12</code></td>
-</tr>
-<tr>
-<td><code>ADR</code></td>
-<td>Use Adaptive Data Rate</td>
-<td><code>bool</code></td>
-<td><code>true</code>= use ADR, <code>false</code>= don't</td>
-</tr>
-<tr>
-<td><code>OpMode</code></td>
-<td>Operation Mode</td>
-<td><code>string</code></td>
-<td><code>A</code>= Class A, <code>C</code>= Class C</td>
-</tr>
-<tr>
-<td><code>TimeSync</code></td>
-<td>Days after which to sync time over LoRaWAN</td>
-<td><code>int</code></td>
-<td>days, <code>0</code>=don't sync time</td>
 </tr>
 <tr>
 <td><code>RndDelay</code></td>
