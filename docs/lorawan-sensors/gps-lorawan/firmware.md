@@ -11,7 +11,7 @@
 
 ![Product GPS Tracker HW3](files/GPS-Tracker-V3-Open2.png){: style="height:250px;display: block; margin: 0 auto;"}
 
-* [app-lorawan-gps-7.1.0.hex](firmware/app-lorawan-gps-7.1.0.hex) (hardware v3.x) [current release]
+* [app-lorawan-gps-8.0.0.hex](firmware/app-lorawan-gps-8.0.0.hex) (hardware v3.x) [current release]
 
 !!! hint "Firmware Release Notifications"
     We normally send e-mail notifications upon release of new firmware versions. To receive this mails you can sign up
@@ -50,6 +50,18 @@
 
 ## Changelog
 --------------------
+### 8.0.0 - 2020-08-05
+#### Changed
+- Change official product name to `LOB-S-GPS-LW-3`.
+- Verify LoRaWAN Stack using official testing tool by LoRaWAN-Alliance.
+- Remove OpMode (class C), ADR, and time sync over LoRaWAN
+- Change internal logic of LostReboot-feature to use ACKs for checking for Network.
+#### Added
+- Low Voltage Protection
+#### Fix
+- Fix Voltage StepUp logic for GPS and LoRa
+- Send uplink before reboot when ACK required.
+
 ### v7.1.0 - 17.06.2020
 #### Added
 - Add timestamp for last movement event to Port 2 payload

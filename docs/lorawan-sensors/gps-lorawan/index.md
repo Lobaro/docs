@@ -13,9 +13,8 @@
 
 ## Key Features
 - [X] LoRaWAN 1.0.x and 1.1 network servers supported
-- [X] LoRaWAN Class A or Class C operation
 - [X] TTN-Mapper compatible
-- [X] Time synchronisation via GPS or LoRaWAN
+- [X] Time synchronisation via GPS
 - [X] Simultaneous GPS and BeiDou support for better satellite coverage
 - [X] Configuration via USB or remotely via LoRaWAN downlink
 - [X] Visual Feedback through on-board LED
@@ -244,9 +243,6 @@ in our LoRaWAN background article.
 |`AppKey`    |Key used for OTAA (v1.0 and v1.1)    |`byte[16]`| |
 |`NwkKey`    |Key used for OTAA (v1.1 only)        |`byte[16]`| |
 |`SF`        |Initial / maximum Spreading Factor   |`int`     | `7` - `12` |
-|`ADR`       |Use Adaptive Data Rate               |`bool`    | `true`= use ADR, `false`= don't |
-|`OpMode`    |Operation Mode                       |`string`  | `A`= Class A, `C`= Class C |
-|`TimeSync`  |Days after which to sync time over LoRaWAN |`int`     | days, `0`=don't sync time | 
 |`RndDelay`  |Random delay before sending          |`int`     | max seconds to wait |
 |`RemoteConf`|Not supported by this firmware       |`bool`    | `true`=enabled, `false`=deactivated |
 |`LostReboot`|Days without downlink before reboot  |`int`     | days, `0`=don't reboot |
@@ -324,11 +320,11 @@ The GPS-Tracker gives visual feedback about it's operations using a green on-boa
 
 The device uploads several different message types each with their own purpose and on their own port.
 
-| Port       | Size     | Message |
-|------------|----------|---------|
-| `1`        | 14 bytes | Status Message, containing information about the status of the device. |
-| `2`        | 23 bytes | Data Message, containing positional information gained by GNSS (GPS/Beidou). |
-| `128`-`131`| varying  | Responses to remote configuration commands. | 
+| Port        | Size     | Message |
+|-------------|----------|---------|
+| `1`         | 14 bytes | Status Message, containing information about the status of the device. |
+| `2`         | 23 bytes | Data Message, containing positional information gained by GNSS (GPS/Beidou). |
+| `128`-`131` | varying  | Responses to remote configuration commands. | 
 
 ### Numerical values
 Numerical values are uploaded as integers. If a value needs a higher precision, it is encoded using 
