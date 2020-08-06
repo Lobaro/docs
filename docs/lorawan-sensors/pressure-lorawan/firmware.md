@@ -10,7 +10,7 @@ log with our config adapter, while the device is booting.
 
 **Downloads**:
 
-* [app-lorawan-pressure-0.2.1.hex](firmware/app-lorawan-pressure-0.2.1.hex) [current release]
+* [app-lorawan-pressure-0.2.2.hex](firmware/app-lorawan-pressure-0.2.2.hex) [current release]
 
 !!! hint "Firmware Release Notifications"
     We normally send e-mail notifications upon release of new firmware versions. To receive this mails you can sign up
@@ -22,7 +22,7 @@ log with our config adapter, while the device is booting.
 
 ### Changelog
 
-#### 0.2.1 - 2020-08-06
+#### 0.2.2 - 2020-08-06
 - Completely rewrite app structure (taken form `app-lorawan-environment`), to enable use 
   of LoRaWAN-features, like Downlink-Configs, Class-C
 

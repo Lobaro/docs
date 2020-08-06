@@ -413,6 +413,7 @@ failed attempts it will restore the previous configuration. This can take up to 
 |`g` |Get config parameter value      |Name of parameter| 67    |
 |`r` |Reset config parameter value    |Name of parameter| 72    |
 |`s` |Set config parameter value      |`<name>=<value>` | 73    |
+|`S` |Set cfg parm, save, reboot      |`<name>=<value>` | 53
 |`a` |Append to config parameter value|`<name>=<value>` | 61    |
 |`b` |Reboot device without saving    |None             | 62    |
 |`w` |Save config and reboot device   |None             | 77    |
@@ -436,6 +437,13 @@ failed attempts it will restore the previous configuration. This can take up to 
 :   Set config parameter `<name>` to `<value>`. Sets the parameter to the value given in the parameter.
     As a confirmation it sends a response containing `<name>=<value>`, reporting the new value of 
     the parameter.
+
+`S<name>=<value>`
+:   Set config parameter `<name>` to `<value>`. Sets the parameter to the value given in the parameter,
+    saves the changes to the temporary config and reboots. It combines using `s` followed by `w`.
+    This commands was added as a convenience feature to update a single config value using a single 
+    downlink (Command `S` was added to Lobaro LoRaWAN Stack in version 1.1.0 on 2020-04-02).
+
 
 `a<name>=<value>`
 :   Append `<value>` to the config parameter `<name>`. This command appends the value given to the 
