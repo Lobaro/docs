@@ -2020,6 +2020,12 @@ failed attempts it will restore the previous configuration. This can take up to 
 <td>73</td>
 </tr>
 <tr>
+<td><code>S</code></td>
+<td>Set cfg parm, save, reboot</td>
+<td><code>&lt;name&gt;=&lt;value&gt;</code></td>
+<td>53</td>
+</tr>
+<tr>
 <td><code>a</code></td>
 <td>Append to config parameter value</td>
 <td><code>&lt;name&gt;=&lt;value&gt;</code></td>
@@ -2056,6 +2062,11 @@ Sending the special value <code>*</code> will reset all config parameters.</dd>
 <dd>Set config parameter <code>&lt;name&gt;</code> to <code>&lt;value&gt;</code>. Sets the parameter to the value given in the parameter.
 As a confirmation it sends a response containing <code>&lt;name&gt;=&lt;value&gt;</code>, reporting the new value of 
 the parameter.</dd>
+<dt><code>S&lt;name&gt;=&lt;value&gt;</code></dt>
+<dd>Set config parameter <code>&lt;name&gt;</code> to <code>&lt;value&gt;</code>. Sets the parameter to the value given in the parameter,
+saves the changes to the temporary config and reboots. It combines using <code>s</code> followed by <code>w</code>.
+This commands was added as a convenience feature to update a single config value using a single 
+downlink (Command <code>S</code> was added to Lobaro LoRaWAN Stack in version 1.1.0 on 2020-04-02).</dd>
 <dt><code>a&lt;name&gt;=&lt;value&gt;</code></dt>
 <dd>Append <code>&lt;value&gt;</code> to the config parameter <code>&lt;name&gt;</code>. This command appends the value given to the 
 current value of the parameter. This is intended to allow setting values that are too long 
