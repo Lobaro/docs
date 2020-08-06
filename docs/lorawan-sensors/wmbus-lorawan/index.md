@@ -340,7 +340,7 @@ bit integer using little endian encoding.
 |-|-|-|-|-|
 |version|uint8[3]|0-2|Version of the firmware running on the device|1, 5, 1 ≡ v1.5.1|
 |v_bat|uint16|3-4|Battery voltage in mV|2947 ≡ 2:947V|
-|temp|int16|5-6|Temperature measured inside the device in 1/10 °C|246 ≡ 24.6°C|
+|temp|int16|5-6|Temperature measured inside the device in 1/10 °C (little endian)|246 ≡ 24.6°C|
 |flags|int8|7|Bit 7 (e.g. 0x01) = No wMbus Telegram received (**added in v2.5.0**) | 0x01 |
 
 !!! warning "Temperature Sensor"
