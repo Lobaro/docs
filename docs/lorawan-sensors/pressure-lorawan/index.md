@@ -30,12 +30,10 @@ using LoRaWAN **downlink messages**, see [Downlinks](#downlink) description.
 ### LoRaWAN
 
 !!! info "Advanced Lobaro LoRaWAN Stack"
-    The Hardware Variant *Keller Sensor* uses our advanced LoRaWAN Stack and supports Remote 
-    Configuration and LoRaWAN V1.1, starting with firmware v0.3.0. Refer to 
-    [Lobaro LoRaWAN stack](/background/lorawan.html#lobaro-lorawan-stack) for a description of 
-    those new features.
-    
-    Older Versions and the Variant *Lobaro Sensor* only support the features described here.
+    Some of the features listed here (LoRaWAN 1.1, Remote Configuration, ...) are only 
+    implemented for recent versions of our firmware. For the *Lobaro Sensor* this starts 
+    with v0.2.1, for the *Keller Sensor* it starts with v0.3.0. If possible, you should 
+    update your devices to our most recent firmware.
    
 
 The connection to the LoRaWAN network is defined by multiple configuration parameters.
@@ -150,3 +148,7 @@ function Decoder(bytes, port) {
 ## CE Declaration of Conformity
 
 [CE Declaration of Conformity](files/ce-Pressure-lorawan.pdf) (pdf).
+
+## Disposal / WEEE / Entsorgung
+
+[Information about the disposal of the Device](/background/weee-disposal).
