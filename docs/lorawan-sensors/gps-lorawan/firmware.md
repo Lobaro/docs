@@ -11,7 +11,7 @@
 
 ![Product GPS Tracker HW3](files/GPS-Tracker-V3-Open2.png){: style="height:250px;display: block; margin: 0 auto;"}
 
-* [app-lorawan-gps-8.0.3.hex](firmware/app-lorawan-gps-8.0.3.hex) (hardware v3.x) [current release]
+* [app-lorawan-gps-8.0.4.hex](firmware/app-lorawan-gps-8.0.4.hex) (hardware v3.x) [current release]
 
 !!! hint "Firmware Release Notifications"
     We normally send e-mail notifications upon release of new firmware versions. To receive this mails you can sign up
@@ -50,6 +50,10 @@
 
 ## Changelog
 --------------------
+### 8.0.4 - 2020-08-06
+#### Fix
+- Fix internal Selftesting result format.
+
 ### 8.0.3 - 2020-08-06
 #### Fix
 - Remove random payload in reboot request ACK upload
