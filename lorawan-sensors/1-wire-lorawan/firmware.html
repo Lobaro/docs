@@ -13,7 +13,7 @@
       
       
       <link rel="shortcut icon" href="../../favicon.ico">
-      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.5.3">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.5.6">
     
     
       
@@ -21,7 +21,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.947af8d5.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.63b94e9e.min.css">
       
         <link rel="stylesheet" href="../../assets/stylesheets/palette.7f672a1f.min.css">
       
@@ -492,9 +492,44 @@
     Changelog
   </a>
   
+    <nav class="md-nav" aria-label="Changelog">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#050-2020-08-12" class="md-nav__link">
+    0.5.0 - 2020-08-12
+  </a>
+  
+    <nav class="md-nav" aria-label="0.5.0 - 2020-08-12">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added" class="md-nav__link">
+    Added
+  </a>
+  
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
+  <a href="#changed" class="md-nav__link">
+    Changed
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed" class="md-nav__link">
+    Fixed
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#041-2020-07-21" class="md-nav__link">
     0.4.1 - 2020-07-21
   </a>
@@ -503,9 +538,14 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#fixed" class="md-nav__link">
+  <a href="#fixed_1" class="md-nav__link">
     Fixed
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -518,7 +558,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#changed" class="md-nav__link">
+  <a href="#changed_1" class="md-nav__link">
     Changed
   </a>
   
@@ -1350,9 +1390,44 @@
     Changelog
   </a>
   
+    <nav class="md-nav" aria-label="Changelog">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#050-2020-08-12" class="md-nav__link">
+    0.5.0 - 2020-08-12
+  </a>
+  
+    <nav class="md-nav" aria-label="0.5.0 - 2020-08-12">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added" class="md-nav__link">
+    Added
+  </a>
+  
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
+  <a href="#changed" class="md-nav__link">
+    Changed
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed" class="md-nav__link">
+    Fixed
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#041-2020-07-21" class="md-nav__link">
     0.4.1 - 2020-07-21
   </a>
@@ -1361,9 +1436,14 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#fixed" class="md-nav__link">
+  <a href="#fixed_1" class="md-nav__link">
     Fixed
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1376,7 +1456,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#changed" class="md-nav__link">
+  <a href="#changed_1" class="md-nav__link">
     Changed
   </a>
   
@@ -1458,7 +1538,7 @@
 <h2 id="firmware">Firmware</h2>
 <p><strong>Downloads:</strong></p>
 <ul>
-<li><a href="firmware/app-lorawan-onewire-bridge-0.4.1.hex">app-lorawan-onewire-bridge-0.4.1.hex</a></li>
+<li><a href="firmware/app-lorawan-onewire-bridge-0.5.0.hex">app-lorawan-onewire-bridge-0.5.0.hex</a></li>
 <li><a href="firmware/app-lorawan-onewire-bridge-0.3.4.hex">app-lorawan-onewire-bridge-0.3.4.hex</a></li>
 </ul>
 <div class="admonition hint">
@@ -1468,14 +1548,39 @@ to the Lobaro newsletter here.</p>
 <p><a href="http://eepurl.com/gQYRbH" target="_blank"><strong>Subscribe to our email newsletter here</strong></a> </p>
 <p>Make sure to select the <strong>"Firmware Updates"</strong> checkbox!    </p>
 </div>
+<div class="admonition warn">
+<p class="admonition-title">Changed Default Keys in v0.5.0</p>
+<p>Starting with Firmware 0.5.0, the default values for <code>JoinEUI</code> (aka <code>AppEUI</code>), <code>AppKey</code>, and 
+<code>NwkKey</code> in the configuration have changed. 
+Be sure to check your LoRaWAN-Configuration between device and Network Server, after you 
+update to this version.</p>
+<p>You can adjust those values to your need with our config adapter. </p>
+</div>
 <h2 id="changelog">Changelog</h2>
-<h2 id="041-2020-07-21">0.4.1 - 2020-07-21</h2>
-<h3 id="fixed">Fixed</h3>
+<h3 id="050-2020-08-12">0.5.0 - 2020-08-12</h3>
+<h4 id="added">Added</h4>
+<ul>
+<li>Power-On Selftest</li>
+</ul>
+<h4 id="changed">Changed</h4>
+<ul>
+<li>BREAKING CHANGE: Default values for <code>JoinEUI</code>, <code>AppKey</code>, <code>NwkKey</code> changed!</li>
+<li>Uses LoRaWAN-Stack that was certified for wMBus-Bridge</li>
+<li>Implement changes in LoRaWAN-Stack that happend during certification. Implements some 
+edge-case.</li>
+<li>Make remote config feature robuster, e.g. when sending downlinks with ACK request.</li>
+</ul>
+<h4 id="fixed">Fixed</h4>
+<ul>
+<li>Fixed Mixup of Sensors that could trigger endless loop</li>
+</ul>
+<h3 id="041-2020-07-21">0.4.1 - 2020-07-21</h3>
+<h4 id="fixed_1">Fixed</h4>
 <ul>
 <li>Fix payload of sensor data</li>
 </ul>
 <h3 id="040-2020-06-30">0.4.0 - 2020-06-30</h3>
-<h4 id="changed">Changed</h4>
+<h4 id="changed_1">Changed</h4>
 <ul>
 <li>Use lobawan stack v1.2.2</li>
 <li>Sensors from <code>SensorIdOrder</code> that are missing will still be uploaded (with -0x8000 value)</li>
@@ -1581,15 +1686,15 @@ to the Lobaro newsletter here.</p>
       
     </div>
     
-      <script src="../../assets/javascripts/vendor.c3dc8c49.min.js"></script>
-      <script src="../../assets/javascripts/bundle.f9edbbd5.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      <script src="../../assets/javascripts/vendor.d1f5a259.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d5fec882.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
       <script>
         app = initialize({
           base: "../..",
           features: [],
           search: Object.assign({
-            worker: "../../assets/javascripts/worker/search.8e2cddea.min.js"
+            worker: "../../assets/javascripts/worker/search.fae956e7.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
