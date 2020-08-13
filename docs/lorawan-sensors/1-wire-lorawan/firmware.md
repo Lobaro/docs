@@ -4,7 +4,7 @@
 
 **Downloads:**
 
-* [app-lorawan-onewire-bridge-0.4.1.hex](firmware/app-lorawan-onewire-bridge-0.4.1.hex)
+* [app-lorawan-onewire-bridge-0.5.0.hex](firmware/app-lorawan-onewire-bridge-0.5.0.hex)
 * [app-lorawan-onewire-bridge-0.3.4.hex](firmware/app-lorawan-onewire-bridge-0.3.4.hex)
 
 !!! hint "Firmware Release Notifications"
@@ -15,9 +15,29 @@
     
     Make sure to select the **"Firmware Updates"** checkbox!    
 
+!!! warn "Changed Default Keys in v0.5.0"
+    Starting with Firmware 0.5.0, the default values for `JoinEUI` (aka `AppEUI`), `AppKey`, and 
+    `NwkKey` in the configuration have changed. 
+    Be sure to check your LoRaWAN-Configuration between device and Network Server, after you 
+    update to this version.
+    
+    You can adjust those values to your need with our config adapter. 
+
 ## Changelog
-## 0.4.1 - 2020-07-21
-### Fixed
+### 0.5.0 - 2020-08-12
+#### Added
+- Power-On Selftest
+#### Changed
+- BREAKING CHANGE: Default values for `JoinEUI`, `AppKey`, `NwkKey` changed!
+- Uses LoRaWAN-Stack that was certified for wMBus-Bridge
+- Implement changes in LoRaWAN-Stack that happend during certification. Implements some 
+edge-case.
+- Make remote config feature robuster, e.g. when sending downlinks with ACK request.
+#### Fixed
+- Fixed Mixup of Sensors that could trigger endless loop
+
+### 0.4.1 - 2020-07-21
+#### Fixed
 - Fix payload of sensor data
 
 ### 0.4.0 - 2020-06-30
