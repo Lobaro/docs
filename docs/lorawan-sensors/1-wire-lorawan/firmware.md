@@ -15,7 +15,7 @@
     
     Make sure to select the **"Firmware Updates"** checkbox!    
 
-!!! warn "Changed Default Keys in v0.5.0"
+!!! warning "Changed Default Keys in v0.5.0"
     Starting with Firmware 0.5.0, the default values for `JoinEUI` (aka `AppEUI`), `AppKey`, and 
     `NwkKey` in the configuration have changed. 
     Be sure to check your LoRaWAN-Configuration between device and Network Server, after you 
