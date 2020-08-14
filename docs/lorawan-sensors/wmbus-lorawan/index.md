@@ -3,25 +3,25 @@ version: 2.x
 ---
 # LOB-GW-WMBUS-LW-2
 
-Lobaro Wireless M-Bus over LoRaWAN® Bridge V2.
+Lobaro Wireless M-Bus Bridge V2 (for LoRaWAN®)
 
 Version **v2.x** *(since 2020-02-18)* <br>
 This is the latest version. The previous v1.x documentation can be found here: [doc v1.x](1.x/index.md).
 
-![Lobaro wmbus LoRaWAN Bridge V2](files/wmbus-lorawan-bridge-V2-IP67.jpg){: style="height:250px"}
+![Lobaro wmbus LoRaWAN Bridge V2](files/Lobaro-wireless-M-Bus-Bridge-V2.jpg){: style="height:350px"}
 
 ##Overview
 
-The LOB-GW-WMBUS-LW-2 is is a cost-effective & energy efficient bridge / range extender, that receives, caches and transparently forwards wireless M-Bus (C1, T1, S1 modes) 
+The Lobaro Wireless M-Bus Bridge V2 (Model: LOB-GW-WMBUS-LW-2) is a cost-effective & energy efficient bridge / range extender, that receives, caches and transparently forwards wireless M-Bus (C1, T1, S1 modes) 
 metering data from utility meters via any LoRaWAN® network onto the Internet. The metering data will not be decrypted by the device instead an unchanged 1:1 forwarding 
 takes place via one or more LoRaWAN® packets (depending on the wMBUS telegram byte size). Thus the end-to-end encryption of sensitive wireless M-BUS consumption data is preserved.
 
 LoRaWAN® is a mark used under license from the LoRa Alliance®.
 
 ## Key Features
-- [X] LoRaWAN 1.0.x and 1.1 network servers supported
-- [X] LoRaWAN Class A or Class C operation
-- [X] LoRaWAN 1.1 time synchronisation
+- [X] LoRaWAN 1.0.2+ (certified) and 1.1 network servers supported
+- [X] LoRaWAN Class A operation
+- [X] LoRaWAN time synchronisation
 - [X] Wireless MBus S1, C1 and T1 modes (868 MHz) compatible 
 - [X] Configuration via USB or remotely via LoRaWAN downlink
 - [X] Big 19Ah size "D" battery for 10 years+ possible battery lifetime
@@ -29,7 +29,6 @@ LoRaWAN® is a mark used under license from the LoRa Alliance®.
 - [X] Quick closing screws with cover retainer on housing
 - [X] Optional: Lobaro wireless MBUS parsing REST API (free for testing)
 - [X] Optional: complete Lobaro IoT Platform integration
-
 
 ##Introduction
 Many gas, water, electricity and heat meters can be read wirelessly using the common
@@ -601,14 +600,14 @@ The bridge can also be integrated in the Lobaro IoT platform with the following 
 |||
 |-|-|
 |**Product**||
-|Type name|wMBUS-LoRaWAN-R2|
+|Type name|LOB-GW-WMBUS-LW-2|
 |Description|wMBUS over LoRaWAN Bridge|
 |**RF transceiver**||
 |Chipset|Semtech SX1272|
 |Frequency Range|863 to 870 MHz|
 |TX Power|≤ 14 dBm|
 |**LoRa communication**||
-|LoRaWAN Protocol|Class A / Class C LoRaWAN 1.1 EU868|
+|LoRaWAN Protocol|Class A LoRaWAN 1.0.2 EU868|
 |Activation method|Over-the-air activation (OTAA) <br> Activation by personalization (ABP)|
 |Encryption|AES128|
 |Typically RF range|≤ 2km|
