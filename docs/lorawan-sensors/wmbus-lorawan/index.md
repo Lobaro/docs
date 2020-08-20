@@ -8,7 +8,7 @@ Lobaro Wireless M-Bus Bridge V2 (for LoRaWAN®)
 Version **v2.x** *(since 2020-02-18)* <br>
 This is the latest version. The previous v1.x documentation can be found here: [doc v1.x](1.x/index.md).
 
-![Lobaro wmbus LoRaWAN Bridge V2](files/Lobaro-wireless-M-Bus-Bridge-V2.jpg){: style="height:350px"}
+![Lobaro wmbus LoRaWAN Bridge V2](files/wireless-MBUS-LoRaWAN-Bridge-Gateway-logo-small-brd.jpg){: style="height:350px"}
 
 ##Overview
 
@@ -19,7 +19,7 @@ takes place via one or more LoRaWAN® packets (depending on the wMBUS telegram b
 LoRaWAN® is a mark used under license from the LoRa Alliance®.
 
 ## Key Features
-- [X] LoRaWAN 1.0.2+ (certified) and 1.1 network servers supported
+- [X] LoRaWAN 1.0.2+ (certified) and 1.1 (experimental) network servers supported
 - [X] LoRaWAN Class A operation
 - [X] LoRaWAN time synchronisation
 - [X] Wireless MBus S1, C1 and T1 modes (868 MHz) compatible 

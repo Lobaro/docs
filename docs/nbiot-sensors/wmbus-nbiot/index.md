@@ -1,6 +1,8 @@
 #LOB-GW-WMBUS-NB-2 
 The Lobaro Wireless M-Bus NB-IoT Gateway.
 
+![Lobaro wmbus NB-IoT-LTEM-Gateway](files/NB-IoT-wireless-M-Bus-Gateway-LTE-Logo-smallBrd.jpg){: style="height:350px"}
+
 ## Overview
 
 The *Lobaro Wireless M-Bus Gateway* (wMBus) is a simple to use, cost and energy efficient device that can 
