@@ -13,7 +13,7 @@
       
       
       <link rel="shortcut icon" href="../../favicon.ico">
-      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.5.7">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.5.8">
     
     
       
@@ -21,14 +21,14 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.b8ac9624.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.01afc2df.min.css">
       
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.28f3ef9a.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.83bccb1f.min.css">
       
       
         
         
-        <meta name="theme-color" content="">
+        <meta name="theme-color" content="#ffffff">
       
     
     
@@ -2990,6 +2990,21 @@ feature rich IP67 housing from Spelsberg. For this housing the following accesso
     <span class="k">return</span> <span class="s2">&quot;v&quot;</span> <span class="o">+</span> <span class="nx">bytes</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="nx">bytes</span><span class="p">[</span><span class="nx">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="nx">bytes</span><span class="p">[</span><span class="nx">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">];</span>
 <span class="p">}</span>
 
+
+<span class="kd">function</span> <span class="nx">signed</span><span class="p">(</span><span class="nx">val</span><span class="p">,</span> <span class="nx">bits</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">((</span><span class="nx">val</span> <span class="o">&amp;</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="nx">bits</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// value is negative (16bit 2&#39;s complement)</span>
+        <span class="kd">var</span> <span class="nx">mask</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nx">bits</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="nx">val</span> <span class="o">=</span> <span class="p">(</span><span class="o">~</span><span class="nx">val</span> <span class="o">&amp;</span> <span class="nx">mask</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// invert all bits &amp; add 1 =&gt; now positive value</span>
+        <span class="nx">val</span> <span class="o">=</span> <span class="nx">val</span> <span class="o">*</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">val</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">int16_LE</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">idx</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">bytes</span> <span class="o">=</span> <span class="nx">bytes</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="nx">idx</span> <span class="o">||</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">signed</span><span class="p">(</span><span class="nx">bytes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span> <span class="o">|</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">16</span><span class="p">);</span>
+<span class="p">}</span>
+
 <span class="kd">function</span> <span class="nx">Decoder</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">port</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// Decode an uplink message from a buffer</span>
     <span class="c1">// (array) of bytes to an object of fields.</span>
@@ -3009,12 +3024,12 @@ feature rich IP67 housing from Spelsberg. For this housing the following accesso
     <span class="k">if</span> <span class="p">(</span><span class="nx">port</span> <span class="o">===</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="nx">bytes</span><span class="p">.</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">9</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// status packet</span>
         <span class="nx">decoded</span><span class="p">.</span><span class="nx">FirmwareVersion</span> <span class="o">=</span> <span class="nb">String</span><span class="p">.</span><span class="nx">fromCharCode</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">bytes</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">));</span> <span class="c1">// byte 0-4</span>
         <span class="nx">decoded</span><span class="p">.</span><span class="nx">Vbat</span> <span class="o">=</span> <span class="p">(</span><span class="nx">bytes</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">|</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">/</span> <span class="mf">1000.0</span><span class="p">;</span> <span class="c1">// byte 6-7 (originally in mV)</span>
-        <span class="nx">decoded</span><span class="p">.</span><span class="nx">Temp</span> <span class="o">=</span> <span class="p">(</span><span class="nx">bytes</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">|</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">;</span> <span class="c1">// byte 8-9 (originally in 10th degree C)</span>
+        <span class="nx">decoded</span><span class="p">.</span><span class="nx">Temp</span> <span class="o">=</span> <span class="nx">int16_LE</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">;</span> <span class="c1">// byte 8-9 (originally in 10th degree C)</span>
         <span class="nx">decoded</span><span class="p">.</span><span class="nx">msg</span> <span class="o">=</span> <span class="s2">&quot;Firmware Version: v&quot;</span> <span class="o">+</span> <span class="nx">decoded</span><span class="p">.</span><span class="nx">FirmwareVersion</span> <span class="o">+</span> <span class="s2">&quot; Battery: &quot;</span> <span class="o">+</span> <span class="nx">decoded</span><span class="p">.</span><span class="nx">Vbat</span> <span class="o">+</span> <span class="s2">&quot;V Temperature: &quot;</span> <span class="o">+</span> <span class="nx">decoded</span><span class="p">.</span><span class="nx">Temp</span> <span class="o">+</span> <span class="s2">&quot;°C&quot;</span><span class="p">;</span>
     <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">port</span> <span class="o">===</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="nx">bytes</span><span class="p">.</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">7</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">decoded</span><span class="p">.</span><span class="nx">FirmwareVersion</span> <span class="o">=</span> <span class="nx">readVersion</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="c1">// byte 0-2</span>
         <span class="nx">decoded</span><span class="p">.</span><span class="nx">Vbat</span> <span class="o">=</span> <span class="p">(</span><span class="nx">bytes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">|</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">/</span> <span class="mf">1000.0</span><span class="p">;</span> <span class="c1">// originally in mV</span>
-        <span class="nx">decoded</span><span class="p">.</span><span class="nx">Temp</span> <span class="o">=</span> <span class="p">(</span><span class="nx">bytes</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">|</span> <span class="nx">bytes</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">;</span> <span class="c1">// originally in 10th degree C</span>
+        <span class="nx">decoded</span><span class="p">.</span><span class="nx">Temp</span> <span class="o">=</span> <span class="nx">int16_LE</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="o">/</span> <span class="mf">10.0</span><span class="p">;</span> <span class="c1">// originally in 10th degree C</span>
         <span class="nx">decoded</span><span class="p">.</span><span class="nx">msg</span> <span class="o">=</span> <span class="s2">&quot;Firmware Version: &quot;</span> <span class="o">+</span> <span class="nx">decoded</span><span class="p">.</span><span class="nx">FirmwareVersion</span> <span class="o">+</span> <span class="s2">&quot; Battery: &quot;</span> <span class="o">+</span> <span class="nx">decoded</span><span class="p">.</span><span class="nx">Vbat</span> <span class="o">+</span> <span class="s2">&quot;V Temperature: &quot;</span> <span class="o">+</span> <span class="nx">decoded</span><span class="p">.</span><span class="nx">Temp</span> <span class="o">+</span> <span class="s2">&quot;°C&quot;</span><span class="p">;</span>
     <span class="p">}</span>
 
@@ -3102,8 +3117,8 @@ feature rich IP67 housing from Spelsberg. For this housing the following accesso
       
     </div>
     
-      <script src="../../assets/javascripts/vendor.d1f5a259.min.js"></script>
-      <script src="../../assets/javascripts/bundle.d5fec882.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      <script src="../../assets/javascripts/vendor.df0def68.min.js"></script>
+      <script src="../../assets/javascripts/bundle.ba57d267.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
       <script>
         app = initialize({
