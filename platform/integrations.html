@@ -1390,9 +1390,9 @@ Access tokens can be managed on the REST Integration page.</p>
 </ul>
 <h4 id="receive-data-from-a-lorawan-network-server">Receive data from a LoRaWAN network server</h4>
 <ol>
-<li>Create an Access Token in the Lobaro Platform with the role <code>network-server</code> to allow write access for device data.</li>
+<li>Create an Bearer Token or BasicAuth credentials in the Lobaro Platform with the role <code>network-server</code> to allow write access for device data.</li>
 <li>Configure your network server to send data to the corresponding endpoint (see list below)
-using the token (e.g. <code>Bearer eyJhbGciOiJ...</code>) in the <code>Authorization</code> header field.<br />
+using the token (e.g. <code>Bearer eyJhbGciOiJ...</code>) or BasicAuth credentials in the <code>Authorization</code> header field.<br />
 Please consult the documentation of your network server for further instructions.</li>
 </ol>
 <p>Platform REST Endpoints for network server integrations:</p>
@@ -1402,8 +1402,9 @@ Please consult the documentation of your network server for further instructions
 <li>Actility: <a href="https://backend.lobaro.com/api/actility/data">https://backend.lobaro.com/api/actility/data</a></li>
 <li>Everynet: <a href="https://backend.lobaro.com/api/everynet/data">https://backend.lobaro.com/api/everynet/data</a></li>
 <li>TTN: <a href="https://backend.lobaro.com/api/ttn/data">https://backend.lobaro.com/api/ttn/data</a> (Platform Version &gt; 1.0.6)</li>
+<li>Wanesy: <a href="https://backend.lobaro.com/api/wanesy">https://backend.lobaro.com/api/wanesy</a> (/dataUp &amp; /dataDownEvent) (Platform Version &gt; 1.7.0)</li>
 </ul>
-<p>We also support other network servers on request, e.g. TTN, Element-IoT, Firefly, Actility, Loriot, ... Just ask!</p>
+<p>We also support other network servers on request, e.g. Firefly, Loriot, ... Just ask!</p>
 <h3 id="filter-query-parameters">Filter query parameters</h3>
 <p>Filters parameters can be appended to some requests in the form of <code>f:&lt;parameter&gt;=&lt;op&gt;:&lt;value&gt;</code> 
 e.g. <code>f:createdAt=gt:&lt;timestamp&gt;</code> to filter by createdAt date. </p>
