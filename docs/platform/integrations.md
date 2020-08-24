@@ -31,9 +31,9 @@ Add the Token into the HTTP request Header:
 
 #### Receive data from a LoRaWAN network server
 
-1. Create an Access Token in the Lobaro Platform with the role `network-server` to allow write access for device data.
+1. Create an Bearer Token or BasicAuth credentials in the Lobaro Platform with the role `network-server` to allow write access for device data.
 2. Configure your network server to send data to the corresponding endpoint (see list below)
-using the token (e.g. `Bearer eyJhbGciOiJ...`) in the `Authorization` header field.  
+using the token (e.g. `Bearer eyJhbGciOiJ...`) or BasicAuth credentials in the `Authorization` header field.  
 Please consult the documentation of your network server for further instructions.
 
 Platform REST Endpoints for network server integrations:
@@ -43,8 +43,9 @@ Platform REST Endpoints for network server integrations:
 * Actility: https://backend.lobaro.com/api/actility/data
 * Everynet: https://backend.lobaro.com/api/everynet/data
 * TTN: https://backend.lobaro.com/api/ttn/data (Platform Version > 1.0.6)
+* Wanesy: https://backend.lobaro.com/api/wanesy (/dataUp & /dataDownEvent) (Platform Version > 1.7.0)
 
-We also support other network servers on request, e.g. TTN, Element-IoT, Firefly, Actility, Loriot, ... Just ask!
+We also support other network servers on request, e.g. Firefly, Loriot, ... Just ask!
 
 ### Filter query parameters
 
