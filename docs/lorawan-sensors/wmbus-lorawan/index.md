@@ -654,7 +654,7 @@ Allow the mounting without opening the (sealed) cover.
 
 ## CE Declaration of Conformity 
 * [CE Declaration of Conformity - Rev1 HW](files/ce-wmbus-lorawan.pdf){: target="_blank"}
-* [CE Declaration of Conformity - Rev2 HW](files/ce_wMBUS-LoRaWAN-R2-scan.pdf){: target="_blank"}
+* [CE Declaration of Conformity - Rev2 HW](files/LOB-GW-WMBUS-LW-2_CE.pdf){: target="_blank"}
 
 ## Example Parser
 ### TTN
