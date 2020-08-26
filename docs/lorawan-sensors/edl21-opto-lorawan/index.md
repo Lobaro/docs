@@ -1,6 +1,6 @@
 # EDL21 Electricity meter LoRaWAN Bridge
 
-![Lobaro EDL21 LoRaWAN Bridge](files/EDL21_LabelV2_Front_klein.jpg){: style="width:45%; vertical-align: top; display: block; margin: 0 auto;"}
+![Lobaro EDL21 LoRaWAN Bridge](files/edl21-stromzähler-lorawan-logo.jpg){: style="width:45%; vertical-align: top; display: block; margin: 0 auto;"}
 
 The EDL21 over LoRaWAN bridge is a device that can be used to readout modern utility meters with standardized infrared "INFO" interface. 
 
@@ -136,7 +136,7 @@ As you can see by this the device will start the LoRaWAN join only after receivi
 |                          |                                                                         |
 |--------------------------|-------------------------------------------------------------------------|
 | **Product**              |                                                                         |
-| Type name                | EDL21-LoRaWAN                                                       |
+| Type name                | LOB-S-EDL21-LW                                                     |
 | Description              | Electricity meter over LoRaWAN Bridge                                              |
 | **RF tranceiver**        |                                                                         |
 | Type                     | Semtech SX1272                                                          |
