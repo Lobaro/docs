@@ -25,7 +25,8 @@ The latest firmware version is **v2.5.2** *(since 2020-02-25)*
 
 Download: 
 
-* [app-wMbusLoraBridge-2.5.2+hw2.hex](firmware/app-wMbusLoraBridge-2.5.2+hw2.hex) (hardware v2.x) [current release]
+* [app-wMbusLoraBridge-2.5.11+hw2.hex](firmware/app-wMbusLoraBridge-2.5.11+hw2.hex) (hardware v2.x) [current release]
+* [app-wMbusLoraBridge-2.5.2+hw2.hex](firmware/app-wMbusLoraBridge-2.5.2+hw2.hex) (hardware v2.x)
 * [app-wMbusLoraBridge-2.5.1+hw2.hex](firmware/app-wMbusLoraBridge-2.5.1+hw2.hex) (hardware v2.x)
 * [app-wMbusLoraBridge-2.4.0+hw2.hex](firmware/app-wMbusLoraBridge-2.4.0+hw2.hex) (hardware v2.x)
 
@@ -36,7 +37,8 @@ Download:
 
 Download:
 
-* [app-wMbusLoraBridge-2.5.2+hw1.hex](firmware/app-wMbusLoraBridge-2.5.2+hw1.hex) (hardware v1.x) [current release]
+* [app-wMbusLoraBridge-2.5.11+hw1.hex](firmware/app-wMbusLoraBridge-2.5.11+hw1.hex) (hardware v1.x) [current release]
+* [app-wMbusLoraBridge-2.5.2+hw1.hex](firmware/app-wMbusLoraBridge-2.5.2+hw1.hex) (hardware v1.x)
 * [app-wMbusLoraBridge-2.5.1+hw1.hex](firmware/app-wMbusLoraBridge-2.5.1+hw1.hex) (hardware v1.x)
 * [app-wMbusLoraBridge-2.4.0+hw1.hex](firmware/app-wMbusLoraBridge-2.4.0+hw1.hex) (hardware v1.x)
 
@@ -65,28 +67,66 @@ Download:
     
 ## Release changelog
 
+### 2.5.11 - 2020-08-18
+#### Added
+- Add config parameter `TxPower` to change maximal TX Power, with default of 13dBm to specialised FW version.
+
+### 2.5.10 - 2020-08-14
+#### Added
+- Check config parameters `DevEUI`, `JoinEUI`, and `AppKey` after boot.
+#### Changed
+- Invalid values for config parameter `NwkKey` are now treated like value `00000000000000000000000000000000` (that is, running device in LoRaWAN 1.0, instead of 1.1 with potential fallback to 1.0).
+- Remove `OpMode` from config parameters.
+
+### 2.5.9 - 2020-08-10
+#### Added
+- Adjust HW1 specific code to implement recent features originally developed on HW2.
+
+### 2.5.8 - 2020-08-07
+#### Fixed
+- NewChannelReq can remove channels by setting the Frequency to 0 instead of just disable them
+- Fix bug where NBTrans > 1 leads to multiple responses from LoRaWAN stack
+
+### 2.5.7 - 2020-08-07
+#### Added
+- Add PowerOn SelfTests for SRAM, EEPROM, VoltageMeasuring
+- Lobawan 2.0.1, request ACKs to check network connection for `lostReboot`
+- Skip random timeout on first upload
+
+### 2.5.6 - 2020-08-06
+#### Fixed
+- LoRaWAN Test support command 0x05 (LinkCheckReq)
+
+### 2.5.5 - 2020-08-04
+#### Added
+- Brown-out protection for HW2 (below 2.5V, recovery at 2.6V).
+#### Changed
+- Send ACK for remote reboot request before rebooting.
+
+### 2.5.4 - 2020-07-31
+#### Fixed
+- LED was on after wakeup from deep sleep
+- Latest version of LoRaWAN stack that passes all LCTT tests 
+#### Added
+- Allow to enter testmode for LCTT by setting the DevEUI to 0001020304050607
+
 ### v2.5.2 - 2020-06-17
 - Time Sync only one attempt at bootup
 - use Lobawan v1.2.2, fixes issues with OTAA Join under certain conditions
 
-
 ### v2.5.1 - 2020-05-15
-
-### Changed
+#### Changed
 - Adjust to Lobawan v1.2.0
 
 ### v2.5.0 - 2020-04-02
-
 #### Added
 - Also send status message when not collecting telegrams.
 - Add second cron expression for status message.
 - Add remote command for triggering collection of telegrams outside of cron.
 - Add `listenOnBoot` config parameter allowing to disable collection on boot.
 - Send Status message before listening on boot.
-
 ### Removed
 - Remove learning mode.
-
 ### Changed
 - Status message has an additional byte "flags"
 
