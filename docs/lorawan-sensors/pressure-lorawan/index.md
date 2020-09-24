@@ -53,7 +53,6 @@ in our LoRaWAN background article.
 |`NwkKey`    |Key used for OTAA (v1.1 only)        |`byte[16]`| |
 |`SF`        |Initial / maximum Spreading Factor   |`int`     | `7` - `12` |
 |`ADR`       |Use Adaptive Data Rate               |`bool`    | `true`= use ADR, `false`= don't |
-|`OpMode`    |Operation Mode                       |`string`  | `A`= Class A, `C`= Class C |
 |`TimeSync`  |Days after which to sync time        |`int`     | days, `0`=don't sync time | 
 |`RndDelay`  |Random delay before sending          |`int`     | max seconds |
 |`RemoteConf`|Support Remote Configuration         |`bool`    | `true`=allow, `false`=deactivate |
@@ -76,8 +75,9 @@ See also our [Introduction to Cron expressions](/background/cron-expressions).
 
 ## Payload Format
 
-Port: 1
-Payload: 8 Bytes
+### Data Message
+* Port: 1
+* Payload: 8 Bytes
 
 Temperature is transmitted in 1/100&deg;C, battery voltage in Millivolt and pressure in Bar.
 
@@ -88,7 +88,75 @@ Temperature is transmitted in 1/100&deg;C, battery voltage in Millivolt and pres
 
 ![Payload Format](files/payload-format.png)
 
-### Parser
+### Status Message
+* Port: 64
+* Payload: 13 Bytes
+
+| Name     | Bytes   | Type     | Description | Values |
+|----------|---------|----------|-------------|--------|
+| Firmware | `0-2`   | char[3]  | Firmware identifier | constant: `PPB` |
+| Version  | `3-5`   | uint8[3] | Three numbers indicating firmware version | `0x07000a` = `v0.3.1` |
+| Status   | `6`     | uint8    | Status Code indicating device's condition | `0` = `OK` |
+| Reboot reason | `7`| uint8    | Code indicating reason for last reboot | `0x06` = Reset button pressed | 
+| Final words   | `8`| uint8    | reserved for future use | `0` |
+| Voltage  | `9-10`  | uint16   | Battery voltage in mV | `0x0c38` = `3128` = `3.128V` |
+| Temp     | `11-12` | int16    | Device's Internal Temperature in 10th °C | `0x0102` = `258` = `25.8°C` |
+
+#### Firmware and Version
+*Firmware* is a constant three byte value containing three ASCII chars, indicating what firmware is running 
+on the device. For this firmware it is always 'GPS'.
+
+*Version* shows the version of the firmware running on the device, encoded as three independent `uint8` values.
+
+#### Status Code
+*Status* is a numeric code transmitted as `uint8`, that gives a self diagnostic:
+
+| Status Code | Status Name          | Meaning |
+|-------------|----------------------|---------|
+| `0`         | `OK`                 | Normal operation, no problems detected.         |
+| `101`       | `PROBE_ERROR`        | Reading the external probe failed.              |
+
+#### Reboot reason
+*Reboot reason* is a numeric code transmitted as `uint8`, that tells why the device did restart when 
+it last booted (which might me a long time ago, the value is repeated in every status message).
+This value is useful for troubleshooting and error detection. 
+           
+| Reboot Code | Reboot Reason | Explanation |
+|-------------|---------------|-------------|
+| `1`         | `LOW_POWER_RESET` | Supply voltage broke, batteries might need replacing.    |
+| `2`         | `WINDOW_WATCHDOG_RESET` |                                                    |
+| `3`         | `INDEPENDENT_WATCHDOG_RESET` |                                               |
+| `4`         | `SOFTWARE_RESET`  | Firmware triggered a reboot.                             |
+| `5`         | `POWER_ON_RESET`  | Power was turned on / Batteries where inserted.          |
+| `6`         | `EXTERNAL_RESET_PIN_RESET` | Reset button pressed / Reset by config adapter. |
+| `7`         | `OBL_RESET` | |
+
+#### Final words
+*Final words* is a numeric code transmitted as `uint8`, that is set by the device when the 
+firmware reboots on purpose (which might me a long time ago, the value is repeated in every status message).
+
+| Final Code | Final Words | Explanation |
+|------------|-------------|-------------|
+|  `0`       | `NONE`      | Last reboot was not intended by firmware. |
+|  `1`       | `RESET`     | Firmware actively triggered reboot, but without explanation. |
+| `16`       | `INVALID_CONFIG` | An error was found in the device's configuration. |
+| `17`       | `REMOTE_RESET` | Device was rebooted by remote command. |
+| `18`       | `NETWORK_LOST` | Device detected a loss from Network (e.g. OTAA session was destroyed in Network Server). |
+| `19`       | `NETWORK_FAIL` | Device could not connect to Network with temp config (e.g. after remote change of `AppKey`). |
+
+#### Voltage
+Supply voltage fed into the device, either from battery of external power source. Gives an 
+indication on the state of the battery used. The voltage is measured in millivolts (`mV`) and
+transmitted as a big endian `uint16`.
+
+#### Temperature
+The device has an internal temperature sensor, that is used to measure the temperature 
+of the device itself. This can give an help get an idea where the device is located 
+(inside/outside) and acts as a diagnostic in case of failure (if the device is exposed to 
+hazardous temperatures). The temperature is measured in 10th of °C and transmitted as a 
+big endian `int16`.
+
+## Parser
 
 **Element-IoT**: https://github.com/ZennerIoT/element-parsers/blob/master/lib/lobaro_pressure26d.ex
 
