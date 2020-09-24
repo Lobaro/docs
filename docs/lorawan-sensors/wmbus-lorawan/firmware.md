@@ -23,24 +23,27 @@ The latest firmware version is **v2.5.13** *(since 2020-09-24)*
 
 ![wMBUS LoRaWAN bride HW Rev2](files/Lobaro-wMBus-LoRaWAN-v2-Housing-open.jpg){: style="height:150px;display: block; margin: 0 auto;"}
 
-Download: 
+Download latest version:
 
-* [app-wMbusLoraBridge-2.5.13+hw2.hex](firmware/app-wMbusLoraBridge-2.5.13+hw2.hex) (hardware v2.x) [current release]
-* [app-wMbusLoraBridge-2.5.2+hw2.hex](firmware/app-wMbusLoraBridge-2.5.2+hw2.hex) (hardware v2.x)
-* [app-wMbusLoraBridge-2.5.1+hw2.hex](firmware/app-wMbusLoraBridge-2.5.1+hw2.hex) (hardware v2.x)
-* [app-wMbusLoraBridge-2.4.0+hw2.hex](firmware/app-wMbusLoraBridge-2.4.0+hw2.hex) (hardware v2.x)
-
+!!! success "Latest version"
+    * [app-wMbusLoraBridge-2.5.13+hw2.hex](firmware/app-wMbusLoraBridge-2.5.13+hw2.hex) (hardware v2.x) [current release]
+    
+!!! warning "Previous versions (not recommended for use)" 
+    * [app-wMbusLoraBridge-2.5.2+hw2.hex](firmware/app-wMbusLoraBridge-2.5.2+hw2.hex) (hardware v2.x)
+    * [app-wMbusLoraBridge-2.5.1+hw2.hex](firmware/app-wMbusLoraBridge-2.5.1+hw2.hex) (hardware v2.x)
+    * [app-wMbusLoraBridge-2.4.0+hw2.hex](firmware/app-wMbusLoraBridge-2.4.0+hw2.hex) (hardware v2.x)
 
 ### Hardware Revision 1.x (active since 2017)
 
 ![wMBUS LoRaWAN bride HW Rev1](files/Lobaro-wMBus-LoRaWAN-v1-Housings-open.jpg){: style="height:150px; display: block; margin: 0 auto;"}
 
-Download:
+!!! success "Latest version"
+    * [app-wMbusLoraBridge-2.5.13+hw1.hex](firmware/app-wMbusLoraBridge-2.5.13+hw1.hex) (hardware v1.x) [current release]
 
-* [app-wMbusLoraBridge-2.5.13+hw1.hex](firmware/app-wMbusLoraBridge-2.5.13+hw1.hex) (hardware v1.x) [current release]
-* [app-wMbusLoraBridge-2.5.2+hw1.hex](firmware/app-wMbusLoraBridge-2.5.2+hw1.hex) (hardware v1.x)
-* [app-wMbusLoraBridge-2.5.1+hw1.hex](firmware/app-wMbusLoraBridge-2.5.1+hw1.hex) (hardware v1.x)
-* [app-wMbusLoraBridge-2.4.0+hw1.hex](firmware/app-wMbusLoraBridge-2.4.0+hw1.hex) (hardware v1.x)
+!!! warning "Previous versions (not recommended for use)" 
+    * [app-wMbusLoraBridge-2.5.2+hw1.hex](firmware/app-wMbusLoraBridge-2.5.2+hw1.hex) (hardware v1.x)
+    * [app-wMbusLoraBridge-2.5.1+hw1.hex](firmware/app-wMbusLoraBridge-2.5.1+hw1.hex) (hardware v1.x)
+    * [app-wMbusLoraBridge-2.4.0+hw1.hex](firmware/app-wMbusLoraBridge-2.4.0+hw1.hex) (hardware v1.x)
 
 !!! info "Please note revisions 1.x are no longer the default variant since 02/2020"
     The v1 hardware revisions are still active but only on special sales inquiry! 
