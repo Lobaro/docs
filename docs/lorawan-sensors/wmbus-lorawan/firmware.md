@@ -1,6 +1,6 @@
 # Wireless mBUS over LoRaWAN Bridge
 
-The latest firmware version is **v2.5.12** *(since 2020-09-09)*
+The latest firmware version is **v2.5.13** *(since 2020-09-24)*
 
 !!! faq "Which firmware version am I using right now?"
     You can see the firmware version of your device by inspecting the USB log output in our PC maintenance tool. Or use the information
@@ -25,7 +25,7 @@ The latest firmware version is **v2.5.12** *(since 2020-09-09)*
 
 Download: 
 
-* [app-wMbusLoraBridge-2.5.12+hw2.hex](firmware/app-wMbusLoraBridge-2.5.12+hw2.hex) (hardware v2.x) [current release]
+* [app-wMbusLoraBridge-2.5.13+hw2.hex](firmware/app-wMbusLoraBridge-2.5.13+hw2.hex) (hardware v2.x) [current release]
 * [app-wMbusLoraBridge-2.5.2+hw2.hex](firmware/app-wMbusLoraBridge-2.5.2+hw2.hex) (hardware v2.x)
 * [app-wMbusLoraBridge-2.5.1+hw2.hex](firmware/app-wMbusLoraBridge-2.5.1+hw2.hex) (hardware v2.x)
 * [app-wMbusLoraBridge-2.4.0+hw2.hex](firmware/app-wMbusLoraBridge-2.4.0+hw2.hex) (hardware v2.x)
@@ -37,7 +37,7 @@ Download:
 
 Download:
 
-* [app-wMbusLoraBridge-2.5.12+hw1.hex](firmware/app-wMbusLoraBridge-2.5.12+hw1.hex) (hardware v1.x) [current release]
+* [app-wMbusLoraBridge-2.5.13+hw1.hex](firmware/app-wMbusLoraBridge-2.5.13+hw1.hex) (hardware v1.x) [current release]
 * [app-wMbusLoraBridge-2.5.2+hw1.hex](firmware/app-wMbusLoraBridge-2.5.2+hw1.hex) (hardware v1.x)
 * [app-wMbusLoraBridge-2.5.1+hw1.hex](firmware/app-wMbusLoraBridge-2.5.1+hw1.hex) (hardware v1.x)
 * [app-wMbusLoraBridge-2.4.0+hw1.hex](firmware/app-wMbusLoraBridge-2.4.0+hw1.hex) (hardware v1.x)
@@ -66,6 +66,10 @@ Download:
     Make sure to select the **"Firmware Updates"** checkbox!    
     
 ## Release changelog
+
+### 2.5.13 - 2020-09-24
+#### Fixed
+- Fix handling of Type B wMBus Telegrams
 
 ### 2.5.12 - 2020-09-09
 #### Fixed
