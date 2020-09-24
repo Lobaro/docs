@@ -10,7 +10,7 @@ log with our config adapter, while the device is booting.
 
 **Downloads**:
 
-* [app-lorawan-pressure-0.2.2.hex](firmware/app-lorawan-pressure-0.2.2.hex) [current release]
+* [app-lorawan-pressure-0.3.1.hex](firmware/app-lorawan-pressure-0.3.1.hex) [current release]
 
 !!! hint "Firmware Release Notifications"
     We normally send e-mail notifications upon release of new firmware versions. To receive this mails you can sign up
@@ -21,6 +21,15 @@ log with our config adapter, while the device is booting.
     Make sure to select the **"Firmware Updates"** checkbox!   
 
 ### Changelog
+
+#### 0.3.1 - 2020-09-16
+- Additional "Final Words" in Status
+- Set cron default to once every two hours.
+- Upgrade to use LoRaWAN-Stack we certified in wMBus-Bridge.
+- Remove Class-C support.
+- Add daily status message (on port 64).
+- Add Power-on self test (checking probe communication).
+- Communicate probe connection failure in status message.
 
 #### 0.2.2 - 2020-08-06
 - Completely rewrite app structure (taken form `app-lorawan-environment`), to enable use 
