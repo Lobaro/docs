@@ -1,6 +1,6 @@
 # Wireless mBUS over LoRaWAN Bridge
 
-The latest firmware version is **v2.5.13** *(since 2020-09-24)*
+The latest firmware version is **v2.5.14** *(since 2020-09-28)*
 
 !!! faq "Which firmware version am I using right now?"
     You can see the firmware version of your device by inspecting the USB log output in our PC maintenance tool. Or use the information
@@ -26,9 +26,10 @@ The latest firmware version is **v2.5.13** *(since 2020-09-24)*
 Download latest version:
 
 !!! success "Latest version"
-    * [app-wMbusLoraBridge-2.5.13+hw2.hex](firmware/app-wMbusLoraBridge-2.5.13+hw2.hex) (hardware v2.x) [current release]
+    * [app-wMbusLoraBridge-2.5.14+hw2.hex](firmware/app-wMbusLoraBridge-2.5.14+hw2.hex) (hardware v2.x) [current release]
     
 !!! warning "Previous versions (not recommended for use)" 
+    * [app-wMbusLoraBridge-2.5.13+hw2.hex](firmware/app-wMbusLoraBridge-2.5.13+hw2.hex) (hardware v2.x)
     * [app-wMbusLoraBridge-2.5.2+hw2.hex](firmware/app-wMbusLoraBridge-2.5.2+hw2.hex) (hardware v2.x)
     * [app-wMbusLoraBridge-2.5.1+hw2.hex](firmware/app-wMbusLoraBridge-2.5.1+hw2.hex) (hardware v2.x)
     * [app-wMbusLoraBridge-2.4.0+hw2.hex](firmware/app-wMbusLoraBridge-2.4.0+hw2.hex) (hardware v2.x)
@@ -38,7 +39,7 @@ Download latest version:
 ![wMBUS LoRaWAN bride HW Rev1](files/Lobaro-wMBus-LoRaWAN-v1-Housings-open.jpg){: style="height:150px; display: block; margin: 0 auto;"}
 
 !!! success "Latest version"
-    * [app-wMbusLoraBridge-2.5.13+hw1.hex](firmware/app-wMbusLoraBridge-2.5.13+hw1.hex) (hardware v1.x) [current release]
+    * [app-wMbusLoraBridge-2.5.14+hw1.hex](firmware/app-wMbusLoraBridge-2.5.14+hw1.hex) (hardware v1.x) [current release]
 
 !!! warning "Previous versions (not recommended for use)" 
     * [app-wMbusLoraBridge-2.5.2+hw1.hex](firmware/app-wMbusLoraBridge-2.5.2+hw1.hex) (hardware v1.x)
@@ -69,6 +70,12 @@ Download latest version:
     Make sure to select the **"Firmware Updates"** checkbox!    
     
 ## Release changelog
+
+### 2.5.14 - 2020-09-28
+- This release is functionally identical to 2.5.13. There is no benefit in upgrading from 
+  2.5.13 to 2.5.14 if you are using HW2.
+#### Fixed
+- Shorten logging message to make firmware for HW1 fit into device's flash.
 
 ### 2.5.13 - 2020-09-24
 #### Fixed
