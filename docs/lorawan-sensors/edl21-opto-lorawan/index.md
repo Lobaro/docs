@@ -20,8 +20,7 @@ interested in further processing this data.
     
 ## Top Features
 - [X] LoRaWAN 1.0.x and 1.1 network servers supported
-- [X] LoRaWAN Class A or Class C operation
-- [X] LoRaWAN 1.1 time synchronisation
+- [X] LoRaWAN time synchronisation
 - [X] Configuration via USB or remotely via LoRaWAN downlink
 - [X] Compatible with many electrical utility meters
 - [X] RGB Status LED
