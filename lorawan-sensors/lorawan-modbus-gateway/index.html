@@ -1392,32 +1392,26 @@ and provides received data via modbus.</p>
 <div class="codehilite"><pre><span></span><code><span class="err">~/enableWriteAccess.sh</span>
 </code></pre></div>
 
-
 <p>To disable write access, restart the gateway or execute:</p>
 <div class="codehilite"><pre><span></span><code><span class="err">~/disableWriteAccess.sh</span>
 </code></pre></div>
-
 
 <p>For editing files <code>vim</code> is installed.</p>
 <p>Open or change configuration of the Lobaro Modbus Server:</p>
 <div class="codehilite"><pre><span></span><code><span class="err">sudo vim /etc/lobaro-modbus-server/lobaro-modbus-server.yml</span>
 </code></pre></div>
 
-
 <p>After editing the configuration <code>lobaro-modbus-server</code> must be restarted:</p>
 <div class="codehilite"><pre><span></span><code><span class="err"> sudo systemctl restart lobaro-modbus-server</span>
 </code></pre></div>
-
 
 <p>Check the status with</p>
 <div class="codehilite"><pre><span></span><code><span class="err"> sudo systemctl status lobaro-modbus-server</span>
 </code></pre></div>
 
-
 <p>Check the logs with</p>
 <div class="codehilite"><pre><span></span><code><span class="err">sudo journalctl --no-pager -e -u lobaro-modbus-server</span>
 </code></pre></div>
-
 
 <h3 id="debugging">Debugging</h3>
 <p>Beside checking the logs, you can also analyze the files in the <code>dataDir</code> (see config).</p>
@@ -1578,7 +1572,6 @@ mapping:
         value: &quot;txInfo.dr&quot;
         type: int16
 </code></pre></div>
-
 <h2 id="chirpstack">Chirpstack</h2>
 <p>The gateway uses a local Chirpstack server. Access management interface on <code>https://&lt;gw-ip&gt;:8080</code>.</p>
 <p>Documentation can be found on <a href="https://chirpstack.io" target="_blank">Chripstack.io</a>.</p>
@@ -1592,11 +1585,9 @@ The Device Profile of each LoRaWAN device must be referenced by its name or UUID
 <div class="codehilite"><pre><span></span><code><span class="err">passwd</span>
 </code></pre></div>
 
-
 <h3 id="change-ip-address">Change IP address</h3>
 <div class="codehilite"><pre><span></span><code><span class="err">sudo vim /etc/network/interfaces</span>
 </code></pre></div>
-
 
 <div class="highlight"><pre><span></span><code>pi@LoRaGateway:~ $ cat /etc/network/interfaces
 # interfaces(5) file used by ifup(8) and ifdown(8)

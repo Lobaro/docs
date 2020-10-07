@@ -1223,7 +1223,6 @@ In addition the parser can access an API to set device level properties and addi
   <span class="k">return</span> <span class="nx">decoded</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-
 <h2 id="js-parser-api">JS Parser API</h2>
 <p>Helper functions</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// Bytes can convert binary data to byte array</span>
@@ -1244,7 +1243,6 @@ In addition the parser can access an API to set device level properties and addi
 <span class="nx">float32LE</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">idx</span><span class="p">);</span>
 <span class="nx">float32BE</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">idx</span><span class="p">);</span>
 </code></pre></div>
-
 <p>Special parser functions</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// Parse wMbus message</span>
 <span class="nx">Parser</span><span class="p">.</span><span class="nx">parseWmbus</span><span class="p">(</span><span class="nx">bytes</span><span class="p">);</span>
@@ -1262,7 +1260,6 @@ In addition the parser can access an API to set device level properties and addi
 <span class="c1">// Equivalent to clearPartial followed by joinPartial</span>
 <span class="kd">var</span> <span class="nx">joined</span> <span class="o">=</span> <span class="nx">Parser</span><span class="p">.</span><span class="nx">newPartial</span><span class="p">(</span><span class="nx">cacheKey</span><span class="p">);</span>
 </code></pre></div>
-
 <p>All functions are optional. Not calling them will not change any data.</p>
 <p>Update the physical location of the sensor
 <div class="highlight"><pre><span></span><code><span class="nx">Device</span><span class="p">.</span><span class="nx">setLocation</span><span class="p">(</span><span class="nx">lon</span><span class="p">,</span> <span class="nx">lat</span><span class="p">)</span>
