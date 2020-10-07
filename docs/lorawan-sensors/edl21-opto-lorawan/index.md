@@ -98,7 +98,6 @@ in our LoRaWAN background article.
 |`NwkKey`    |Key used for OTAA (v1.1 only)        |`byte[16]`| |
 |`SF`        |Initial / maximum Spreading Factor   |`int`     | `7` - `12` |
 |`ADR`       |Use Adaptive Data Rate               |`bool`    | `true`= use ADR, `false`= don't |
-|`OpMode`    |Operation Mode                       |`string`  | `A`= Class A, `C`= Class C |
 |`TimeSync`  |Days after which to sync time        |`int`     | days, `0`=don't sync time | 
 |`RndDelay`  |Random delay before sending          |`int`     | max seconds |
 |`RemoteConf`|Not supported by this firmware       |`bool`    | `false`=deactivate |
