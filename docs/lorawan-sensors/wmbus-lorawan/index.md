@@ -533,7 +533,7 @@ The Ad-hoc readout is using the same parameters as a CRON triggered readout.
 **Downlink Message:**
 
 * Port: 132
-* Message: `read` (ASCII Encoded)
+* Message: `read` (ASCII Encoded) Hex: `72656164` Base64: `cmVhZA==`
 
 
 ##Decoding wMBUS telegrams
