@@ -4,7 +4,7 @@
 
 **Downloads:**
 
-* [app-lorawan-onewire-bridge-0.5.0.hex](firmware/app-lorawan-onewire-bridge-0.5.0.hex)
+* [app-lorawan-onewire-bridge-0.5.1.hex](firmware/app-lorawan-onewire-bridge-0.5.1.hex)
 * [app-lorawan-onewire-bridge-0.3.4.hex](firmware/app-lorawan-onewire-bridge-0.3.4.hex)
 
 !!! hint "Firmware Release Notifications"
@@ -24,6 +24,10 @@
     You can adjust those values to your need with our config adapter. 
 
 ## Changelog
+### 0.5.1 - 2020-10-15
+#### Changed
+- Set standard value for config parameter `LostReboot` to 1 (from 0).
+
 ### 0.5.0 - 2020-08-12
 #### Added
 - Power-On Selftest
