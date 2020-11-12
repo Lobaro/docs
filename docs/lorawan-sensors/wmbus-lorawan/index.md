@@ -6,4 +6,4 @@ Lobaro Wireless M-Bus Bridge V2 (for LoRaWAN®)
 
 # The documentation has moved.
 
-*Please find the manual on its new location at [https://doc.lobaro.com](https://doc.lobaro.com/pages/viewpage.action?pageId=4194792)*
+*Please find the manual on its new location at [https://doc.lobaro.com](https://doc.lobaro.com/doc/lorawan-devices/wireless-m-bus-bridge-v2-lorawan)*
