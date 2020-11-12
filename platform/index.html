@@ -1023,15 +1023,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#features" class="md-nav__link">
-    Features
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
-    Overview
+  <a href="#the-documentation-has-moved" class="md-nav__link">
+    The documentation has moved.
   </a>
   
 </li>
@@ -1182,15 +1175,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#features" class="md-nav__link">
-    Features
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
-    Overview
+  <a href="#the-documentation-has-moved" class="md-nav__link">
+    The documentation has moved.
   </a>
   
 </li>
@@ -1216,57 +1202,10 @@
                 
                 
                 <h1 id="lobaro-iot-platform">Lobaro IoT Platform</h1>
-<p>The Lobaro IoT Platform offers device management and can process, display and forward data of IoT Devices.</p>
-<p>The Platform is optimized for but not limited to handle Lobaro devices.</p>
-<p>Public Lobaro instance: <a href="https://platform.lobaro.com" target="_blank">platform.lobaro.com</a></p>
-<p>We offer On-Premise hosting and dedicated cloud instances. 
-The documentation will always reference the Public Lobaro instance of the Platform.</p>
-<h2 id="features">Features</h2>
+<h2 id="the-documentation-has-moved">The documentation has moved.</h2>
 <ul>
-<li>Multi tenant (Organisations) with branding / white labeling</li>
-<li>IoT Device Management</li>
-<li>Support for all Lobaro Devices</li>
-<li>Possibility to integrate 3<sup>rd</sup> party IoT Devices (LoRaWAN, NB-IoT, ...)</li>
-<li>Device configuration</li>
-<li>Firmware updates</li>
-<li>Data parsing and persistence</li>
-<li>Datasources</li>
-<li>LoRaWAN Network Server</li>
-<li>NB-IoT (CoAP)</li>
-<li>GSM / LTE</li>
-<li>REST</li>
-<li>APIs to access or forward data to Use-Case specific applications</li>
+<li>Please find the manual on its new location at <a href="https://doc.lobaro.com/doc/lobaro-iot-platform">https://doc.lobaro.com</a></li>
 </ul>
-<p>We offer free access to the platform for 12 Month with the purchase of any Lobaro device in our shared instance.
-In addition we offer private instance hosting on AWS or On-Premise (any Server with Root access).</p>
-<h2 id="overview">Overview</h2>
-<p><img alt="Navigation Integrations" src="img/nav-main.png" /></p>
-<p>You can find your organisations name next to the Logo. Admins can change their organisation by clicking the small Icon next to it.</p>
-<ul>
-<li><strong>Devices</strong>: Manage all devices of your organisation.</li>
-<li><strong>Data</strong>: See incoming data of all your devices.</li>
-<li><strong>Integrations</strong>: Manage data connections to and from other applications. (See: <a href="integrations.html">Integrations</a>).</li>
-<li><strong>Organisation</strong>: Manage all organisation related data.</li>
-<li><strong>Configuration</strong>: Platform administration of global entities independent of the Organisation (Admins only).</li>
-<li><strong>Tools</strong>: wMbus Parser and Hardware Activation.</li>
-</ul>
-<p>The platform shows device data received via various data sources like LoRaWAN, NB.IoT, GSM, etc..</p>
-<p>The connection to a device in handled by a <code>Datasource</code>. 
-Incoming data is mapped to a matching <code>Device</code>.
-Raw data is saved as <code>Uplink Message</code>. 
-The <code>Uplink Message</code> gets processed by a <code>Parser</code>. 
-The result of the parser is saved as <code>Device Data</code> used for visualization inside the dashboard and in outgoing API's.</p>
-<div class="mermaid">graph LR;
-    ds&gt;Datasource]
-    device(Device)
-    parser(Parser)
-    raw[Uplink Message]
-    parsed[Device Data]
-
-    ds--&gt;device
-    device--&gt;raw
-    raw--&gt;parser
-    parser--&gt;parsed</div>
                 
               
               
